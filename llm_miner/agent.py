@@ -6,10 +6,12 @@ from langchain.chains.base import Chain
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
 from llm_miner.categorize.base import CategorizeAgent
+from llm_miner.synthesis.base import SynthesisMiningAgent
 
 
 class LLMMiner(Chain):
     categorize_agent: Chain
+    synthesis_agent: Chain
     input_key: str = "paragraph"
     output_key: str = "output"
 
@@ -26,28 +28,31 @@ class LLMMiner(Chain):
         run_manager.on_text(text, verbose=self.verbose, color='yellow')
 
     def _parse_output(self, output: str) -> Dict[str, str]:
-        output = output.replace("List:", "").strip()  # remove `List`
-        return json.loads(output)
+        raise NotImplementedError()
     
     def _call(
             self,
             inputs: Dict[str, Any],
-            run_manager: Optional[CallbackManagerForChainRun] = None
+            run_manager: Optional[CallbackManagerForChainRun] = None,
     ) -> Dict[str, Any]:
         _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
-        #_run_manager = CallbackManagerForChainRun.get_noop_manager()
+        callbacks = _run_manager.get_child()
         
         paragraph = inputs[self.input_key]
-        categories = self.categorize_agent.run(paragraph, run_manager=_run_manager)
+        categories = self.categorize_agent.run(
+            paragraph=paragraph,
+            callbacks=callbacks,
+        )
 
         if 'synthesis condition' in categories:
-            # sysntehsis_agent.run()
-            pass
+            output = self.sysntehsis_agent.run(
+                paragraph=paragraph,
+                callbacks=callbacks,
+            )
         elif 'table' in categories:
             pass
             # table_agent.run()
         else:
-
             pass
 
         output = categories
@@ -59,6 +64,11 @@ class LLMMiner(Chain):
         llm: BaseLanguageModel,
         **kwargs,
     ) -> Chain:
-
         categorize_agent = CategorizeAgent.from_llm(llm, **kwargs)
-        return cls(categorize_agent=categorize_agent, **kwargs)
+        synthesis_agent = SynthesisMiningAgent.from_llm(llm, **kwargs)
+
+        return cls(
+            categorize_agent=categorize_agent,
+            synthesis_agent=synthesis_agent,
+            **kwargs
+        )

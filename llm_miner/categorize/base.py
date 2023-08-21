@@ -9,6 +9,7 @@ from langchain.prompts import PromptTemplate
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
 from llm_miner.categorize.prompt import PROMPT_CATEGORIZE
+from llm_miner.error import StructuredFormatError
 
 
 class CategorizeAgent(Chain):
@@ -30,7 +31,10 @@ class CategorizeAgent(Chain):
 
     def _parse_output(self, output: str) -> Dict[str, str]:
         output = output.replace("List:", "").strip()  # remove `List`
-        return json.loads(output)
+        try:
+            return json.loads(output)
+        except Exception as e:
+            raise StructuredFormatError(e)
     
     def _call(
             self,

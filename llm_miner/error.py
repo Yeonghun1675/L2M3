@@ -1,0 +1,2 @@
+class StructuredFormatError(Exception):
+    pass
