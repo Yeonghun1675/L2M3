@@ -51,7 +51,7 @@ class LLMMiner(Chain):
         elif 'table' in categories:
             pass
         
-        else:
+        elif 'property' in categories:
             pass
 
         return {self.output_key: output}
@@ -60,9 +60,10 @@ class LLMMiner(Chain):
     def from_llm(
         cls,
         llm: BaseLanguageModel,
+        simple_llm: BaseLanguageModel,
         **kwargs,
     ) -> Chain:
-        categorize_agent = CategorizeAgent.from_llm(llm, **kwargs)
+        categorize_agent = CategorizeAgent.from_llm(simple_llm, **kwargs)
         synthesis_agent = SynthesisMiningAgent.from_llm(llm, **kwargs)
 
         return cls(
