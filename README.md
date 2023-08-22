@@ -1,3 +1,3 @@
-# LLM DataMinder
+# LLM Material DataMinder
 
-This is LLM minder
+This is LLM material minder

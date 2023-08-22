@@ -12,6 +12,7 @@ etc/
 test*.*
 cp_search_csv/
 test/
+test.ipynb
 
 
 .ipynb_checkpoints/
