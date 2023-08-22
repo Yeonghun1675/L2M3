@@ -1,4 +1,3 @@
-import json
 from typing import Any, Dict, List, Optional
 
 from langchain.base_language import BaseLanguageModel
@@ -45,10 +44,11 @@ class LLMMiner(Chain):
         )
 
         if 'synthesis condition' in categories:
-            output = self.sysntehsis_agent.run(
+            output = self.synthesis_agent.run(
                 paragraph=paragraph,
                 callbacks=callbacks,
             )
+            
         elif 'table' in categories:
             pass
             # table_agent.run()
