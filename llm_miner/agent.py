@@ -48,14 +48,12 @@ class LLMMiner(Chain):
                 paragraph=paragraph,
                 callbacks=callbacks,
             )
-            
         elif 'table' in categories:
             pass
-            # table_agent.run()
+        
         else:
             pass
 
-        output = categories
         return {self.output_key: output}
     
     @classmethod
