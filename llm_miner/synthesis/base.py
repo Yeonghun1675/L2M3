@@ -7,12 +7,13 @@ from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
-from llm_miner.synthesis.prompt import PROMPT_TYPE
+from llm_miner.synthesis.prompt import PROMPT_TYPE, PROMPT_STRUCT, EXAMPLE_STRUCT
 from llm_miner.error import StructuredFormatError
 
 
 class SynthesisMiningAgent(Chain):
     type_chain: LLMChain
+    type_struct: LLMChain
     input_key: str = "paragraph"
     output_key: str = "output"
 
@@ -24,8 +25,8 @@ class SynthesisMiningAgent(Chain):
     def output_keys(self) -> List[str]:
         return [self.output_key]
     
-    def _write_log(self, action: str, text: str, run_manager):
-        run_manager.on_text(f'\n[Synthesis Mining] {action}: ', verbose=self.verbose)
+    def _write_log(self, text: str, run_manager):
+        run_manager.on_text(f'\n[Synthesis Mining] ', verbose=self.verbose)
         run_manager.on_text(text, verbose=self.verbose, color='yellow')
 
     def _parse_output(self, output: str) -> Dict[str, str]:
@@ -49,8 +50,19 @@ class SynthesisMiningAgent(Chain):
             callbacks=callbacks,
             stop=["Paragraph:"]
         )
+        synthesis_type = self._parse_output(llm_output)
+        self._write_log(str(synthesis_type), _run_manager)
+
+        llm_output = self.type_struct.run(
+            paragraph=paragraph,
+            prop=None,
+            synthesis_type=synthesis_type,
+            callbacks=callbacks,
+            stop=['Paragraph:']
+        )
         output = self._parse_output(llm_output)
-        
+        self._write_log(json.dumps(output), _run_manager)
+
         return {"output": output}
 
     @classmethod
@@ -58,6 +70,8 @@ class SynthesisMiningAgent(Chain):
         cls,
         llm: BaseLanguageModel,
         prompt_type: str = PROMPT_TYPE,
+        prompt_struct: str = PROMPT_STRUCT,
+        example_struct: str = EXAMPLE_STRUCT,
         **kwargs,
     ) -> Chain:
         
@@ -65,9 +79,18 @@ class SynthesisMiningAgent(Chain):
             template=prompt_type,
             input_variables=['paragraph'],
         )
+        template_struct = PromptTemplate(
+            template=prompt_struct,
+            input_variables=['prop', 'synthesis_type', 'paragraph'],
+            partial_variables={'example': example_struct},
+        )
+
         type_chain = LLMChain(llm=llm, prompt=template_type)
+        type_struct = LLMChain(llm=llm, prompt=template_struct)
+
         return cls(
             type_chain=type_chain,
+            type_struct=type_struct,
             **kwargs
         )
     
