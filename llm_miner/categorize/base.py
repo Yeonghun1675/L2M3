@@ -9,11 +9,12 @@ from langchain.prompts import PromptTemplate
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
 from llm_miner.categorize.prompt import PROMPT_CATEGORIZE
-from llm_miner.error import StructuredFormatError
+from llm_miner.error import StructuredFormatError, ContextError
 
 
 class CategorizeAgent(Chain):
     categorize_chain: LLMChain
+    labels: List[str] = ["property", "synthesis condition", "else"]
     input_key: str = "paragraph"
     output_key: str = "output"
 
@@ -52,6 +53,12 @@ class CategorizeAgent(Chain):
         )
 
         output = self._parse_output(llm_output)
+
+        if not output:
+            raise ContextError(f'There are no categories in paragraph')
+        if any([v not in self.labels for v in output]):
+            raise ContextError(f'Class of paragraph must be one of {self.labels}, not {output}')
+
         self._write_log(str(output), _run_manager)
 
         return {self.output_key: output}
