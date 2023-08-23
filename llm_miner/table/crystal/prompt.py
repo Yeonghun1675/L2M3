@@ -104,12 +104,16 @@ Output:
             "symbol": "1",
             "chemical formula": "C₈H₉PrNO₉",
         },
-        "formula weight": {
-            "value": "404.07",
-        },
-        "crystal system": {
-            "value": "Triclinic",
-        },
+        "formula weight": [
+            {
+                "value": "404.07",
+            },
+        ]
+        "crystal system": [
+            {
+                "value": "Triclinic",
+            },
+        ]
     },
     {
         "meta": {
@@ -117,12 +121,16 @@ Output:
             "symbol": "2",
             "chemical formula": "C₈H₉NdNO₉",
         },
-        "formula weight": {
-            "value": "407.40",
-        },
-        "crystal system": {
-            "value": "Triclinic",
-        },
+        "formula weight": [
+            {
+                "value": "407.40",
+            },
+        ]
+        "crystal system": [
+            {
+                "value": "Triclinic",
+            },
+        ]
     },
     {
         "meta": {
@@ -130,12 +138,16 @@ Output:
             "symbol": "3",
             "chemical formula": "C₈H₉EuNO₉",
         },
-        "formula weight": {
-            "value": "415.12",
-        },
-        "crystal system": {
-            "value": "Triclinic",
-        },
+        "formula weight": [
+            {
+                "value": "415.12",
+            },
+        ]
+        "crystal system": [
+            {
+                "value": "Triclinic",
+            },
+        ]
     },
 ]
 <END>
@@ -158,13 +170,17 @@ Output:
             "symbol": "compound 1",
             "chemical formula": "C28H30Hg2N4O9",
         },
-        "crystal system": {
-            "value": "monoclinic",
-        },
-        "crystal size: {
-            "value": "0.32 x 0.28 x 0.24",
-            "unit": "mm"
-        }
+        "crystal system": [
+            {
+                "value": "monoclinic",
+            },
+        ]
+        "crystal size: [
+            {
+                "value": "0.32 x 0.28 x 0.24",
+                "unit": "mm"
+            }
+        ]
     },
 ]
 <END>

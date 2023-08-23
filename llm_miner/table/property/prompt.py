@@ -11,78 +11,50 @@ PROPERTY_CATEGORIZE = """From the provided markdown table, generate a Python lis
 - selectivity: selectivity of materials. 'Selective' is not equal to 'selectivity'
 - catalytic activity: turnover frequency of materials ex) TOF.
 - density: bulk density of materials.
-- porosity(void fraction): fraction of total volume of material that is occupied by pores or voids ex) accessible volume fraction.
+- porosity: fraction of total volume of material that is occupied by pores or voids ex) accessible volume fraction, void fraction.
 - topology: manner in which the metal nodes and organic linkers are connected in a three-dimensional arrangement.
 - magentic property: properties of materials in the presence of a magnetic field.
 - optical property: properties of materials in response to electromagnetic radiation.
 - etc: Other properties not included in the live above but can be represented by numeric values.
 
+You must not include the same property several times. If there are surface_area and BET surface_area in the paragraph at the same time, you must include 'surface_area' once. Only properties must be included and the name of materials must not be included. If same property of different materials appears, you must include the property only once. If certain property you find does not have a value, please do not include that property. For example, even if selectivity is stated in the paragraph, do not write selectivity when specific value is not written. Do not be confused between gas adsorption and selectivity. Gas adsorption is a property that has a unit and selectivity is unitless. Even though there is a word 'selectivity', it is not always selectivity. If there is a value with unit, it is gas adsorption.
+If you're uncertain, please return empty list.
+
 Begin!
 
 Input:
-**Table 1: Crystallographic data for complexes 1–6**
+Table 2
 
-|   | 1 | 2 | 3 | 4 | 5 | 6 |
-|---|---|---|---|---|---|---|
-| Empirical formula | C₈H₉PrNO₉ | C₈H₉NdNO₉ | C₈H₉EuNO₉ | C₈H₉GdNO₉ | C₈H₉TbNO₉ | C₈H₉ErNO₉ |
-| Formula weight | 404.07 | 407.40 | 415.12 | 420.41 | 422.08 | 430.42 |
-| Crystal system | Triclinic | Triclinic | Triclinic | Triclinic | Triclinic | Triclinic |
+Structure and H2 absorption parameters for compounds I and II.
+
+| Compound | I    | II   |
+|----------|------|------|
+| Calculated surface area | 480.4 | 462.7 |
+| BET surface area[^b] (m^2/g) | 405.7 | 445.3 |
+| Calcd. free space[^a] (%) | 24.7 | 16.8 |
+| Pore volume[^a] (cm^3/g) | 0.183 | 0.135 |
+| Pore volume[^b] (cm^3/g) | 0.104 | 0.108 |
+| Pore volume[^c] (cm^3/g) | 0.141 | 0.114 |
+| Total H2 adsorption in wt% (1 bar/20 bar/total) | 0.79/1.33/1.45 | 0.29/0.78/0.83 |
+| ΔH_ads (kJ/mol) | 7.81–5.87 | 5.88–4.94 |
+| K_H (mol/g·Pa) | 1.4312×10^-6 | 3.61863×10^-7 |
+| A_0/ln (mol/g·Pa) | -13.457 | -14.832 |
+| A_1 (g/mol) | -395.06 | -256.56 |
+| W_0[^d] (wt%) | 1.342 | 0.791 |
+| βE_0 (kJ/mol) | 5.4 | 4.4 |
+| q_st,(I)=1/e[^e] (kJ/mol) | 6.3 | 5.3 |
+
+[^a]: Calculated from single crystal structures with PLATON [36].
+[^b]: Calculated from N2 isotherms.
+[^c]: Calculated from H2 isotherms.
+[^d]: Estimated value from Langmuir fitting.
+[^e]: The ΔHv of gas at its bp was used (H2 0.92 kJ/mol at 20 K) 
 List : ['chemical formula', 'chemical formula weight', 'crystal system']
 
 Input:
-Table 1
-
-Crystal data and structure refinements for complexes 1–2.
-
-| Compound | 1 | 2 |
-| --- | --- | --- |
-| Space group | P2<sub>1</sub>/c | R -3m |
-| a (Å) | 13.990 (5) | 19.504 (3) |
-| b (Å) | 13.749 (4) | 19.504 (3) |
-| c (Å) | 14.073 (5) | 37.930 (5) |
-| α (°) | 90.00 | 90.00 |
-| β (°) | 110.538(13) | 90.00 |
-| γ (°) | 90.00 | 120.00 |
-| T (K) | 200 | 200 |
-| V (Å<sup>3</sup>) | 2534.8 (15) | 12,496 (3) |
-| Z | 4 | 18 |
-| D<sub>c</sub> (g·cm<sup>-3</sup>) | 1.299 | 0.956 |
-| μ (mm<sup>-1</sup>) | 1.011 | 0.911 |
-| F(0 0 0) | 1024 | 3667 |
-| R<sub>int</sub> | 0.1132 | 0.0830 |
-| Parameters refined | 370 | 168 |
-| Goodness-of-fit | 1.048 | 1.132 |
-
-a R<sub>1</sub> = Σ|F<sub>o</sub> - F<sub>c</sub>| / Σ|F<sub>o</sub>|.
-b wR<sub>2</sub> = |Σw(|F<sub>o</sub><sup>2</sup> - F<sub>c</sub><sup>2</sup>)| / Σw(F<sub>o</sub><sup>2</sup>)<sup>1/2</sup>, where w = 1/[σ<sup>2</sup>(F<sub>o</sub><sup>2</sup>) + (aP)<sup>2</sup> + bP]. P = (F<sub>o</sub><sup>2</sup> + 2F<sub>c</sub><sup>2</sup>)/3.
 List: ['space group', 'lattice parameters', 'cell volume', 'density']
 
 Input:
-Table 1
-
-Crystal data and structure refinement for compound 1.
-
-| Empirical formula | C<sub>6</sub>H<sub>14</sub>N<sub>2</sub>[In<sub>2</sub>(HPO<sub>3</sub>)<sub>3</sub>(C<sub>2</sub>O<sub>4</sub>)] |
-|-------------------|-----------------------------------------------------------------------------------------------|
-| Formula weight    | 671.79                                                                                        |
-| Temperature       | 298(2) K                                                                                      |
-| Wavelength        | 0.71073 Å                                                                                     |
-| Crystal system    | Orthorhombic                                                                                  |
-| a (Å)             | 12.4143(13)                                                                                   |
-| b (Å)             | 7.7166(8)                                                                                     |
-| c (Å)             | 18.327(2)                                                                                     |
-| Absorption coefficient (mm<sup>-1</sup>) | 2.974                                                      |
-| F(0 0 0)          | 1304                                                                                          |
-| Crystal size (mm) | 0.13 × 0.11 × 0.09                                                                            |
-| θ range (°)       | 2.86–28.30                                                                                    |
-| Limiting indices  | -15 ≤ h ≤ 14, -10 ≤ k ≤ 10, -24 ≤ l ≤ 5                                                       |
-| Data/restraints/parameters | 2415/3/262                                                                 |
-| Goodness-of-fit on F<sup>2</sup> | 1.010                                                           |
-| Final R indices [I > 2σ(I)]<sup>a,b</sup> | R<sub>1</sub> = 0.0282, wR<sub>2</sub> = 0.0632                                        |
-| R indices (all data)<sup>a,b</sup> | R<sub>1</sub> = 0.0334, wR<sub>2</sub> = 0.0656                                          |
-| Largest diff. peak and hole | 1.455 and -0.926 eÅ<sup>-3</sup>                                                               |
-
-a R<sub>1</sub> = Σ||F<sub>o</sub>|-|F<sub>c</sub>||/Σ|F<sub>o</sub>|.
 List: ['chemical formula', 'chemical formula weight', 'crystal system', 'lattice parameters', 'crystal size']
 
 Input:
