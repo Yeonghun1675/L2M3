@@ -12,3 +12,7 @@ class TokenLimitError(BaseMiningError):
 
 class ContextError(BaseMiningError):
     pass
+
+
+class ReaderError(BaseMiningError):
+    pass
