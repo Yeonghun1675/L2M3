@@ -14,7 +14,7 @@ from llm_miner.error import StructuredFormatError, ContextError
 
 class CategorizeAgent(Chain):
     categorize_chain: LLMChain
-    labels: List[str] = ["property", "synthesis condition", "else"]
+    labels: List[str] = ["table", "figure", "property", "synthesis condition", "else"]
     input_key: str = "paragraph"
     output_key: str = "output"
 
