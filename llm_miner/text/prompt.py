@@ -14,7 +14,7 @@ If properties exist, you must find all the intensive properties in paragraphs. N
 - porosity: fraction of total volume of material that is occupied by pores or voids ex) accessible volume fraction.
 - crystal_system: symmetrical and geometrical arrangements within the crystal lattice of materials.
 - topology: manner in which the metal nodes and organic linkers are connected in a three-dimensional arrangement.
-- space_group: a mathematical description of the symmetries inherent in a periodic crystal lattice. 
+- space_group: a mathematical description of the symmetries inherent in a periodic crystal lattice.
 - magentic_property: properties of materials in the presence of a magnetic field.
 - optical_property: properties of materials in response to electromagnetic radiation.
 - etc: Other properties not included in the above.
