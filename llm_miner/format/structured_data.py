@@ -28,6 +28,7 @@ gas_adsorption='''
 'gas adsorption': {
     'adsorbate': "",
     'adsorbed amount': "",
+    'unit':"",
     'temperature': "",
     'pressure': "",
 }
@@ -73,7 +74,7 @@ weight = '''
 
 thermal_property = '''
 'thermal property': {
-'material':"",
+'type':"", # ex) Tg, TDT
 'value':"",
 'unit':""
 }
@@ -82,6 +83,7 @@ thermal_property = '''
 
 mechanical_property = '''
 'mechanical property': {
+'type':"", # ex) Young's modulus, Poisson's ratio
 'value':"",
 'unit':""
 }
@@ -116,6 +118,7 @@ density = '''
 
 magnetic_property = '''
 'magnetic property':{
+'type': "", # ex) magnetic susceptibility
 'value':"",
 'unit':""
 }
@@ -124,6 +127,7 @@ magnetic_property = '''
 
 optical_property = '''
 'optical property':{
+'type': "", # ex) absorption spectrum
 'value':"",
 'unit':""
 }
