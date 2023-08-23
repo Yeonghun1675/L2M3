@@ -187,6 +187,7 @@ class CrystalTableAgent(Chain):
         if "chemical formula" in props:
             props.remove("chemical formula")
         format = self._make_format(props)
+        print(format)
         output = self.extract_chain.run(
             prop=props,
             format=format,

@@ -19,7 +19,7 @@ pore_volume='''
 crystal_size='''
 'crystal size': {
     'value': "",
-    'unit': "",
+    'unit': "",  # ex) mm
 }
 '''
 
@@ -64,7 +64,7 @@ space_group = '''
 '''
 
 
-weight = '''
+chemical_formula_weight = '''
 'chemical formula weight': {
     'value': "",
 }
@@ -109,7 +109,7 @@ catalytic_activity = '''
 density = '''
 'density':{
 'value':"",
-'unit':""
+'unit':""  # ex) g/cm^3
 }
 '''
 
@@ -128,6 +128,27 @@ optical_property = '''
 'unit':""
 }
 '''
+
+
+cell_volume = '''
+'cell volume':{
+'value':"",
+'unit':""  # ex) Å^3
+}
+'''
+
+
+lattice parameters = '''
+'lattice parameters':{
+'value': {
+'a': "",
+'b': "",
+'c': "",
+'alpha': "",
+'beta': "",
+'gamma': "",
+}
+}'''
 
 
 etc = '''
