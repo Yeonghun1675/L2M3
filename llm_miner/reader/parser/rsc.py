@@ -1,0 +1,107 @@
+from typing import List, Any, Tuple
+from bs4 import BeautifulSoup
+from llm_miner.reader.parser.base import BaseParser, Paragraph, Metadata
+from llm_miner.reader.parser.utils import word_find
+
+
+class RSCParser(BaseParser):
+    suffix: str = '.html'
+    parser: str = 'html.parser'
+    para_tags: List[str] = ['p', 'span']
+    table_tags: List[str] = ['table']
+    figure_tags: List[str] = ['img', 'div']
+
+    @classmethod
+    def open_file(cls, filepath: str):
+        with open(filepath, 'r', encoding='UTF-8') as f:
+            data = f.read()
+        return BeautifulSoup(data, cls.parser)
+    
+    @classmethod
+    def parsing(cls, file_bs):
+        elements = []
+        for element in file_bs(cls.all_tags):
+            if element.name in cls.table_tags:
+                success, element = cls._is_table(element)
+                if not success:
+                    continue
+                type_ = 'table'
+            elif element.name in cls.figure_tags:
+                if element.name == "div" and word_find(["image_table"], element, 'class'):
+                    type_ = 'figure'
+                else:
+                    continue
+            elif element.name in cls.para_tags and cls._is_para(element):
+                type_ = 'text'
+            else:
+                continue
+
+            data = Paragraph(
+                idx = len(elements) + 1,
+                type = type_,
+                content = element,
+            )
+            elements.append(data)
+        return elements
+
+    def _is_table(cls, element)-> Tuple[Any]:
+        if "class" not in element.attrs.keys():
+            return False, None
+        
+        caption = None
+        up = element.find_previous("div")
+        if up:
+            for _ in range(3):
+                if word_find(["table_caption"], up, 'class'):
+                    caption = up
+                    element.insert(0, caption)  # insert caption in element
+                    return True, element
+                up = up.find_previous("div")
+                if not up:
+                    return True, element
+        return True, element
+            
+    def _is_para(cls, element):
+        try:
+            parent_name = element.parent.name
+        except AttributeError:
+            return False
+        else:
+            if parent_name in ["h2", "h3", "div"]:
+                return False
+        if "id" in element.attrs.keys():
+            return False
+        elif word_find(["btnContainer", "italic", "header_text"], element, 'class'):
+            return False
+        else:
+            return True
+    
+    @classmethod
+    def get_metadata(cls, file_bs):
+        author_list = []
+        for meta in file_bs.find_all('meta'):
+            if not meta.get('name'):
+                continue
+
+            name = meta.get('name')
+            if (name.find('citation_') != -1 and name != 'citation_reference') or name.find('dc.') != -1:
+                tag = meta.get('name').replace('citation_', '').replace('dc.', '')
+                text = meta.get('content')
+                if tag == 'doi' or tag == 'Identifier':
+                    doi = text
+                elif tag == 'title' or tag == 'Title':
+                    title = text
+                elif tag == 'journal_title':
+                    journal = text
+                elif tag in ['publication_date', 'Date', 'date']:
+                    date = text
+                elif tag == 'author' or tag == 'Creator':
+                    author_list.append(text, )
+
+        return Metadata(
+            doi=doi,
+            title=title,
+            journal=journal,
+            date=date,
+            author_list=author_list,
+        )

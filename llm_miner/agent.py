@@ -6,11 +6,13 @@ from langchain.callbacks.manager import CallbackManagerForChainRun
 
 from llm_miner.categorize.base import CategorizeAgent
 from llm_miner.synthesis.base import SynthesisMiningAgent
+from llm_miner.text.base import TextMiningAgent
 
 
 class LLMMiner(Chain):
     categorize_agent: Chain
     synthesis_agent: Chain
+    property_agent: Chain
     input_key: str = "paragraph"
     output_key: str = "output"
 
@@ -52,7 +54,10 @@ class LLMMiner(Chain):
             pass
         
         elif 'property' in categories:
-            pass
+            output = self.property_agent.run(
+                paragraph=paragraph,
+                callbacks=callbacks,
+            )
 
         return {self.output_key: output}
     
@@ -65,9 +70,11 @@ class LLMMiner(Chain):
     ) -> Chain:
         categorize_agent = CategorizeAgent.from_llm(simple_llm, **kwargs)
         synthesis_agent = SynthesisMiningAgent.from_llm(llm, **kwargs)
+        property_agent = TextMiningAgent.from_llm(llm, **kwargs)
 
         return cls(
             categorize_agent=categorize_agent,
             synthesis_agent=synthesis_agent,
+            property_agent=property_agent,
             **kwargs
         )
