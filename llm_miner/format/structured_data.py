@@ -103,7 +103,7 @@ chemical_formula_weight = '''
 thermal_property = '''
 'thermal property': [
     {
-        'type': "",
+        'type': "", # ex) Tg, TDT
         'value':"",
         'unit':""
     }, ...
@@ -191,7 +191,7 @@ density = '''
 magnetic_property = '''
 'magnetic property': [
     {
-        'type': "",
+        'type': "", # ex) magnetic susceptibility
         'value':"",
         'unit':""
     }, ...

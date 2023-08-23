@@ -1,3 +1,4 @@
+import ast
 import json
 from typing import Any, Dict, List, Optional
 
@@ -9,6 +10,7 @@ from langchain.callbacks.manager import CallbackManagerForChainRun
 
 from llm_miner.synthesis.prompt import PROMPT_TYPE, PROMPT_STRUCT, EXAMPLE_STRUCT
 from llm_miner.error import StructuredFormatError
+from llm_miner.format import Formatter
 
 
 class SynthesisMiningAgent(Chain):
@@ -31,10 +33,13 @@ class SynthesisMiningAgent(Chain):
 
     def _parse_output(self, output: str) -> Dict[str, str]:
         output = output.replace("List:", "").strip()  # remove `List`
+        if output == 'I do not know':
+            return output
+
         try:
-            return json.loads(output)
+            return ast.literal_eval(output)
         except Exception as e:
-            raise StructuredFormatError(e)
+            raise StructuredFormatError(e, output)
     
     def _call(
             self,
@@ -53,10 +58,19 @@ class SynthesisMiningAgent(Chain):
         synthesis_type = self._parse_output(llm_output)
         self._write_log(str(synthesis_type), _run_manager)
 
+        prop_string = ""
+        for prop in synthesis_type:
+            try:
+                structure = Formatter.operation[prop]
+            except KeyError:
+                self._write_log(f'There are no operation information for {prop}')
+                continue
+            prop_string += f"- {structure}\n"
+
         llm_output = self.type_struct.run(
             paragraph=paragraph,
-            prop=None,
             synthesis_type=synthesis_type,
+            format=prop_string,
             callbacks=callbacks,
             stop=['Paragraph:']
         )
@@ -81,8 +95,9 @@ class SynthesisMiningAgent(Chain):
         )
         template_struct = PromptTemplate(
             template=prompt_struct,
-            input_variables=['prop', 'synthesis_type', 'paragraph'],
+            input_variables=['synthesis_type', 'paragraph','format'],
             partial_variables={'example': example_struct},
+
         )
 
         type_chain = LLMChain(llm=llm, prompt=template_type)
