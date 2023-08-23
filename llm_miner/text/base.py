@@ -1,38 +1,110 @@
+import json
+import ast
 from typing import Any, Dict, List, Optional
-from langchain.chains.base import Chain
+
 from langchain.base_language import BaseLanguageModel
-from langchain.callbacks.base import BaseCallbackHandler
+from langchain.chains.base import Chain
+from langchain.chains.llm import LLMChain
+from langchain.prompts import PromptTemplate
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
+from llm_miner.text.prompt import PROMPT_TYPE, PROMPT_EXT
+from llm_miner.format import Formatter
+from llm_miner.error import StructuredFormatError
 
-class TableMiningAgent(Chain):
-    llm: BaseLanguageModel
+
+class TextMiningAgent(Chain):
+    type_chain: LLMChain
+    extract_chain: LLMChain
     input_key: str = "paragraph"
     output_key: str = "output"
 
     @property
-    def input_key(self) -> List[str]:
+    def input_keys(self) -> List[str]:
         return [self.input_key]
     
     @property
     def output_keys(self) -> List[str]:
         return [self.output_key]
     
-    def _write_log(self, action, text, run_manager):
-        run_manager.on_text(f'\n[Synthesis Mining] {action}: ', verbose=self.verbose)
+    def _write_log(self, text: str, run_manager):
+        run_manager.on_text(f'\n[Property Mining] ', verbose=self.verbose)
         run_manager.on_text(text, verbose=self.verbose, color='yellow')
+
+    def _parse_output(self, output: str) -> Dict[str, str]:
+        output = output.replace("List:", "").strip()  # remove `List`
+        try:
+            return ast.literal_eval(output)
+        except Exception as e:
+            raise StructuredFormatError(e)
     
     def _call(
             self,
             inputs: Dict[str, Any],
+            run_manager: Optional[CallbackManagerForChainRun] = None
     ) -> Dict[str, Any]:
+        _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
+        callbacks = _run_manager.get_child()
         
-        raise NotImplementedError()
-    
+        paragraph = inputs[self.input_key]
+        llm_output = self.type_chain.run(
+            paragraph = paragraph,
+            callbacks=callbacks,
+            stop=["Paragraph:"]
+        )
+
+        property_type = self._parse_output(llm_output)
+        self._write_log(str(property_type), _run_manager)
+
+        output = {}
+        for prop in property_type:
+            try:
+                st_data = Formatter.structured_data[prop]
+                info = Formatter.information[prop]
+                example = Formatter.example_text[prop]
+            except KeyError:
+                self._write_log(f'There are no format for {prop}')
+                continue
+
+            llm_output = self.extract_chain.run(
+                prop=prop,
+                structured_data=st_data,
+                information=info,
+                example=example,
+                paragraph=paragraph,
+                callbacks=callbacks,
+            )
+
+            st_output = self._parse_output(llm_output)
+            self._write_log(f'{prop} : {st_output}', _run_manager)
+            output[prop] = st_output
+
+        return {"output": output}
+
     @classmethod
     def from_llm(
         cls,
         llm: BaseLanguageModel,
+        prompt_type: str = PROMPT_TYPE,
+        prompt_extract: str = PROMPT_EXT,
         **kwargs,
     ) -> Chain:
-        NotImplementedError()
+        
+        template_type = PromptTemplate(
+            template=prompt_type,
+            input_variables=['paragraph'],
+        )
+        template_extract = PromptTemplate(
+            template=prompt_extract,
+            input_variables=['prop', 'structured_data', 'information', 'example', 'paragraph'],
+        )
+
+        type_chain = LLMChain(llm=llm, prompt=template_type)
+        extract_chain = LLMChain(llm=llm, prompt=template_extract)
+
+        return cls(
+            type_chain=type_chain,
+            extract_chain=extract_chain,
+            **kwargs
+        )
+    
