@@ -24,7 +24,7 @@ class Utils:
 
         try:
             response = requests.get(url, timeout=60)
-        except Exception as e:
+        except Exception:
             data = ''
             journal = ''
         else:
