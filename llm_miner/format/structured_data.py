@@ -1,14 +1,22 @@
-surface_area='''
-'surface area': {
-    'type': "",  # BET or Langmuir
-    'value': "",
-    'unit': "",
-    }
+meta = '''
+'meta': {
+    'name': "",
+    'symbol': "",  # ex) 1a
+    'chemical formula': "",
 }
 '''
 
 
-pore_volume='''
+surface_area = '''
+'surface area': {
+    'type': "",  # BET or Langmuir
+    'value': "",
+    'unit': "",
+}
+'''
+
+
+pore_volume = '''
 'total pore volume': {
     'value': "",
     'unit': "",
@@ -16,15 +24,15 @@ pore_volume='''
 '''
 
 
-crystal_size='''
+crystal_size = '''
 'crystal size': {
     'value': "",
-    'unit': "",
+    'unit': "",  # ex) mm
 }
 '''
 
-    
-gas_adsorption='''
+
+gas_adsorption = '''
 'gas adsorption': {
     'adsorbate': "",
     'adsorbed amount': "",
@@ -34,7 +42,7 @@ gas_adsorption='''
 '''
 
 
-porosity ='''
+porosity = '''
 'porosity(void fraction)': {
     'value': "",
     'unit': "",
@@ -64,7 +72,7 @@ space_group = '''
 '''
 
 
-weight = '''
+chemical_formula_weight = '''
 'chemical formula weight': {
     'value': "",
 }
@@ -73,59 +81,84 @@ weight = '''
 
 thermal_property = '''
 'thermal property': {
-'material':"",
-'value':"",
-'unit':""
+    'type': "",
+    'value':"",
+    'unit':""
 }
 '''
 
 
 mechanical_property = '''
 'mechanical property': {
-'value':"",
-'unit':""
+    'type': "",  # ex) Young's modulus, Poisson's ratio
+    'value':"",
+    'unit':""
 }
 '''
 
 
-selectivity= '''
+selectivity = '''
 'selectivity':{
-'value':"",
-'adsorbate':"",
-'pressure':"",
-'temperature':""
+    'value':"",
+    'adsorbate':"",
+    'pressure':"",
+    'temperature':""
 }
 '''
 
 
 catalytic_activity = '''
 'catalytic activity':{
-'value':"",
-'unit':""
+    'value':"",
+    'unit':""
 }
 '''
 
 
 density = '''
 'density':{
-'value':"",
-'unit':""
+    'value':"",
+    'unit':""  # ex) g/cm^3
 }
 '''
 
 
 magnetic_property = '''
 'magnetic property':{
-'value':"",
-'unit':""
+    'type': "",
+    'value':"",
+    'unit':""
 }
 '''
 
 
 optical_property = '''
 'optical property':{
-'value':"",
-'unit':""
+    'type': "",  # ex) absorption spectrum
+    'value':"",
+    'unit':""
+}
+'''
+
+
+cell_volume = '''
+'cell volume':{
+    'value':"",
+    'unit':""  # ex) Å^3
+}
+'''
+
+
+lattice_parameters = '''
+'lattice parameters':{
+    'value': {
+        'a': "",
+        'b': "",
+        'c': "",
+        'alpha': "",
+        'beta': "",
+        'gamma': "",
+    }
 }
 '''
 
