@@ -8,7 +8,6 @@ from llm_miner.format import example_text
 from llm_miner.format import operation
 
 
-
 class BaseFormatter(Mapping):    
     data: Dict[str, str]
     

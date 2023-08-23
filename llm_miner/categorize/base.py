@@ -1,5 +1,4 @@
 import json
-from functools import partial
 from typing import Any, Dict, List, Optional
 
 from langchain.base_language import BaseLanguageModel
