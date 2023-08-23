@@ -56,8 +56,8 @@ class PropertyTableAgent(Chain):
     def output_keys(self) -> List[str]:
         return [self.output_key]
 
-    def _write_log(self, action, text, run_manager):
-        run_manager.on_text(f'\n[Property Table Extracting] {action}: ', verbose=self.verbose)
+    def _write_log(self, text, run_manager):
+        run_manager.on_text('\n[Included props] ', verbose=self.verbose)
         run_manager.on_text(text, verbose=self.verbose, color='yellow')
 
     def _call(
@@ -75,7 +75,7 @@ class PropertyTableAgent(Chain):
             stop=["Input:"]
         )
         self.included_props = self._parse_output_props(included_props)
-        self._write_log(str(self.included_props), "Included Props", _run_manager)
+        self._write_log(str(self.included_props), _run_manager)
 
         props = self.included_props[:]
         format = self._make_format(props)
