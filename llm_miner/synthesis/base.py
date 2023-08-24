@@ -63,7 +63,7 @@ class SynthesisMiningAgent(Chain):
             try:
                 structure = Formatter.operation[prop]
             except KeyError:
-                self._write_log(f'There are no operation information for {prop}')
+                self._write_log(f'There are no operation information for {prop}', _run_manager)
                 continue
             prop_string += f"- {structure}\n"
 
