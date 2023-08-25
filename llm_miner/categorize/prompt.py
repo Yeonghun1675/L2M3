@@ -1,10 +1,10 @@
-PROMPT_CATEGORIZE = """First, you must decide type of paragraph that it should be one or more listed in ['synthesis condition', 'property', 'else'].
+PROMPT_CATEGORIZE = """First, you must decide type of paragraph that it should be one or more listed in ["synthesis condition", "property", "else"].
 
 You must follow rules below:
-- You must return ["synthesis condition"] only when the paragraph includes several processes such as chemical synthesis, washing, and drying. It also includes specific IR or NMR information often. ex) 'IR: 3137(m), 2359(m), 1655(s), 1493(s), 1262(s), 1210(s), 1148(s), 805(m), 668(m), 589(m).
-- You must return ["property"] only when the paragraph includes 'property type', 'specific value of property' and 'unit of the property'. ex) surface area of 2500 m2/g
-- If there are both 'synthesis condition' and 'property', return ["property", "synthesis condition"].
-- When the paragraph does not include both synthesis condition and property, it means that there is no information. In this case, you must return ['else'].
+- You must return ["synthesis condition"] only when the paragraph includes several processes such as chemical synthesis, washing, and drying. It also includes specific IR or NMR information often. ex) "IR: 3137(m), 2359(m), 1655(s), 1493(s), 1262(s), 1210(s), 1148(s), 805(m), 668(m), 589(m).
+- You must return ["property"] only when the paragraph includes "property type", "specific value of property" and "unit of the property". ex) surface area of 2500 m2/g
+- If there are both "synthesis condition" and "property", return ["property", "synthesis condition"].
+- When the paragraph does not include both synthesis condition and property, it means that there is no information. In this case, you must return ["else"].
 - Only possible answer is ["property"], ["synthesis condition"], ["property","synthesis condition"] or ["else"]
 
 Begin!

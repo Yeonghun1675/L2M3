@@ -36,7 +36,7 @@ class TextMiningAgent(Chain):
         try:
             return ast.literal_eval(output)
         except Exception as e:
-            raise StructuredFormatError(e)
+            raise StructuredFormatError(e, output)
     
     def _call(
             self,
