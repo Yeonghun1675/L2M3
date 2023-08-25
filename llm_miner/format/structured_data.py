@@ -235,6 +235,15 @@ lattice_parameters = '''
 ]
 '''
 
+topology = '''
+'topology' : [
+    {
+        'value':"", # ex) pcu
+        
+
+    }, ...
+]
+'''
 
 etc = '''
 'etc': [

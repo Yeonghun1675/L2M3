@@ -63,7 +63,7 @@ class TextMiningAgent(Chain):
                 info = Formatter.information[prop]
                 example = Formatter.example_text[prop]
             except KeyError:
-                self._write_log(f'There are no format for {prop}')
+                self._write_log(f'There are no format for {prop}', _run_manager)
                 continue
 
             llm_output = self.extract_chain.run(
