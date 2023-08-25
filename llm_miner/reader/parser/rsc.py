@@ -18,9 +18,9 @@ class RSCParser(BaseParser):
         return BeautifulSoup(data, cls.parser)
     
     @classmethod
-    def parsing(cls, file_bs):
+    def parsing(cls, file_bs) -> List[Paragraph]:
         elements = []
-        for element in file_bs(cls.all_tags):
+        for element in file_bs(cls.all_tags()):
             if element.name in cls.table_tags:
                 success, element = cls._is_table(element)
                 if not success:
@@ -44,6 +44,7 @@ class RSCParser(BaseParser):
             elements.append(data)
         return elements
 
+    @classmethod
     def _is_table(cls, element)-> Tuple[Any]:
         if "class" not in element.attrs.keys():
             return False, None
@@ -61,7 +62,8 @@ class RSCParser(BaseParser):
                     return True, element
         return True, element
             
-    def _is_para(cls, element):
+    @classmethod
+    def _is_para(cls, element) -> bool:
         try:
             parent_name = element.parent.name
         except AttributeError:
@@ -77,7 +79,7 @@ class RSCParser(BaseParser):
             return True
     
     @classmethod
-    def get_metadata(cls, file_bs):
+    def get_metadata(cls, file_bs) -> Metadata:
         author_list = []
         for meta in file_bs.find_all('meta'):
             if not meta.get('name'):

@@ -31,7 +31,7 @@ class TableMiningAgent(Chain):
     def from_llm(
         cls,
         llm: BaseLanguageModel,
-        complex_llm: BaseLanguageModel,
+        simple_llm: BaseLanguageModel,
         prompt_convert: str = CONVERT2MD,
         **kwargs,
     ) -> Chain:
@@ -40,10 +40,10 @@ class TableMiningAgent(Chain):
             template=prompt_convert,
             input_variables=['paragraph'],
         )
-        convert_chain = LLMChain(llm=llm, prompt=template_convert)
-        categorize_agent = CategorizeAgent.from_llm(complex_llm, **kwargs)
-        crystal_table_agent = CrystalTableAgent.from_llm(complex_llm, **kwargs)
-        property_table_agent = PropertyTableAgent.from_llm(complex_llm, **kwargs)
+        convert_chain = LLMChain(llm=simple_llm, prompt=template_convert)
+        categorize_agent = CategorizeAgent.from_llm(llm, **kwargs)
+        crystal_table_agent = CrystalTableAgent.from_llm(llm, **kwargs)
+        property_table_agent = PropertyTableAgent.from_llm(llm, **kwargs)
 
         return cls(
             convert_chain=convert_chain,

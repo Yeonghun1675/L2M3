@@ -1,49 +1,9 @@
-from bs4 import BeautifulSoup
-from chemdataextractor import Document
-from collections import namedtuple
 import regex
-
-
-def removeDuplicates(listofElements):
-    """
-    removes duplicates to make unique list
-    """
-    uniqueList = []
-    for ele in listofElements:
-        if ele not in uniqueList:
-            uniqueList.append(ele)
-    return uniqueList
-
-
-def tuple_sum(listofElements):
-    """
-    listofElements --> single string with space inbetween elements
-    """
-    temp_text = ' '.join(listofElements)
-    return temp_text
-
-
-def is_digit(text):
-    """
-    determine whether number or not
-    """
-    # temportal removal of script
-    tmp = text[:]
-    tmp = regex.sub(r"\[(.+)\]", "", tmp)  # subscript
-    tmp = regex.sub(r"`(.+)`", "", tmp)  # superscript
-
-    # see if it can be converted to float
-    try:
-        tmp = float(tmp)
-    except ValueError:
-        return False
-    return True
 
 
 def clean_text(text):
     """
     - literally cleaning up the text
-    - function from Y.H. KIM
     """
     # Unicode list
     unicode_space = r"[\u2000-\u2005\u2007\u2008]|\xa0|\n|&nbsp|\t"  # " "
@@ -55,16 +15,6 @@ def clean_text(text):
     unicode_slash = r"\u2215" # "/"
     unicode_rest = r"\u201A"  # ','
     unicode_middle_dot = r"\u2022|\u2024|\u2027|\u00B7"  # "\u22C5"
-    end_punctuation_marks = [".", "!", "?"]
-
-    # remove end punction marks
-    if text[-1] in end_punctuation_marks:
-        text = text[:-1]
-
-    # modify i.e., e.g., and vs.
-    text = regex.sub(r"i\.e\.(?=,|\s)", "that is", text)  # remove i.e.
-    text = regex.sub(r"e\.g\.(?=,|\s)", "for example", text)  # remove e.g.
-    text = regex.sub(r"vs\s?\.", 'vs', text)  # change vs. -> vs
 
     # replace unicode stuffs
     text = regex.sub(unicode_space, " ", text)
@@ -77,28 +27,7 @@ def clean_text(text):
     text = regex.sub(unicode_rest, ",", text)
     text = regex.sub(unicode_middle_dot, "\u22C5", text)
 
-    # delete useless html tag part
-    soup = BeautifulSoup(text, 'html.parser')
-    text = soup.get_text()
-
-    # delete duplicated spaces
-    text = " ".join(text.split())
     return text
-
-
-def is_chemical(text, chemlist):
-    """
-    determine whether the text is chemical or not
-    """
-    if Document(text).cems:
-        return True
-
-    for item in chemlist:
-        if item.find(text) != -1:
-            return True
-        elif len(item) > 2 and text.find(item) != -1:
-            return True
-    return False
 
 
 def word_find(words, bs_dict, tag):
@@ -127,41 +56,12 @@ def word_find_simpled(words, target):
     return False
 
 
-def chem_percentage(text, Chemlist):
-    chem_per = 0
-    tmp = re.split('[\s/]+', text)
-    for item in tmp:
-        if Utils.is_chemical(item, Chemlist):
-            chem_per += 1
-    return chem_per/len(tmp)
-
-
-def replace_script(bs_div):
-    # pass
-    for su in bs_div.find_all(['sub', 'sup', 'ce:sub', 'ce:sup']):
-        text_su = su.get_text()
-        if not text_su:
-            continue
-        if su.name in ['sub', 'ce:sub']:
-            su.replace_with(f"_{{text_su}}")
-        else:
-            su.replace_with(f"`{text_su}`")
-
-
-def replace_math_exp(sentence):
-    start = "\documentclass"
-    end = "\end{document}"
-
-    while True:
-        try:
-            s = sentence.index(start)
-            e = sentence.index(end)
-        except ValueError:
-            break
-        else:
-            if "$$" in sentence[s:e]:
-                sentence = sentence[:s] + "(Math Expression)" + sentence[e+len(end):]
-            else:
-                print("Need Check for Math Expression")
-                raise Exception
-    return sentence
+def publisher_finder(filepath: str) -> str:
+    with open(filepath, 'r', encoding='UTF-8') as f:
+            data = f.read()
+    
+    journal = regex.match(r"\b([Ss]pringer|ACS|RSC|[Ee]lsevier)\b", data)
+    if journal:
+        return journal
+    else:
+        raise TypeError('Publisher of paper not in acs, rsc, elsevier, and springer')

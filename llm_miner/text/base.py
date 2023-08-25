@@ -1,5 +1,5 @@
-import json
 import ast
+import regex
 from typing import Any, Dict, List, Optional
 
 from langchain.base_language import BaseLanguageModel
@@ -33,6 +33,8 @@ class TextMiningAgent(Chain):
 
     def _parse_output(self, output: str) -> Dict[str, str]:
         output = output.replace("List:", "").strip()  # remove `List`
+        if regex.search(r'[Ii] do not know', output):
+            return output
         try:
             return ast.literal_eval(output)
         except Exception as e:

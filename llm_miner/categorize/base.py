@@ -9,6 +9,7 @@ from langchain.callbacks.manager import CallbackManagerForChainRun
 
 from llm_miner.categorize.prompt import PROMPT_CATEGORIZE
 from llm_miner.error import StructuredFormatError, ContextError
+from llm_miner.reader.parser.base import Paragraph
 
 
 class CategorizeAgent(Chain):
@@ -44,9 +45,14 @@ class CategorizeAgent(Chain):
         _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
         callbacks = _run_manager.get_child()
         
-        para = inputs[self.input_key]
+        para: Paragraph = inputs[self.input_key]
+
+        if para.type in self.labels:
+            self._write_log([para.type], _run_manager)
+            return {self.output_key: [para.type]}
+
         llm_output = self.categorize_chain.run(
-            paragraph = para,
+            paragraph = str(para.content),
             callbacks = callbacks,
             stop = ['List:'],
         )

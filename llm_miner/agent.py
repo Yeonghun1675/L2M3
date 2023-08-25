@@ -7,11 +7,14 @@ from langchain.callbacks.manager import CallbackManagerForChainRun
 from llm_miner.categorize.base import CategorizeAgent
 from llm_miner.synthesis.base import SynthesisMiningAgent
 from llm_miner.text.base import TextMiningAgent
+from llm_miner.table.base import TableMiningAgent
+from llm_miner.error import ContextError
 
 
 class LLMMiner(Chain):
     categorize_agent: Chain
     synthesis_agent: Chain
+    table_agent: Chain
     property_agent: Chain
     input_key: str = "paragraph"
     output_key: str = "output"
@@ -39,25 +42,32 @@ class LLMMiner(Chain):
         _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
         callbacks = _run_manager.get_child()
         
-        paragraph = inputs[self.input_key]
+        elements = inputs[self.input_key]
         categories = self.categorize_agent.run(
-            paragraph=paragraph,
+            paragraph=elements,
             callbacks=callbacks,
         )
 
+        paragraph = str(elements.content)
         if 'synthesis condition' in categories:
             output = self.synthesis_agent.run(
                 paragraph=paragraph,
                 callbacks=callbacks,
             )
         elif 'table' in categories:
-            pass
-        
+            output = self.table_agent.run(
+                paragraph=paragraph,
+                callbacks=callbacks,
+            )
         elif 'property' in categories:
             output = self.property_agent.run(
                 paragraph=paragraph,
                 callbacks=callbacks,
             )
+        elif 'else' in categories or 'figure' in categories:
+            output = []
+        else:
+            raise ContextError('category must be `synthesis condition`, `table`, `figure`, `property` and `else`, not {categories}')
 
         return {self.output_key: output}
     
@@ -70,10 +80,12 @@ class LLMMiner(Chain):
     ) -> Chain:
         categorize_agent = CategorizeAgent.from_llm(simple_llm, **kwargs)
         synthesis_agent = SynthesisMiningAgent.from_llm(llm, **kwargs)
+        table_agent = TableMiningAgent.from_llm(llm, simple_llm, **kwargs)
         property_agent = TextMiningAgent.from_llm(llm, **kwargs)
 
         return cls(
             categorize_agent=categorize_agent,
+            table_agent=table_agent,
             synthesis_agent=synthesis_agent,
             property_agent=property_agent,
             **kwargs
