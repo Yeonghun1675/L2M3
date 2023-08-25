@@ -1,15 +1,18 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Any, Dict
 from abc import ABCMeta, abstractclassmethod
 
 
-class BaseParser(BaseModel, metaclass=ABCMeta):
+class BaseParser(object, metaclass=ABCMeta):
     suffix: str
     parser: str
+    para_tags: List[str]
+    table_tags: List[str]
+    figure_tags: List[str]
 
-    @property
-    def all_tags(self):
-        return self.para_tags, self.table_tags, self.figure_tags
+    @classmethod
+    def all_tags(cls):
+        return cls.para_tags + cls.table_tags + cls.figure_tags
 
     @classmethod
     def check_suffix(cls, suffix):
@@ -31,10 +34,18 @@ class BaseParser(BaseModel, metaclass=ABCMeta):
 class Paragraph(BaseModel):
     idx: int
     type: str
-    content: str
+    content: Any
+    data: List[Dict[str, Any]] = None
 
     def __getitem__(self, item):
         return getattr(self, item)
+    
+    def set_data(self, data) -> None:
+        self.data = data
+
+    def get_data(self, ) -> List[Dict[str, Any]]:
+        return self.data
+
     
 
 class Metadata(BaseModel):

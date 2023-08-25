@@ -6,3 +6,4 @@ lxml
 regex
 tiktoken
 requests
+jinja2
