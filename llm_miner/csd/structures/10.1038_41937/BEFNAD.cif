@@ -1,0 +1,155 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_BEFNAD
+_chemical_formula_moiety         '(C3 H12 Co4 Ga1 N2 O20 P5 2-)n'
+_symmetry_cell_setting           monoclinic
+_symmetry_space_group_name_H-M   'C 2/c'
+_symmetry_Int_Tables_number      15
+_space_group_name_Hall           '-C 2yc'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -x,y,1/2-z
+3 1/2+x,1/2+y,z
+4 1/2-x,1/2+y,1/2-z
+5 -x,-y,-z
+6 x,-y,1/2+z
+7 1/2-x,1/2-y,-z
+8 1/2+x,1/2-y,1/2+z
+_cell_length_a                   13.8078(12)
+_cell_length_b                   13.2490(12)
+_cell_length_c                   13.8420(13)
+_cell_angle_alpha                90
+_cell_angle_beta                 91.328(2)
+_cell_angle_gamma                90
+_cell_volume                     2531.57
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+Ga1 Ga -0.0000 0.4412(2) 0.7500 0.0340 Uiso
+Co1 Co -0.1233(1) 0.1393(1) 0.7757(1) 0.0300 Uiso
+Co2 Co -0.0264(1) 0.2609(1) 0.3772(1) 0.0320 Uiso
+P1 P -0.0318(2) 0.2609(2) 0.6060(2) 0.0280 Uiso
+P2 P -0.1442(2) 0.6227(2) 0.7159(2) 0.0280 Uiso
+P3 P -0.0000 -0.0621(3) 0.7500 0.0380 Uiso
+O1 O -0.0743(6) 0.2641(7) 0.5028(6) 0.0440 Uiso
+O2 O 0.0081(7) 0.3659(7) 0.6330(7) 0.0560 Uiso
+O3 O -0.1181(7) 0.5171(7) 0.7510(8) 0.0640 Uiso
+O4 O -0.0790(7) 0.6500(8) 0.6338(7) 0.0560 Uiso
+O5 O -0.0901(6) 0.0013(7) 0.7444(9) 0.0640 Uiso
+O6 O -0.1335(7) 0.6997(7) 0.7970(6) 0.0480 Uiso
+O7 O 0.0030(9) -0.1269(7) 0.8418(7) 0.0690 Uiso
+O8 O -0.1159(6) 0.2360(7) 0.6726(6) 0.0470 Uiso
+O9 O -0.2479(6) 0.6219(7) 0.6766(6) 0.0410 Uiso
+O10 O 0.0477(6) 0.1824(7) 0.6120(7) 0.0500 Uiso
+Co1A Co 0.1233(1) 0.1393(1) 0.7243(1) 0.0300 Uiso
+Co1C Co -0.3767(1) 0.6393(1) 0.7243(1) 0.0300 Uiso
+Co1B Co 0.3767(1) 0.6393(1) 0.7757(1) 0.0300 Uiso
+Co2A Co 0.0264(1) 0.2609(1) 1.1228(1) 0.0320 Uiso
+Co2D Co 0.0264(1) 0.7391(1) 0.6228(1) 0.0320 Uiso
+Co2E Co -0.0264(1) 0.7391(1) 0.8772(1) 0.0320 Uiso
+Co2E_2 Co -0.0264(1) -0.2609(1) 0.8772(1) 0.0320 Uiso
+Co2D_2 Co 0.0264(1) -0.2609(1) 0.6228(1) 0.0320 Uiso
+P1A P 0.0318(2) 0.2609(2) 0.8940(2) 0.0280 Uiso
+P2A P 0.1442(2) 0.6227(2) 0.7841(2) 0.0280 Uiso
+O1A O 0.0743(6) 0.2641(7) 0.9972(6) 0.0440 Uiso
+O2A O -0.0081(7) 0.3659(7) 0.8670(7) 0.0560 Uiso
+O3A O 0.1181(7) 0.5171(7) 0.7490(8) 0.0640 Uiso
+O4A O 0.0790(7) 0.6500(8) 0.8662(7) 0.0560 Uiso
+O4D O 0.0790(7) 0.3500(8) 0.3662(7) 0.0560 Uiso
+O4E O -0.0790(7) 0.3500(8) 1.1338(7) 0.0560 Uiso
+O5A O 0.0901(6) 0.0013(7) 0.7556(9) 0.0640 Uiso
+O6A O 0.1335(7) 0.6997(7) 0.7030(6) 0.0480 Uiso
+O6E O -0.1335(7) 0.3003(7) 0.2970(6) 0.0480 Uiso
+O6D O 0.1335(7) 0.3003(7) 1.2030(6) 0.0480 Uiso
+O7A O -0.0030(9) -0.1269(7) 0.6582(7) 0.0690 Uiso
+O7E O 0.0030(9) 0.1269(7) 0.3418(7) 0.0690 Uiso
+O7D O -0.0030(9) 0.1269(7) 1.1582(7) 0.0690 Uiso
+O8A O 0.1159(6) 0.2360(7) 0.8274(6) 0.0470 Uiso
+O9A O 0.2479(6) 0.6219(7) 0.8234(6) 0.0410 Uiso
+O9C O -0.2521(6) 0.1219(7) 0.8234(6) 0.0410 Uiso
+O9B O 0.2521(6) 0.1219(7) 0.6766(6) 0.0410 Uiso
+O10A O -0.0477(6) 0.1824(7) 0.8880(7) 0.0500 Uiso
+N1 N 0.2642(13) 0.6094(15) 0.3768(14) 0.1140 Uiso
+C1 C 0.2876(24) 0.5718(24) 0.4799(23) 0.1530 Uiso
+C2 C 0.2089(31) 0.5439(35) 0.5203(30) 0.2140 Uiso
+N2 N 0.1967(24) 0.4258(27) 0.5379(24) 0.2150 Uiso
+C3 C 0.2603(18) 0.3621(19) 0.5826(18) 0.1140 Uiso
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+Ga1 O2 1_555 1_555
+Co1 O5 1_555 1_555
+Co2 O1 1_555 1_555
+P1 O1 1_555 1_555
+P2 O3 1_555 1_555
+P3 O5 1_555 1_555
+O2 P1 1_555 1_555
+O3 Ga1 1_555 1_555
+O4 P2 1_555 1_555
+O6 P2 1_555 1_555
+O7 P3 1_555 1_555
+O8 Co1 1_555 1_555
+O9 P2 1_555 1_555
+O10 P1 1_555 1_555
+N1 C1 1_555 1_555
+C1 C2 1_555 1_555
+C2 N2 1_555 1_555
+N2 C3 1_555 1_555
+Co1A O10 1_555 1_555
+Co1C O9 1_555 1_555
+Co1B O9A 1_555 1_555
+Co2A O1A 1_555 1_555
+Co2D O4 1_555 1_555
+Co2E O6 1_555 1_555
+Co2E_2 O7 1_555 1_555
+Co2D_2 O7A 1_555 1_555
+P1A O1A 1_555 1_555
+P2A O3A 1_555 1_555
+O2A Ga1 1_555 1_555
+O3A Ga1 1_555 1_555
+O4A Co2E 1_555 1_555
+O4D Co2 1_555 1_555
+O4E Co2A 1_555 1_555
+O5A P3 1_555 1_555
+O6A Co2D 1_555 1_555
+O6E Co2 1_555 1_555
+O6D Co2A 1_555 1_555
+O7A P3 1_555 1_555
+O7E Co2 1_555 1_555
+O7D Co2A 1_555 1_555
+O8A Co1A 1_555 1_555
+O9A P2A 1_555 1_555
+O9C Co1 1_555 1_555
+O9B Co1A 1_555 1_555
+O10A Co1 1_555 1_555
+P1 O8 1_555 1_555
+Co1A O5A 1_555 1_555
+P1A O2A 1_555 1_555
+P1A O8A 1_555 1_555
+P1A O10A 1_555 1_555
+P2A O4A 1_555 1_555
+P2A O6A 1_555 1_555
+
+#END

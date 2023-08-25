@@ -1,0 +1,97 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_LAJTIC
+_chemical_formula_moiety         '(C3 H2 Cu2 K1 N3 O1)n'
+_symmetry_cell_setting           monoclinic
+_symmetry_space_group_name_H-M   'P 21/c'
+_symmetry_Int_Tables_number      14
+_space_group_name_Hall           '-P 2ybc'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -x,1/2+y,1/2-z
+3 -x,-y,-z
+4 x,1/2-y,1/2+z
+_cell_length_a                   12.0648(7)
+_cell_length_b                   8.1918(4)
+_cell_length_c                   7.4807(4)
+_cell_angle_alpha                90
+_cell_angle_beta                 97.035(2)
+_cell_angle_gamma                90
+_cell_volume                     733.77
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+Cu1 Cu 0.4325(4) 0.3832(7) -0.1182(7) 0.0473 Uani
+Cu2 Cu 0.1058(4) 0.2127(7) 0.1816(7) 0.0515 Uani
+N1 N 0.5268(4) 0.1908(7) -0.1740(7) 0.0428 Uani
+N2 N 0.3086(4) 0.3030(7) -0.0041(7) 0.0461 Uani
+C1 C 0.0325(4) 0.0170(7) 0.2343(7) 0.0438 Uani
+C2 C 0.5433(4) 0.0775(7) -0.2591(7) 0.0392 Uani
+C3 C 0.2321(4) 0.2626(7) 0.0641(7) 0.0363 Uani
+N3 N -0.0215(4) -0.0925(7) 0.2605(7) 0.0619 Uani
+Cu1A Cu 0.5675(4) -0.1168(7) -0.3818(7) 0.0473 Uani
+Cu2A Cu -0.1058(4) -0.2873(7) 0.3184(7) 0.0515 Uani
+C2A C 0.4567(4) 0.5775(7) -0.2409(7) 0.0392 Uani
+N3A N 0.0215(4) 0.4075(7) 0.2395(7) 0.0619 Uani
+K1 K 0.3048(4) 0.5666(7) 0.3448(7) 0.0640 Uani
+O1 O 0.1804(4) 0.7291(7) 0.0558(7) 0.0704 Uani
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_23
+_atom_site_aniso_U_13
+_atom_site_aniso_U_12
+Cu1 0.054(3) 0.032(4) 0.060(3) 0.002(3) 0.023(3) -0.002(3)
+Cu2 0.042(3) 0.045(4) 0.070(3) 0.003(3) 0.017(3) -0.001(3)
+N1 0.045(3) 0.034(4) 0.048(3) -0.001(3) 0.000(3) 0.003(3)
+N2 0.046(3) 0.046(4) 0.046(3) 0.000(3) 0.005(3) -0.001(3)
+C1 0.047(3) 0.035(4) 0.052(3) 0.003(3) 0.016(3) -0.004(3)
+C2 0.037(3) 0.032(4) 0.050(3) 0.008(3) 0.011(3) 0.004(3)
+C3 0.033(3) 0.036(4) 0.040(3) -0.002(3) 0.005(3) 0.001(3)
+N3 0.068(3) 0.052(4) 0.069(3) -0.006(3) 0.022(3) -0.005(3)
+Cu1A 0.054 0.032 0.06 -0.002 0.023 0.002
+Cu2A 0.042 0.045 0.07 -0.003 0.017 0.001
+C2A 0.037 0.032 0.05 -0.008 0.011 -0.004
+N3A 0.068 0.052 0.069 0.006 0.022 0.005
+K1 0.075(3) 0.052(4) 0.065(3) -0.002(3) 0.008(3) 0.001(3)
+O1 0.054(3) 0.092(4) 0.065(3) 0.008(3) 0.006(3) -0.001(3)
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+Cu1 N1 1_555 1_555
+Cu2 C1 1_555 1_555
+N1 C2 1_555 1_555
+N2 Cu1 1_555 1_555
+C1 N3 1_555 1_555
+C2 Cu1A 1_555 1_555
+C3 Cu2 1_555 1_555
+N3 Cu2A 1_555 1_555
+C2A Cu1 1_555 1_555
+N3A Cu2 1_555 1_555
+N2 C3 1_555 1_555
+
+#END

@@ -1,0 +1,132 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_UZEWOM
+_chemical_formula_moiety         '(C8 H10 I2 N4 Zn1)n'
+_symmetry_cell_setting           cubic
+_symmetry_space_group_name_H-M   'I -4 3 m'
+_symmetry_Int_Tables_number      217
+_space_group_name_Hall           'I -4 2 3'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 z,x,y
+3 y,z,x
+4 y,-x,-z
+5 -z,y,-x
+6 -x,-z,y
+7 -x,-y,z
+8 -z,x,-y
+9 -y,-z,x
+10 x,-y,-z
+11 z,-x,-y
+12 -y,z,-x
+13 -y,x,-z
+14 -z,-y,x
+15 x,-z,-y
+16 x,z,y
+17 y,x,z
+18 z,y,x
+19 y,-z,-x
+20 -y,-x,z
+21 z,-y,-x
+22 -x,z,-y
+23 -x,y,-z
+24 -z,-x,y
+25 1/2+x,1/2+y,1/2+z
+26 1/2+z,1/2+x,1/2+y
+27 1/2+y,1/2+z,1/2+x
+28 1/2+y,1/2-x,1/2-z
+29 1/2-z,1/2+y,1/2-x
+30 1/2-x,1/2-z,1/2+y
+31 1/2-x,1/2-y,1/2+z
+32 1/2-z,1/2+x,1/2-y
+33 1/2-y,1/2-z,1/2+x
+34 1/2+x,1/2-y,1/2-z
+35 1/2+z,1/2-x,1/2-y
+36 1/2-y,1/2+z,1/2-x
+37 1/2-y,1/2+x,1/2-z
+38 1/2-z,1/2-y,1/2+x
+39 1/2+x,1/2-z,1/2-y
+40 1/2+x,1/2+z,1/2+y
+41 1/2+y,1/2+x,1/2+z
+42 1/2+z,1/2+y,1/2+x
+43 1/2+y,1/2-z,1/2-x
+44 1/2-y,1/2-x,1/2+z
+45 1/2+z,1/2-y,1/2-x
+46 1/2-x,1/2+z,1/2-y
+47 1/2-x,1/2+y,1/2-z
+48 1/2-z,1/2-x,1/2+y
+_cell_length_a                   17.0293(3)
+_cell_length_b                   17.0293(3)
+_cell_length_c                   17.0293(3)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                90
+_cell_volume                     4938.45
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+C1 C 0.37705 1.0079 0.62295 0.0100 Uiso
+C2 C 0.36851 0.89914 0.6875 0.0100 Uiso
+C3 C 0.4061 1.0855 0.5939 0.0100 Uiso
+N1 N 0.40973 0.96832 0.68278 0.0100 Uiso
+Zn1 Zn 0.50000 1.00000 0.75000 0.0100 Uiso
+C1F C 0.62295 0.9921 0.62295 0.0100 Uiso
+C2D C 0.3125 0.89914 0.63149 0.0100 Uiso
+C2F C 0.63149 1.10086 0.6875 0.0100 Uiso
+C2T C 0.6875 1.10086 0.63149 0.0100 Uiso
+C3F C 0.5939 0.9145 0.5939 0.0100 Uiso
+N1D N 0.31722 0.96832 0.59027 0.0100 Uiso
+N1F N 0.59027 1.03168 0.68278 0.0100 Uiso
+N1T N 0.68278 1.03168 0.59027 0.0100 Uiso
+N1JA N 0.53168 0.90973 0.81722 0.0100 Uiso
+N1AA N 0.46832 1.09027 0.81722 0.0100 Uiso
+Zn1D Zn 0.25000 1.00000 0.50000 0.0100 Uiso
+Zn1Q Zn 0.75000 1.00000 0.50000 0.0100 Uiso
+I1 I 0.0875 0.22 0.161 0.2000 Uiso
+I2 I -0.0874 0.22 0.159 0.2000 Uiso
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+C1 C3 1_555 1_555
+C2 N1 1_555 1_555
+I1 I2 1_555 1_555
+N1 C1 1_555 1_555
+Zn1 N1 1_555 1_555
+C1F C3F 1_555 1_555
+C2D C2 1_555 1_555
+C2F C2T 1_555 1_555
+C2T N1T 1_555 1_555
+N1D C1 1_555 1_555
+N1F Zn1 1_555 1_555
+N1T C1F 1_555 1_555
+N1JA Zn1 1_555 1_555
+N1AA Zn1 1_555 1_555
+Zn1D N1D 1_555 1_555
+Zn1Q N1T 1_555 1_555
+C1F N1F 1_555 1_555
+C2D N1D 1_555 1_555
+C2F N1F 1_555 1_555
+
+#END

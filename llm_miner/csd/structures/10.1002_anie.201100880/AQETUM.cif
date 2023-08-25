@@ -1,0 +1,124 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_AQETUM
+_chemical_formula_moiety         '(C12 H4 Mn2 N10 Nb1)n'
+_symmetry_cell_setting           monoclinic
+_symmetry_space_group_name_H-M   'P 21/c'
+_symmetry_Int_Tables_number      14
+_space_group_name_Hall           '-P 2ybc'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -x,1/2+y,1/2-z
+3 -x,-y,-z
+4 x,1/2-y,1/2+z
+_cell_length_a                   9.6355(5)
+_cell_length_b                   13.9967(7)
+_cell_length_c                   14.1740(9)
+_cell_angle_alpha                90
+_cell_angle_beta                 96.174(5)
+_cell_angle_gamma                90
+_cell_volume                     1900.49
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+Mn1 Mn -0.6468(9) 0.2146(6) -0.0067(8) 0.0530 Uiso
+Mn2 Mn -0.1630(10) 0.1164(6) 0.6606(6) 0.0750 Uiso
+C1 C -0.4741(4) 0.1246(3) 0.1781(3) 0.0340 Uiso
+Nb1 Nb -0.3387(4) 0.0495(3) 0.2939(3) 0.0359 Uiso
+C2 C -0.2552(4) 0.0950(3) 0.4406(3) 0.0340 Uiso
+N1 N -0.2140(4) 0.1147(3) 0.5168(3) 0.0340 Uiso
+N2 N -0.5419(4) 0.1610(3) 0.1176(3) 0.0340 Uiso
+C3 C -0.1170(4) 0.0009(3) 0.2874(3) 0.0340 Uiso
+N3 N -0.0050(4) -0.0262(3) 0.2853(3) 0.0340 Uiso
+C4 C -0.4855(4) 0.3508(3) -0.1410(3) 0.0340 Uiso
+N4 N -0.5619(4) 0.3029(3) -0.1063(3) 0.0340 Uiso
+C5 C -0.5571(4) -0.0082(3) 0.2904(3) 0.0340 Uiso
+N5 N -0.6657(4) -0.0402(3) 0.2953(3) 0.0340 Uiso
+C6 C -0.6676(4) 0.0528(3) -0.1724(3) 0.0340 Uiso
+N6 N -0.6702(4) 0.1035(3) -0.1096(3) 0.0340 Uiso
+C7 C -0.6811(4) 0.4135(3) 0.1227(3) 0.0340 Uiso
+N7 N -0.6906(4) 0.3453(3) 0.0781(3) 0.0340 Uiso
+C8 C -0.2347(4) 0.1794(3) 0.2406(3) 0.0340 Uiso
+N8 N -0.1888(4) 0.2470(3) 0.2109(3) 0.0340 Uiso
+C9 C -1.1597(13) 0.1088(7) -0.0007(9) 0.0620 Uiso
+C10 C -1.0527(13) 0.0955(7) 0.0707(9) 0.0620 Uiso
+C11 C -0.9271(13) 0.1328(7) 0.0716(9) 0.0620 Uiso
+N9 N -0.8976(13) 0.1835(7) -0.0025(9) 0.0620 Uiso
+N10 N -0.9966(13) 0.1989(7) -0.0724(9) 0.0620 Uiso
+C12 C -1.1308(13) 0.1622(7) -0.0744(9) 0.0620 Uiso
+Mn2B Mn 0.1630(10) -0.1164(6) 0.3394(6) 0.0750 Uiso
+Mn2B_2 Mn -0.8370(10) -0.1164(6) 0.3394(6) 0.0750 Uiso
+Mn2C Mn -0.1630(10) 0.3836(6) 0.1606(6) 0.0750 Uiso
+Nb1C Nb -0.3387(4) 0.4505(3) -0.2061(3) 0.0359 Uiso
+Nb1B Nb -0.6613(4) -0.0495(3) -0.2939(3) 0.0359 Uiso
+Nb1A Nb -0.6613(4) 0.5495(3) 0.2061(3) 0.0359 Uiso
+N3B N 0.0050(4) 0.0262(3) 0.7147(3) 0.0340 Uiso
+C4C C -0.4855(4) 0.1492(3) 0.3590(3) 0.0340 Uiso
+N5B N -0.3343(4) 0.0402(3) 0.7047(3) 0.0340 Uiso
+C6B C -0.3324(4) -0.0528(3) 0.1724(3) 0.0340 Uiso
+C7A C -0.3189(4) -0.0865(3) 0.3773(3) 0.0340 Uiso
+N8C N -0.1888(4) 0.2530(3) 0.7109(3) 0.0340 Uiso
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+Mn1 N2 1_555 1_555
+Mn2 N1 1_555 1_555
+C1 Nb1 1_555 1_555
+Nb1 C2 1_555 1_555
+C2 N1 1_555 1_555
+N2 C1 1_555 1_555
+C3 Nb1 1_555 1_555
+N3 C3 1_555 1_555
+C4 N4 1_555 1_555
+N4 Mn1 1_555 1_555
+C5 Nb1 1_555 1_555
+N5 C5 1_555 1_555
+C6 N6 1_555 1_555
+N6 Mn1 1_555 1_555
+C7 N7 1_555 1_555
+N7 Mn1 1_555 1_555
+C8 Nb1 1_555 1_555
+N8 C8 1_555 1_555
+C9 C10 1_555 1_555
+C10 C11 1_555 1_555
+C11 N9 1_555 1_555
+N9 Mn1 1_555 1_555
+N10 N9 1_555 1_555
+C12 C9 1_555 1_555
+Mn2B N3 1_555 1_555
+Mn2B_2 N5 1_555 1_555
+Mn2C N8 1_555 1_555
+Nb1C C4 1_555 1_555
+Nb1B C6 1_555 1_555
+Nb1A C7 1_555 1_555
+N3B Mn2 1_555 1_555
+C4C Nb1 1_555 1_555
+N5B Mn2 1_555 1_555
+C6B Nb1 1_555 1_555
+C7A Nb1 1_555 1_555
+N8C Mn2 1_555 1_555
+N10 C12 1_555 1_555
+
+#END

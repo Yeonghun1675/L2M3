@@ -1,0 +1,151 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_KAHKUB01
+_chemical_formula_moiety         '(C12 H6 Fe1 K1 N6 2-)n'
+_symmetry_cell_setting           rhombohedral
+_symmetry_space_group_name_H-M   'R -3 m'
+_symmetry_Int_Tables_number      166
+_space_group_name_Hall           '-R 3 2"'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -y,x-y,z
+3 -x+y,-x,z
+4 y,x,-z
+5 x-y,-y,-z
+6 -x,-x+y,-z
+7 2/3+x,1/3+y,1/3+z
+8 2/3-y,1/3+x-y,1/3+z
+9 2/3-x+y,1/3-x,1/3+z
+10 2/3+y,1/3+x,1/3-z
+11 2/3+x-y,1/3-y,1/3-z
+12 2/3-x,1/3-x+y,1/3-z
+13 1/3+x,2/3+y,2/3+z
+14 1/3-y,2/3+x-y,2/3+z
+15 1/3-x+y,2/3-x,2/3+z
+16 1/3+y,2/3+x,2/3-z
+17 1/3+x-y,2/3-y,2/3-z
+18 1/3-x,2/3-x+y,2/3-z
+19 -x,-y,-z
+20 y,-x+y,-z
+21 x-y,x,-z
+22 -y,-x,z
+23 -x+y,y,z
+24 x,x-y,z
+25 1/3-x,2/3-y,2/3-z
+26 1/3+y,2/3-x+y,2/3-z
+27 1/3+x-y,2/3+x,2/3-z
+28 1/3-y,2/3-x,2/3+z
+29 1/3-x+y,2/3+y,2/3+z
+30 1/3+x,2/3+x-y,2/3+z
+31 2/3-x,1/3-y,1/3-z
+32 2/3+y,1/3-x+y,1/3-z
+33 2/3+x-y,1/3+x,1/3-z
+34 2/3-y,1/3-x,1/3+z
+35 2/3-x+y,1/3+y,1/3+z
+36 2/3+x,1/3+x-y,1/3+z
+_cell_length_a                   8.7632(11)
+_cell_length_b                   8.7632(11)
+_cell_length_c                   18.8197(19)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                120
+_cell_volume                     1251.61
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Fe1 Fe 0.6667 0.3333 0.3333
+K1 K 1.0000 0.0000 0.5000
+N1 N 0.8366(5) 0.1634(5) 0.4236(4)
+C3 C 0.7732(5) 0.2268(5) 0.3912(4)
+K1_2 K 1.0000 1.0000 0.5000
+K1_3 K 0.0000 0.0000 0.5000
+K1L K 0.3333 -0.3333 0.1667
+K1L_2 K 0.3333 0.6667 0.1667
+K1L_3 K 1.3333 0.6667 0.1667
+N1A N 0.8366(5) 0.6732(7) 0.4236(4)
+N1B N 0.3268(7) 0.1634(5) 0.4236(4)
+N1Q N 0.4967(5) -0.0065(7) 0.2431(4)
+N1O N 0.4967(5) 0.5033(5) 0.2431(4)
+N1P N 1.0065(7) 0.5033(5) 0.2431(4)
+N1B_2 N 1.3268(7) 0.1634(5) 0.4236(4)
+N1A_2 N 0.8366(5) -0.3268(7) 0.4236(4)
+N1E N 1.1634(5) 0.3268(7) 0.5764(4)
+N1D N 0.6732(7) -0.1634(5) 0.5764(4)
+N1C N 1.1634(5) -0.1634(5) 0.5764(4)
+C3A C 0.7732(5) 0.5464(7) 0.3912(4)
+C3B C 0.4536(7) 0.2268(5) 0.3912(4)
+C3Q C 0.5601(5) 0.1203(7) 0.2755(4)
+C3O C 0.5601(5) 0.4399(5) 0.2755(4)
+C3P C 0.8797(7) 0.4399(5) 0.2755(4)
+C1 C 0.7375(10) 0.2625(10) 0.5809(10)
+H1 H 0.7988 0.2012 0.5808
+C2 C 0.5969(10) 0.194(2) 0.5809(10)
+H2 H 0.5356 0.0712 0.5809
+C1B C 0.5250(14) 0.2625(10) 0.5809(10)
+C1A C 0.7375(10) 0.4750(14) 0.5809(10)
+H1B H 0.4024 0.2012 0.5808
+H1A H 0.7988 0.5976 0.5808
+C2B C 0.5971(22) 0.4031(10) 0.5809(10)
+C2A C 0.806(2) 0.4029(22) 0.5809(10)
+H2A H 0.9288 0.4644 0.5809
+H2B H 0.5356 0.4644 0.5809
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+C1 H1 1_555 1_555
+C2 C1 1_555 1_555
+H2 C2 1_555 1_555
+Fe1 C3 1_555 1_555
+K1 N1 1_555 1_555
+N1 C3 1_555 1_555
+C1B C2 1_555 1_555
+C1A H1A 1_555 1_555
+H1B C1B 1_555 1_555
+C2B C1B 1_555 1_555
+C2A C1 1_555 1_555
+H2A C2A 1_555 1_555
+H2B C2B 1_555 1_555
+K1_2 N1A 1_555 1_555
+K1_3 N1B 1_555 1_555
+K1L N1Q 1_555 1_555
+K1L_2 N1O 1_555 1_555
+K1L_3 N1P 1_555 1_555
+N1A C3A 1_555 1_555
+N1B C3B 1_555 1_555
+N1Q C3Q 1_555 1_555
+N1O C3O 1_555 1_555
+N1P C3P 1_555 1_555
+N1B_2 K1 1_555 1_555
+N1A_2 K1 1_555 1_555
+N1E K1 1_555 1_555
+N1D K1 1_555 1_555
+N1C K1 1_555 1_555
+C3A Fe1 1_555 1_555
+C3B Fe1 1_555 1_555
+C3Q Fe1 1_555 1_555
+C3O Fe1 1_555 1_555
+C3P Fe1 1_555 1_555
+C1A C2B 1_555 1_555
+C1A C2A 1_555 1_555
+
+#END

@@ -1,0 +1,135 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_WOBHOL
+_chemical_formula_moiety         '(C8 H4 O7 Zn2)n'
+_symmetry_cell_setting           rhombohedral
+_symmetry_space_group_name_H-M   'R -3'
+_symmetry_Int_Tables_number      148
+_space_group_name_Hall           '-R 3'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 1/3+x,2/3+y,2/3+z
+3 2/3+x,1/3+y,1/3+z
+4 -y,x-y,z
+5 -x+y,-x,z
+6 2/3-y,1/3+x-y,1/3+z
+7 2/3-x+y,1/3-x,1/3+z
+8 1/3-y,2/3+x-y,2/3+z
+9 1/3-x+y,2/3-x,2/3+z
+10 -x,-y,-z
+11 2/3-x,1/3-y,1/3-z
+12 1/3-x,2/3-y,2/3-z
+13 y,-x+y,-z
+14 x-y,x,-z
+15 1/3+y,2/3-x+y,2/3-z
+16 1/3+x-y,2/3+x,2/3-z
+17 2/3+y,1/3-x+y,1/3-z
+18 2/3+x-y,1/3+x,1/3-z
+_cell_length_a                   25.91905(48)
+_cell_length_b                   25.91905(48)
+_cell_length_c                   6.86416(77)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                120
+_cell_volume                     3993.52
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+C1 C 0.57831(7) 0.59147(7) 0.74618(15) 0.0190 Uiso
+C2 C 0.53808(6) 0.54788(7) 0.87689(13) 0.0190 Uiso
+C3 C 0.55437(7) 0.54849(10) 1.07392(17) 0.0190 Uiso
+C4 C 0.48251(8) 0.49935(10) 0.80393(16) 0.0190 Uiso
+H1 H 0.47207(19) 0.49880(23) 0.66799(35) 0.0190 Uiso
+Zn1 Zn 0.61791(3) 0.64482(3) 0.36162(10) 0.0253 Uiso
+O1 O 0.56163(8) 0.59268(9) 0.57365(17) 0.0253 Uiso
+O2 O 0.62547(6) 0.63561(7) 0.81074(21) 0.0253 Uiso
+O3 O 0.61194(5) 0.58946(7) 1.13462(19) 0.0253 Uiso
+C1I C 0.42169(7) 0.40853(7) 1.25382(15) 0.0190 Uiso
+C2I C 0.46192(6) 0.45212(7) 1.12311(13) 0.0190 Uiso
+C3I C 0.44563(7) 0.45151(10) 0.92608(17) 0.0190 Uiso
+C4I C 0.51749(8) 0.50065(10) 1.19607(16) 0.0190 Uiso
+H1I H 0.52793(19) 0.50120(23) 1.33201(35) 0.0190 Uiso
+Zn1I Zn 0.38209(3) 0.35518(3) 1.63838(10) 0.0253 Uiso
+Zn1F Zn 0.69358(4) 0.71542(3) 0.69495(10) 0.0253 Uiso
+Zn1G Zn 0.68851(3) 0.63976(4) 1.02829(10) 0.0253 Uiso
+Zn1_2 Zn 0.61791(3) 0.64482(3) 1.36162(10) 0.0253 Uiso
+Zn1P Zn 0.31149(3) 0.36024(4) 0.97171(10) 0.0253 Uiso
+Zn1O Zn 0.30642(4) 0.28458(3) 1.30505(10) 0.0253 Uiso
+Zn1I_2 Zn 0.38209(3) 0.35518(3) 0.63838(10) 0.0253 Uiso
+O1I O 0.43837(8) 0.40732(9) 1.42635(17) 0.0253 Uiso
+O2I O 0.37453(6) 0.36439(7) 1.18926(21) 0.0253 Uiso
+O2F O 0.67681(9) 0.70786(6) 0.14407(21) 0.0253 Uiso
+O2G O 0.69772(7) 0.65653(9) 0.47741(21) 0.0253 Uiso
+O2P O 0.30228(7) 0.34347(9) 1.52259(21) 0.0253 Uiso
+O2O O 0.32319(9) 0.29214(6) 1.85593(21) 0.0253 Uiso
+O3I O 0.38806(5) 0.41054(7) 0.86538(19) 0.0253 Uiso
+O3_2 O 0.61194(5) 0.58946(7) 0.13462(19) 0.0253 Uiso
+O3F O 0.64419(9) 0.72139(5) 0.46795(19) 0.0253 Uiso
+O3I_2 O 0.38806(5) 0.41054(7) 1.86538(19) 0.0253 Uiso
+O3O O 0.35581(9) 0.27861(5) 1.53205(19) 0.0253 Uiso
+O4 O 0.11581(22) 0.66373(22) 0.12737(55) 0.0443 Uiso
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+C1 C2 1_555 1_555
+C2 C3 1_555 1_555
+C3 O3 1_555 1_555
+C4 C2 1_555 1_555
+H1 C4 1_555 1_555
+Zn1 O1 1_555 1_555
+O1 C1 1_555 1_555
+O2 C1 1_555 1_555
+O3 Zn1G 1_555 1_555
+C1I C2I 1_555 1_555
+C2I C3I 1_555 1_555
+C3I C4 1_555 1_555
+C4I C3 1_555 1_555
+H1I C4I 1_555 1_555
+Zn1I O1I 1_555 1_555
+Zn1F O2 1_555 1_555
+Zn1G O2 1_555 1_555
+Zn1_2 O3 1_555 1_555
+Zn1P O2I 1_555 1_555
+Zn1O O2I 1_555 1_555
+Zn1I_2 O3I 1_555 1_555
+O1I C1I 1_555 1_555
+O2I C1I 1_555 1_555
+O2F Zn1 1_555 1_555
+O2G Zn1 1_555 1_555
+O2P Zn1I 1_555 1_555
+O2O Zn1I 1_555 1_555
+O3I C3I 1_555 1_555
+O3_2 Zn1 1_555 1_555
+O3F Zn1 1_555 1_555
+O3I_2 Zn1I 1_555 1_555
+O3O Zn1I 1_555 1_555
+C2I C4I 1_555 1_555
+Zn1F O2G 1_555 1_555
+Zn1F O3F 1_555 1_555
+Zn1P O3I 1_555 1_555
+Zn1O O2P 1_555 1_555
+Zn1O O3O 1_555 1_555
+
+#END

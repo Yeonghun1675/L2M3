@@ -1,0 +1,132 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_MILQIJ
+_chemical_formula_moiety         '(C16 H24 Al2 O11)n'
+_symmetry_cell_setting           triclinic
+_symmetry_space_group_name_H-M   'P -1'
+_symmetry_Int_Tables_number      2
+_space_group_name_Hall           '-P 1'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -x,-y,-z
+_cell_length_a                   6.61686(46)
+_cell_length_b                   9.43004(62)
+_cell_length_c                   9.46418(57)
+_cell_angle_alpha                107.5773(37)
+_cell_angle_beta                 107.7250(74)
+_cell_angle_gamma                93.2088(49)
+_cell_volume                     529.08
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+Al1 Al -1 0.000 -1 0.0065 Uiso
+Al2 Al -0.5 0.000 -1 0.0065 Uiso
+O1 O -0.7467(40) -0.0671(22) -0.9830(24) 0.0152 Uiso
+O2 O -0.5053(32) 0.1784(25) -0.8264(21) 0.0152 Uiso
+O3 O -0.8204(25) 0.1704(25) -0.8336(21) 0.0152 Uiso
+O4 O -0.0375(16) -0.0885(23) -0.8330(13) 0.0152 Uiso
+O5 O -0.3617(17) -0.1044(23) -0.8453(17) 0.0152 Uiso
+C1 C -0.6362(26) 0.2320(24) -0.7693(18) 0.0014 Uiso
+C2 C -0.5569(21) 0.3470(18) -0.6067(16) 0.0014 Uiso
+C3 C -0.3497(26) 0.4367(20) -0.6087(19) 0.0014 Uiso
+C4 C -0.7206(25) 0.4388(19) -0.5533(18) 0.0014 Uiso
+C5 C -0.1730(23) -0.1096(18) -0.76874(98) 0.0014 Uiso
+C6 C -0.1192(24) -0.1533(16) -0.6253(14) 0.0014 Uiso
+C7 C -0.2514(22) -0.0489(17) -0.5503(25) 0.0014 Uiso
+C8 C -0.1182(22) 0.0929(18) -0.4475(25) 0.0014 Uiso
+O2A O -0.4947(32) 0.8216(25) -0.1736(21) 0.0152 Uiso
+O3A O -0.1796(25) 0.8296(25) -0.1664(21) 0.0152 Uiso
+C1A C -0.3638(26) 0.7680(24) -0.2307(18) 0.0014 Uiso
+C2A C -0.4431(21) 0.6530(18) -0.3933(16) 0.0014 Uiso
+C3A C -0.6503(26) 0.5633(20) -0.3913(19) 0.0014 Uiso
+C4A C -0.2794(25) 0.5612(19) -0.4467(18) 0.0014 Uiso
+O5A O 0.3617(17) 0.1044(23) -0.1547(17) 0.0152 Uiso
+C5A C 0.1730(23) 0.1096(18) -0.23126(98) 0.0014 Uiso
+C6A C 0.1192(24) 0.1533(16) -0.3747(14) 0.0014 Uiso
+C7A C 0.2514(22) 0.0489(17) -0.4497(25) 0.0014 Uiso
+C8A C 0.1182(22) -0.0929(18) -0.5525(25) 0.0014 Uiso
+O4A O 0.0375(16) 0.0885(23) -0.1670(13) 0.0152 Uiso
+O1A O -1.2533(40) 0.0671(22) -1.0170(24) 0.0152 Uiso
+Al1A Al 0 0.000 -1 0.0065 Uiso
+Al1A_2 Al 0 0.000 0 0.0065 Uiso
+Al1A_3 Al 0 1.000 0 0.0065 Uiso
+Al2A Al -1.5 0.000 -1 0.0065 Uiso
+Al2A_2 Al -0.5 1.000 0 0.0065 Uiso
+Al2A_3 Al 0.5 0.000 0 0.0065 Uiso
+O1A_2 O -0.2533(40) 0.0671(22) -1.0170(24) 0.0152 Uiso
+O2A_2 O -0.4947(32) -0.1784(25) -1.1736(21) 0.0152 Uiso
+O3A_2 O -1.1796(25) -0.1704(25) -1.1664(21) 0.0152 Uiso
+O4A_2 O -0.9625(16) 0.0885(23) -1.1670(13) 0.0152 Uiso
+O4_2 O -1.0375(16) -0.0885(23) -0.8330(13) 0.0152 Uiso
+O5A_2 O -0.6383(17) 0.1044(23) -1.1547(17) 0.0152 Uiso
+O6 O 0.8303(26) 0.4202(19) 0.9735(21) 0.0366 Uiso
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+Al1 O1 1_555 1_555
+Al2 O1 1_555 1_555
+O2 Al2 1_555 1_555
+O3 Al1 1_555 1_555
+O4 C5 1_555 1_555
+O5 Al2 1_555 1_555
+C1 O2 1_555 1_555
+C2 C1 1_555 1_555
+C3 C2 1_555 1_555
+C4 C2 1_555 1_555
+C5 O5 1_555 1_555
+C6 C5 1_555 1_555
+C7 C6 1_555 1_555
+C8 C7 1_555 1_555
+O2A C1A 1_555 1_555
+O3A C1A 1_555 1_555
+C1A C2A 1_555 1_555
+C2A C3A 1_555 1_555
+C3A C4 1_555 1_555
+C4A C3 1_555 1_555
+O5A C5A 1_555 1_555
+C5A C6A 1_555 1_555
+C6A C8 1_555 1_555
+C7A C6A 1_555 1_555
+C8A C6 1_555 1_555
+O4A C5A 1_555 1_555
+O1A Al1 1_555 1_555
+Al1A O4 1_555 1_555
+Al1A_2 O4A 1_555 1_555
+Al1A_3 O3A 1_555 1_555
+Al2A O1A 1_555 1_555
+Al2A_2 O2A 1_555 1_555
+Al2A_3 O5A 1_555 1_555
+O1A_2 Al2 1_555 1_555
+O2A_2 Al2 1_555 1_555
+O3A_2 Al1 1_555 1_555
+O4A_2 Al1 1_555 1_555
+O4_2 Al1 1_555 1_555
+O5A_2 Al2 1_555 1_555
+O3 C1 1_555 1_555
+C2A C4A 1_555 1_555
+C7A C8A 1_555 1_555
+Al1A O1A_2 1_555 1_555
+
+#END

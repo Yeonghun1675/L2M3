@@ -1,0 +1,146 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_LETDUK
+_chemical_formula_moiety         'C5 H2 Cu12 I6 N9'
+_symmetry_cell_setting           orthorhombic
+_symmetry_space_group_name_H-M   'I m a 2'
+_symmetry_Int_Tables_number      46
+_space_group_name_Hall           'I 2 -2a'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -x,-y,z
+3 1/2-x,y,z
+4 1/2+x,-y,z
+5 1/2+x,1/2+y,1/2+z
+6 1/2-x,1/2-y,1/2+z
+7 -x,1/2+y,1/2+z
+8 x,1/2-y,1/2+z
+_cell_length_a                   7.4022(4)
+_cell_length_b                   11.0853(6)
+_cell_length_c                   19.2932(10)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                90
+_cell_volume                     1583.12
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+I1 I 0.7500 0.26599(8) 0.42199(5)
+I2 I 0.5000 0.0000 0.58067(11)
+I3 I 0.2500 0.10976(11) 0.38383(12)
+I4 I 0.7971(3) 0.1355(2) 0.20451(11)
+Cu3 Cu 0.6508(13) 0.0990(4) 0.3361(3)
+Cu5 Cu 0.5770(8) 0.0659(4) 0.4506(3)
+I3A I 0.7500 -0.10976(11) 0.38383(12)
+I4B I 0.7029(3) 0.1355(2) 0.20451(11)
+Cu3B Cu 0.8492(13) 0.0990(4) 0.3361(3)
+Cu3A Cu 0.3492(13) -0.0990(4) 0.3361(3)
+Cu3C Cu 0.1508(13) -0.0990(4) 0.3361(3)
+Cu3B_2 Cu -0.1508(13) 0.0990(4) 0.3361(3)
+Cu5B Cu 0.9230(8) 0.0659(4) 0.4506(3)
+Cu5A Cu 0.4230(8) -0.0659(4) 0.4506(3)
+Cu5B_2 Cu -0.0770(8) 0.0659(4) 0.4506(3)
+Cu5C Cu 0.0770(8) -0.0659(4) 0.4506(3)
+Cu1 Cu 1.0000 1.0000 0.91473(8)
+Cu2 Cu 1.2500 1.2445(2) 0.66273(9)
+N1 N 1.2500 1.1646(13) 0.7470(7)
+N2 N 1.1598(12) 1.0670(8) 0.8401(4)
+N3 N 0.8450(11) 0.9311(7) 0.9877(4)
+N4 N 1.2500 1.3307(10) 0.5817(6)
+C1 C 1.1040(14) 1.1248(10) 0.7843(5)
+H1 H 0.9837 1.1368 0.7721
+C2 C 0.8906(18) 0.8692(10) 1.0440(5)
+H2 H 1.0100 0.8538 1.0562
+N2A N 0.8402(12) 0.9330(8) 0.8401(4)
+N2B N 1.3402(12) 1.0670(8) 0.8401(4)
+N3A N 1.1550(11) 1.0689(7) 0.9877(4)
+N3B N 0.6550(11) 0.9311(7) 0.9877(4)
+N4D N 0.7500 0.8307(10) 1.0817(6)
+C1B C 1.3960(14) 1.1248(10) 0.7843(5)
+C2D C 1.3906(18) 1.3692(10) 0.5440(5)
+C2F C 1.1094(18) 1.3692(10) 0.5440(5)
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+I1 Cu3 1_555 1_555
+I2 Cu5 1_555 1_555
+I3 Cu3 1_555 1_555
+I4 Cu3 1_555 1_555
+Cu1 N2 1_555 1_555
+Cu2 N1 1_555 1_555
+Cu3 Cu5 1_555 1_555
+Cu5 I1 1_555 1_555
+N1 C1 1_555 1_555
+N2 C1 1_555 1_555
+N3 Cu1 1_555 1_555
+N4 Cu2 1_555 1_555
+C1 H1 1_555 1_555
+C2 N3 1_555 1_555
+H2 C2 1_555 1_555
+I3A Cu3 1_555 1_555
+I4B I4 1_555 1_555
+Cu3B I1 1_555 1_555
+Cu3A I3 1_555 1_555
+Cu3C I3 1_555 1_555
+Cu3B_2 I3 1_555 1_555
+Cu5B I1 1_555 1_555
+Cu5A I2 1_555 1_555
+Cu5B_2 I3 1_555 1_555
+Cu5C I3 1_555 1_555
+N2A Cu1 1_555 1_555
+N2B N2 1_555 1_555
+N3A Cu1 1_555 1_555
+N3B N3 1_555 1_555
+N4D C2 1_555 1_555
+C1B N1 1_555 1_555
+C2D N4 1_555 1_555
+C2F N4 1_555 1_555
+I3 Cu5 1_555 1_555
+I3 Cu5A 1_555 1_555
+I4 Cu3B 1_555 1_555
+Cu3 I4B 1_555 1_555
+Cu3 Cu3B 1_555 1_555
+Cu3 Cu3A 1_555 1_555
+Cu3 Cu5B 1_555 1_555
+Cu5 I3A 1_555 1_555
+Cu5 Cu3B 1_555 1_555
+Cu5 Cu5B 1_555 1_555
+Cu5 Cu5A 1_555 1_555
+I3A Cu3B 1_555 1_555
+I3A Cu3A 1_555 1_555
+I3A Cu5B 1_555 1_555
+I3A Cu5A 1_555 1_555
+I4B Cu3B 1_555 1_555
+Cu3B Cu5B 1_555 1_555
+Cu3A Cu3C 1_555 1_555
+Cu3A Cu5A 1_555 1_555
+Cu3A Cu5C 1_555 1_555
+Cu3C Cu3B_2 1_555 1_555
+Cu3C Cu5A 1_555 1_555
+Cu3C Cu5C 1_555 1_555
+Cu3B_2 Cu5B_2 1_555 1_555
+Cu5A Cu5C 1_555 1_555
+Cu5B_2 Cu5C 1_555 1_555
+N2B C1B 1_555 1_555
+
+#END

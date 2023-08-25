@@ -10,7 +10,8 @@ meta = '''
 surface_area = '''
 'surface area': [
     {
-        'type': "",  # BET or Langmuir
+        'type': "",  # ex) BET, Langmuir
+        'probe': "",
         'value': "",
         'unit': "",
     }, ...
@@ -21,6 +22,7 @@ surface_area = '''
 pore_volume = '''
 'total pore volume': [
     {
+        'probe': "", ex) N2, H2
         'value': "",
         'unit': "",
     }, ...
@@ -123,10 +125,44 @@ mechanical_property = '''
 selectivity = '''
 'selectivity': [
     {
-        'value':"",
-        'adsorbate':"",
+        'value': "",
+        'unit': "",
+        'substrate': "",
+        'catalyst': "",
         'pressure':"",
         'temperature':""
+        'solvent': "",
+        'time': "",
+    }, ...
+]
+'''
+
+conversion = '''
+'conversion': [
+    {
+        'value': "",
+        'unit': "",
+        'substrate': "",
+        'catalyst': "",
+        'pressure':"",
+        'temperature':""
+        'solvent': "",
+        'time': "",
+    }, ...
+]
+'''
+
+reaction_yield = '''
+'yield': [
+    {
+        'value': "",
+        'unit': "",
+        'substrate': "",
+        'catalyst': "",
+        'pressure': "",
+        'temperature': "",
+        'solvent': "",
+        'time': "",
     }, ...
 ]
 '''

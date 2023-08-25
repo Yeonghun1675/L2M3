@@ -1,0 +1,150 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_DUKYIT
+_chemical_formula_moiety         '(C16 H16 Co1 N4)n'
+_symmetry_cell_setting           tetragonal
+_symmetry_space_group_name_H-M   'P 42/n n m'
+_symmetry_Int_Tables_number      134
+_space_group_name_Hall           '-P 4ac 2bc'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 1/2-x,1/2-y,z
+3 1/2-x,y,1/2-z
+4 1/2-y,1/2-x,-z
+5 1/2-y,x,1/2+z
+6 y,1/2-x,1/2+z
+7 y,x,-z
+8 x,1/2-y,1/2-z
+9 -x,-y,-z
+10 1/2+x,1/2+y,-z
+11 1/2+x,-y,1/2+z
+12 1/2+y,1/2+x,z
+13 1/2+y,-x,1/2-z
+14 -y,1/2+x,1/2-z
+15 -y,-x,z
+16 -x,1/2+y,1/2+z
+_cell_length_a                   18.60188(63)
+_cell_length_b                   18.60188(63)
+_cell_length_c                   7.27449(48)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                90
+_cell_volume                     2517.19
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+Co1 Co 0.250 0.250 0.250 0.0269 Uiso
+C1 C 0.050302 0.002536 0.141151 0.0522 Uiso
+C2 C 0.052838 0.052837 0.000 0.0522 Uiso
+C3 C 0.109857 0.109856 0.000 0.0522 Uiso
+C4 C 0.158812 0.121675 0.135526 0.0522 Uiso
+N1 N 0.200887 0.177934 0.083759 0.0522 Uiso
+H1 H 0.084681 0.004268 0.237621 0.0522 Uiso
+C5 C 0.165052 0.081373 0.305377 0.0522 Uiso
+H2 H 0.139439 0.028475 0.288686 0.0522 Uiso
+H3 H 0.222191 0.074062 0.339540 0.0522 Uiso
+H4 H 0.138266 0.110962 0.416952 0.0522 Uiso
+C1N C -0.002536 -0.050302 0.141151 0.0522 Uiso
+C2H C -0.052838 -0.052837 0.000 0.0522 Uiso
+C3H C -0.109857 -0.109856 0.000 0.0522 Uiso
+C4N C -0.121675 -0.158812 0.135526 0.0522 Uiso
+N1N N -0.177934 -0.200887 0.083759 0.0522 Uiso
+H1N H -0.004268 -0.084681 0.237621 0.0522 Uiso
+C5N C -0.081373 -0.165052 0.305377 0.0522 Uiso
+H2N H -0.028475 -0.139439 0.288686 0.0522 Uiso
+H3N H -0.074062 -0.222191 0.339540 0.0522 Uiso
+H4N H -0.110962 -0.138266 0.416952 0.0522 Uiso
+C1F C 0.002536 0.050302 -0.141151 0.0522 Uiso
+C4F C 0.121675 0.158812 -0.135526 0.0522 Uiso
+N1F N 0.177934 0.200887 -0.083759 0.0522 Uiso
+H1F H 0.004268 0.084681 -0.237621 0.0522 Uiso
+C5F C 0.081373 0.165052 -0.305377 0.0522 Uiso
+H2F H 0.028475 0.139439 -0.288686 0.0522 Uiso
+H3F H 0.074062 0.222191 -0.339540 0.0522 Uiso
+H4F H 0.110962 0.138266 -0.416952 0.0522 Uiso
+C1H C -0.050302 -0.002536 -0.141151 0.0522 Uiso
+C4H C -0.158812 -0.121675 -0.135526 0.0522 Uiso
+N1H N -0.200887 -0.177934 -0.083759 0.0522 Uiso
+H1H H -0.084681 -0.004268 -0.237621 0.0522 Uiso
+C5H C -0.165052 -0.081373 -0.305377 0.0522 Uiso
+H2H H -0.139439 -0.028475 -0.288686 0.0522 Uiso
+H3H H -0.222191 -0.074062 -0.339540 0.0522 Uiso
+H4H H -0.138266 -0.110962 -0.416952 0.0522 Uiso
+Co1H Co -0.250 -0.250 -0.250 0.0269 Uiso
+Co1N Co -0.250 -0.250 0.250 0.0269 Uiso
+Co1C Co 0.250 0.250 -0.250 0.0269 Uiso
+N1A N 0.299113 0.322066 0.083759 0.0522 Uiso
+N1B N 0.299113 0.177934 0.416241 0.0522 Uiso
+N1G N 0.200887 0.322066 0.416241 0.0522 Uiso
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+Co1 N1 1_555 1_555
+C1 C2 1_555 1_555
+C2 C3 1_555 1_555
+C3 C4 1_555 1_555
+C4 N1 1_555 1_555
+N1 N1F 1_555 1_555
+H1 C1 1_555 1_555
+C5 C4 1_555 1_555
+H2 C5 1_555 1_555
+H3 C5 1_555 1_555
+H4 C5 1_555 1_555
+C1N C1 1_555 1_555
+C2H C1N 1_555 1_555
+C3H C2H 1_555 1_555
+C4N C3H 1_555 1_555
+N1N C4N 1_555 1_555
+H1N C1N 1_555 1_555
+C5N C4N 1_555 1_555
+H2N C5N 1_555 1_555
+H3N C5N 1_555 1_555
+H4N C5N 1_555 1_555
+C1F C2 1_555 1_555
+C4F C3 1_555 1_555
+N1F C4F 1_555 1_555
+H1F C1F 1_555 1_555
+C5F C4F 1_555 1_555
+H2F C5F 1_555 1_555
+H3F C5F 1_555 1_555
+H4F C5F 1_555 1_555
+C1H C2H 1_555 1_555
+C4H C3H 1_555 1_555
+N1H N1N 1_555 1_555
+H1H C1H 1_555 1_555
+C5H C4H 1_555 1_555
+H2H C5H 1_555 1_555
+H3H C5H 1_555 1_555
+H4H C5H 1_555 1_555
+Co1H N1H 1_555 1_555
+Co1N N1N 1_555 1_555
+Co1C N1F 1_555 1_555
+N1A Co1 1_555 1_555
+N1B Co1 1_555 1_555
+N1G Co1 1_555 1_555
+C1F C1H 1_555 1_555
+C4H N1H 1_555 1_555
+
+#END

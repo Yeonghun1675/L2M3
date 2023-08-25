@@ -1,0 +1,161 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_RAVVUH
+_chemical_formula_moiety         '(C14 H18 Mg2 O12)n'
+_symmetry_cell_setting           rhombohedral
+_symmetry_space_group_name_H-M   'R -3'
+_symmetry_Int_Tables_number      148
+_space_group_name_Hall           '-R 3'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -y,x-y,z
+3 -x+y,-x,z
+4 2/3+x,1/3+y,1/3+z
+5 2/3-y,1/3+x-y,1/3+z
+6 2/3-x+y,1/3-x,1/3+z
+7 1/3+x,2/3+y,2/3+z
+8 1/3-y,2/3+x-y,2/3+z
+9 1/3-x+y,2/3-x,2/3+z
+10 -x,-y,-z
+11 y,-x+y,-z
+12 x-y,x,-z
+13 1/3-x,2/3-y,2/3-z
+14 1/3+y,2/3-x+y,2/3-z
+15 1/3+x-y,2/3+x,2/3-z
+16 2/3-x,1/3-y,1/3-z
+17 2/3+y,1/3-x+y,1/3-z
+18 2/3+x-y,1/3+x,1/3-z
+_cell_length_a                   36.2552
+_cell_length_b                   36.2552
+_cell_length_c                   6.8482
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                120
+_cell_volume                     7795.57
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+C1 C 0.34097 0.29123 0.23562
+C2 C 0.33948 0.25794 0.36917
+C3 C 0.32912 0.25517 0.57199
+Mg1 Mg 0.35542 0.32953 -0.15239
+O1 O 0.35079 0.29087 0.05416
+O2 O 0.33343 0.31969 0.29740
+O3 O 0.31710 0.28207 0.66760
+O4 O 0.40866 0.33646 -0.23208
+C4 C 0.32995 0.21843 0.68570
+C5 C 0.33869 0.18714 0.60873
+C6 C 0.35274 0.19326 0.41295
+C7 C 0.35432 0.22598 0.29829
+H1 H 0.32050 0.21738 0.83564
+H2 H 0.36524 0.22872 0.14795
+H3 H 0.36298 0.17313 0.34284
+C1O C 0.32570 0.04210 1.09771
+C2O C 0.32719 0.07539 0.96416
+C3O C 0.33755 0.07816 0.76134
+Mg1O Mg 0.31125 0.00380 1.48572
+Mg1H Mg 0.30744 0.31125 0.51428
+Mg1D Mg 0.33714 0.35922 0.18094
+Mg1_2 Mg 0.35542 0.32953 0.84761
+Mg1N Mg 0.35922 0.02209 0.81906
+Mg1J Mg 0.32953 -0.02589 1.15239
+Mg1O_2 Mg 0.31125 0.00380 0.48572
+O1O O 0.31588 0.04246 1.27917
+O2O O 0.33324 0.01364 1.03593
+O2D O 0.34698 0.34707 -0.36927
+O2H O 0.31959 0.33324 -0.03593
+O2J O 0.31969 -0.01374 1.70260
+O2N O 0.34707 0.00010 1.36927
+O3O O 0.34957 0.05126 0.66573
+O3_2 O 0.31710 0.28207 -0.33240
+O3D O 0.38460 0.36836 0.00093
+O3O_2 O 0.34957 0.05126 1.66573
+O3J O 0.28207 -0.03503 1.33240
+O4O O 0.25801 -0.00313 1.56541
+C4O C 0.33672 0.11490 0.64763
+C5O C 0.32798 0.14619 0.72460
+C6O C 0.31393 0.14007 0.92038
+C7O C 0.31235 0.10735 1.03504
+H1O H 0.34617 0.11595 0.49769
+H2O H 0.30143 0.10461 1.18538
+H3O H 0.30369 0.16020 0.99049
+O5 O 0.41054 0.29645 -0.31888
+O6 O 0.26668 0.39840 0.11424
+O7 O 0.42805 0.32712 0.12055
+O8 O 0.44862 0.40604 0.35020
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+C1 C2 1_555 1_555
+C2 C3 1_555 1_555
+C3 O3 1_555 1_555
+Mg1 O1 1_555 1_555
+O1 C1 1_555 1_555
+O2 C1 1_555 1_555
+O3 Mg1H 1_555 1_555
+O4 Mg1 1_555 1_555
+C4 C3 1_555 1_555
+C5 C4 1_555 1_555
+C6 C5 1_555 1_555
+C7 C2 1_555 1_555
+H1 C4 1_555 1_555
+H2 C7 1_555 1_555
+H3 C6 1_555 1_555
+C1O C2O 1_555 1_555
+C2O C3O 1_555 1_555
+C3O O3O 1_555 1_555
+Mg1O O1O 1_555 1_555
+Mg1H O2 1_555 1_555
+Mg1D O2 1_555 1_555
+Mg1_2 O3 1_555 1_555
+Mg1N O2O 1_555 1_555
+Mg1J O2O 1_555 1_555
+Mg1O_2 O3O 1_555 1_555
+O1O C1O 1_555 1_555
+O2O C1O 1_555 1_555
+O2D Mg1 1_555 1_555
+O2H Mg1 1_555 1_555
+O2J Mg1O 1_555 1_555
+O2N Mg1O 1_555 1_555
+O3O Mg1N 1_555 1_555
+O3_2 Mg1 1_555 1_555
+O3D Mg1 1_555 1_555
+O3O_2 Mg1O 1_555 1_555
+O3J Mg1O 1_555 1_555
+O4O Mg1O 1_555 1_555
+C4O C3O 1_555 1_555
+C5O C5 1_555 1_555
+C6O C5O 1_555 1_555
+C7O C2O 1_555 1_555
+H1O C4O 1_555 1_555
+H2O C7O 1_555 1_555
+H3O C6O 1_555 1_555
+C6 C7 1_555 1_555
+Mg1D O2H 1_555 1_555
+Mg1D O3D 1_555 1_555
+Mg1J O2N 1_555 1_555
+Mg1J O3J 1_555 1_555
+C4O C5O 1_555 1_555
+C6O C7O 1_555 1_555
+
+#END

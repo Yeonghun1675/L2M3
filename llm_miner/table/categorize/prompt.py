@@ -235,21 +235,17 @@ Table 3
 Output: 'Property'
 
 Input:
-Table 3
+Table 4
 
-13C NMR spectral data (in ppm) of 1 ∼ 3, K4edta, K[La(edta)(H2O)3]⋅ 5H2O [24].
+Cyanosilylation of benzaldehyde in the presence of different Mg-MOF loadings.
 
-| Compounds | –CH2N | –NCH2CO2 | –CO2 |
-| --- | --- | --- | --- |
-| 1 | 57.3(3.6) | 64.4(4.3) | 183.0 (4.5) |
-| 2 | 57.3(3.6) | 64.5(4.4) | 183.0 (4.5) |
-| [edta]4- | 53.7 | 60.1 | 178.5 |
-| K[La(edta)(H2O)3]·5H2O | 57.2(3.5) | 64.4(4.3) | 183.0(4.5) |
-|  |  |  |  |
-| Solid |
-| 1 | 57.5, 53.6 | 62.5 | 184.9, 179.8 |
-| 2 | 55.2, 53.0 | 62.5, 59.4 | 180.1, 179.4 |
-| 3 | 57.4, 53.7 | 62.7, 60.9 | 182.4, 178.3 |
+| Entry | Cat. mol % | TMSCN | Temp.(°C) | Time (h) | Conv.% |
+|-------|------------|-------|-----------|----------|--------|
+| 1     | 1          | 2 eq  | r.t.      | 2        | >99    |
+| 2     | 0.5        | 2 eq  | r.t.      | 2        | >99    |
+| 3     | 0.1        | 2 eq  | r.t.      | 2        | >99    |
+
+Determined by GC based on the carbonyl substrate.
 
 Output: 'Property'
 

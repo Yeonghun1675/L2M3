@@ -1,0 +1,80 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_RONZID
+_chemical_formula_moiety         'C5 Cd1 N3 O4'
+_symmetry_cell_setting           tetragonal
+_symmetry_space_group_name_H-M   'P 41 21 2'
+_symmetry_Int_Tables_number      92
+_space_group_name_Hall           'P 4abw 2nw'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 1/2-y,1/2+x,1/4+z
+3 1/2+x,1/2-y,3/4-z
+4 -x,-y,1/2+z
+5 y,x,-z
+6 1/2+y,1/2-x,3/4+z
+7 1/2-x,1/2+y,1/4-z
+8 -y,-x,1/2-z
+_cell_length_a                   9.042(5)
+_cell_length_b                   9.042(5)
+_cell_length_c                   12.027(4)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                90
+_cell_volume                     983.301
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Cd1 Cd 0.30978(6) 0.30978 0.0000
+C1 C 0.2670(7) 0.1124(8) 0.1061(1)
+N1 N 0.5107(7) 0.2606(8) -0.0941(1)
+C1D C 0.1124(8) 0.2670(7) -0.1061(1)
+N1D N 0.2606(8) 0.5107(7) 0.0941(1)
+N1A N 0.2394(8) 0.0107(7) 0.1559(1)
+C1E C 0.6124(8) 0.2330(7) -0.1439(1)
+C2 C 0.882(1) 0.882 0.0000
+O1 O 0.971(7) 0.818(2) 0.051(1)
+O2 O 0.814(2) 0.906(2) 0.084(1)
+C3 C 0.745(2) 1.019(2) 0.128(1)
+O1D O 0.818(2) 0.971(7) -0.051(1)
+O2D O 0.906(2) 0.814(2) -0.084(1)
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+Cd1 C1 1_555 1_555
+C1 N1A 1_555 1_555
+N1 Cd1 1_555 1_555
+C2 O1 1_555 1_555
+O1 O2 1_555 1_555
+O2 C2 1_555 1_555
+C3 O2 1_555 1_555
+C1D Cd1 1_555 1_555
+N1D Cd1 1_555 1_555
+C1E N1 1_555 1_555
+O1D C2 1_555 1_555
+O2D C2 1_555 1_555
+O1 O2D 1_555 1_555
+O2 O1D 1_555 1_555
+O1D O2D 1_555 1_555
+
+#END

@@ -1,0 +1,128 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_HIFVUO
+_chemical_formula_moiety         '(C6 H6 N4 Zn1)n'
+_symmetry_cell_setting           tetragonal
+_symmetry_space_group_name_H-M   'I 41/a'
+_symmetry_Int_Tables_number      88
+_space_group_name_Hall           '-I 4ad'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 3/4-y,1/4+x,1/4+z
+3 1/2+x,1/2+y,1/2+z
+4 1/4-y,3/4+x,3/4+z
+5 1/4+y,1/4-x,1/4+z
+6 1/2-x,-y,1/2+z
+7 3/4+y,3/4-x,3/4+z
+8 -x,1/2-y,z
+9 -x,-y,-z
+10 1/4+y,3/4-x,3/4-z
+11 1/2-x,1/2-y,1/2-z
+12 3/4+y,1/4-x,1/4-z
+13 3/4-y,3/4+x,3/4-z
+14 1/2+x,y,1/2-z
+15 1/4-y,1/4+x,1/4-z
+16 x,1/2+y,-z
+_cell_length_a                   18.389(4)
+_cell_length_b                   18.389(4)
+_cell_length_c                   19.129(5)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                90
+_cell_volume                     6468.57
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+Zn1 Zn 0.68429(4) 0.11813(4) 0.40694(3) 0.0816 Uani
+N1 N 0.6953(3) 0.0788(3) 0.5025(2) 0.0870 Uani
+N2 N 0.6731(3) 0.0129(3) 0.5984(2) 0.0847 Uani
+N3 N 0.5917(3) 0.0814(3) 0.3672(3) 0.0957 Uani
+N4 N 0.4753(3) 0.0608(3) 0.3431(3) 0.0970 Uani
+C1 C 0.6532(3) 0.0335(3) 0.5347(3) 0.0873 Uani
+H1 H 0.6108 0.0160 0.5141 0.1050 Uiso
+C2 C 0.7522(5) 0.0848(5) 0.5482(5) 0.1487 Uani
+H2 H 0.7947 0.1109 0.5401 0.1790 Uiso
+C3 C 0.7374(5) 0.0477(5) 0.6057(4) 0.1403 Uani
+H3 H 0.7668 0.0458 0.6452 0.1680 Uiso
+C4 C 0.5244(4) 0.0994(4) 0.3771(3) 0.0847 Uani
+H4 H 0.5114 0.1374 0.4067 0.1010 Uiso
+C5 C 0.5871(6) 0.0241(7) 0.3260(7) 0.2367 Uani
+H5 H 0.6266 -0.0034 0.3109 0.2840 Uiso
+C6 C 0.5147(6) 0.0105(7) 0.3083(7) 0.2307 Uani
+H6 H 0.4973 -0.0257 0.2787 0.2770 Uiso
+Zn1A Zn 0.63187(4) -0.06571(4) 0.65694(3) 0.0816 Uani
+Zn1I Zn 0.36813(4) 0.06571(4) 0.34306(3) 0.0816 Uani
+N2F N 0.7629(3) 0.0769(3) 0.3484(2) 0.0847 Uani
+N4L N 0.6892(3) 0.2253(3) 0.4069(3) 0.0970 Uani
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_23
+_atom_site_aniso_U_13
+_atom_site_aniso_U_12
+Zn1 0.0809(6) 0.0912(6) 0.0727(5) 0.0096(3) 0.0088(3) 0.0040(4)
+N1 0.089(4) 0.095(4) 0.077(3) 0.014(3) -0.003(3) -0.015(3)
+N2 0.097(4) 0.083(3) 0.074(3) 0.012(3) -0.012(3) -0.012(3)
+N3 0.082(4) 0.111(5) 0.094(4) -0.020(3) 0.001(3) 0.003(3)
+N4 0.085(4) 0.106(4) 0.100(4) -0.009(3) -0.005(3) 0.006(3)
+C1 0.085(4) 0.089(4) 0.088(4) 0.007(4) -0.010(4) -0.008(4)
+C2 0.125(7) 0.176(9) 0.145(7) 0.057(6) -0.033(6) -0.070(6)
+C3 0.151(8) 0.162(8) 0.108(6) 0.050(5) -0.051(5) -0.064(6)
+C4 0.081(5) 0.094(5) 0.079(4) -0.007(3) -0.003(3) -0.001(4)
+C5 0.096(7) 0.266(14) 0.348(17) -0.197(14) -0.009(8) 0.027(8)
+C6 0.117(8) 0.256(13) 0.319(15) -0.192(12) -0.022(9) 0.029(8)
+Zn1A 0.0912 0.0809 0.0727 0.0088 -0.0096 -0.004
+Zn1I 0.0912 0.0809 0.0727 0.0088 -0.0096 -0.004
+N2F 0.083 0.097 0.074 0.012 0.012 0.012
+N4L 0.106 0.085 0.1 0.005 -0.009 -0.006
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+Zn1 N1 1_555 1_555
+N1 C1 1_555 1_555
+N2 C1 1_555 1_555
+N3 Zn1 1_555 1_555
+N4 C4 1_555 1_555
+C1 H1 1_555 1_555
+C2 N1 1_555 1_555
+H2 C2 1_555 1_555
+C3 N2 1_555 1_555
+H3 C3 1_555 1_555
+C4 N3 1_555 1_555
+H4 C4 1_555 1_555
+C5 N3 1_555 1_555
+H5 C5 1_555 1_555
+C6 N4 1_555 1_555
+H6 C6 1_555 1_555
+Zn1A N2 1_555 1_555
+Zn1I N4 1_555 1_555
+N2F Zn1 1_555 1_555
+N4L Zn1 1_555 1_555
+C2 C3 1_555 1_555
+C5 C6 1_555 1_555
+
+#END

@@ -1,0 +1,144 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_COKQAW
+_chemical_formula_moiety         '(C11 H2 Cu2 O12)n'
+_symmetry_cell_setting           rhombohedral
+_symmetry_space_group_name_H-M   'R -3'
+_symmetry_Int_Tables_number      148
+_space_group_name_Hall           '-R 3'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -y,x-y,z
+3 -x+y,-x,z
+4 2/3+x,1/3+y,1/3+z
+5 2/3-y,1/3+x-y,1/3+z
+6 2/3-x+y,1/3-x,1/3+z
+7 1/3+x,2/3+y,2/3+z
+8 1/3-y,2/3+x-y,2/3+z
+9 1/3-x+y,2/3-x,2/3+z
+10 -x,-y,-z
+11 y,-x+y,-z
+12 x-y,x,-z
+13 1/3-x,2/3-y,2/3-z
+14 1/3+y,2/3-x+y,2/3-z
+15 1/3+x-y,2/3+x,2/3-z
+16 2/3-x,1/3-y,1/3-z
+17 2/3+y,1/3-x+y,1/3-z
+18 2/3+x-y,1/3+x,1/3-z
+_cell_length_a                   25.89776(33)
+_cell_length_b                   25.89776
+_cell_length_c                   6.27846(10)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                120
+_cell_volume                     3646.77
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+Cu1 Cu 0.38740(10) 0.34916(10) 0.1751(4) 0.0126 Uiso
+O1 O 0.3544(4) 0.3004(4) 0.4265(17) 0.0142 Uiso
+O2 O 0.2899(4) 0.2255(4) 0.6333(19) 0.0142 Uiso
+O3 O 0.3624(4) 0.2781(4) 0.0119(19) 0.0142 Uiso
+C1 C 0.3284(8) 0.2478(6) 0.4850(22) 0.0110 Uiso
+C2 C 0.3289(8) 0.2082(8) 0.3041(30) 0.0110 Uiso
+C3 C 0.3479(8) 0.2225(5) 0.0907(31) 0.0110 Uiso
+C4 C 0.3546(6) 0.1838(8) -0.0241(25) 0.0110 Uiso
+O1O O 0.3123(4) 0.0329(4) -0.0932(17) 0.0142 Uiso
+O2O O 0.3768(4) 0.1078(4) -0.3000(19) 0.0142 Uiso
+O3O O 0.3043(4) 0.0552(4) 0.3214(19) 0.0142 Uiso
+C1O C 0.3383(8) 0.0855(6) -0.1517(22) 0.0110 Uiso
+C2O C 0.3378(8) 0.1251(8) 0.0292(30) 0.0110 Uiso
+C3O C 0.3188(8) 0.1108(5) 0.2426(31) 0.0110 Uiso
+C4O C 0.3121(6) 0.1495(8) 0.3574(25) 0.0110 Uiso
+Cu1J Cu 0.34916(10) -0.03824(14) -0.1751(4) 0.0126 Uiso
+Cu1D Cu 0.31751(10) 0.37157(14) 0.5084(4) 0.0126 Uiso
+Cu1H Cu 0.29509(14) 0.27927(10) -0.1582(4) 0.0126 Uiso
+Cu1H_2 Cu 0.29509(14) 0.27927(10) 0.8418(4) 0.0126 Uiso
+Cu1O Cu 0.27927(10) -0.01583(10) 0.1582(4) 0.0126 Uiso
+Cu1N Cu 0.37157(14) 0.05407(10) -0.5084(4) 0.0126 Uiso
+Cu1N_2 Cu 0.37157(14) 0.05407(10) 0.4916(4) 0.0126 Uiso
+O1H O 0.2793(6) 0.3123(4) 0.0932(17) 0.0142 Uiso
+O1J O 0.3004(4) -0.0540(6) -0.4265(17) 0.0142 Uiso
+O2D O 0.4412(4) 0.3977(6) -0.0334(19) 0.0142 Uiso
+O2N O 0.3977(6) -0.0434(4) 0.0334(19) 0.0142 Uiso
+O3D O 0.3886(4) 0.4176(6) 0.3452(19) 0.0142 Uiso
+O3J O 0.2781(4) -0.0843(6) -0.0119(19) 0.0142 Uiso
+O3N O 0.4176(6) 0.0291(4) -0.3452(19) 0.0142 Uiso
+O4 O 0.2710(10) 0.7494(15) 0.527(6) 0.1820 Uiso
+C5 C 0.2207(12) 0.7272(19) 0.564(9) 0.1640 Uiso
+O5 O 0.1711(9) 0.7018(11) 0.615(5) 0.0990 Uiso
+O6 O 0.1485(13) 0.0025(14) 0.349(4) 0.1210 Uiso
+C6 C 0.1539(18) -0.0014(20) 0.530(4) 0.1210 Uiso
+O7 O 0.1599(13) -0.0041(15) 0.711(4) 0.1080 Uiso
+O8 O 0.000 0.000 0.3163(9) 0.1560 Uiso
+C7 C 0.000 0.000 0.500 0.3500 Uiso
+O8I O 0.000 0.000 0.6837(9) 0.1560 Uiso
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+Cu1 O1 1_555 1_555
+O1 C1 1_555 1_555
+O2 C1 1_555 1_555
+O3 Cu1 1_555 1_555
+C1 C2 1_555 1_555
+C2 C3 1_555 1_555
+C3 O3 1_555 1_555
+C4 C3 1_555 1_555
+O4 C5 1_555 1_555
+C5 O5 1_555 1_555
+O6 C6 1_555 1_555
+C6 O7 1_555 1_555
+O8 C7 1_555 1_555
+C7 O8I 1_555 1_555
+O1O C1O 1_555 1_555
+O2O C1O 1_555 1_555
+O3O C3O 1_555 1_555
+C1O C2O 1_555 1_555
+C2O C4 1_555 1_555
+C3O C2O 1_555 1_555
+C4O C2 1_555 1_555
+Cu1J O1O 1_555 1_555
+Cu1D O1 1_555 1_555
+Cu1H O3 1_555 1_555
+Cu1H_2 O2 1_555 1_555
+Cu1O O1O 1_555 1_555
+Cu1N O2O 1_555 1_555
+Cu1N_2 O3O 1_555 1_555
+O1H Cu1 1_555 1_555
+O1J Cu1J 1_555 1_555
+O2D Cu1 1_555 1_555
+O2N Cu1J 1_555 1_555
+O3D Cu1 1_555 1_555
+O3J Cu1J 1_555 1_555
+O3N Cu1J 1_555 1_555
+O3O Cu1O 1_555 1_555
+C3O C4O 1_555 1_555
+Cu1D O3D 1_555 1_555
+Cu1H O1H 1_555 1_555
+Cu1O O3J 1_555 1_555
+Cu1N O1J 1_555 1_555
+Cu1N O3N 1_555 1_555
+
+#END

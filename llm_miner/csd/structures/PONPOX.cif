@@ -1,0 +1,126 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_PONPOX
+_chemical_formula_moiety         '(C4 H14 F2 Ga3 N2 O12 P3)n'
+_symmetry_cell_setting           orthorhombic
+_symmetry_space_group_name_H-M   'P b c a'
+_symmetry_Int_Tables_number      61
+_space_group_name_Hall           '-P 2ac 2ab'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 1/2-x,-y,1/2+z
+3 1/2+x,1/2-y,-z
+4 -x,1/2+y,1/2-z
+5 -x,-y,-z
+6 1/2+x,y,1/2-z
+7 1/2-x,1/2+y,z
+8 x,1/2-y,1/2+z
+_cell_length_a                   16.023(5)
+_cell_length_b                   10.062(2)
+_cell_length_c                   18.486(3)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                90
+_cell_volume                     2980.38
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Ga1 Ga 0.46002(6) 0.31747(9) 0.21794(5)
+Ga2 Ga 0.64939(6) 0.1638(1) 0.17667(5)
+Ga3 Ga 0.48953(6) 0.3463(1) 0.40851(5)
+P1 P 0.4881(2) 0.1424(2) 0.0773(1)
+P2 P 0.5580(2) 0.1183(2) 0.3164(1)
+P3 P 0.3156(1) 0.3496(2) 0.3308(1)
+F1 F 0.5805(3) 0.3299(5) 0.1912(3)
+F2 F 0.4973(4) 0.4103(5) 0.3049(3)
+O1 O 0.4344(4) 0.2112(6) 0.1341(3)
+O2 O 0.5530(4) -0.0266(6) 0.3395(3)
+O3 O 0.3479(4) 0.3119(6) 0.2560(3)
+O4 O 0.4850(4) 0.1542(6) 0.2681(3)
+O5 O 0.5802(4) 0.1312(6) 0.0998(3)
+O6 O 0.6402(4) 0.1423(6) 0.2759(3)
+O7 O 0.2910(4) 0.4976(6) 0.3335(3)
+O8 O 0.2374(4) 0.2689(6) 0.3489(3)
+O9 O 0.5579(4) 0.2023(6) 0.3864(3)
+O10 O 0.3788(4) 0.3157(6) 0.3913(3)
+O11 O 0.4802(4) 0.2181(6) 0.0063(3)
+O12 O 0.4542(4) 0.0004(6) 0.0678(3)
+Ga2C Ga 0.35061(6) 0.6638(1) 0.32333(5)
+O2C O 0.4470(4) 0.4734(6) 0.1605(3)
+Ga1C Ga 0.53998(6) -0.18253(9) 0.28206(5)
+O7C O 0.7090(4) -0.0024(6) 0.1665(3)
+Ga2E Ga 0.14939(6) 0.1638(1) 0.32333(5)
+O11G O 0.4802(4) 0.2819(6) 0.5063(3)
+O12C O 0.5458(4) 0.5004(6) 0.4322(3)
+O8E O 0.7374(4) 0.2689(6) 0.1511(3)
+Ga3C Ga 0.51047(6) -0.1537(1) 0.09149(5)
+Ga3G Ga 0.48953(6) 0.1537(1) -0.09149(5)
+N1 N -0.9347(15) -0.9936(22) 0.9835(10)
+N2 N -0.6762(7) -0.9896(11) 1.1946(6)
+C1 C -0.8460(12) -0.9785(22) 0.9683(10)
+C2 C -0.7890(8) -1.0664(15) 1.0157(8)
+C3 C -0.7501(9) -0.9775(14) 1.0774(8)
+C4 C -0.7181(8) -1.0717(13) 1.1353(8)
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+Ga1 F1 1_555 1_555
+Ga2 F1 1_555 1_555
+Ga3 F2 1_555 1_555
+P1 O1 1_555 1_555
+P2 O2 1_555 1_555
+P3 O3 1_555 1_555
+F2 Ga1 1_555 1_555
+O1 Ga1 1_555 1_555
+O2 Ga1C 1_555 1_555
+O3 Ga1 1_555 1_555
+O4 Ga1 1_555 1_555
+O5 Ga2 1_555 1_555
+O6 Ga2 1_555 1_555
+O7 P3 1_555 1_555
+O8 P3 1_555 1_555
+O9 Ga3 1_555 1_555
+O10 Ga3 1_555 1_555
+O11 P1 1_555 1_555
+O12 P1 1_555 1_555
+N1 C1 1_555 1_555
+N2 C4 1_555 1_555
+C1 C2 1_555 1_555
+C2 C3 1_555 1_555
+C3 C4 1_555 1_555
+Ga2C O7 1_555 1_555
+O2C Ga1 1_555 1_555
+O7C Ga2 1_555 1_555
+Ga2E O8 1_555 1_555
+O11G Ga3 1_555 1_555
+O12C Ga3 1_555 1_555
+O8E Ga2 1_555 1_555
+Ga3C O12 1_555 1_555
+Ga3G O11 1_555 1_555
+P1 O5 1_555 1_555
+P2 O4 1_555 1_555
+P2 O6 1_555 1_555
+P2 O9 1_555 1_555
+P3 O10 1_555 1_555
+
+#END
