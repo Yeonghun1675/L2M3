@@ -1,257 +1,257 @@
-meta = '''
-'meta': {
-    'name': "",
-    'symbol': "",  # ex) 1a
-    'chemical formula': "",
+meta = """
+"meta": {
+    "name": "",
+    "symbol": "",  # ex) 1a
+    "chemical formula": "",
 }
-'''
+"""
 
 
-surface_area = '''
-'surface area': [
+surface_area = """
+"surface area": [
     {
-        'type': "",  # ex) BET, Langmuir
-        'probe': "",
-        'value': "",
-        'unit': "",
+        "type": "",  # ex) BET, Langmuir
+        "probe": "",
+        "value": "",
+        "unit": "",
     }, ...
 ]
-'''
+"""
 
 
-pore_volume = '''
-'total pore volume': [
+pore_volume = """
+"total pore volume": [
     {
-        'probe': "", ex) N2, H2
-        'value': "",
-        'unit': "",
+        "probe": "", ex) N2, H2
+        "value": "",
+        "unit": "",
     }, ...
 ]
-'''
+"""
 
 
-crystal_size = '''
-'crystal size': [
+crystal_size = """
+"crystal size": [
     {
-        'value': "",
-        'unit': "",  # ex) mm
+        "value": "",
+        "unit": "",  # ex) mm
     }, ...
 ]
-'''
+"""
 
 
-gas_adsorption = '''
-'gas adsorption': [
+gas_adsorption = """
+"gas adsorption": [
     {
-        'adsorbate': "",
-        'adsorbed amount': "",
-        'unit': "",
-        'temperature': "",
-        'pressure': "",
+        "adsorbate": "",
+        "adsorbed amount": "",
+        "unit": "",
+        "temperature": "",
+        "pressure": "",
     }, ...
 ]
-'''
+"""
 
 
-porosity = '''
-'porosity(void fraction)': [
+porosity = """
+"porosity(void fraction)": [
     {
-        'value': "",
-        'unit': "",
+        "value": "",
+        "unit": "",
     }, ...
 ]
-'''
+"""
 
 
-pore_diameter = '''
-'pore diameter': [
+pore_diameter = """
+"pore diameter": [
     {
-        'value': "",
-        'unit': "",
+        "value": "",
+        "unit": "",
     }, ...
 ]
-'''
+"""
 
 
-crystal_system = '''
-'crystal system': [
+crystal_system = """
+"crystal system": [
     {
-        'value': "",  # ex) Triclinic
+        "value": "",  # ex) Triclinic
     }, ...
 ]
-'''
+"""
 
 
-space_group = '''
-'space group': [
+space_group = """
+"space group": [
     {
-        'value': "",  # ex) P1
+        "value": "",  # ex) P1
     }, ...
 ]
-'''
+"""
 
 
-chemical_formula_weight = '''
-'chemical formula weight': [
+chemical_formula_weight = """
+"chemical formula weight": [
     {
-        'value': "",
+        "value": "",
     }, ...
 ]
-'''
+"""
 
 
-thermal_property = '''
-'thermal property': [
+thermal_property = """
+"thermal property": [
     {
-        'type': "", # ex) Tg, TDT
-        'value':"",
-        'unit':""
+        "type": "", # ex) Tg, TDT
+        "value":"",
+        "unit":""
     }, ...
 ]
-'''
+"""
 
 
-mechanical_property = '''
-'mechanical property': [
+mechanical_property = """
+"mechanical property": [
     {
-        'type': "",  # ex) Young's modulus, Poisson's ratio
-        'value':"",
-        'unit':""
+        "type": "",  # ex) Young's modulus, Poisson's ratio
+        "value":"",
+        "unit":""
     }, ...
 ]
-'''
+"""
 
 
-selectivity = '''
-'selectivity': [
+selectivity = """
+"selectivity": [
     {
-        'value': "",
-        'unit': "",
-        'substrate': "",
-        'catalyst': "",
-        'pressure':"",
-        'temperature':""
-        'solvent': "",
-        'time': "",
+        "value": "",
+        "unit": "",
+        "substrate": "",
+        "catalyst": "",
+        "pressure":"",
+        "temperature":""
+        "solvent": "",
+        "time": "",
     }, ...
 ]
-'''
+"""
 
-conversion = '''
-'conversion': [
+conversion = """
+"conversion": [
     {
-        'value': "",
-        'unit': "",
-        'substrate': "",
-        'catalyst': "",
-        'pressure':"",
-        'temperature':""
-        'solvent': "",
-        'time': "",
+        "value": "",
+        "unit": "",
+        "substrate": "",
+        "catalyst": "",
+        "pressure":"",
+        "temperature":""
+        "solvent": "",
+        "time": "",
     }, ...
 ]
-'''
+"""
 
-reaction_yield = '''
-'yield': [
+reaction_yield = """
+"yield": [
     {
-        'value': "",
-        'unit': "",
-        'substrate': "",
-        'catalyst': "",
-        'pressure': "",
-        'temperature': "",
-        'solvent': "",
-        'time': "",
+        "value": "",
+        "unit": "",
+        "substrate": "",
+        "catalyst": "",
+        "pressure": "",
+        "temperature": "",
+        "solvent": "",
+        "time": "",
     }, ...
 ]
-'''
+"""
 
 
-catalytic_activity = '''
-'catalytic activity': [
+catalytic_activity = """
+"catalytic activity": [
     {
-        'value':"",
-        'unit':""
+        "value":"",
+        "unit":""
     }, ...
 ]
-'''
+"""
 
 
-density = '''
-'density': [
+density = """
+"density": [
     {
-        'value':"",
-        'unit':""  # ex) g/cm^3
+        "value":"",
+        "unit":""  # ex) g/cm^3
     }, ...
 ]
-'''
+"""
 
 
-magnetic_property = '''
-'magnetic property': [
+magnetic_property = """
+"magnetic property": [
     {
-        'type': "", # ex) magnetic susceptibility
-        'value':"",
-        'unit':""
+        "type": "", # ex) magnetic susceptibility
+        "value":"",
+        "unit":""
     }, ...
 ]
-'''
+"""
 
 
-optical_property = '''
-'optical property': [
+optical_property = """
+"optical property": [
     {
-        'type': "",  # ex) absorption spectrum
-        'value':"",
-        'unit':""
+        "type": "",  # ex) absorption spectrum
+        "value":"",
+        "unit":""
     }, ...
 ]
-'''
+"""
 
 
-cell_volume = '''
-'cell volume': [
+cell_volume = """
+"cell volume": [
     {
-        'value':"",
-        'unit':""  # ex) Å^3
+        "value":"",
+        "unit":""  # ex) Å^3
     }, ...
 ]
-'''
+"""
 
 
-lattice_parameters = '''
-'lattice parameters': [
+lattice_parameters = """
+"lattice parameters": [
     {
-        'value': {
-            'a': "",
-            'b': "",
-            'c': "",
-            'alpha': "",
-            'beta': "",
-            'gamma': "",
+        "value": {
+            "a": "",
+            "b": "",
+            "c": "",
+            "alpha": "",
+            "beta": "",
+            "gamma": "",
         }
     }, ...
 ]
-'''
+"""
 
-topology = '''
-'topology' : [
+topology = """
+"topology" : [
     {
-        'value':"", # ex) pcu
+        "value":"", # ex) pcu
         
 
     }, ...
 ]
-'''
+"""
 
-etc = '''
-'etc': [
+etc = """
+"etc": [
     {
         "property name": "",
-        'value':"",
-        'unit':"",
-        'conditon': "",
+        "value":"",
+        "unit":"",
+        "conditon": "",
     }, ...
 ]
-'''
+"""
