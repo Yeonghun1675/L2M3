@@ -69,7 +69,7 @@ class CSDAgent(BaseModel):
             }
             self.data.append(tmp)
             self._get_structure(ref_entry)
-            self.data = self._parse_out()
+        self.data = self._parse_out()
 
     def _get_structure(self, entry):
         folder = Path('./llm_miner/csd/structures/') / Path(self.doi.replace("/", "_"))
