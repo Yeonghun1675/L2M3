@@ -34,19 +34,48 @@ class BaseParser(object, metaclass=ABCMeta):
 class Paragraph(BaseModel):
     idx: int
     type: str
-    content: Any
+    content: str
+    clean_text: str
     data: List[Dict[str, Any]] = None
 
     def __getitem__(self, item):
         return getattr(self, item)
+    
+    def append(self, others):
+        self.content += others.content
+        self.clean_text = '\n'+others.clean_text
+
+        if isinstance(others.data, list):
+            if isinstance(self.data, list):
+                self.data += others.data
+            else:
+                self.data = others.data
     
     def set_data(self, data) -> None:
         self.data = data
 
     def get_data(self, ) -> List[Dict[str, Any]]:
         return self.data
-
     
+    def to_json(self, ) -> Dict[str, Any]:
+        return {
+            'idx': self.idx,
+            'type': self.type,
+            'content': self.content,
+            'clean_text': self.clean_text,
+            'data': self.data
+        }
+
+    @classmethod
+    def from_json(cls, data):
+        return cls(
+            idx=data['idx'],
+            type=data['type'],
+            content=data['content'],
+            clean_text=data['clean_text'],
+            data=data['data'],
+        )
+
 
 class Metadata(BaseModel):
     doi: str = None
@@ -57,3 +86,10 @@ class Metadata(BaseModel):
 
     def __getitem__(self, item):
         return getattr(self, item)
+    
+    def to_json(self) -> Dict[str, Any]:
+        pass
+
+    @classmethod
+    def from_json(cls, data):
+        pass

@@ -9,6 +9,7 @@ class ElsevierParser(BaseParser):
     para_tags: List[str] = ['ce:para', 'ce:section-title', 'ce:simple-para']
     table_tags: List[str] = ['ce:table']
     figure_tags: List[str] = ['ce:figure']
+    title_tags: List[str] = ['ce:section-title']
 
     @classmethod
     def open_file(cls, filepath: str):
@@ -22,19 +23,23 @@ class ElsevierParser(BaseParser):
         for element in file_bs(cls.all_tags()):
             if element.name in cls.table_tags:
                 type_ = 'table'
+                clean_text = ''
             elif element.name in cls.figure_tags:
                 type_ = 'figure'
+                clean_text = element.text
             elif element.name in cls.para_tags and cls._is_para(element):
                 type_ = 'text'
                 for tags in element(['ce:cross-refs', 'ce:cross-ref']): # extract crossref
                     tags.extract()
+                clean_text = element.text
             else:
                 continue
 
             data = Paragraph(
                 idx = len(elements) + 1,
                 type = type_,
-                content = element,
+                content = str(element),
+                clean_text = clean_text
             )
             elements.append(data)
         return elements
@@ -82,3 +87,10 @@ class ElsevierParser(BaseParser):
             date=date,
             author_list=author_list,
         )
+
+    def to_json(self, ):
+        raise NotImplementedError()
+    
+    @classmethod
+    def from_json(self,):
+        raise NotImplementedError()
