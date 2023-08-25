@@ -1,0 +1,134 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_GUKXIU
+_chemical_formula_moiety         '(C7 H3 Ag2 N1 O4)n'
+_symmetry_cell_setting           monoclinic
+_symmetry_space_group_name_H-M   'C 2/c'
+_symmetry_Int_Tables_number      15
+_space_group_name_Hall           '-C 2yc'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -x,y,1/2-z
+3 1/2+x,1/2+y,z
+4 1/2-x,1/2+y,1/2-z
+5 -x,-y,-z
+6 x,-y,1/2+z
+7 1/2-x,1/2-y,-z
+8 1/2+x,1/2-y,1/2+z
+_cell_length_a                   12.889(3)
+_cell_length_b                   15.266(3)
+_cell_length_c                   10.389(2)
+_cell_angle_alpha                90
+_cell_angle_beta                 118.06(3)
+_cell_angle_gamma                90
+_cell_volume                     1803.89
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+O1 O -0.3331(6) 0.6317(4) 0.3192(7) 0.0337 Uani
+Ag1 Ag -0.42687(6) 0.68062(4) 0.42641(7) 0.0302 Uani
+Ag2 Ag -0.13909(6) 0.35059(4) 0.14104(7) 0.0325 Uani
+N1 N -0.1655(6) 0.4995(4) 0.1284(7) 0.0272 Uani
+C1 C -0.2166(6) 0.5427(5) 0.1951(8) 0.0198 Uani
+H1 H -0.2537 0.5111 0.2384 0.0240 Uiso
+C2 C -0.2160(6) 0.6333(5) 0.2016(7) 0.0154 Uani
+C3 C -0.2745(7) 0.6793(5) 0.2801(8) 0.0228 Uani
+C4 C -0.1602(6) 0.6802(5) 0.1401(7) 0.0154 Uani
+H2 H -0.1570 0.7410 0.1463 0.0190 Uiso
+C5 C -0.1084(6) 0.6360(4) 0.0681(7) 0.0156 Uani
+C6 C -0.1153(7) 0.5455(5) 0.0642(8) 0.0237 Uani
+H3 H -0.0831 0.5152 0.0139 0.0290 Uiso
+C7 C -0.0416(6) 0.6815(5) 0.0007(8) 0.0205 Uani
+O2 O -0.2583(5) 0.7591(4) 0.2973(6) 0.0281 Uani
+O3 O -0.0297(5) 0.7620(4) 0.0203(6) 0.0261 Uani
+O4 O -0.0030(5) 0.6351(4) -0.0659(6) 0.0279 Uani
+Ag1G Ag 0.07313(6) 0.81938(4) -0.07359(7) 0.0302 Uani
+Ag2C Ag -0.36091(6) 0.85059(4) 0.35896(7) 0.0325 Uani
+Ag2D Ag 0.13909(6) 0.64941(4) -0.14104(7) 0.0325 Uani
+Ag2E Ag -0.13909(6) 0.64941(4) -0.35896(7) 0.0325 Uani
+O2C O -0.2417(5) 0.2591(4) 0.2027(6) 0.0281 Uani
+O3G O -0.5297(5) 0.7380(4) 0.5203(6) 0.0261 Uani
+O4D O 0.0030(5) 0.3649(4) 0.0659(6) 0.0279 Uani
+O4E O -0.0030(5) 0.3649(4) 0.4341(6) 0.0279 Uani
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_23
+_atom_site_aniso_U_13
+_atom_site_aniso_U_12
+O1 0.052 0.025 0.043 -0.007 0.038 0.004
+Ag1 0.0385 0.0292 0.0397 -0.0057 0.0323 0.002
+Ag2 0.0507 0.0222 0.0402 0.0037 0.0342 -0.0047
+N1 0.034 0.022 0.036 0.005 0.025 0.002
+C1 0.024 0.022 0.022 0.007 0.018 0.007
+C2 0.016 0.021 0.013 0 0.01 0.007
+C3 0.025 0.025 0.022 0.003 0.014 0.008
+C4 0.012 0.016 0.02 -0.003 0.009 0.006
+C5 0.019 0.018 0.012 0.003 0.009 -0.001
+C6 0.031 0.022 0.026 0.006 0.02 0.01
+C7 0.021 0.026 0.015 0.002 0.009 0.003
+O2 0.029 0.027 0.04 -0.01 0.026 0.002
+O3 0.034 0.025 0.033 0.003 0.027 -0.001
+O4 0.044 0.022 0.036 0.002 0.034 0.002
+Ag1G 0.0385 0.0292 0.0397 0.0057 0.0323 -0.002
+Ag2C 0.0507 0.0222 0.0402 -0.0037 0.0342 0.0047
+Ag2D 0.0507 0.0222 0.0402 0.0037 0.0342 -0.0047
+Ag2E 0.0507 0.0222 0.0402 -0.0037 0.0342 0.0047
+O2C 0.029 0.027 0.04 0.01 0.026 -0.002
+O3G 0.034 0.025 0.033 -0.003 0.027 0.001
+O4D 0.044 0.022 0.036 0.002 0.034 0.002
+O4E 0.044 0.022 0.036 -0.002 0.034 -0.002
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+O1 Ag1 1_555 1_555
+Ag1 O3G 1_555 1_555
+Ag2 N1 1_555 1_555
+N1 C1 1_555 1_555
+C1 H1 1_555 1_555
+C2 C1 1_555 1_555
+C3 O1 1_555 1_555
+C4 C2 1_555 1_555
+H2 C4 1_555 1_555
+C5 C4 1_555 1_555
+C6 N1 1_555 1_555
+H3 C6 1_555 1_555
+C7 C5 1_555 1_555
+O2 C3 1_555 1_555
+O3 C7 1_555 1_555
+O4 C7 1_555 1_555
+Ag1G O3 1_555 1_555
+Ag2C O2 1_555 1_555
+Ag2D O4 1_555 1_555
+Ag2E O4 1_555 1_555
+O2C Ag2 1_555 1_555
+O4D Ag2 1_555 1_555
+O4E Ag2 1_555 1_555
+C2 C3 1_555 1_555
+C5 C6 1_555 1_555
+
+#END

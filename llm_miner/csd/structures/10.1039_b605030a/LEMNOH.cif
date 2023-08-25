@@ -1,0 +1,124 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_LEMNOH
+_chemical_formula_moiety         'C12 Fe1 N8'
+_symmetry_cell_setting           orthorhombic
+_symmetry_space_group_name_H-M   'P b c a'
+_symmetry_Int_Tables_number      61
+_space_group_name_Hall           '-P 2ac 2ab'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 1/2-x,-y,1/2+z
+3 -x,1/2+y,1/2-z
+4 1/2+x,1/2-y,-z
+5 -x,-y,-z
+6 1/2+x,y,1/2-z
+7 x,1/2-y,1/2+z
+8 1/2-x,1/2+y,z
+_cell_length_a                   11.140(3)
+_cell_length_b                   11.497(3)
+_cell_length_c                   16.854(4)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                90
+_cell_volume                     2158.6
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+Fe1 Fe 1.0000 1.0000 1.0000 0.0170 Uani
+N1 N 0.9098(8) 0.9675(8) 0.8923(6) 0.0257 Uani
+N2 N 0.6379(11) 1.0574(10) 0.7256(6) 0.0437 Uani
+N3 N 1.0695(10) 0.7573(9) 0.7473(7) 0.0420 Uani
+N4 N 1.1514(8) 0.9104(8) 0.9483(5) 0.0220 Uani
+N5 N 0.9332(8) 0.8420(9) 1.0482(5) 0.0260 Uani
+C1 C 0.8226(10) 0.9335(9) 0.7528(6) 0.0227 Uani
+C2 C 0.8698(10) 0.8524(10) 0.7017(6) 0.0247 Uani
+C3 C 0.8306(9) 0.8188(9) 0.6259(6) 0.0200 Uani
+C4 C 0.8750(10) 0.9527(10) 0.8301(8) 0.0277 Uani
+C5 C 0.7184(11) 1.0007(11) 0.7361(6) 0.0257 Uani
+C6 C 0.9821(12) 0.7979(11) 0.7288(7) 0.0270 Uani
+C7 C 1.2291(10) 0.8693(9) 0.9124(6) 0.0173 Uani
+C8 C 0.8880(9) 0.7703(10) 1.0838(6) 0.0170 Uani
+N1D N 1.0902(8) 1.0325(8) 1.1077(6) 0.0257 Uani
+N4D N 0.8486(8) 1.0896(8) 1.0517(5) 0.0220 Uani
+N5D N 1.0668(8) 1.1580(9) 0.9518(5) 0.0260 Uani
+C3E C 1.3306(9) 0.8188(9) 0.8741(6) 0.0200 Uani
+C3F C 0.8306(9) 0.6812(9) 1.1259(6) 0.0200 Uani
+C7E C 0.7291(10) 0.8693(9) 0.5876(6) 0.0173 Uani
+C8F C 0.8880(9) 0.7297(10) 0.5838(6) 0.0170 Uani
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_23
+_atom_site_aniso_U_13
+_atom_site_aniso_U_12
+Fe1 0.0187(12) 0.0192(12) 0.0132(11) -0.0002(10) 0.0026(10) -0.0007(11)
+N1 0.027(6) 0.033(6) 0.017(5) -0.009(4) 0.000(5) 0.005(5)
+N2 0.052(8) 0.050(7) 0.029(6) -0.013(5) -0.020(6) 0.020(7)
+N3 0.037(7) 0.038(6) 0.051(7) -0.009(6) -0.025(6) -0.003(6)
+N4 0.022 0.022 0.022 0 -0.002 -0.004
+N5 0.03 0.022 0.026 0.008 0 -0.008
+C1 0.025(7) 0.025(7) 0.018(6) -0.011(5) -0.004(5) 0.014(6)
+C2 0.033(7) 0.024(7) 0.017(6) -0.004(5) -0.005(6) 0.001(6)
+C3 0.022(7) 0.018(6) 0.020(6) -0.002(5) -0.007(5) 0.002(5)
+C4 0.023(7) 0.034(8) 0.026(8) -0.001(6) 0.009(6) -0.008(6)
+C5 0.034(8) 0.033(7) 0.010(6) -0.007(6) -0.014(5) 0.010(7)
+C6 0.027(8) 0.025(7) 0.029(7) -0.004(5) -0.003(6) -0.021(6)
+C7 0.023 0.016 0.013 -0.002 -0.008 0.001
+C8 0.013 0.02 0.018 -0.008 -0.011 0.003
+N1D 0.027 0.033 0.017 -0.009 0 0.005
+N4D 0.022 0.022 0.022 0 -0.002 -0.004
+N5D 0.03 0.022 0.026 0.008 0 -0.008
+C3E 0.022 0.018 0.02 0.002 0.007 0.002
+C3F 0.022 0.018 0.02 0.002 -0.007 -0.002
+C7E 0.023(7) 0.016(6) 0.013(6) 0.002(5) 0.008(6) 0.001(6)
+C8F 0.013(6) 0.020(7) 0.018(6) 0.008(6) -0.011(5) -0.003(6)
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+Fe1 N1 1_555 1_555
+N1 C4 1_555 1_555
+N2 C5 1_555 1_555
+N3 C6 1_555 1_555
+N4 Fe1 1_555 1_555
+N5 Fe1 1_555 1_555
+C1 C2 1_555 1_555
+C2 C3 1_555 1_555
+C3 C7E 1_555 1_555
+C4 C1 1_555 1_555
+C5 C1 1_555 1_555
+C6 C2 1_555 1_555
+C7 N4 1_555 1_555
+C8 N5 1_555 1_555
+N1D Fe1 1_555 1_555
+N4D Fe1 1_555 1_555
+N5D Fe1 1_555 1_555
+C3E C7 1_555 1_555
+C3F C8 1_555 1_555
+C8F C3 1_555 1_555
+
+#END

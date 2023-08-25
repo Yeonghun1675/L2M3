@@ -1,0 +1,169 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_REZXIE
+_chemical_formula_moiety         '(C18 H22 Fe3 O24 1+)n'
+_symmetry_cell_setting           hexagonal
+_symmetry_space_group_name_H-M   'P -6 2 c'
+_symmetry_Int_Tables_number      190
+_space_group_name_Hall           'P -6c -2c'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -x+y,-x,1/2-z
+3 y,x,1/2+z
+4 -y,x-y,z
+5 x-y,-y,-z
+6 x,y,1/2-z
+7 -x,-x+y,1/2+z
+8 -x+y,-x,z
+9 y,x,-z
+10 -y,x-y,1/2-z
+11 x-y,-y,1/2+z
+12 -x,-x+y,-z
+_cell_length_a                   13.8711(10)
+_cell_length_b                   13.8711(10)
+_cell_length_c                   12.663(1)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                120
+_cell_volume                     2110.03
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+O2 O 0.8005 0.0883 0.2500 0.0000 Uiso
+O3 O 1.0000 0.0000 0.2500 0.0000 Uiso
+O4 O 0.6285 -0.2287 0.0956 0.0000 Uiso
+O5 O 0.8752 0.0963 0.0553 0.0000 Uiso
+O6 O 0.6841 -0.1212 0.2500 0.0000 Uiso
+Fe1 Fe 0.7706 0.2866 0.2500 0.0000 Uiso
+O7 O 0.6667 0.3333 0.2500 0.0000 Uiso
+O8 O 0.8081 0.3786 0.1065 0.0000 Uiso
+O9 O 0.8522 0.5454 0.1356 0.0000 Uiso
+O10 O 0.9192 0.3046 0.2500 0.0000 Uiso
+C3 C 0.8820 0.4754 0.1113 0.0000 Uiso
+C4 C 0.9912 0.5072 0.0582 0.0000 Uiso
+Fe1C Fe 0.7134 0.4840 0.2500 0.0000 Uiso
+Fe1A Fe 0.5160 0.2294 0.2500 0.0000 Uiso
+Fe1F Fe 1.2294 0.5160 -0.2500 0.0000 Uiso
+Fe1B Fe 1.2866 0.7706 -0.2500 0.0000 Uiso
+Fe1F_2 Fe 1.2294 0.5160 0.7500 0.0000 Uiso
+Fe1B_2 Fe 1.2866 0.7706 0.7500 0.0000 Uiso
+Fe1B_3 Fe 0.2866 -0.2294 -0.2500 0.0000 Uiso
+Fe1D Fe 0.4840 -0.2866 -0.2500 0.0000 Uiso
+O8K O 1.1919 0.5705 -0.1065 0.0000 Uiso
+O8E O 0.8081 0.3786 0.3935 0.0000 Uiso
+O8F O 1.1919 0.5705 0.6065 0.0000 Uiso
+O8G O 0.5705 0.1919 0.1065 0.0000 Uiso
+O8H O 0.3786 -0.1919 -0.1065 0.0000 Uiso
+O8C O 0.6214 0.4295 0.1065 0.0000 Uiso
+O8I O 0.6214 0.4295 0.3935 0.0000 Uiso
+O8A O 0.5705 0.1919 0.3935 0.0000 Uiso
+O9K O 1.1478 0.6932 -0.1356 0.0000 Uiso
+O9E O 0.8522 0.5454 0.3644 0.0000 Uiso
+O9F O 1.1478 0.6932 0.6356 0.0000 Uiso
+O9G O 0.6932 0.1478 0.1356 0.0000 Uiso
+O9H O 0.5454 -0.1478 -0.1356 0.0000 Uiso
+O9A O 0.6932 0.1478 0.3644 0.0000 Uiso
+O9C O 0.4546 0.3068 0.1356 0.0000 Uiso
+O9I O 0.4546 0.3068 0.3644 0.0000 Uiso
+O10C O 0.6954 0.6146 0.2500 0.0000 Uiso
+O10A O 0.3854 0.0808 0.2500 0.0000 Uiso
+C3K C 1.1180 0.5934 -0.1113 0.0000 Uiso
+C3E C 0.8820 0.4754 0.3887 0.0000 Uiso
+C3F C 1.1180 0.5934 0.6113 0.0000 Uiso
+C3G C 0.5934 0.1180 0.1113 0.0000 Uiso
+C3H C 0.4754 -0.1180 -0.1113 0.0000 Uiso
+C4K C 1.0088 0.5160 -0.0582 0.0000 Uiso
+C4E C 0.9912 0.5072 0.4418 0.0000 Uiso
+C4F C 1.0088 0.5160 0.5582 0.0000 Uiso
+C4G C 0.5160 0.0088 0.0582 0.0000 Uiso
+C4H C 0.5072 -0.0088 -0.0582 0.0000 Uiso
+O1 O 0.2545 0.5646 0.2500 0.0000 Uiso
+C1 C 0.1205 0.6173 0.2500 0.0000 Uiso
+C2 C 0.2381 0.6448 0.2500 0.0000 Uiso
+O1A O 0.3101 0.7455 0.2500 0.0000 Uiso
+O1C O 0.4354 0.6899 0.2500 0.0000 Uiso
+C1C C 0.3827 0.5032 0.2500 0.0000 Uiso
+C1A C 0.4968 0.8795 0.2500 0.0000 Uiso
+C2A C 0.4067 0.7619 0.2500 0.0000 Uiso
+C2C C 0.3552 0.5933 0.2500 0.0000 Uiso
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+O1 C2 1_555 1_555
+C1 C2 1_555 1_555
+C2 O1A 1_555 1_555
+Fe1 O7 1_555 1_555
+O7 Fe1C 1_555 1_555
+O8 Fe1 1_555 1_555
+O9 C3 1_555 1_555
+O10 Fe1 1_555 1_555
+C3 O8 1_555 1_555
+C4 C3 1_555 1_555
+O1A C2A 1_555 1_555
+O1C C2A 1_555 1_555
+C1C C2C 1_555 1_555
+C1A C2A 1_555 1_555
+C2C O1 1_555 1_555
+Fe1C O9 1_555 1_555
+Fe1A O7 1_555 1_555
+Fe1F O8K 1_555 1_555
+Fe1B O9K 1_555 1_555
+Fe1F_2 O8F 1_555 1_555
+Fe1B_2 O9F 1_555 1_555
+Fe1B_3 O8H 1_555 1_555
+Fe1D O9H 1_555 1_555
+O8K C3K 1_555 1_555
+O8E Fe1 1_555 1_555
+O8F C3F 1_555 1_555
+O8G Fe1A 1_555 1_555
+O8H C3H 1_555 1_555
+O8C Fe1C 1_555 1_555
+O8I Fe1C 1_555 1_555
+O8A Fe1A 1_555 1_555
+O9K C3K 1_555 1_555
+O9E Fe1C 1_555 1_555
+O9F C3F 1_555 1_555
+O9G Fe1 1_555 1_555
+O9H C3H 1_555 1_555
+O9A Fe1 1_555 1_555
+O9C Fe1A 1_555 1_555
+O9I Fe1A 1_555 1_555
+O10C Fe1C 1_555 1_555
+O10A Fe1A 1_555 1_555
+C3K C4K 1_555 1_555
+C3E O8E 1_555 1_555
+C3F C4F 1_555 1_555
+C3G O8G 1_555 1_555
+C3H C4H 1_555 1_555
+C4K C4 1_555 1_555
+C4E C3E 1_555 1_555
+C4F C4E 1_555 1_555
+C4G C3G 1_555 1_555
+C4H C4G 1_555 1_555
+O1C C2C 1_555 1_555
+O9E C3E 1_555 1_555
+O9G C3G 1_555 1_555
+
+#END

@@ -1,0 +1,145 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_OYIVOI
+_chemical_formula_moiety         '(C11 H11 Cu1 N5 O3)n'
+_symmetry_cell_setting           orthorhombic
+_symmetry_space_group_name_H-M   'I m a 2'
+_symmetry_Int_Tables_number      46
+_space_group_name_Hall           'I 2 -2a'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -x,-y,z
+3 1/2-x,y,z
+4 1/2+x,-y,z
+5 1/2+x,1/2+y,1/2+z
+6 1/2-x,1/2-y,1/2+z
+7 -x,1/2+y,1/2+z
+8 x,1/2-y,1/2+z
+_cell_length_a                   7.1850(15)
+_cell_length_b                   9.1854(19)
+_cell_length_c                   21.544(5)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                90
+_cell_volume                     1421.84
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+C1 C 0.7500 0.1824(12) 0.0604(5) 0.0270 Uiso
+C2 C 0.7500 0.314(2) 0.2516(7) 0.0630 Uani
+C3 C 0.7500 0.1388(14) -0.0044(6) 0.0407 Uani
+C4 C 0.9106(17) 0.2104(17) 0.0951(6) 0.0813 Uani
+C5 C 0.7500 0.2733(15) 0.1887(5) 0.0430 Uani
+C6 C 0.9136(13) 0.257(2) 0.1532(7) 0.0813 Uani
+H1 H 1.0275 0.2797 0.1712 0.0970 Uiso
+N1 N 0.6494(9) 0.4008(7) 0.3380(3) 0.0332 Uiso
+N2 N 0.5929(10) 0.3515(8) 0.2855(3) 0.0435 Uiso
+O1 O 0.6059(10) 0.1179(8) -0.0290(3) 0.0542 Uiso
+Cu1 Cu 0.5000 0.5000 0.4036(2) 0.0224 Uani
+O2 O 0.7500 0.6730(8) 0.3983(5) 0.0500 Uiso
+C7 C 0.7500 0.7911(16) 0.4189(10) 0.0160 Uiso
+N3 N 0.7500 0.9126(15) 0.3953(9) 0.0950 Uiso
+C9 C 0.7500 1.049(3) 0.4260(12) 0.1500 Uiso
+H2 H 0.7500 1.1261 0.3957 0.2250 Uiso
+H3 H 0.6409 1.0573 0.4515 0.2250 Uiso
+C10 C 0.7500 0.919(4) 0.3293(10) 0.2080 Uiso
+H4 H 0.7500 1.0191 0.3163 0.3110 Uiso
+H5 H 0.8591 0.8714 0.3136 0.3110 Uiso
+C4B C 0.5894(17) 0.2104(17) 0.0951(6) 0.0813 Uani
+C6B C 0.5864(13) 0.257(2) 0.1532(7) 0.0813 Uani
+H1B H 0.4725 0.2797 0.1712 0.0970 Uiso
+N1B N 0.8506(9) 0.4008(7) 0.3380(3) 0.0332 Uiso
+N1A N 0.3506(9) 0.5992(7) 0.3380(3) 0.0332 Uiso
+N2B N 0.9071(10) 0.3515(8) 0.2855(3) 0.0435 Uiso
+O1B O 0.8941(10) 0.1179(8) -0.0290(3) 0.0542 Uiso
+O1F O 0.3941(10) 0.6179(8) 0.4710(3) 0.0542 Uiso
+O1G O 0.6059(10) 0.3821(8) 0.4710(3) 0.0542 Uiso
+Cu1F Cu 0.5000 0.0000 -0.0964(2) 0.0224 Uani
+Cu1B Cu 1.0000 0.5000 0.4036(2) 0.0224 Uani
+Cu1D Cu 1.0000 0.0000 -0.0964(2) 0.0224 Uani
+O2A O 0.2500 0.3270(8) 0.3983(5) 0.0500 Uiso
+H3B H 0.8591 1.0573 0.4515 0.2250 Uiso
+H5B H 0.6409 0.8714 0.3136 0.3110 Uiso
+loop_
+_atom_site_aniso_label
+_atom_site_aniso_U_11
+_atom_site_aniso_U_22
+_atom_site_aniso_U_33
+_atom_site_aniso_U_23
+_atom_site_aniso_U_13
+_atom_site_aniso_U_12
+C2 0.045(9) 0.098(13) 0.046(9) -0.006(8) 0.000 0.000
+C3 0.023(6) 0.043(7) 0.056(8) -0.001(6) 0.000 0.000
+C4 0.045(7) 0.163(14) 0.036(5) -0.026(7) 0.008(5) 0.018(8)
+C5 0.038(7) 0.056(7) 0.035(7) -0.031(6) 0.000 0.000
+C6 0.034(5) 0.171(12) 0.039(5) -0.044(6) 0.002(7) -0.010(10)
+Cu1 0.0254 0.0327 0.009 0 0 0.0053
+C4B 0.045 0.163 0.036 -0.026 -0.008 -0.018
+C6B 0.034 0.171 0.039 -0.044 -0.002 0.01
+Cu1F 0.0254(5) 0.0327(5) 0.0090(4) 0.000 0.000 -0.0053(5)
+Cu1B 0.0254 0.0327 0.009 0 0 -0.0053
+Cu1D 0.0254 0.0327 0.009 0 0 0.0053
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+C1 C3 1_555 1_555
+C2 C5 1_555 1_555
+C3 O1 1_555 1_555
+C4 C1 1_555 1_555
+C5 C6 1_555 1_555
+C6 C4 1_555 1_555
+H1 C6 1_555 1_555
+N1 N2 1_555 1_555
+N2 C2 1_555 1_555
+O1 Cu1F 1_555 1_555
+Cu1 N1 1_555 1_555
+O2 Cu1 1_555 1_555
+C7 O2 1_555 1_555
+N3 C7 1_555 1_555
+C9 N3 1_555 1_555
+H2 C9 1_555 1_555
+H3 C9 1_555 1_555
+C10 N3 1_555 1_555
+H4 C10 1_555 1_555
+H5 C10 1_555 1_555
+C4B C1 1_555 1_555
+C6B C5 1_555 1_555
+H1B C6B 1_555 1_555
+N1B N1 1_555 1_555
+N1A Cu1 1_555 1_555
+N2B C2 1_555 1_555
+O1B C3 1_555 1_555
+O1F Cu1 1_555 1_555
+O1G Cu1 1_555 1_555
+Cu1B O2 1_555 1_555
+Cu1D O1B 1_555 1_555
+O2A Cu1 1_555 1_555
+H3B C9 1_555 1_555
+H5B C10 1_555 1_555
+C4B C6B 1_555 1_555
+N1B N2B 1_555 1_555
+N1B Cu1B 1_555 1_555
+
+#END

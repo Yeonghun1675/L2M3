@@ -1,0 +1,146 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_KOSLUB
+_chemical_formula_moiety         '(C8 H2 Ni2 O6)n'
+_symmetry_cell_setting           rhombohedral
+_symmetry_space_group_name_H-M   'R 3 m'
+_symmetry_Int_Tables_number      160
+_space_group_name_Hall           'R 3 -2"'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -y,x-y,z
+3 -x+y,-x,z
+4 -x+y,y,z
+5 -y,-x,z
+6 x,x-y,z
+7 1/3+x,2/3+y,2/3+z
+8 1/3-y,2/3+x-y,2/3+z
+9 1/3-x+y,2/3-x,2/3+z
+10 1/3-x+y,2/3+y,2/3+z
+11 1/3-y,2/3-x,2/3+z
+12 1/3+x,2/3+x-y,2/3+z
+13 2/3+x,1/3+y,1/3+z
+14 2/3-y,1/3+x-y,1/3+z
+15 2/3-x+y,1/3-x,1/3+z
+16 2/3-x+y,1/3+y,1/3+z
+17 2/3-y,1/3-x,1/3+z
+18 2/3+x,1/3+x-y,1/3+z
+_cell_length_a                   25.797(5)
+_cell_length_b                   25.797
+_cell_length_c                   6.7292(17)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                120
+_cell_volume                     3878.22
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+C1 C 0.6580(16) 0.8781(14) -0.163(6) 0.0340 Uiso
+C2 C 0.6657(25) 0.8329(13) -0.254(10) 0.0270 Uiso
+C3 C 0.6394(16) 0.8657(14) 0.043(6) 0.0060 Uiso
+C4 C 0.6320(14) 0.9091(11) 0.166(5) 0.0110 Uiso
+H1 H 0.679(4) 0.8394(21) -0.420(14) 0.0510 Uiso
+O1 O 0.6690(16) 0.9254(16) -0.251(7) 0.0170 Uiso
+O2 O 0.6523(14) 0.9624(15) 0.096(5) 0.0220 Uiso
+O3 O 0.6098(18) 0.8912(17) 0.338(7) 0.0370 Uiso
+C5 C 0.6278(22) 0.8140(11) 0.128(7) 0.0110 Uiso
+H2 H 0.6188(34) 0.8094(17) 0.275(13) 0.0060 Uiso
+Ni1 Ni 0.6243(11) 0.9528(17) -0.4448(29) 0.0200 Uiso
+C3E C 0.6394(16) 0.7737(21) 0.043(6) 0.0060 Uiso
+C4E C 0.6320(14) 0.7229(18) 0.166(5) 0.0110 Uiso
+O2E O 0.6523(14) 0.6899(21) 0.096(5) 0.0220 Uiso
+O3E O 0.6098(18) 0.7186(25) 0.338(7) 0.0370 Uiso
+C1E C 0.6580(16) 0.7799(21) -0.163(6) 0.0340 Uiso
+O1E O 0.6690(16) 0.7436(23) -0.251(7) 0.0170 Uiso
+Ni1E Ni 0.6243(11) 0.6715(20) -0.4448(29) 0.0200 Uiso
+O1H O 0.5897(23) 0.9977(16) -0.584(7) 0.0170 Uiso
+O1I O 0.5897(23) 0.5921(16) -0.584(7) 0.0170 Uiso
+O2H O 0.6434(21) 1.0144(14) -0.237(5) 0.0220 Uiso
+O2I O 0.6434(21) 0.6291(15) -0.237(5) 0.0220 Uiso
+O2M O 0.7043(15) 1.0232(21) -0.571(5) 0.0220 Uiso
+O2P O 0.7043(15) 0.6810(14) -0.571(5) 0.0220 Uiso
+O3_2 O 0.6098(18) 0.8912(17) -0.662(7) 0.0370 Uiso
+O3E_2 O 0.6098(18) 0.7186(25) -0.662(7) 0.0370 Uiso
+Ni1_2 Ni 0.6243(11) 0.9528(17) 0.5552(29) 0.0200 Uiso
+Ni1E_2 Ni 0.6243(11) 0.6715(20) 0.5552(29) 0.0200 Uiso
+Ni1H Ni 0.6618(20) 1.0424(11) -0.7781(29) 0.0200 Uiso
+Ni1H_2 Ni 0.6618(20) 1.0424(11) 0.2219(29) 0.0200 Uiso
+Ni1I Ni 0.6618(20) 0.6195(17) -0.7781(29) 0.0200 Uiso
+Ni1I_2 Ni 0.6618(20) 0.6195(17) 0.2219(29) 0.0200 Uiso
+Ni1M Ni 0.7139(17) 1.0048(20) -0.1115(29) 0.0200 Uiso
+Ni1P Ni 0.7139(17) 0.7090(11) -0.1115(29) 0.0200 Uiso
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+C1 C2 1_555 1_555
+C2 H1 1_555 1_555
+C3 C1 1_555 1_555
+C4 C3 1_555 1_555
+O1 C1 1_555 1_555
+O2 C4 1_555 1_555
+O3 C4 1_555 1_555
+C5 C3 1_555 1_555
+H2 C5 1_555 1_555
+Ni1 O1 1_555 1_555
+C3E C5 1_555 1_555
+C4E C3E 1_555 1_555
+O2E C4E 1_555 1_555
+O3E C4E 1_555 1_555
+C1E C2 1_555 1_555
+O1E C1E 1_555 1_555
+Ni1E O1E 1_555 1_555
+O1H Ni1 1_555 1_555
+O1I Ni1E 1_555 1_555
+O2H Ni1 1_555 1_555
+O2I Ni1E 1_555 1_555
+O2M Ni1 1_555 1_555
+O2P Ni1E 1_555 1_555
+O3_2 Ni1 1_555 1_555
+O3E_2 Ni1E 1_555 1_555
+Ni1_2 O3 1_555 1_555
+Ni1E_2 O3E 1_555 1_555
+Ni1H Ni1 1_555 1_555
+Ni1H_2 O2 1_555 1_555
+Ni1I Ni1E 1_555 1_555
+Ni1I_2 O2E 1_555 1_555
+Ni1M O1 1_555 1_555
+Ni1P O2E 1_555 1_555
+O2 Ni1M 1_555 1_555
+Ni1 Ni1M 1_555 1_555
+C3E C1E 1_555 1_555
+O1E Ni1P 1_555 1_555
+Ni1E Ni1P 1_555 1_555
+O1H Ni1H 1_555 1_555
+O1I Ni1I 1_555 1_555
+O2H Ni1M 1_555 1_555
+O2I Ni1P 1_555 1_555
+O2M Ni1H 1_555 1_555
+O2P Ni1I 1_555 1_555
+Ni1_2 Ni1H_2 1_555 1_555
+Ni1E_2 Ni1I_2 1_555 1_555
+Ni1H_2 Ni1M 1_555 1_555
+Ni1I_2 Ni1P 1_555 1_555
+
+#END

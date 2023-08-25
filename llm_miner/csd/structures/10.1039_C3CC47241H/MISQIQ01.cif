@@ -1,0 +1,98 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_MISQIQ01
+_chemical_formula_moiety         '(H2 Al2 F2 N1 O6 P1 1-)n'
+_symmetry_cell_setting           trigonal
+_symmetry_space_group_name_H-M   'P 31 2 1'
+_symmetry_Int_Tables_number      152
+_space_group_name_Hall           'P 31 2"'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -y,x-y,1/3+z
+3 -x+y,-x,2/3+z
+4 y,x,-z
+5 x-y,-y,2/3-z
+6 -x,-x+y,1/3-z
+_cell_length_a                   9.3411(13)
+_cell_length_b                   9.3411(13)
+_cell_length_c                   6.9932(19)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                120
+_cell_volume                     528.448
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+N1 N -0.900(2) 0.0000 0.3333
+P1 P -0.0000 0.44936(9) 0.1667
+Al1 Al -0.35925(10) 0.16199(9) 0.22307(10)
+F1 F -0.3178(2) 0.0000 0.3333
+F2 F -0.5683(2) 0.0000 0.3333
+O1 O -0.4289(2) 0.3014(2) 0.1271(2)
+H1 H -0.4465 0.3679 0.1982
+O2 O -0.1485(2) 0.2785(2) 0.1260(3)
+O3 O 0.0329(2) 0.5656(2) -0.0030(2)
+O2E O 0.1485(2) 0.4270(3) 0.2073(3)
+O3E O -0.0329(2) 0.5327(3) 0.3363(2)
+Al1D Al -0.52124(13) -0.16199(9) 0.44360(10)
+O1D O -0.7303(3) -0.3014(2) 0.5396(2)
+H1D H -0.8144 -0.3679 0.4685
+Al1A Al -0.16199(9) 0.47876(13) 0.55640(10)
+Al1B Al -0.47876(13) 0.35925(10) -0.11026(10)
+Al1C Al -0.83801(9) -0.35925(10) 0.77693(10)
+Al1C_2 Al 0.16199(9) 0.64075(10) -0.22307(10)
+Al1E Al 0.35925(10) 0.52124(13) 0.11026(10)
+O1A O -0.3014(2) 0.2697(3) 0.4604(2)
+O1E O -0.5711(2) -0.2697(3) 0.2062(2)
+O2D O -0.4270(3) -0.2785(2) 0.5407(3)
+O3B O -0.4673(3) -0.0329(2) 0.6637(2)
+O3C O -0.4344(2) 0.0329(2) 0.0030(2)
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+P1 O2 1_555 1_555
+Al1 F1 1_555 1_555
+F1 Al1D 1_555 1_555
+F2 Al1 1_555 1_555
+O1 Al1 1_555 1_555
+H1 O1 1_555 1_555
+O2 Al1 1_555 1_555
+O3 P1 1_555 1_555
+O2E P1 1_555 1_555
+O3E P1 1_555 1_555
+Al1D F2 1_555 1_555
+O1D Al1D 1_555 1_555
+H1D O1D 1_555 1_555
+Al1A O3E 1_555 1_555
+Al1B O1 1_555 1_555
+Al1C O1D 1_555 1_555
+Al1C_2 O3 1_555 1_555
+Al1E O2E 1_555 1_555
+O1A Al1 1_555 1_555
+O1E Al1D 1_555 1_555
+O2D Al1D 1_555 1_555
+O3B Al1D 1_555 1_555
+O3C Al1 1_555 1_555
+Al1A O1A 1_555 1_555
+
+#END

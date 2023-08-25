@@ -1,0 +1,133 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_COKNOH
+_chemical_formula_moiety         '(C8 H2 Fe2 O6)n'
+_symmetry_cell_setting           rhombohedral
+_symmetry_space_group_name_H-M   'R -3'
+_symmetry_Int_Tables_number      148
+_space_group_name_Hall           '-R 3'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -y,x-y,z
+3 -x+y,-x,z
+4 2/3+x,1/3+y,1/3+z
+5 2/3-y,1/3+x-y,1/3+z
+6 2/3-x+y,1/3-x,1/3+z
+7 1/3+x,2/3+y,2/3+z
+8 1/3-y,2/3+x-y,2/3+z
+9 1/3-x+y,2/3-x,2/3+z
+10 -x,-y,-z
+11 y,-x+y,-z
+12 x-y,x,-z
+13 1/3-x,2/3-y,2/3-z
+14 1/3+y,2/3-x+y,2/3-z
+15 1/3+x-y,2/3+x,2/3-z
+16 2/3-x,1/3-y,1/3-z
+17 2/3+y,1/3-x+y,1/3-z
+18 2/3+x-y,1/3+x,1/3-z
+_cell_length_a                   26.0983(4)
+_cell_length_b                   26.0983
+_cell_length_c                   6.85119(14)
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                120
+_cell_volume                     4041.3
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+Fe1 Fe 0.38239(22) 0.35214(23) 0.1430(6) 0.0123 Uiso
+O1 O 0.32715(30) 0.29377(35) 0.3630(11) 0.0027 Uiso
+O2 O 0.3010(4) 0.2272(4) 0.5994(14) 0.0236 Uiso
+O3 O 0.35508(35) 0.27319(34) 0.0074(12) 0.0086 Uiso
+C1 C 0.3161(4) 0.2440(4) 0.4207(11) 0.0223 Uiso
+C2 C 0.32591(34) 0.20380(31) 0.2865(10) 0.0017 Uiso
+C3 C 0.34304(32) 0.2226(4) 0.0954(10) 0.0115 Uiso
+C4 C 0.34869(33) 0.1819(4) -0.0339(10) 0.0033 Uiso
+H1 H 0.3613(6) 0.1919(6) -0.1683(22) 0.0134 Uiso
+O1O O 0.33952(30) 0.03956(35) -0.0297(11) 0.0027 Uiso
+O2O O 0.3657(4) 0.1061(4) -0.2661(14) 0.0236 Uiso
+O3O O 0.31159(35) 0.06014(34) 0.3259(12) 0.0086 Uiso
+C1O C 0.3506(4) 0.0893(4) -0.0874(11) 0.0223 Uiso
+C2O C 0.34076(34) 0.12953(31) 0.0468(10) 0.0017 Uiso
+C3O C 0.32363(32) 0.1107(4) 0.2379(10) 0.0115 Uiso
+C4O C 0.31798(33) 0.1514(4) 0.3672(10) 0.0033 Uiso
+H1O H 0.3054(6) 0.1414(6) 0.5016(22) 0.0134 Uiso
+Fe1J Fe 0.35214(23) -0.03025(32) -0.1430(6) 0.0123 Uiso
+Fe1D Fe 0.31453(23) 0.36358(32) 0.4763(6) 0.0123 Uiso
+Fe1H Fe 0.30308(32) 0.28428(22) -0.1903(6) 0.0123 Uiso
+Fe1H_2 Fe 0.30308(32) 0.28428(22) 0.8097(6) 0.0123 Uiso
+Fe1O Fe 0.28428(22) -0.01881(23) 0.1903(6) 0.0123 Uiso
+Fe1N Fe 0.36358(32) 0.04906(22) -0.4763(6) 0.0123 Uiso
+Fe1N_2 Fe 0.36358(32) 0.04906(22) 0.5237(6) 0.0123 Uiso
+O1H O 0.29995(46) 0.33952(30) 0.0297(11) 0.0027 Uiso
+O1J O 0.29377(35) -0.03338(46) -0.3630(11) 0.0027 Uiso
+O2D O 0.4395(4) 0.4071(6) -0.0673(14) 0.0236 Uiso
+O2N O 0.4071(6) -0.0323(4) 0.0673(14) 0.0236 Uiso
+O3D O 0.39348(34) 0.41522(49) 0.3407(12) 0.0086 Uiso
+O3J O 0.27319(34) -0.08189(49) -0.0074(12) 0.0086 Uiso
+O3N O 0.41522(49) 0.02175(35) -0.3407(12) 0.0086 Uiso
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+Fe1 O1 1_555 1_555
+O1 C1 1_555 1_555
+O2 C1 1_555 1_555
+O3 Fe1 1_555 1_555
+C1 C2 1_555 1_555
+C2 C3 1_555 1_555
+C3 O3 1_555 1_555
+C4 C3 1_555 1_555
+H1 C4 1_555 1_555
+O1O C1O 1_555 1_555
+O2O C1O 1_555 1_555
+O3O C3O 1_555 1_555
+C1O C2O 1_555 1_555
+C2O C4 1_555 1_555
+C3O C2O 1_555 1_555
+C4O C2 1_555 1_555
+H1O C4O 1_555 1_555
+Fe1J O1O 1_555 1_555
+Fe1D O1 1_555 1_555
+Fe1H O3 1_555 1_555
+Fe1H_2 O2 1_555 1_555
+Fe1O O1O 1_555 1_555
+Fe1N O2O 1_555 1_555
+Fe1N_2 O3O 1_555 1_555
+O1H Fe1 1_555 1_555
+O1J Fe1J 1_555 1_555
+O2D Fe1 1_555 1_555
+O2N Fe1J 1_555 1_555
+O3D Fe1 1_555 1_555
+O3J Fe1J 1_555 1_555
+O3N Fe1J 1_555 1_555
+O3O Fe1O 1_555 1_555
+C3O C4O 1_555 1_555
+Fe1D O3D 1_555 1_555
+Fe1H O1H 1_555 1_555
+Fe1O O3J 1_555 1_555
+Fe1N O1J 1_555 1_555
+Fe1N O3N 1_555 1_555
+
+#END

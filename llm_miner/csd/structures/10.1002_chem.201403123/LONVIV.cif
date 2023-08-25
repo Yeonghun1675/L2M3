@@ -1,0 +1,156 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_LONVIV
+_chemical_formula_moiety         '(C6 H6 Cl2 Mn2 N6 O2)n'
+_symmetry_cell_setting           rhombohedral
+_symmetry_space_group_name_H-M   'R -3 m'
+_symmetry_Int_Tables_number      166
+_space_group_name_Hall           '-R 3 2"'
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+2 -y,x-y,z
+3 -x+y,-x,z
+4 y,x,-z
+5 x-y,-y,-z
+6 -x,-x+y,-z
+7 2/3+x,1/3+y,1/3+z
+8 2/3-y,1/3+x-y,1/3+z
+9 2/3-x+y,1/3-x,1/3+z
+10 2/3+y,1/3+x,1/3-z
+11 2/3+x-y,1/3-y,1/3-z
+12 2/3-x,1/3-x+y,1/3-z
+13 1/3+x,2/3+y,2/3+z
+14 1/3-y,2/3+x-y,2/3+z
+15 1/3-x+y,2/3-x,2/3+z
+16 1/3+y,2/3+x,2/3-z
+17 1/3+x-y,2/3-y,2/3-z
+18 1/3-x,2/3-x+y,2/3-z
+19 -x,-y,-z
+20 y,-x+y,-z
+21 x-y,x,-z
+22 -y,-x,z
+23 -x+y,y,z
+24 x,x-y,z
+25 1/3-x,2/3-y,2/3-z
+26 1/3+y,2/3-x+y,2/3-z
+27 1/3+x-y,2/3+x,2/3-z
+28 1/3-y,2/3-x,2/3+z
+29 1/3-x+y,2/3+y,2/3+z
+30 1/3+x,2/3+x-y,2/3+z
+31 2/3-x,1/3-y,1/3-z
+32 2/3+y,1/3-x+y,1/3-z
+33 2/3+x-y,1/3+x,1/3-z
+34 2/3-y,1/3-x,1/3+z
+35 2/3-x+y,1/3+y,1/3+z
+36 2/3+x,1/3+x-y,1/3+z
+_cell_length_a                   24.4992
+_cell_length_b                   24.4992
+_cell_length_c                   8.3379
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                120
+_cell_volume                     4334.02
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+_atom_site_U_iso_or_equiv
+_atom_site_thermal_displace_type
+N1 N 0.92629 0.27787 0.54022 0.0466 Uiso
+C1 C 0.87607 0.22162 0.58427 0.0466 Uiso
+H1 H 0.85480 0.33571 0.43456 0.0466 Uiso
+Mn1 Mn 0.94888 0.33333 0.33333 0.0466 Uiso
+O1 O 0.86776 0.33333 0.33333 0.0466 Uiso
+Cl1 Cl 1.00000 0.42296 0.50000 0.0466 Uiso
+N2 N 0.96471 0.29805 0.66667 0.0466 Uiso
+C2 C 0.82062 0.17938 0.50045 0.0466 Uiso
+H2 H 0.81086 0.18914 0.38127 0.0466 Uiso
+N1U N 0.72213 0.07371 0.54022 0.0466 Uiso
+C1U C 0.77838 0.12393 0.58427 0.0466 Uiso
+N2U N 0.70195 0.03529 0.66667 0.0466 Uiso
+N1I N 0.94454 0.25962 0.79311 0.0466 Uiso
+C1I C 0.88829 0.20940 0.74906 0.0466 Uiso
+C2I C 0.84605 0.15395 0.83288 0.0466 Uiso
+H2I H 0.85581 0.14419 0.95206 0.0466 Uiso
+N1DA N 0.74038 0.05546 0.79311 0.0466 Uiso
+C1DA C 0.79060 0.11171 0.74906 0.0466 Uiso
+H1P H 0.85242 0.33096 0.23211 0.0466 Uiso
+H1U H 0.66429 0.14520 0.43456 0.0466 Uiso
+Mn1U Mn 0.66667 0.05112 0.33333 0.0466 Uiso
+O1U O 0.66667 0.13224 0.33333 0.0466 Uiso
+H1Y H 0.66904 0.14758 0.23211 0.0466 Uiso
+Cl1M Cl 0.91037 0.24371 0.16667 0.0466 Uiso
+N1P N 0.98175 0.38880 0.12645 0.0466 Uiso
+N1Y N 0.61120 0.01825 0.12645 0.0466 Uiso
+Mn1E Mn 1.05112 0.38445 0.66667 0.0466 Uiso
+Mn1T Mn 0.61555 -0.05112 0.66667 0.0466 Uiso
+Mn1I Mn 1.00000 0.28221 0.00000 0.0466 Uiso
+Mn1I_2 Mn 1.00000 0.28221 1.00000 0.0466 Uiso
+Mn1DA Mn 0.71779 0.00000 1.00000 0.0466 Uiso
+Cl1T Cl 0.57704 -0.00000 0.50000 0.0466 Uiso
+Cl1Y Cl 0.75629 0.08963 0.16667 0.0466 Uiso
+N2E N 1.03529 0.33334 0.33333 0.0466 Uiso
+N2T N 0.66666 -0.03529 0.33333 0.0466 Uiso
+loop_
+_geom_bond_atom_site_label_1
+_geom_bond_atom_site_label_2
+_geom_bond_site_symmetry_1
+_geom_bond_site_symmetry_2
+N1 C1 1_555 1_555
+C1 C2 1_555 1_555
+H1 O1 1_555 1_555
+Mn1 N1 1_555 1_555
+O1 Mn1 1_555 1_555
+Cl1 Mn1 1_555 1_555
+N2 N1 1_555 1_555
+C2 H2 1_555 1_555
+N1U C1U 1_555 1_555
+C1U C2 1_555 1_555
+N2U N1U 1_555 1_555
+N1I N2 1_555 1_555
+C1I C1 1_555 1_555
+C2I C1I 1_555 1_555
+H2I C2I 1_555 1_555
+N1DA N2U 1_555 1_555
+C1DA C1U 1_555 1_555
+H1P O1 1_555 1_555
+H1U O1U 1_555 1_555
+Mn1U N1U 1_555 1_555
+O1U Mn1U 1_555 1_555
+H1Y O1U 1_555 1_555
+Cl1M Mn1 1_555 1_555
+N1P Mn1 1_555 1_555
+N1Y Mn1U 1_555 1_555
+Mn1E Cl1 1_555 1_555
+Mn1T N2U 1_555 1_555
+Mn1I Cl1M 1_555 1_555
+Mn1I_2 N1I 1_555 1_555
+Mn1DA N1DA 1_555 1_555
+Cl1T Mn1U 1_555 1_555
+Cl1Y Mn1U 1_555 1_555
+N2E Mn1 1_555 1_555
+N2T Mn1U 1_555 1_555
+N2 Mn1E 1_555 1_555
+N1I C1I 1_555 1_555
+C2I C1DA 1_555 1_555
+N1DA C1DA 1_555 1_555
+Mn1T Cl1T 1_555 1_555
+
+#END
