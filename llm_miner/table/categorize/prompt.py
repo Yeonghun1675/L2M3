@@ -1,10 +1,10 @@
-PROMPT_CATEGORIZE = """Determine the category of the given markdown table from the following options: ['Crystal', 'Bond & Angle', 'Coordinate', 'Property']. If the table doesn't fit any category, return an empty string "".
+PROMPT_CATEGORIZE = """Determine the category of the given markdown table from the following options: ["Crystal", "Bond & Angle", "Coordinate", "Property"]. If the table doesn"t fit any category, return an empty string "".
 
 You must follow rules below:
-- Typical 'Crystal' markdown table includes lattice parameter, spacegroup, crystal system, cell volume and etc. 'Crystal' table is mostly comprised of crystal information. In that case, return 'Crystal'.
-- If the markdown table is mostly comprised of bond and angle information of specific materials, return 'Bond & Angle'.
-- If the markdown table is mostly comprised of coorination information of specific materials, return 'Coordinate'.
-- If the markdown table is not included in 'Crystal', 'Bond & Angle', and 'Coordinate', but contains any data that can be represented by numeric values, return 'Property'.
+- Typical "Crystal" markdown table includes lattice parameter, spacegroup, crystal system, cell volume and etc. "Crystal" table is mostly comprised of crystal information. In that case, return "Crystal".
+- If the markdown table is mostly comprised of bond and angle information of specific materials, return "Bond & Angle".
+- If the markdown table is mostly comprised of coorination information of specific materials, return "Coordinate".
+- If the markdown table is not included in "Crystal", "Bond & Angle", and "Coordinate", but contains any data that can be represented by numeric values, return "Property".
 
 Begin!
 
@@ -40,7 +40,7 @@ Crystallographic data for [La5Cl2(edta)3(H2O)18]nCln·8nH2O (1), [La2(NO3)2(edta
 a R1 = Σ|Fo|-|Fc|/Σ|Fo|
 b wR2 = Σ[w(Fo^2 - Fc^2)]/Σ[w(Fo^2)]^1/2
 
-Output: 'Crystal'
+Output: "Crystal"
 
 Input:
 Table 1
@@ -70,7 +70,7 @@ Selected crystallographic data for {MnII(4,4′-bpy)[AgI(CN)2]2}·2CHCl3.
 | R^1, wR^2 (all data) | 0.0851, 0.2290 |
 | Δρ max, Δρ min (e Å^-3) | 2.065, −2.372 |
 
-Output: 'Crystal'
+Output: "Crystal"
 
 Input:
 Table 1
@@ -89,7 +89,7 @@ Summary of the unit cell parameters for selected well-known oxalate-containing c
 | Y(H2O)Na(C2O4)2·3 H2O [14] | Pc          | 8.623(2)   | 8.6310(8) | 14.896(3)  |            | 102.848(9) |            |
 ------------------------------------------------------------------------------------------------------------------------
 
-Output: 'Crystal'
+Output: "Crystal"
 
 Input:
 Table 2
@@ -116,7 +116,7 @@ Selected bond lengths (Å) and angles (°) for this Zn(II) compound.
 [^a^]: Symmetry codes: x + 1/2, y, -z + 1/2.
 [^b^]: -x + 1/2, -y + 1, z + 1/2.
 
-Output: 'Bond & Angle'
+Output: "Bond & Angle"
 
 Input:
 Table 2
@@ -136,7 +136,7 @@ Bond lengths (Å) and bond angles (°) in **1**
 a: −*x*, *y*, 0.5−*z*.
 b: 0.5−*x*, 1−*y*, *z*.
 
-Output: 'Bond & Angle'
+Output: "Bond & Angle"
 
 Input:
 Table 3
@@ -162,7 +162,7 @@ Characteristics of hydrogen bonds in 1a–1e
 [^a]: Symmetries: (ii) -x+2, y, -z+3/2.
 [^b]: D: donor. A: acceptor.
 
-Output: 'Bond & Angle'
+Output: "Bond & Angle"
 
 Input:
 Table 2
@@ -186,7 +186,7 @@ Atomic coordinates (×10^4) and equivalent isotropic displacement parameters (Å
 
 Ueq is defined as one-third of the trace of the orthogonalized Uij tensor.
 
-Output: 'Coordinate'
+Output: "Coordinate"
 
 Input:
 Table 4
@@ -213,7 +213,7 @@ Atomic coordinates and equivalent isotropic displacement parameters (Å²) for S
 
 Ueq is defined as one third of the trace of the orthogonalized Uij tensor.
 
-Output: 'Coordinate'
+Output: "Coordinate"
 
 Input:
 Table 3
@@ -232,7 +232,7 @@ Table 3
 | 2 | 55.2, 53.0 | 62.5, 59.4 | 180.1, 179.4 |
 | 3 | 57.4, 53.7 | 62.7, 60.9 | 182.4, 178.3 |
 
-Output: 'Property'
+Output: "Property"
 
 Input:
 Table 4
@@ -247,7 +247,7 @@ Cyanosilylation of benzaldehyde in the presence of different Mg-MOF loadings.
 
 Determined by GC based on the carbonyl substrate.
 
-Output: 'Property'
+Output: "Property"
 
 Input:
 Table 1
@@ -266,7 +266,7 @@ Epoxidation of different olefin substrates catalyzed by 1 and 2.[^a]
 [^b]: The selectivity of epoxide.
 [^c]: Moles of olefin conversion per mole of tetranuclear Cu(II) of the catalysts per hour.
 
-Output: 'Property'
+Output: "Property"
 
 Input:
 {{paragraph}}

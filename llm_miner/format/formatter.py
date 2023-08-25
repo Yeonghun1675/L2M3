@@ -38,8 +38,10 @@ class BaseInformation(BaseFormatter):
 class BaseExampleTable(BaseFormatter):    
     data: Dict[str, str] = {
         name: obj for name, obj in inspect.getmembers(example_table) 
-        if isinstance(obj, str) and "__" not in name
+        if isinstance(obj, dict) and "__" not in name
     }
+    def __getitem__(self, idx: str) -> dict:
+        return self.data[idx]
 
 
 class BaseExampleText(BaseFormatter):    

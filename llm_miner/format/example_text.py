@@ -1,25 +1,25 @@
-surface_area='''
+surface_area = '''
 Paragraph: Metal-Organic Frameworks (MOFs) offer a rich landscape of properties, enabling diverse applications across numerous fields. A boasts exceptional features such as a pore volume of 1.2 cm3/g, a BET surface area of 1500 m2/g, and an adsorption capacity of 35.6 wt% for CO2 at 25°C and 1 atm. B showcases its versatility with a pore volume of 0.9 cm3/g, a Langmuir surface area of 1200 m2/g, and an adsorption capacity of 27.8 wt% for N2 at 77 K and 1 atm. Furthermore, C exhibits notable properties, including a pore volume of 1.5 cm3/g, a surface area of 2500 m2/g, and an adsorption capacity of 20.3 wt% for water at 298 K and 0.1 MPa.
 JSON: [{{'material':'A', 'type':'BET', 'value':1500, 'unit':'m2/g'}, {'material':'B', 'type': 'Langmuir', 'value':1200, 'unit':'m2/g'}, {'material':'C', 'type': '', 'value':2500, 'unit':'m2/g'}}]
 '''
 
-pore_volume='''
+pore_volume = '''
 In this example, the selected property is pore volume.
 Paragraph: Metal-Organic Frameworks (MOFs) exhibit a diverse range of properties, making them highly promising for various applications. For instance, MOF-A demonstrates exceptional thermal stability, withstanding temperatures above 400°C as determined by thermogravimetric analysis (TGA). It also possesses a pore volume of 0.9 cm3/g, providing ample space for gas adsorption. In contrast, MOF-B exhibits an impressive surface area of 2500 m2/g, enabling high adsorption capacities. Its pore volume of 1.5 cm3/g further enhances its gas storage capabilities.
 JSON: [{{'material':'MOF-A','value':0.9,'unit':'cm3/g'}}]
 '''
 
-crystal_size='''
+crystal_size = '''
 
 '''
 
-gas_adsorption='''
+gas_adsorption = '''
 In this example, the selected property is gas gas adsorption.
 Paragraph: Metal-Organic Frameworks (MOFs) offer a rich landscape of properties, enabling diverse applications across numerous fields. One prominent MOF, MOF-A boasts exceptional features such as an adsorption capacity of 35.6 wt% for CO2 at 25°C and 1 atm. Another remarkable MOF, MOF-B showcases its versatility with an adsorption capacity of 27.8 wt% for N2 at 77 K and 1 atm. Furthermore, MOF-C exhibits a notable adsorption capacity of 20.3 wt% for water at 298 K and 0.1 MPa.
 JSON: [{{'material':'MOF-A', 'adsorbate':'CO2', 'adsorbed amount':'35.6 wt%', 'temperature':'25°C', 'pressure':'1 atm'}}, {{'material':'MOF-B', 'adsorbate':'N2', 'adsorbed amount':'27.8 wt%' 'temperature':'77 K', 'pressure':'1 atm'}}, {{'material':'MOF-C', 'adsorbate':'water', 'adsorbed amount':'20.3 wt%', 'temperature':'298 K', 'pressure':'0.1 MPa'}}]
 '''
 
-porosity ='''
+porosity = '''
 
 '''
 

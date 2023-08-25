@@ -19,7 +19,7 @@ Input:
 | Empirical formula | C₈H₉PrNO₉ | C₈H₉NdNO₉ | C₈H₉EuNO₉ | C₈H₉GdNO₉ | C₈H₉TbNO₉ | C₈H₉ErNO₉ |
 | Formula weight | 404.07 | 407.40 | 415.12 | 420.41 | 422.08 | 430.42 |
 | Crystal system | Triclinic | Triclinic | Triclinic | Triclinic | Triclinic | Triclinic |
-List : ['chemical formula', 'chemical formula weight', 'crystal system']
+List : ["chemical formula", "chemical formula weight", "crystal system"]
 
 Input:
 Table 1
@@ -47,7 +47,7 @@ Crystal data and structure refinements for complexes 1–2.
 
 a R<sub>1</sub> = Σ|F<sub>o</sub> - F<sub>c</sub>| / Σ|F<sub>o</sub>|.
 b wR<sub>2</sub> = |Σw(|F<sub>o</sub><sup>2</sup> - F<sub>c</sub><sup>2</sup>)| / Σw(F<sub>o</sub><sup>2</sup>)<sup>1/2</sup>, where w = 1/[σ<sup>2</sup>(F<sub>o</sub><sup>2</sup>) + (aP)<sup>2</sup> + bP]. P = (F<sub>o</sub><sup>2</sup> + 2F<sub>c</sub><sup>2</sup>)/3.
-List: ['space group', 'lattice parameters', 'cell volume', 'density']
+List: ["space group", "lattice parameters", "cell volume", "density"]
 
 Input:
 Table 1
@@ -75,7 +75,7 @@ Crystal data and structure refinement for compound 1.
 | Largest diff. peak and hole | 1.455 and -0.926 eÅ<sup>-3</sup>                                                               |
 
 a R<sub>1</sub> = Σ||F<sub>o</sub>|-|F<sub>c</sub>||/Σ|F<sub>o</sub>|.
-List: ['chemical formula', 'chemical formula weight', 'crystal system', 'lattice parameters', 'crystal size']
+List: ["chemical formula", "chemical formula weight", "crystal system", "lattice parameters", "crystal size"]
 
 Input:
 {{paragraph}}

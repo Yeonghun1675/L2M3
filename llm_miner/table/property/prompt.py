@@ -6,8 +6,8 @@ PROPERTY_CATEGORIZE = """From the provided markdown table, generate a Python lis
 - pore diameter: pore diameter of materials ex) LCD, PLD.
 - gas adsorption: amount of gas uptake, gas storage, gas adsorption, selective gas uptake of materials.
 - thermal property: decomposition temperature, thermal conductivity, glass transition temperature of materials ex) Tg, TDT.
-- mechanical property: properties related to application of forces. ex) Young's modulus, Poisson's ratio, stress.
-- selectivity: selectivity of materials. 'Selective' is not equal to 'selectivity'
+- mechanical property: properties related to application of forces. ex) Young"s modulus, Poisson"s ratio, stress.
+- selectivity: selectivity of materials. "Selective" is not equal to "selectivity"
 - conversion: conversion via catalyst or conversion via synthesis. ex) TOF
 - reaction yield: amount of product yield via synthesis reaction.
 - density: bulk density of materials.
@@ -17,8 +17,8 @@ PROPERTY_CATEGORIZE = """From the provided markdown table, generate a Python lis
 - optical property: properties of materials in response to electromagnetic radiation.
 - etc: Other properties not included in the live above but can be represented by numeric values.
 
-You must not include the same property several times. If there are surface_area and BET surface_area in the paragraph at the same time, you must include 'surface_area' once. Only properties must be included and the name of materials must not be included. If same property of different materials appears, you must include the property only once. If certain property you find does not have a value, please do not include that property. For example, even if selectivity is stated in the paragraph, do not write selectivity when specific value is not written. Do not be confused between gas adsorption and selectivity. Gas adsorption is a property that has a unit and selectivity is unitless. Even though there is a word 'selectivity', it is not always selectivity. If there is a value with unit, it is gas adsorption.
-If you're uncertain, please return empty list.
+You must not include the same property several times. If there are surface_area and BET surface_area in the paragraph at the same time, you must include "surface_area" once. Only properties must be included and the name of materials must not be included. If same property of different materials appears, you must include the property only once. If certain property you find does not have a value, please do not include that property. For example, even if selectivity is stated in the paragraph, do not write selectivity when specific value is not written. Do not be confused between gas adsorption and selectivity. Gas adsorption is a property that has a unit and selectivity is unitless. Even though there is a word "selectivity", it is not always selectivity. If there is a value with unit, it is gas adsorption.
+If you"re uncertain, please return empty list.
 
 Begin!
 
@@ -49,7 +49,7 @@ Structure and H2 absorption parameters for compounds I and II.
 [^c]: Calculated from H2 isotherms.
 [^d]: Estimated value from Langmuir fitting.
 [^e]: The ΔHv of gas at its bp was used (H2 0.92 kJ/mol at 20 K)
-List : ['surface area', 'porosity', 'pore volume', 'gas adsorption', 'etc']
+List : ["surface area", "porosity", "pore volume", "gas adsorption", "etc"]
 
 Input:
 Table 4
@@ -63,7 +63,7 @@ Cyanosilylation of benzaldehyde in the presence of different Mg-MOF loadings.
 | 3     | 0.1        | 2 eq  | r.t.      | 2        | >99    |
 
 Determined by GC based on the carbonyl substrate.
-List: ['conversion']
+List: ["conversion"]
 
 Input:
 Table 2
@@ -82,7 +82,7 @@ a Obtained from the N2 isotherms at 77K, m2 g<sup>-1</sup>.
 b mmol g<sup>-1</sup>.
 c kJ mol<sup>-1</sup>.
 d at 298K, mmol g<sup>-1</sup>.
-List: ['surface area', 'gas adsorption']
+List: ["surface area", "gas adsorption"]
 
 Input:
 Table 7
@@ -104,7 +104,7 @@ Cyclohexene oxidation in varying reaction temperature and time.[^a]
 
 [^a]: Conditions: Cyclohexene (1 mmol), H2O2 (1 mmol), CH3COOH (0.5 mmol) and C1 (0.1 mol%) in 2 mL CH3CN at 0°C within 2 h.
 [^b]: Yields based on the epoxides formed.
-List: ['conversion', 'yield']
+List: ["conversion", "reaction yield"]
 
 Input:
 {{paragraph}}
@@ -314,6 +314,7 @@ Output:
                 "solvent": "CH3CN",
                 "time": "1h",
             },
+        ],
         "yield": [
             {
                 "value": "30",
@@ -344,6 +345,7 @@ Output:
                 "solvent": "CH3CN",
                 "time": "2h",
             },
+        ],
         "yield": [
             {
                 "value": "41",
@@ -355,7 +357,7 @@ Output:
                 "solvent": "CH3CN",
                 "time": "2h",
             },
-        ]
+        ],
     },
     {
         "meta": {
@@ -374,6 +376,7 @@ Output:
                 "solvent": "CH3CN",
                 "time": "3h",
             },
+        ],
         "yield": [
             {
                 "value": "49",
@@ -385,7 +388,7 @@ Output:
                 "solvent": "CH3CN",
                 "time": "3h",
             },
-        ]
+        ],
     },
     {
         "meta": {
@@ -404,6 +407,7 @@ Output:
                 "solvent": "CH3CN",
                 "time": "4h",
             },
+        ],
         "yield": [
             {
                 "value": "50",
@@ -416,6 +420,60 @@ Output:
                 "time": "4h",
             },
         ]
+    },
+]
+<END>
+
+Input:
+Table 3
+
+13C NMR spectral data (in ppm) of 1 and K4edta.
+
+| Compounds | –CH2N | –NCH2CO2 | –CO2 |
+| --- | --- | --- | --- |
+| 1 | 57.3(3.6) | 64.4(4.3) | 183.0 (4.5) |
+| [edta]4- | 53.7 | 60.1 | 178.5 |
+|  |  |  |  |
+| Solid |
+| 1 | 57.5, 53.6 | 62.5 | 184.9, 179.8 |
+
+Output:
+[
+    {
+        "meta": {
+            "name": "",
+            "symbol": "1",
+            "chemical formula": ""
+        },
+        "etc": [
+            {
+                "property name": "13C NMR spectral data",
+                "value": "-CH2N: 57.3(3.6), -NCH2CO2: 64.4(4.3), -CO2: 183.0 (4.5)",
+                "unit": "ppm",
+                "condition": ""
+            },
+            {
+                "property name": "13C NMR spectral data",
+                "value": "-CH2N: 57.5, 53.6, -NCH2CO2: 62.5, -CO2: 184.9, 179.8",
+                "unit": "ppm",
+                "condition": "Solid"
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "[edta]4-",
+            "symbol": "",
+            "chemical formula": ""
+        },
+        "etc": [
+            {
+                "property name": "13C NMR spectral data",
+                "value": "-CH2N: 53.7, -NCH2CO2: 60.1, -CO2: 178.5",
+                "unit": "ppm",
+                "condition": ""
+            }
+        ],
     },
 ]
 <END>
