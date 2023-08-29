@@ -19,15 +19,20 @@ class ACSParser(BaseParser):
     @classmethod
     def parsing(cls, file_bs) -> List[Paragraph]:
         elements = []
+        title_para = None
+        
         for element in file_bs(cls.all_tags()):
             if element.name in cls.table_tags:
                 type_ = 'table'
+                clean_text = ''
             elif element.name in cls.figure_tags:
                 type_ = 'figure'
+                clean_text = element.text
             elif element.name in cls.para_tags and cls._is_para(element):
                 type_ = 'text'
                 for tags in element(['xref', 'named-content', 'fig', 'table-wrap']):
                     tags.extract()
+                clean_text = element.text
             else:
                 continue
 
@@ -35,8 +40,19 @@ class ACSParser(BaseParser):
                 idx = len(elements) + 1,
                 type = type_,
                 content = element,
+                clean_text = clean_text
             )
-            elements.append(data)
+            
+            if title_para and type_ == 'text':
+                title_para.append(data)
+                data = title_para
+                title_para = None
+            else:
+                elements.append(data)
+
+            if type_ == 'text' and len(clean_text) < 200 and not title_para:
+                title_para = data
+            
         return elements
             
     @classmethod

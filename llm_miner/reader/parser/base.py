@@ -1,6 +1,7 @@
 from pydantic import BaseModel
-from typing import List, Any, Dict
+from typing import List, Any, Dict, Optional
 from abc import ABCMeta, abstractclassmethod
+from collections.abc import Sequence
 
 
 class BaseParser(object, metaclass=ABCMeta):
@@ -35,15 +36,15 @@ class Paragraph(BaseModel):
     idx: int
     type: str
     content: str
-    clean_text: str
-    data: List[Dict[str, Any]] = None
+    clean_text: Optional[str] = None
+    data: Optional[List[Dict[str, Any]]] = None
 
     def __getitem__(self, item):
         return getattr(self, item)
     
     def append(self, others):
         self.content += others.content
-        self.clean_text = '\n'+others.clean_text
+        self.clean_text += '\n'+others.clean_text
 
         if isinstance(others.data, list):
             if isinstance(self.data, list):
@@ -77,19 +78,68 @@ class Paragraph(BaseModel):
         )
 
 
+class Elements(Sequence, BaseModel):
+    elements: List[Paragraph]
+
+    def __getitem__(self, idx: int) -> Paragraph:
+        return self.elements[idx]
+    
+    def __len__(self,) -> int:
+        return len(self.elements)
+    
+    def get_tables(self) -> List[Paragraph]:
+        return [e for e in self.elements if e.type == 'table'] 
+    
+    def get_texts(self) -> List[Paragraph]:
+        text_type = ['text', 'synthesis condition', 'property', 'else']
+        return [e for e in self.elements if e.type in text_type] 
+    
+    def get_figures(self) -> List[Paragraph]:
+        return [e for e in self.elements if e.type == 'figure'] 
+    
+    def get_synthesis_conditions(self) -> List[Paragraph]:
+        return [e for e in self.elements if e.type == 'synthesis condition'] 
+    
+    def get_properties(self) -> List[Paragraph]:
+        return [e for e in self.elements if e.type == 'property'] 
+    
+    def to_json(self, )-> List[Dict[str, Any]]:
+        return [
+            para.to_json() for para in self.elements
+        ]
+    
+    @classmethod
+    def from_json(cls, data: List[Dict[str, Any]]):
+        return cls(
+            elements=[Paragraph.from_json(d) for d in data]
+        )
+
+
 class Metadata(BaseModel):
-    doi: str = None
-    title: str = None
-    journal: str = None
-    date: str = None
-    author_list: List[str] = None
+    doi: Optional[str] = None
+    title: Optional[str] = None
+    journal: Optional[str] = None
+    date: Optional[str] = None
+    author_list: Optional[List[str]] = None
 
     def __getitem__(self, item):
         return getattr(self, item)
     
     def to_json(self) -> Dict[str, Any]:
-        pass
+        return {
+            'doi': self.doi,
+            'title': self.title,
+            'journal': self.journal,
+            'date': self.date,
+            'author_list': self.author_list
+        }
 
     @classmethod
     def from_json(cls, data):
-        pass
+        return cls(
+            doi=data['doi'],
+            type=data['title'],
+            journal=data['journal'],
+            date=data['date'],
+            author_list=data['author_list']
+        )

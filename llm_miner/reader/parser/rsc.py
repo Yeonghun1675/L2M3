@@ -20,19 +20,24 @@ class RSCParser(BaseParser):
     @classmethod
     def parsing(cls, file_bs) -> List[Paragraph]:
         elements = []
+        title_para = None
+
         for element in file_bs(cls.all_tags()):
             if element.name in cls.table_tags:
                 success, element = cls._is_table(element)
                 if not success:
                     continue
                 type_ = 'table'
+                clean_text = ''
             elif element.name in cls.figure_tags:
                 if element.name == "div" and word_find(["image_table"], element, 'class'):
                     type_ = 'figure'
+                    clean_text = element.text
                 else:
                     continue
             elif element.name in cls.para_tags and cls._is_para(element):
                 type_ = 'text'
+                clean_text = element.text
             else:
                 continue
 
@@ -40,8 +45,19 @@ class RSCParser(BaseParser):
                 idx = len(elements) + 1,
                 type = type_,
                 content = element,
+                clean_text=clean_text
             )
-            elements.append(data)
+            
+            if title_para and type_ == 'text':
+                title_para.append(data)
+                data = title_para
+                title_para = None
+            else:
+                elements.append(data)
+
+            if type_ == 'text' and len(clean_text) < 200 and not title_para:
+                title_para = data
+
         return elements
 
     @classmethod
