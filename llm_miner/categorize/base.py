@@ -27,8 +27,8 @@ class CategorizeAgent(Chain):
         return [self.output_key]
     
     def _write_log(self, text: str, run_manager):
-        run_manager.on_text(f'\n[Categorize] ', verbose=self.verbose)
-        run_manager.on_text(text, verbose=self.verbose, color='yellow')
+        run_manager.on_text(f"\n[Categorize] ", verbose=self.verbose)
+        run_manager.on_text(text, verbose=self.verbose, color="yellow")
 
     def _parse_output(self, output: str) -> Dict[str, str]:
         output = output.replace("List:", "").strip()  # remove `List`
@@ -46,7 +46,6 @@ class CategorizeAgent(Chain):
         callbacks = _run_manager.get_child()
         
         para: Paragraph = inputs[self.input_key]
-
         if para.type in self.labels:
             self._write_log([para.type], _run_manager)
             return {self.output_key: [para.type]}
@@ -54,15 +53,15 @@ class CategorizeAgent(Chain):
         llm_output = self.categorize_chain.run(
             paragraph = str(para.content),
             callbacks = callbacks,
-            stop = ['List:'],
+            stop = ["List:"],
         )
 
         output = self._parse_output(llm_output)
 
         if not output:
-            raise ContextError(f'There are no categories in paragraph')
+            raise ContextError(f"There are no categories in paragraph")
         if any([v not in self.labels for v in output]):
-            raise ContextError(f'Class of paragraph must be one of {self.labels}, not {output}')
+            raise ContextError(f"Class of paragraph must be one of {self.labels}, not {output}")
 
         self._write_log(str(output), _run_manager)
 
@@ -77,7 +76,7 @@ class CategorizeAgent(Chain):
     ) -> Chain:
         template = PromptTemplate(
             template=prompt,
-            input_variables=['paragraph'],
+            input_variables=["paragraph"],
         )
         categorize_chain = LLMChain(llm=llm, prompt=template)
         return cls(categorize_chain=categorize_chain, **kwargs)
