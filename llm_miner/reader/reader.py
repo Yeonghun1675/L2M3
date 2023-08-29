@@ -1,9 +1,9 @@
 import warnings
-from typing import List, Any
+from typing import List, Any, Dict
 from pydantic import BaseModel
 from pathlib import Path
 
-from llm_miner.reader.parser.base import Paragraph, Metadata, BaseParser
+from llm_miner.reader.parser.base import Paragraph, Elements, Metadata, BaseParser
 from llm_miner.reader.parser.elsevier import ElsevierParser
 from llm_miner.reader.parser.acs import ACSParser
 from llm_miner.reader.parser.rsc import RSCParser
@@ -25,7 +25,7 @@ parser_dict = {
 class JournalReader(BaseModel):
     filepath: Path
     publisher: str
-    elements: List[Paragraph]
+    elements: Elements
     metadata: Metadata
 
     @property
@@ -45,13 +45,19 @@ class JournalReader(BaseModel):
         return f'https://doi.org/{self.doi}'
     
     def get_tables(self) -> List[Paragraph]:
-        return [e for e in self.elements if e.type == 'table'] 
+        return self.elements.get_tables()
             
     def get_texts(self) -> List[Paragraph]:
-        return [e for e in self.elements if e.type == 'text'] 
+        return self.elements.get_texts()
                 
     def get_figures(self) -> List[Paragraph]:
-        return [e for e in self.elements if e.type == 'figure'] 
+        return self.elements.get_figures()
+    
+    def get_synthesis_conditions(self) -> List[Paragraph]:
+        return self.elements.get_synthesis_conditions()
+    
+    def get_properties(self) -> List[Paragraph]:
+        return self.elements.get_properties()
     
     @classmethod
     def from_file(cls, filepath: str, publisher: str = None):
@@ -71,7 +77,23 @@ class JournalReader(BaseModel):
         return cls(
             filepath=Path(filepath),
             publisher=publisher,
-            elements=elements,
+            elements=Elements(elements=elements),
             metadata=metadata,
         )
+    
+    def to_json(self,) -> Dict[str, Any]:
+        return {
+            'filepath': self.filepath,
+            'publisher': self.publisher,
+            'elements': self.elements.to_json(),
+            'metadata': self.metadata.to_json(),
+        }
 
+    @classmethod
+    def from_json(cls, data):
+        return cls(
+            filepath=data['filepath'],
+            publisher=data['publisher'],
+            elements=Elements.from_json(data['elements']),
+            metadata=Metadata.from_json(data['metadata'])
+        )
