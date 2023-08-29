@@ -29,12 +29,12 @@ class SynthesisMiningAgent(Chain):
         return [self.output_key]
     
     def _write_log(self, text: str, run_manager):
-        run_manager.on_text(f'\n[Synthesis Mining] ', verbose=self.verbose)
-        run_manager.on_text(text, verbose=self.verbose, color='yellow')
+        run_manager.on_text(f"\n[Synthesis Mining] ", verbose=self.verbose)
+        run_manager.on_text(text, verbose=self.verbose, color="yellow")
 
     def _parse_output(self, output: str) -> Dict[str, str]:
         output = output.replace("List:", "").strip()  # remove `List`
-        if regex.search(r'[Ii] do not know', output):
+        if regex.search(r"[Ii] do not know", output):
             return output
         try:
             return ast.literal_eval(output)
@@ -63,7 +63,7 @@ class SynthesisMiningAgent(Chain):
             try:
                 structure = Formatter.operation[prop]
             except KeyError:
-                self._write_log(f'There are no operation information for {prop}', _run_manager)
+                self._write_log(f"There are no operation information for {prop}", _run_manager)
                 continue
             prop_string += f"- {structure}\n"
 
@@ -72,7 +72,7 @@ class SynthesisMiningAgent(Chain):
             synthesis_type=synthesis_type,
             format=prop_string,
             callbacks=callbacks,
-            stop=['Paragraph:']
+            stop=["Paragraph:"]
         )
         output = self._parse_output(llm_output)
         self._write_log(json.dumps(output), _run_manager)
@@ -91,12 +91,12 @@ class SynthesisMiningAgent(Chain):
         
         template_type = PromptTemplate(
             template=prompt_type,
-            input_variables=['paragraph'],
+            input_variables=["paragraph"],
         )
         template_struct = PromptTemplate(
             template=prompt_struct,
-            input_variables=['synthesis_type', 'paragraph','format'],
-            partial_variables={'example': example_struct},
+            input_variables=["synthesis_type", "paragraph","format"],
+            partial_variables={"example": example_struct},
 
         )
 

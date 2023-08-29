@@ -5,21 +5,31 @@ If properties exist, you must find all the intensive properties in paragraphs. N
 - crystal_size: crystal size of materials.
 - pore_diameter: pore diameter of materials ex) LCD, PLD.
 - gas_adsorption: amount of gas uptake, gas storage, gas adsorption, selective gas uptake of materials.
-- thermal_property: decomposition temperature, thermal conductivity, glass transition temperature of materials ex) Tg, TDT.
-- mechanical_property: properties related to application of forces. ex) Young"s modulus, Poisson"s ratio, stress.
+- decomposition_temperature: temperature that material starts to decompose.
+- heat_capacity: energy required to change its temperature.
+- thermal_expansion_coefficient: dimensional change with temperature variation.
+- thermal_conductivity: material's ability to conduct heat.
+- youngs_modulus: stiffness of the material.
+- bulk_modulus: material's response to hydrostatic pressure.
+- shear_modulus: material's response to shear stress.
+- poissons_ratio: ratio of transverse strain to axial strain in a loaded material.
 - selectivity: selectivity of materials. "Selective" is not equal to "selectivity"
 - catalytic_activity: turnover frequency of materials ex) TOF.
 - density: bulk density of materials.
-- chemical_formula_weight: sum of the atomic weights of the elements present in its chemical formula.
+- chemical_formula_weight: sum of the atomic weights of the elements.
 - porosity: fraction of total volume of material that is occupied by pores or voids ex) accessible volume fraction.
 - crystal_system: symmetrical and geometrical arrangements within the crystal lattice of materials.
 - topology: manner in which the metal nodes and organic linkers are connected in a three-dimensional arrangement.
 - space_group: a mathematical description of the symmetries inherent in a periodic crystal lattice.
-- magentic_property: properties of materials in the presence of a magnetic field.
-- optical_property: properties of materials in response to electromagnetic radiation.
-- etc: Other properties not included in the above.
+- magnetic_moment: strength and orientation of a material.
+- magnetic_susceptibility: how much a material will become magnetized.
+- refractive_index: how light propagates through medium.
+- spectrum: absorbed or transmitted wavelength of material.
+- etc: Other properties except for properties above.
 
-You must not include the same property several times. If there are surface_area and BET surface_area in the paragraph at the same time, you must include "surface_area" once. Only properties must be included and the name of materials must not be included. If same property of different materials appears, you must include the property only once. If certain property you find does not have a value, please do not include that property. For example, even if selectivity is stated in the paragraph, do not write selectivity when specific value is not written. Do not be confused between gas adsorption and selectivity. Gas adsorption is a property that has a unit and selectivity is unitless. Even though there is a word "selectivity", it is not always selectivity. If there is a value with unit, it is gas adsorption.
+You must not include the same property several times. If there are surface_area and BET surface_area in the paragraph at the same time, you must include "surface_area" once. Only properties must be included and the name of materials must not be included. If same property of different materials appears, you must include the property only once.
+If certain property you find does not have a value, please do not include that property. For example, even if selectivity is stated in the paragraph, do not write selectivity when specific value is not written.
+Do not be confused between gas adsorption and selectivity. Gas adsorption is a property that has a unit and selectivity is unitless. Even though there is a word "selectivity", it is not always selectivity. If there is a value with unit, it is gas adsorption.
 If you"re uncertain, please replay with "I do not know".
 
 Begin!
@@ -28,10 +38,10 @@ Paragraph: Metal Organic Frameworks (MOFs) are known for their exceptional prope
 List: ["surface_area", "pore_volume", "gas_adsorption"]
 
 Paragraph: The MOF-C exhibited strong fluorescence, emitting intense blue light with a maximum emission wavelength at 450 nm. The MOF-D exhibits intriguing magnetic properties, displaying a high magnetic moment of 4.8 μB per Fe atom at room temperature.
-List: ["optical_property","magnetic_property"]
+List: ["etc","magnetic_moment"]
 
 Paragraph: The Metal-Organic Framework (MOF) material named MOF-G exhibited a remarkable pore_volume of 1.2 cm3/g, enabling high gas adsorption capacities. MOF-G showed a Thermal Decomposition Temperature (TDT) of 450°C and a TDT of 350°C. The MOF material MOF-H demonstrated exceptional guest molecule selectivity, exhibiting a high adsorption preference for CO2 over N2. Moreover, MOF-I achieved a high turnover frequency (TOF) of 1000 h-1. Characterization results revealed significant flexibility in the MOF structure, allowing for the accommodation of guest molecules of different sizes.
-List: ["pore_volume", "thermal_property", "catalytic_activity"]
+List: ["pore_volume", "decomposition_temperature", "catalytic_activity"]
 
 Paragraph: Metal-Organic Frameworks (MOFs) are a class of porous materials known for their diverse properties. For instance, MOF-J exhibits a notable pore_volume of 0.8 cm3/g, facilitating high gas adsorption capacities. The MOF-K demonstrates remarkable guest molecule selectivity, showcasing a strong adsorption preference for methane (CH4) over other gases like nitrogen (N2). Additionally, MOF-L achieves a high turnover frequency (TOF) in catalytic reactions. Comprehensive characterization results unveiled significant structural flexibility in MOF-L, allowing for the accommodation of guest molecules with varying sizes and shapes. These properties make MOFs promising candidates for various applications, including gas storage, gas separation, and catalysis.
 List: ["pore_volume"]
@@ -40,7 +50,7 @@ Paragraph: MOF-A displays a dielectric constant of approximately 4.5 at 1 kHz, m
 List: ["etc"]
 
 Paragraph: Metal-Organic Frameworks (MOFs) are a class of porous materials with a diverse range of properties that make them attractive for numerous applications. MOFs possess high surface_areas, allowing for efficient gas adsorption and storage. The tunable pore sizes in MOFs enable selective adsorption of specific gas molecules over others, making them promising for gas separation processes. Additionally, MOFs exhibit excellent thermal stability, withstanding high temperatures without structural degradation, making them suitable for catalytic reactions at elevated temperatures. Their inherent flexibility allows for guest molecule inclusion, facilitating various host-guest interactions for applications in molecular recognition and sensing. Moreover, MOFs can be engineered with tailored functionalities, such as catalytic sites, to enhance their reactivity for chemical transformations. Their vast structural diversity and modularity offer exciting possibilities for designing MOFs with unique properties for specific tasks.
-List: []
+List: [""]
 
 Paragraph: {paragraph}
 List:"""
@@ -57,6 +67,8 @@ You must follow below rules:
 - Do not write the information in the {example}.
 - Room temperature means 298K.
 - If the sentence includes more than one information, you must extract the information for each separately.
+- When {prop} is "etc", do not extract pore volume, surface area, crystal size, gas adsorption, selectivity, catalytic activity, density, chemical formula weight, porosity, crystal system, space group, pore diameter, topology, decomposition temperature, heat capacity, thermal expansion coefficient, thermal conductivity, Young's modulus, bulk modulus, shear modulus, Poisson's ratio, magnetic moment, magnetic susceptibility, refractive index, spectrum.
+
 
 {information} 
 

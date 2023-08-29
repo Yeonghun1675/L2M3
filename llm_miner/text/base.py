@@ -28,12 +28,12 @@ class TextMiningAgent(Chain):
         return [self.output_key]
     
     def _write_log(self, text: str, run_manager):
-        run_manager.on_text(f'\n[Property Mining] ', verbose=self.verbose)
-        run_manager.on_text(text, verbose=self.verbose, color='yellow')
+        run_manager.on_text(f"\n[Property Mining] ", verbose=self.verbose)
+        run_manager.on_text(text, verbose=self.verbose, color="yellow")
 
     def _parse_output(self, output: str) -> Dict[str, str]:
         output = output.replace("List:", "").strip()  # remove `List`
-        if regex.search(r'[Ii] do not know', output):
+        if regex.search(r"[Ii] do not know", output):
             return output
         try:
             return ast.literal_eval(output)
@@ -65,7 +65,7 @@ class TextMiningAgent(Chain):
                 info = Formatter.information[prop]
                 example = Formatter.example_text[prop]
             except KeyError:
-                self._write_log(f'There are no format for {prop}', _run_manager)
+                self._write_log(f"There are no format for {prop}", _run_manager)
                 continue
 
             llm_output = self.extract_chain.run(
@@ -78,7 +78,7 @@ class TextMiningAgent(Chain):
             )
 
             st_output = self._parse_output(llm_output)
-            self._write_log(f'{prop} : {st_output}', _run_manager)
+            self._write_log(f"{prop} : {st_output}", _run_manager)
             output[prop] = st_output
 
         return {"output": output}
@@ -94,11 +94,11 @@ class TextMiningAgent(Chain):
         
         template_type = PromptTemplate(
             template=prompt_type,
-            input_variables=['paragraph'],
+            input_variables=["paragraph"],
         )
         template_extract = PromptTemplate(
             template=prompt_extract,
-            input_variables=['prop', 'structured_data', 'information', 'example', 'paragraph'],
+            input_variables=["prop", "structured_data", "information", "example", "paragraph"],
         )
 
         type_chain = LLMChain(llm=llm, prompt=template_type)

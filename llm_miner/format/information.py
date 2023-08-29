@@ -38,11 +38,36 @@ weight = """
 
 """
 
-thermal_property = """
-Thermal properties include thermal stability, decomposition temperature (TDT), thermal conductivity, heat capacity, coefficient of thermal expansion (CTE), glass transition temperature (Tg), and etc. They are all related to the temperature, so its unit has C or K. For example, "°C", "J/g°C", and"/K" are all units of thermal properties. Decomposition temperature (TDT) is where decomposition starts. You must inclued information like type of thermal properties such as ΔHc, Eg, and Ev. If there is information about weight loss, you must write it in etc part.
+decomposition_temperature = """
+
 """
-mechanical_property = """
-There are mechanical strength and Young's modulus.
+
+heat_capacity = """
+
+"""
+
+thermal_expansion_coefficient = """
+
+"""
+
+thermal_conductivity = """
+
+"""
+
+youngs_modulus = """
+
+"""
+
+bulk_modulus = """
+
+"""
+
+shear_modulus = """
+
+"""
+
+poissons_ratio = """
+
 """
 
 selectivity= """
@@ -56,14 +81,26 @@ If "%" and "conversion" words exist in the sentence, it must be about catalytic 
 density = """
 
 """
-magnetic_property = """
+magnetic_moment = """
 
 """
 
-optical_property = """
+magnetic_susceptibility = """
+
+"""
+
+chemical_formula_weight = """
+
+"""
+
+refractive_index = """
+
+"""
+
+spectrum = """
 
 """
 
 etc = """
-
+In "etc" part, you must only include information that does not fit into another cateogry.
 """

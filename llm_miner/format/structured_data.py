@@ -95,32 +95,83 @@ chemical_formula_weight = """
 "chemical formula weight": [
     {
         "value": "",
+        "unit": ""
     }, ...
 ]
 """
 
-
-thermal_property = """
-"thermal property": [
+decomposition_temperature = """
+"decomposition temperature": [ 
     {
-        "type": "", # ex) Tg, TDT
-        "value":"",
-        "unit":""
+        "value": "",
+        "unit": ""
+
     }, ...
 ]
 """
 
-
-mechanical_property = """
-"mechanical property": [
+heat_capacity = """
+"heat capacity": [
     {
-        "type": "",  # ex) Young's modulus, Poisson's ratio
-        "value":"",
-        "unit":""
+        "value": "",
+        "unit": ""
     }, ...
 ]
 """
 
+thermal_expansion_coefficient = """
+"thermal expansion coefficient": [
+    {
+        "value": "",
+        "unit": ""
+    }, ...
+]
+"""
+
+thermal_conductivity = """
+"thermal conductivity": [
+    {
+        "value": "",
+        "unit": ""
+    }, ...
+]
+"""
+
+youngs_modulus = """
+"Young's modulus": [
+    {
+        "value": "",
+        "unit": ""
+    }, ...
+]
+"""
+
+bulk_modulus = """
+"bulk modulus": [
+    {
+        "value": "",
+        "unit": ""
+    }, ...
+]
+"""
+
+shear_modulus = """
+"shear modulus": [
+    {
+        "value": "",
+        "unit": ""
+    }, ...
+]
+"""
+
+poissons_ratio = """
+"Poisson's ratio": [
+    {
+        "value": "",
+
+    }, ...
+]
+"""
 
 selectivity = """
 "selectivity": [
@@ -172,7 +223,8 @@ catalytic_activity = """
 "catalytic activity": [
     {
         "value":"",
-        "unit":""
+        "unit":"",
+        "time":""
     }, ...
 ]
 """
@@ -187,11 +239,18 @@ density = """
 ]
 """
 
-
-magnetic_property = """
-"magnetic property": [
+magnetic_moment = """
+"magnetic moment": [
     {
-        "type": "", # ex) magnetic susceptibility
+        "value":"",
+        "unit":""
+    }, ...
+]
+"""
+
+magnetic_susceptibility = """
+"magnetic susceptibility": [
+    {
         "value":"",
         "unit":""
     }, ...
@@ -199,16 +258,22 @@ magnetic_property = """
 """
 
 
-optical_property = """
-"optical property": [
+refractive_index = """
+"refractive index": [
     {
-        "type": "",  # ex) absorption spectrum
+        "value":""
+    }, ...
+]
+"""
+
+spectrum = """
+"spectrum": [
+    {
         "value":"",
         "unit":""
     }, ...
 ]
 """
-
 
 cell_volume = """
 "cell volume": [
