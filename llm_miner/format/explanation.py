@@ -48,7 +48,7 @@ temperature that material starts to decompose.
 """
 
 
-heat_capaciy = """
+heat_capacity = """
 energy required to change its temperature.
 """
 

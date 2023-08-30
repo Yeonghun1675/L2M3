@@ -1,31 +1,6 @@
 PROMPT_TYPE = """First, you must decide whether properties exist or not. Except for topology, property must have a float value. If the properties have no float value, never extract that properties. If there is no property in the paragraph, please return an empty list.
 If properties exist, you must find all the intensive properties in paragraphs. Names of properties must be one of following:
-- surface_area: surface area of materials. ex) SA, BET surface area, Langmuir surface area
-- pore_volume: pore volume of materials ex) PV.
-- crystal_size: crystal size of materials.
-- pore_diameter: pore diameter of materials ex) LCD, PLD.
-- gas_adsorption: amount of gas uptake, gas storage, gas adsorption, selective gas uptake of materials.
-- decomposition_temperature: temperature that material starts to decompose.
-- heat_capacity: energy required to change its temperature.
-- thermal_expansion_coefficient: dimensional change with temperature variation.
-- thermal_conductivity: material's ability to conduct heat.
-- youngs_modulus: stiffness of the material.
-- bulk_modulus: material's response to hydrostatic pressure.
-- shear_modulus: material's response to shear stress.
-- poissons_ratio: ratio of transverse strain to axial strain in a loaded material.
-- selectivity: selectivity of materials. "Selective" is not equal to "selectivity"
-- catalytic_activity: turnover frequency of materials ex) TOF.
-- density: bulk density of materials.
-- chemical_formula_weight: sum of the atomic weights of the elements.
-- porosity: fraction of total volume of material that is occupied by pores or voids ex) accessible volume fraction.
-- crystal_system: symmetrical and geometrical arrangements within the crystal lattice of materials.
-- topology: manner in which the metal nodes and organic linkers are connected in a three-dimensional arrangement.
-- space_group: a mathematical description of the symmetries inherent in a periodic crystal lattice.
-- magnetic_moment: strength and orientation of a material.
-- magnetic_susceptibility: how much a material will become magnetized.
-- refractive_index: how light propagates through medium.
-- spectrum: absorbed or transmitted wavelength of material.
-- etc: Other properties except for properties above.
+{explanation}
 
 You must not include the same property several times. If there are surface_area and BET surface_area in the paragraph at the same time, you must include "surface_area" once. Only properties must be included and the name of materials must not be included. If same property of different materials appears, you must include the property only once.
 If certain property you find does not have a value, please do not include that property. For example, even if selectivity is stated in the paragraph, do not write selectivity when specific value is not written.

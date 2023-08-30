@@ -48,8 +48,10 @@ class TextMiningAgent(Chain):
         _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
         callbacks = _run_manager.get_child()
         
+        explanation = self._add_explanation()
         paragraph = inputs[self.input_key]
         llm_output = self.type_chain.run(
+            explanation = explanation,
             paragraph = paragraph,
             callbacks=callbacks,
             stop=["Paragraph:"]
@@ -82,6 +84,22 @@ class TextMiningAgent(Chain):
             output[prop] = st_output
 
         return {"output": output}
+    
+    def _add_explanation(self):
+        erase_list = [
+            "cell_volume",
+            "lattice_parameters",
+            "conversion",
+            "reaction_yield",
+            "chemical_formula",
+        ]
+        formatter = Formatter
+        target_items = list(formatter.explanation.keys())
+        target_items = [item for item in target_items if item not in erase_list]
+        explained_props = ""
+        for item in target_items:
+            explained_props += "\n" + f"- {item}: " + formatter.explanation[item].strip()
+        return explained_props.strip()
 
     @classmethod
     def from_llm(
@@ -94,7 +112,7 @@ class TextMiningAgent(Chain):
         
         template_type = PromptTemplate(
             template=prompt_type,
-            input_variables=["paragraph"],
+            input_variables=["explanation", "paragraph"],
         )
         template_extract = PromptTemplate(
             template=prompt_extract,
