@@ -39,7 +39,7 @@ class ACSParser(BaseParser):
             data = Paragraph(
                 idx = len(elements) + 1,
                 type = type_,
-                content = element,
+                content = str(element),
                 clean_text = clean_text
             )
             
