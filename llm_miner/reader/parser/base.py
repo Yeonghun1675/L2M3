@@ -39,7 +39,7 @@ class Paragraph(BaseModel):
     classification: Optional[Any] = None
     content: str
     clean_text: Optional[str] = None
-    data: Optional[List[Dict[str, Any]]] = None
+    data: Optional[List[Any]] = None
     include_properties: Optional[Any] = None
 
     def __getitem__(self, item):
