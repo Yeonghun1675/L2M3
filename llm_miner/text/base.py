@@ -37,11 +37,7 @@ class TextMiningAgent(Chain):
         if regex.search(r"[Ii] do not know", output):
             return [output]
         try:
-            data = ast.literal_eval(output)
-            if isinstance(data, list):
-                return data
-            else:
-                return [data]
+            return ast.literal_eval(output)
         except Exception as e:
             raise StructuredFormatError(e, output)
     
@@ -91,7 +87,7 @@ class TextMiningAgent(Chain):
             self._write_log(f"{prop} : {st_output}", _run_manager)
             output[prop] = st_output
 
-        element.set_data(output)
+        element.set_data([output])
         return {"output": output}
     
     def _add_explanation(self):
