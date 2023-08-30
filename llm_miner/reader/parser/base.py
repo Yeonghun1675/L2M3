@@ -66,7 +66,7 @@ class Paragraph(BaseModel):
                 self.data = others.data
     
     def set_data(self, data) -> None:
-        if isinstance(self.data, None):
+        if self.data is None:
             self.data = data
         else:
             self.data += data
@@ -75,7 +75,7 @@ class Paragraph(BaseModel):
         return self.data
     
     def set_classification(self, cls) -> None:
-        if isinstance(self.classification, None):
+        if self.classification is None:
             if isinstance(cls, str):
                 self.classification = [cls]
             else:
@@ -90,7 +90,7 @@ class Paragraph(BaseModel):
         self.clean_text = text
 
     def set_include_properties(self, props: List[Any]) -> None:
-        if isinstance(self.data, None):
+        if self.include_properties is None:
             self.include_properties = props
         else:
             self.include_properties += props
