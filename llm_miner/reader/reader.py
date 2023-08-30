@@ -1,4 +1,5 @@
 import warnings
+import json
 from typing import List, Any, Dict
 from pydantic import BaseModel
 from pathlib import Path
@@ -81,19 +82,30 @@ class JournalReader(BaseModel):
             metadata=metadata,
         )
     
-    def to_json(self,) -> Dict[str, Any]:
+    def to_dict(self,) -> Dict[str, Any]:
         return {
-            'filepath': self.filepath,
+            'filepath': str(self.filepath),
             'publisher': self.publisher,
-            'elements': self.elements.to_json(),
-            'metadata': self.metadata.to_json(),
+            'elements': self.elements.to_dict(),
+            'metadata': self.metadata.to_dict(),
         }
+    
+    def to_json(self, filepath) -> Dict[str, Any]:
+        with open(filepath, 'w') as f:
+            json.dump(self.to_dict(), f)
 
     @classmethod
-    def from_json(cls, data):
+    def from_dict(cls, data):
         return cls(
-            filepath=data['filepath'],
+            filepath=Path(data['filepath']),
             publisher=data['publisher'],
-            elements=Elements.from_json(data['elements']),
-            metadata=Metadata.from_json(data['metadata'])
+            elements=Elements.from_dict(data['elements']),
+            metadata=Metadata.from_dict(data['metadata'])
         )
+    
+    @classmethod
+    def from_json(cls, filepath):
+        with open(filepath) as f:
+            data = json.load(f)
+        return cls.from_dict(data)
+

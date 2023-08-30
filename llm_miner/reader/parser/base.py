@@ -95,7 +95,7 @@ class Paragraph(BaseModel):
         else:
             self.include_properties += props
 
-    def to_json(self, ) -> Dict[str, Any]:
+    def to_dict(self, ) -> Dict[str, Any]:
         return {
             'idx': self.idx,
             'type': self.type,
@@ -107,7 +107,7 @@ class Paragraph(BaseModel):
         }
 
     @classmethod
-    def from_json(cls, data):
+    def from_dict(cls, data):
         return cls(
             idx=data['idx'],
             type=data['type'],
@@ -144,15 +144,15 @@ class Elements(Sequence, BaseModel):
     def get_properties(self) -> List[Paragraph]:
         return [e for e in self.elements if e.type == 'property'] 
     
-    def to_json(self, )-> List[Dict[str, Any]]:
+    def to_dict(self, )-> List[Dict[str, Any]]:
         return [
-            para.to_json() for para in self.elements
+            para.to_dict() for para in self.elements
         ]
     
     @classmethod
-    def from_json(cls, data: List[Dict[str, Any]]):
+    def from_dict(cls, data: List[Dict[str, Any]]):
         return cls(
-            elements=[Paragraph.from_json(d) for d in data]
+            elements=[Paragraph.from_dict(d) for d in data]
         )
 
 
@@ -166,7 +166,7 @@ class Metadata(BaseModel):
     def __getitem__(self, item):
         return getattr(self, item)
     
-    def to_json(self) -> Dict[str, Any]:
+    def to_dict(self) -> Dict[str, Any]:
         return {
             'doi': self.doi,
             'title': self.title,
@@ -176,7 +176,7 @@ class Metadata(BaseModel):
         }
 
     @classmethod
-    def from_json(cls, data):
+    def from_dict(cls, data):
         return cls(
             doi=data['doi'],
             type=data['title'],
