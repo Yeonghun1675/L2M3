@@ -57,6 +57,7 @@ class CategorizeAgent(Chain):
         )
 
         output = self._parse_output(llm_output)
+        para.set_classification(output)
 
         if not output:
             raise ContextError(f"There are no categories in paragraph")
