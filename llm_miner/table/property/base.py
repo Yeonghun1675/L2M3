@@ -31,7 +31,7 @@ class PropertyTableAgent(Chain):
         template_categorize = PromptTemplate(
             template=prompt_categorize,
             template_format='jinja2',
-            input_variables=['paragraph'],
+            input_variables=['explanation', 'paragraph'],
         )
         categorize_chain = LLMChain(llm=llm, prompt=template_categorize)
 
@@ -68,8 +68,11 @@ class PropertyTableAgent(Chain):
         _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
         callbacks = _run_manager.get_child()
 
+        explanation = self._add_explanation()
+        print(explanation)
         paragraph = inputs[self.input_key]
         included_props = self.categorize_chain.run(
+            explanation=explanation,
             paragraph=paragraph,
             callbacks=callbacks,
             stop=["Input:"]
@@ -89,6 +92,24 @@ class PropertyTableAgent(Chain):
 
         output = self._parse_output_json(output)
         return {"output": output}
+
+    def _add_explanation(self):
+        erase_list = [
+            "chemical_formula",
+            "chemical_formula_weight",
+            "refractive_index",
+            "cell_volume",
+            "lattice_parameters",
+            "catalytic_activity",
+            "crystal_system",
+        ]
+        formatter = Formatter
+        target_items = list(formatter.explanation.keys())
+        target_items = [item for item in target_items if item not in erase_list]
+        explained_props = ""
+        for item in target_items:
+            explained_props += "\n" + f"- {item}: " + formatter.explanation[item].strip()
+        return explained_props.strip()
 
     def _parse_output_props(self, output: str) -> Dict[str, str]:
         output = output.replace("List:", "").strip()
@@ -131,3 +152,6 @@ class PropertyTableAgent(Chain):
 }}
 ```"""
         return example
+
+    def _choose_examples(self):
+        pass

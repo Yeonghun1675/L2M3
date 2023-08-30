@@ -101,7 +101,7 @@ chemical_formula_weight = """
 """
 
 decomposition_temperature = """
-"decomposition temperature": [ 
+"decomposition temperature": [
     {
         "value": "",
         "unit": ""
@@ -304,8 +304,6 @@ topology = """
 "topology" : [
     {
         "value":"", # ex) pcu
-        
-
     }, ...
 ]
 """
