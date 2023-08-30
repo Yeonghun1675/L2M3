@@ -1,21 +1,20 @@
-surface_area="""
+surface_area = """
 There are various types of surfacea area. For example, BET surface area and Langmuir surface area are widely used. If there is information about type of surface area, please write the surface area type.
 """
 
-pore_volume="""
+pore_volume = """
 
 """
 
-crystal_size="""
+crystal_size = """
 
 """
 
-    
-gas_adsorption="""
+gas_adsorption = """
 
 """
 
-porosity ="""
+porosity = """
 
 """
 
@@ -70,7 +69,7 @@ poissons_ratio = """
 
 """
 
-selectivity= """
+selectivity = """
 
 """
 

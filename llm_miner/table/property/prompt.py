@@ -1,21 +1,6 @@
 PROPERTY_CATEGORIZE = """From the provided markdown table, generate a Python list of item names with data present. You must exclude absent items and return an empty list if any key items are missing. Names of items must be one of following:
 
-- surface area: surface area of materials. ex) SA, BET surface area, Langmuir surface area
-- total pore volume: pore volume of materials ex) PV.
-- crystal size: crystal size of materials.
-- pore diameter: pore diameter of materials ex) LCD, PLD.
-- gas adsorption: amount of gas uptake, gas storage, gas adsorption, selective gas uptake of materials.
-- thermal property: decomposition temperature, thermal conductivity, glass transition temperature of materials ex) Tg, TDT.
-- mechanical property: properties related to application of forces. ex) Young"s modulus, Poisson"s ratio, stress.
-- selectivity: selectivity of materials. "Selective" is not equal to "selectivity"
-- conversion: conversion via catalyst or conversion via synthesis. ex) TOF
-- reaction yield: amount of product yield via synthesis reaction.
-- density: bulk density of materials.
-- porosity: fraction of total volume of material that is occupied by pores or voids ex) accessible volume fraction, void fraction.
-- topology: manner in which the metal nodes and organic linkers are connected in a three-dimensional arrangement.
-- magentic property: properties of materials in the presence of a magnetic field.
-- optical property: properties of materials in response to electromagnetic radiation.
-- etc: Other properties not included in the live above but can be represented by numeric values.
+{{explanation}}
 
 You must not include the same property several times. If there are surface_area and BET surface_area in the paragraph at the same time, you must include "surface_area" once. Only properties must be included and the name of materials must not be included. If same property of different materials appears, you must include the property only once. If certain property you find does not have a value, please do not include that property. For example, even if selectivity is stated in the paragraph, do not write selectivity when specific value is not written. Do not be confused between gas adsorption and selectivity. Gas adsorption is a property that has a unit and selectivity is unitless. Even though there is a word "selectivity", it is not always selectivity. If there is a value with unit, it is gas adsorption.
 If you"re uncertain, please return empty list.
@@ -82,7 +67,7 @@ a Obtained from the N2 isotherms at 77K, m2 g<sup>-1</sup>.
 b mmol g<sup>-1</sup>.
 c kJ mol<sup>-1</sup>.
 d at 298K, mmol g<sup>-1</sup>.
-List: ["surface area", "gas adsorption"]
+List: ["surface_area", "gas_adsorption"]
 
 Input:
 Table 7
@@ -104,7 +89,7 @@ Cyclohexene oxidation in varying reaction temperature and time.[^a]
 
 [^a]: Conditions: Cyclohexene (1 mmol), H2O2 (1 mmol), CH3COOH (0.5 mmol) and C1 (0.1 mol%) in 2 mL CH3CN at 0°C within 2 h.
 [^b]: Yields based on the epoxides formed.
-List: ["conversion", "reaction yield"]
+List: ["conversion", "reaction_yield"]
 
 Input:
 {{paragraph}}

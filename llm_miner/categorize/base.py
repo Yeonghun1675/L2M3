@@ -14,7 +14,7 @@ from llm_miner.reader.parser.base import Paragraph
 
 class CategorizeAgent(Chain):
     categorize_chain: LLMChain
-    labels: List[str] = ["table", "figure", "text", "property", "synthesis condition", "else"]
+    labels: List[str] = ["table", "figure", "property", "synthesis condition", "else"]
     input_key: str = "paragraph"
     output_key: str = "output"
 

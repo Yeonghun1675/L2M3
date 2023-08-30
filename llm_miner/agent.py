@@ -67,7 +67,7 @@ class LLMMiner(Chain):
         elif 'else' in categories or 'figure' in categories:
             output = []
         else:
-            raise ContextError('category must be `synthesis condition`, `table`, `figure`, `property` and `else`, not {categories}')
+            raise ContextError(f'category must be `synthesis condition`, `table`, `figure`, `property` and `else`, not {categories}')
 
         return {self.output_key: output}
     
