@@ -9,6 +9,7 @@ from langchain.prompts import PromptTemplate
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
 from llm_miner.text.prompt import PROMPT_TYPE, PROMPT_EXT
+from llm_miner.reader.parser.base import Paragraph
 from llm_miner.format import Formatter
 from llm_miner.error import StructuredFormatError
 
@@ -16,7 +17,7 @@ from llm_miner.error import StructuredFormatError
 class TextMiningAgent(Chain):
     type_chain: LLMChain
     extract_chain: LLMChain
-    input_key: str = "paragraph"
+    input_key: str = "element"
     output_key: str = "output"
 
     @property
@@ -47,9 +48,11 @@ class TextMiningAgent(Chain):
     ) -> Dict[str, Any]:
         _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
         callbacks = _run_manager.get_child()
-        
+
         explanation = self._add_explanation()
-        paragraph = inputs[self.input_key]
+        element: Paragraph = inputs[self.input_key]
+        paragraph: str = element.content
+
         llm_output = self.type_chain.run(
             explanation = explanation,
             paragraph = paragraph,
@@ -59,6 +62,7 @@ class TextMiningAgent(Chain):
 
         property_type = self._parse_output(llm_output)
         self._write_log(str(property_type), _run_manager)
+        element.set_include_properties(property_type)
 
         output = {}
         for prop in property_type:
@@ -83,6 +87,7 @@ class TextMiningAgent(Chain):
             self._write_log(f"{prop} : {st_output}", _run_manager)
             output[prop] = st_output
 
+        element.set_data(output)
         return {"output": output}
     
     def _add_explanation(self):
