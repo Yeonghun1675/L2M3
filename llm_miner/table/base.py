@@ -8,7 +8,7 @@ from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
 
 from llm_miner.error import ContextError, TokenLimitError
-from llm_miner.format import Formatter
+from llm_miner.reader.parser.base import Paragraph
 from llm_miner.table.categorize.base import CategorizeAgent
 from llm_miner.table.crystal.base import CrystalTableAgent
 from llm_miner.table.property.base import PropertyTableAgent
@@ -20,7 +20,7 @@ class TableMiningAgent(Chain):
     categorize_agent: Chain
     crystal_table_agent: Chain
     property_table_agent: Chain
-    input_key: str = "paragraph"
+    input_key: str = "element"
     output_key: str = "output"
 
     md_table: str = ""
@@ -73,33 +73,40 @@ class TableMiningAgent(Chain):
         _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
         callbacks = _run_manager.get_child()
 
-        paragraph = inputs[self.input_key]
+        element: Paragraph = inputs[self.input_key]
+        paragraph: str = element.content
+
         md_output = self.convert_chain.run(
             paragraph=paragraph,
             callbacks=callbacks,
             stop=["Input:"]
         )
-        self.md_table = self._parse_convert_output(md_output)
+        md_table = self._parse_convert_output(md_output)
+        element.set_clean_text(md_table)
 
-        self.table_type = self.categorize_agent.run(self.md_table)
+        table_type = self.categorize_agent.run(md_table)
+        element.set_classification(table_type)
 
-        if self.table_type == "Crystal":
+        if table_type == "Crystal":
             output = self.crystal_table_agent.run(
-                paragraph=self.md_table,
+                paragraph=md_table,
                 callbacks=callbacks,
             )
-            self.included_props = self.crystal_table_agent.included_props
-        elif self.table_type in ["Bond & Angle", "Coordinate"]:
-            output = f"{self.table_type} type of table is not target"
-        elif self.table_type == "Property":
+            props = self.crystal_table_agent.included_props
+            element.set_include_properties(props)
+        elif table_type in ["Bond & Angle", "Coordinate"]:
+            output = f"{table_type} type of table is not target"
+        elif table_type == "Property":
             output = self.property_table_agent.run(
-                paragraph=self.md_table,
+                paragraph=md_table,
                 callbacks=callbacks,
             )
-            self.included_props = self.property_table_agent.included_props
+            props = self.property_table_agent.included_props
+            element.set_include_properties(props)
         else:
             raise ContextError("Must be one of [Crytstal, Bond & Angle, Coordinate, Property]")
 
+        element.set_data(output)
         return {"output": output}
 
     def _parse_convert_output(self, output: str):

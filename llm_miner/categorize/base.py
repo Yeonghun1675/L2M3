@@ -14,7 +14,7 @@ from llm_miner.reader.parser.base import Paragraph
 
 class CategorizeAgent(Chain):
     categorize_chain: LLMChain
-    labels: List[str] = ["table", "figure", "text", "property", "synthesis condition", "else"]
+    labels: List[str] = ["table", "figure", "property", "synthesis condition", "else"]
     input_key: str = "paragraph"
     output_key: str = "output"
 
@@ -58,6 +58,7 @@ class CategorizeAgent(Chain):
         )
 
         output = self._parse_output(llm_output)
+        para.set_classification(output)
 
         if not output:
             raise ContextError(f'There are no categories in paragraph')

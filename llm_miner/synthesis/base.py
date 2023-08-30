@@ -10,6 +10,7 @@ from langchain.prompts import PromptTemplate
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
 from llm_miner.synthesis.prompt import PROMPT_TYPE, PROMPT_STRUCT, EXAMPLE_STRUCT
+from llm_miner.reader.parser.base import Paragraph
 from llm_miner.error import StructuredFormatError
 from llm_miner.format import Formatter
 
@@ -17,7 +18,7 @@ from llm_miner.format import Formatter
 class SynthesisMiningAgent(Chain):
     type_chain: LLMChain
     type_struct: LLMChain
-    input_key: str = "paragraph"
+    input_key: str = "element"
     output_key: str = "output"
 
     @property
@@ -49,7 +50,9 @@ class SynthesisMiningAgent(Chain):
         _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
         callbacks = _run_manager.get_child()
         
-        paragraph = inputs[self.input_key]
+        element: Paragraph = inputs[self.input_key]
+        paragraph: str = element.content
+
         llm_output = self.type_chain.run(
             paragraph = paragraph,
             callbacks=callbacks,
@@ -57,6 +60,7 @@ class SynthesisMiningAgent(Chain):
         )
         synthesis_type = self._parse_output(llm_output)
         self._write_log(str(synthesis_type), _run_manager)
+        element.set_include_properties(synthesis_type)
 
         prop_string = ""
         for prop in synthesis_type:
@@ -76,6 +80,7 @@ class SynthesisMiningAgent(Chain):
         )
         output = self._parse_output(llm_output)
         self._write_log(json.dumps(output), _run_manager)
+        element.set_data(output)
 
         return {"output": output}
 

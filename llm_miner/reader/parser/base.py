@@ -1,3 +1,4 @@
+import pprint
 from pydantic import BaseModel
 from typing import List, Any, Dict, Optional
 from abc import ABCMeta, abstractclassmethod
@@ -35,12 +36,24 @@ class BaseParser(object, metaclass=ABCMeta):
 class Paragraph(BaseModel):
     idx: int
     type: str
+    classification: Optional[Any] = None
     content: str
     clean_text: Optional[str] = None
     data: Optional[List[Dict[str, Any]]] = None
+    include_properties: Optional[Any] = None
 
     def __getitem__(self, item):
         return getattr(self, item)
+    
+    def print(self, ) -> str:
+        string = (
+            f"Type : {self.type}\n"
+            f"Classification: {self.classification}\n"
+            f"Content: \n{self.clean_text}\n"
+            f"Include Properties : {self.include_properties}\n"
+            f"Data :\n{pprint.pformat(self.data)}"
+        )
+        print (string)
     
     def append(self, others):
         self.content += others.content
@@ -58,13 +71,24 @@ class Paragraph(BaseModel):
     def get_data(self, ) -> List[Dict[str, Any]]:
         return self.data
     
+    def set_classification(self, cls) -> None:
+        self.classification = cls
+    
+    def set_clean_text(self, text) -> None:
+        self.clean_text = text
+
+    def set_include_properties(self, props) -> None:
+        self.include_properties = props
+
     def to_json(self, ) -> Dict[str, Any]:
         return {
             'idx': self.idx,
             'type': self.type,
+            'classification': self.classification,
             'content': self.content,
             'clean_text': self.clean_text,
-            'data': self.data
+            'data': self.data,
+            'include_properties': self.include_properties,
         }
 
     @classmethod
@@ -72,9 +96,11 @@ class Paragraph(BaseModel):
         return cls(
             idx=data['idx'],
             type=data['type'],
+            classification=data['classification'],
             content=data['content'],
             clean_text=data['clean_text'],
             data=data['data'],
+            include_properties=data['include_properties']
         )
 
 

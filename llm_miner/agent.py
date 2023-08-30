@@ -4,6 +4,7 @@ from langchain.base_language import BaseLanguageModel
 from langchain.chains.base import Chain
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
+from llm_miner.reader.parser.base import Paragraph
 from llm_miner.categorize.base import CategorizeAgent
 from llm_miner.synthesis.base import SynthesisMiningAgent
 from llm_miner.text.base import TextMiningAgent
@@ -42,32 +43,31 @@ class LLMMiner(Chain):
         _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
         callbacks = _run_manager.get_child()
         
-        elements = inputs[self.input_key]
+        element: Paragraph = inputs[self.input_key]
         categories = self.categorize_agent.run(
-            paragraph=elements,
+            paragraph=element,
             callbacks=callbacks,
         )
 
-        paragraph = str(elements.content)
         if 'synthesis condition' in categories:
             output = self.synthesis_agent.run(
-                paragraph=paragraph,
+                element=element,
                 callbacks=callbacks,
             )
         elif 'table' in categories:
             output = self.table_agent.run(
-                paragraph=paragraph,
+                element=element,
                 callbacks=callbacks,
             )
         elif 'property' in categories:
             output = self.property_agent.run(
-                paragraph=paragraph,
+                element=element,
                 callbacks=callbacks,
             )
         elif 'else' in categories or 'figure' in categories:
             output = []
         else:
-            raise ContextError('category must be `synthesis condition`, `table`, `figure`, `property` and `else`, not {categories}')
+            raise ContextError(f'category must be `synthesis condition`, `table`, `figure`, `property` and `else`, not {categories}')
 
         return {self.output_key: output}
     
