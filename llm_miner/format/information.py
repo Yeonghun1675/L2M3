@@ -33,10 +33,6 @@ space_group = """
 """
 
 
-weight = """
-
-"""
-
 decomposition_temperature = """
 
 """
@@ -94,6 +90,9 @@ chemical_formula_weight = """
 
 refractive_index = """
 
+"""
+
+topology = """
 """
 
 spectrum = """
