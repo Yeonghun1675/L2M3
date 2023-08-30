@@ -49,27 +49,32 @@ class LLMMiner(Chain):
             callbacks=callbacks,
         )
 
+        total_output = []
         if 'synthesis condition' in categories:
             output = self.synthesis_agent.run(
                 element=element,
                 callbacks=callbacks,
             )
-        elif 'table' in categories:
+            total_output += output
+
+        if 'table' in categories:
             output = self.table_agent.run(
                 element=element,
                 callbacks=callbacks,
             )
-        elif 'property' in categories:
+            total_output += output
+
+        if 'property' in categories:
             output = self.property_agent.run(
                 element=element,
                 callbacks=callbacks,
             )
-        elif 'else' in categories or 'figure' in categories:
-            output = []
-        else:
-            raise ContextError(f'category must be `synthesis condition`, `table`, `figure`, `property` and `else`, not {categories}')
+            total_output += output
 
-        return {self.output_key: output}
+        if 'else' in categories or 'figure' in categories:
+            pass
+
+        return {self.output_key: total_output}
     
     @classmethod
     def from_llm(
