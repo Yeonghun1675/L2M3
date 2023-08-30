@@ -38,7 +38,11 @@ class SynthesisMiningAgent(Chain):
         if regex.search(r"[Ii] do not know", output):
             return [output]
         try:
-            return ast.literal_eval(output)
+            data = ast.literal_eval(output)
+            if isinstance(data, list):
+                return data
+            else:
+                return [data]
         except Exception as e:
             raise StructuredFormatError(e, output)
     
