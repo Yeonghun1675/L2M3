@@ -66,19 +66,34 @@ class Paragraph(BaseModel):
                 self.data = others.data
     
     def set_data(self, data) -> None:
-        self.data = data
+        if isinstance(self.data, None):
+            self.data = data
+        else:
+            self.data += data
 
     def get_data(self, ) -> List[Dict[str, Any]]:
         return self.data
     
     def set_classification(self, cls) -> None:
-        self.classification = cls
+        if isinstance(self.classification, None):
+            if isinstance(cls, str):
+                self.classification = [cls]
+            else:
+                self.classification = cls
+        else:
+            if isinstance(cls, str):
+                self.classification += [cls]
+            else:
+                self.classification += cls
     
     def set_clean_text(self, text) -> None:
         self.clean_text = text
 
-    def set_include_properties(self, props) -> None:
-        self.include_properties = props
+    def set_include_properties(self, props: List[Any]) -> None:
+        if isinstance(self.data, None):
+            self.include_properties = props
+        else:
+            self.include_properties += props
 
     def to_json(self, ) -> Dict[str, Any]:
         return {
