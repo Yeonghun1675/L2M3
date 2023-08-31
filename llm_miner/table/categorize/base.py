@@ -1,5 +1,3 @@
-import json
-from functools import partial
 from typing import Any, Dict, List, Optional
 
 from langchain.base_language import BaseLanguageModel
@@ -9,7 +7,8 @@ from langchain.prompts import PromptTemplate
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
 from llm_miner.table.categorize.prompt import PROMPT_CATEGORIZE
-from llm_miner.error import StructuredFormatError, ContextError
+from llm_miner.error import ContextError
+from llm_miner.pricing import TokenChecker, update_token_checker
 
 
 class CategorizeAgent(Chain):
@@ -41,18 +40,34 @@ class CategorizeAgent(Chain):
     def _call(
             self,
             inputs: Dict[str, Any],
-            run_manager: Optional[CallbackManagerForChainRun] = None
+            run_manager: Optional[CallbackManagerForChainRun] = None,
+            token_checker: Optional[TokenChecker] = None
     ) -> Dict[str, Any]:
         _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
         callbacks = _run_manager.get_child()
-        
+
         para = inputs[self.input_key]
+        token_checker: TokenChecker = inputs['token_checker']
+
+        llm_kwargs={
+            'paragraph': para,
+        }
+
         llm_output = self.categorize_chain.run(
-            paragraph = para,
+            **llm_kwargs,
             callbacks = callbacks,
             stop = ['Input:'],
         )
 
+        if token_checker:
+            update_token_checker(
+                name_step='table-categorize',
+                chain=self.categorize_chain,
+                token_checker=token_checker,
+                llm_kwargs=llm_kwargs,
+                llm_output=llm_output,
+            )
+            
         output = self._parse_output(llm_output)
 
         if not output:
