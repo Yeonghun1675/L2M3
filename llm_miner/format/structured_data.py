@@ -243,7 +243,8 @@ magnetic_moment = """
 "magnetic moment": [
     {
         "value":"",
-        "unit":""
+        "unit":"",
+        "temperature":""
     }, ...
 ]
 """
@@ -252,7 +253,8 @@ magnetic_susceptibility = """
 "magnetic susceptibility": [
     {
         "value":"",
-        "unit":""
+        "unit":"",
+        "temperature":""
     }, ...
 ]
 """
@@ -316,5 +318,15 @@ etc = """
         "unit":"",
         "conditon": "",
     }, ...
+]
+"""
+
+thermal_weight_loss = """
+"thermal weight loss": [
+    {
+        "value":"",
+        "unit":"",
+        "range":""
+    }
 ]
 """

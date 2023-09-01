@@ -1,6 +1,6 @@
 surface_area="""
 Paragraph: Metal-Organic Frameworks (MOFs) offer a rich landscape of properties, enabling diverse applications across numerous fields. A boasts exceptional features such as a pore volume of 1.2 cm3/g, a BET surface area of 1500 m2/g, and an adsorption capacity of 35.6 wt% for CO2 at 25°C and 1 atm. B showcases its versatility with a pore volume of 0.9 cm3/g, a Langmuir surface area of 1200 m2/g, and an adsorption capacity of 27.8 wt% for N2 at 77 K and 1 atm. Furthermore, C exhibits notable properties, including a pore volume of 1.5 cm3/g, a surface area of 2500 m2/g, and an adsorption capacity of 20.3 wt% for water at 298 K and 0.1 MPa.
-JSON: [{{"material":"A", "type":"BET", "value":"1500", "unit":"m2/g"}, {"material":"B", "type": "Langmuir", "value":"1200", "unit":"m2/g"}, {"material":"C", "type": "", "value":"2500", "unit":"m2/g"}}]
+JSON: [{{"material":"A", "probe":"", "type":"BET", "value":"1500", "unit":"m2/g"}, {"material":"B", "probe":"", "type": "Langmuir", "value":"1200", "unit":"m2/g"}, {"material":"C", "probe":"", "type": "", "value":"2500", "unit":"m2/g"}}]
 """
 
 pore_volume="""
@@ -45,6 +45,9 @@ JSON:[{{"material":"MOF-A", "value":"tetragonal"}}]
 topology = """
 Paragraph :MOF-A exhibits the "primitive cubic net" (PCN) topology, characterized by corner-sharing metal clusters and organic linkers forming a 3D cubic framework. The PCN topology provides numerous open metal sites and accessible pores, making it ideal for gas storage and separation. Its regular structure enables efficient packing of molecules and guests. MOF-A is extensively studied for H2 and CH4 storage. PCN topology represents one of many fascinating frameworks in the diverse landscape of MOFs.
 JSON:[{{"material":"MOF-A", "value":"PCN"}}]
+
+Paragraph: In this study, we introduce a novel luminescent MOF-A featuring a distinctive 3D (6,3)-connected {3^6,4^3} topology, showcasing remarkable photoluminescence characteristics.
+JSON: [{{"material":"MOF-A", "value":"3D (6,3)-connected {3^6,4^3}"}}]
 """
 
 space_group = """
@@ -129,13 +132,13 @@ JSON: [{{"material":"", "value": "1.12", "unit":"g/cm3"}}]
 magnetic_moment = """
 In this example, the selected property is magnetic moment.
 Paragraph: The synthesized MOF-A exhibited a magnetic moment of 2.5 µ_B per formula unit, hinting at its strong magnetic character.
-JSON: [{{"material":"MOF-A", "value":"2.5", "unit":"µ_B"}}]
+JSON: [{{"material":"MOF-A", "value":"2.5", "unit":"µ_B", "temperature":""}}]
 """
 
 magnetic_susceptibility = """
 In this example, the selected property is magnetic susceptibility.
 Paragraph: The magnetic susceptibility of the MOF-A was measured to be 1.5 x 10-4 cm3/mol at room temperature.
-JSON: [{{"material":"MOF-A", "value":"0.00015", "unit":"cm3/mol"}}]
+JSON: [{{"material":"MOF-A", "value":"0.00015", "unit":"cm3/mol", "temperature":"room temperature"}}]
 """
 
 refractive_index = """
@@ -160,4 +163,10 @@ JSON: [{{"material":"MOF-B", "property name": "electrical conductivity", "value"
 
 Paragraph: NOTT-202 displays an electrical resistance of approximately 10^7 ohm·cm, positioning it as a potential insulating material in electronic applications. Its low electrical conductivity makes it useful for reducing electromagnetic interference in electronic circuits.
 JSON: [{{"material": "NOTT-202", "property name": "electrical resistance", "value": "10000000", "unit": "ohm·cm", "condition": ""}}]
+"""
+
+thermal_weight_loss = """
+In this example, selected property is thermal weight loss.
+Paragraph: The thermogravimetric analysis (TGA) conducted in the temperature range of 50 to 800°C provides insights into the thermal stability of our synthesized MOF-A. As shown in Figure 2, MOF-A undergoes a gradual weight loss, primarily attributed to the removal of guest molecules and solvent residues, between 100 and 300°C, resulting in a 3.5% weight reduction
+JSON:[{{"material":"MOF-A", "value":"3.5", "unit":"%", "range":"between 100 and 300°C"}}]
 """

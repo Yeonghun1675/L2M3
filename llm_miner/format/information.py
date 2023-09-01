@@ -102,3 +102,6 @@ spectrum = """
 etc = """
 In "etc" part, you must only include information that does not fit into another cateogry.
 """
+
+thermal_weight_loss ="""
+"""

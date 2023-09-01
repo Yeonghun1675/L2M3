@@ -151,3 +151,7 @@ Other properties not included in the list above but can be represented by numeri
 chemical_formula = """
 empirical formula of materials.
 """
+
+thermal_weight_loss = """
+weight loss during heat treatment of materials.
+"""
