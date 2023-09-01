@@ -13,6 +13,7 @@ from llm_miner.synthesis.prompt import PROMPT_TYPE, PROMPT_STRUCT, EXAMPLE_STRUC
 from llm_miner.reader.parser.base import Paragraph
 from llm_miner.error import StructuredFormatError
 from llm_miner.format import Formatter
+from llm_miner.pricing import TokenChecker, update_token_checker
 
 
 class SynthesisMiningAgent(Chain):
@@ -55,13 +56,27 @@ class SynthesisMiningAgent(Chain):
         callbacks = _run_manager.get_child()
         
         element: Paragraph = inputs[self.input_key]
+        token_checker: TokenChecker = inputs['token_checker']
         paragraph: str = element.content
 
+        llm_kwargs={
+            'paragraph': paragraph,
+        }
         llm_output = self.type_chain.run(
-            paragraph = paragraph,
+            **llm_kwargs,
             callbacks=callbacks,
             stop=["Paragraph:"]
         )
+
+        if token_checker:
+            update_token_checker(
+                name_step='text-synthesis-type',
+                chain=self.type_chain,
+                token_checker=token_checker,
+                llm_kwargs=llm_kwargs,
+                llm_output=llm_output
+            )
+
         synthesis_type = self._parse_output(llm_output)
         self._write_log(str(synthesis_type), _run_manager)
         element.set_include_properties(synthesis_type)
@@ -75,13 +90,26 @@ class SynthesisMiningAgent(Chain):
                 continue
             prop_string += f"- {structure}\n"
 
+        llm_kwargs={
+            'paragraph': paragraph,
+            'synthesis_type': synthesis_type,
+            'format': prop_string,
+        }
         llm_output = self.type_struct.run(
-            paragraph=paragraph,
-            synthesis_type=synthesis_type,
-            format=prop_string,
+            **llm_kwargs,
             callbacks=callbacks,
             stop=["Paragraph:"]
         )
+
+        if token_checker:
+            update_token_checker(
+                name_step='text-synthesis-struct',
+                chain=self.type_struct,
+                token_checker=token_checker,
+                llm_kwargs=llm_kwargs,
+                llm_output=llm_output
+            )
+
         output = self._parse_output(llm_output)
         self._write_log(json.dumps(output), _run_manager)
         element.set_data(output)

@@ -10,6 +10,7 @@ from langchain.prompts import PromptTemplate
 from llm_miner.error import StructuredFormatError, TokenLimitError
 from llm_miner.format import Formatter
 from llm_miner.table.property.prompt import PROPERTY_CATEGORIZE, PROPERTY_EXTRACT
+from llm_miner.pricing import TokenChecker, update_token_checker
 
 
 class PropertyTableAgent(Chain):
@@ -70,12 +71,28 @@ class PropertyTableAgent(Chain):
 
         explanation = self._add_explanation()
         paragraph = inputs[self.input_key]
+        token_checker: TokenChecker = inputs['token_checker']
+
+        llm_kwargs={
+            'explanation':explanation,
+            'paragraph': paragraph,
+        }
+
         included_props = self.categorize_chain.run(
-            explanation=explanation,
-            paragraph=paragraph,
+            **llm_kwargs,
             callbacks=callbacks,
             stop=["Input:"]
         )
+
+        if token_checker:
+            update_token_checker(
+                name_step='table-property-type',
+                chain=self.categorize_chain,
+                token_checker=token_checker,
+                llm_kwargs=llm_kwargs,
+                llm_output=included_props,
+            )
+
         self.included_props = self._parse_output_props(included_props)
         self._write_log(str(self.included_props), _run_manager)
 
@@ -85,13 +102,26 @@ class PropertyTableAgent(Chain):
             return {"output": ["No properties found"]}
 
         format = self._make_format(props)
+
+        llm_kwargs = {
+            'prop': props,
+            'format': format,
+            'paragraph': paragraph,
+        }
         output = self.extract_chain.run(
-            prop=props,
-            format=format,
-            paragraph=paragraph,
+            **llm_kwargs,
             callbacks=callbacks,
             stop=["Input:"]
         )
+
+        if token_checker:
+            update_token_checker(
+                name_step='table-property-extract',
+                chain=self.extract_chain,
+                token_checker=token_checker,
+                llm_kwargs=llm_kwargs,
+                llm_output=output,
+            )
 
         output = self._parse_output_json(output)
         return {"output": output}

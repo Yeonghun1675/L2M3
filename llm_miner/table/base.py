@@ -12,6 +12,7 @@ from llm_miner.table.categorize.base import CategorizeAgent
 from llm_miner.table.crystal.base import CrystalTableAgent
 from llm_miner.table.property.base import PropertyTableAgent
 from llm_miner.table.prompt import CONVERT2MD
+from llm_miner.pricing import TokenChecker, update_token_checker
 
 
 class TableMiningAgent(Chain):
@@ -73,23 +74,41 @@ class TableMiningAgent(Chain):
         callbacks = _run_manager.get_child()
 
         element: Paragraph = inputs[self.input_key]
+        token_checker: TokenChecker = inputs['token_checker']
         paragraph: str = element.content
 
+        llm_kwargs={
+            'paragraph': paragraph
+        }
         md_output = self.convert_chain.run(
-            paragraph=paragraph,
+            **llm_kwargs,
             callbacks=callbacks,
             stop=["Input:"]
         )
+        if token_checker:
+            update_token_checker(
+                name_step='table-convert2MD',
+                chain=self.convert_chain,
+                token_checker=token_checker,
+                llm_kwargs=llm_kwargs,
+                llm_output=md_output,
+            )
+
         md_table = self._parse_convert_output(md_output)
         element.set_clean_text(md_table)
 
-        table_type = self.categorize_agent.run(md_table)
+        table_type = self.categorize_agent.run(
+            paragraph=md_table,
+            callbacks=callbacks,
+            token_checker=token_checker
+        )
         element.set_classification(table_type)
 
         if table_type == "Crystal":
             output = self.crystal_table_agent.run(
                 paragraph=md_table,
                 callbacks=callbacks,
+                token_checker=token_checker
             )
             props = self.crystal_table_agent.included_props
             element.set_include_properties(props)
@@ -99,6 +118,7 @@ class TableMiningAgent(Chain):
             output = self.property_table_agent.run(
                 paragraph=md_table,
                 callbacks=callbacks,
+                token_checker=token_checker
             )
             props = self.property_table_agent.included_props
             element.set_include_properties(props)

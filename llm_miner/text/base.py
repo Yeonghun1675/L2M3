@@ -12,6 +12,7 @@ from llm_miner.text.prompt import PROMPT_TYPE, PROMPT_EXT
 from llm_miner.reader.parser.base import Paragraph
 from llm_miner.format import Formatter
 from llm_miner.error import StructuredFormatError
+from llm_miner.pricing import TokenChecker, update_token_checker
 
 
 class TextMiningAgent(Chain):
@@ -51,14 +52,27 @@ class TextMiningAgent(Chain):
 
         explanation = self._add_explanation()
         element: Paragraph = inputs[self.input_key]
+        token_checker: TokenChecker = inputs['token_checker']
         paragraph: str = element.content
 
+        llm_kwargs = {
+            'explanation': explanation,
+            'paragraph': paragraph,
+        }
         llm_output = self.type_chain.run(
-            explanation = explanation,
-            paragraph = paragraph,
+            **llm_kwargs,
             callbacks=callbacks,
             stop=["Paragraph:"]
         )
+
+        if token_checker:
+            update_token_checker(
+                name_step='text-property-type',
+                chain=self.type_chain,
+                token_checker=token_checker, 
+                llm_kwargs=llm_kwargs, 
+                llm_output=llm_output
+            )
 
         property_type = self._parse_output(llm_output)
         self._write_log(str(property_type), _run_manager)
@@ -73,15 +87,28 @@ class TextMiningAgent(Chain):
             except KeyError:
                 self._write_log(f"There are no format for {prop}", _run_manager)
                 continue
-
+            
+            llm_kwargs={
+                'prop': prop,
+                'structured_data': st_data,
+                'information': info,
+                'example': example,
+                'paragraph': paragraph,
+            }
             llm_output = self.extract_chain.run(
-                prop=prop,
-                structured_data=st_data,
-                information=info,
-                example=example,
-                paragraph=paragraph,
+                **llm_kwargs,
                 callbacks=callbacks,
+                stop=["Paragraph:"]
             )
+
+            if token_checker:
+                update_token_checker(
+                    name_step='text-property-extract',
+                    chain=self.extract_chain,
+                    token_checker=token_checker, 
+                    llm_kwargs=llm_kwargs, 
+                    llm_output=llm_output
+                )
 
             st_output = self._parse_output(llm_output)
             self._write_log(f"{prop} : {st_output}", _run_manager)

@@ -10,6 +10,8 @@ from llm_miner.synthesis.base import SynthesisMiningAgent
 from llm_miner.text.base import TextMiningAgent
 from llm_miner.table.base import TableMiningAgent
 
+from llm_miner.pricing import TokenChecker
+
 
 class LLMMiner(Chain):
     categorize_agent: Chain
@@ -43,9 +45,12 @@ class LLMMiner(Chain):
         callbacks = _run_manager.get_child()
 
         element: Paragraph = inputs[self.input_key]
+        token_checker: TokenChecker = inputs['token_checker']
+
         categories = self.categorize_agent.run(
             paragraph=element,
             callbacks=callbacks,
+            token_checker=token_checker,
         )
 
         total_output = []
@@ -53,6 +58,7 @@ class LLMMiner(Chain):
             output = self.synthesis_agent.run(
                 element=element,
                 callbacks=callbacks,
+                token_checker=token_checker
             )
             total_output += output
 
@@ -60,6 +66,7 @@ class LLMMiner(Chain):
             output = self.table_agent.run(
                 element=element,
                 callbacks=callbacks,
+                token_checker=token_checker
             )
             total_output += output
 
@@ -67,6 +74,7 @@ class LLMMiner(Chain):
             output = self.property_agent.run(
                 element=element,
                 callbacks=callbacks,
+                token_checker=token_checker,
             )
             total_output += output
 

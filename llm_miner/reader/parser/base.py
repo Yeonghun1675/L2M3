@@ -51,7 +51,7 @@ class Paragraph(BaseModel):
             f"Classification: {self.classification}\n"
             f"Content: \n{self.clean_text}\n"
             f"Include Properties : {self.include_properties}\n"
-            f"Data :\n{pprint.pformat(self.data)}"
+            f"Data :\n{pprint.pformat(self.data, sort_dicts=False)}"
         )
         print (string)
     
