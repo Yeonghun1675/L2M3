@@ -1,13 +1,14 @@
 # chemical formula는 기본적으로 물어볼 거라서 포함 안시켰음.
 CRYSTAL_CATEGORIZE = """From the provided markdown table, generate a Python list of item names with data present. You must exclude absent items and return an empty list if any key items are missing. Names of items must be one of following:
-- chemical formula: empirical formula of materials.
-- chemical formula weight: sum of the atomic weights of the elements present in its chemical formula.
-- space group: a mathematical description of the symmetries inherent in a periodic crystal lattice.
-- crystal system: symmetrical and geometrical arrangements within the crystal lattice of materials.
-- lattice parameters: cell lengths and angles
-- cell volume: cell volume of materials.
+- chemical_formula: empirical formula of materials.
+- chemical_formula weight: sum of the atomic weights of the elements present in its chemical formula.
+- space_group: a mathematical description of the symmetries inherent in a periodic crystal lattice.
+- crystal_system: symmetrical and geometrical arrangements within the crystal lattice of materials.
+- lattice_parameters: cell lengths and angles
+- cell_volume: cell volume of materials.
 - density: bulk density of materials.
-- crystal size: crystal size of materials.
+- crystal_size: crystal size of materials.
+- crystal_color: color of crystal.
 
 Begin!
 
@@ -19,7 +20,7 @@ Input:
 | Empirical formula | C₈H₉PrNO₉ | C₈H₉NdNO₉ | C₈H₉EuNO₉ | C₈H₉GdNO₉ | C₈H₉TbNO₉ | C₈H₉ErNO₉ |
 | Formula weight | 404.07 | 407.40 | 415.12 | 420.41 | 422.08 | 430.42 |
 | Crystal system | Triclinic | Triclinic | Triclinic | Triclinic | Triclinic | Triclinic |
-List : ["chemical formula", "chemical formula weight", "crystal system"]
+List : ["chemical_formula", "chemical_formula_weight", "crystal_system"]
 
 Input:
 Table 1
@@ -47,7 +48,7 @@ Crystal data and structure refinements for complexes 1–2.
 
 a R<sub>1</sub> = Σ|F<sub>o</sub> - F<sub>c</sub>| / Σ|F<sub>o</sub>|.
 b wR<sub>2</sub> = |Σw(|F<sub>o</sub><sup>2</sup> - F<sub>c</sub><sup>2</sup>)| / Σw(F<sub>o</sub><sup>2</sup>)<sup>1/2</sup>, where w = 1/[σ<sup>2</sup>(F<sub>o</sub><sup>2</sup>) + (aP)<sup>2</sup> + bP]. P = (F<sub>o</sub><sup>2</sup> + 2F<sub>c</sub><sup>2</sup>)/3.
-List: ["space group", "lattice parameters", "cell volume", "density"]
+List: ["space_group", "lattice_parameters", "cell_volume", "density"]
 
 Input:
 Table 1
@@ -75,14 +76,14 @@ Crystal data and structure refinement for compound 1.
 | Largest diff. peak and hole | 1.455 and -0.926 eÅ<sup>-3</sup>                                                               |
 
 a R<sub>1</sub> = Σ||F<sub>o</sub>|-|F<sub>c</sub>||/Σ|F<sub>o</sub>|.
-List: ["chemical formula", "chemical formula weight", "crystal system", "lattice parameters", "crystal size"]
+List: ["chemical_formula", "chemical_formula_weight", "crystal_system", "lattice_parameters", "crystal_size"]
 
 Input:
 {{paragraph}}
 List:"""
 
 
-CRYSTAL_EXTRACT="""From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the example below. You must conclude with "<END>".
+CRYSTAL_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the example below. When giving output, you should not use ellipses to shorten the content. You must conclude with "<END>".
 {{format}}
 
 Begin!
@@ -90,7 +91,7 @@ Begin!
 Input:
 **Table 1: Crystallographic data for complexes 1–6**
 
-|   | 1 | 2 | 3 | 
+|   | 1 | 2 | 3 |
 |---|---|---|---|
 | Empirical formula | C₈H₉PrNO₉ | C₈H₉NdNO₉ | C₈H₉EuNO₉ |
 | Formula weight | 404.07 | 407.40 | 415.12 |

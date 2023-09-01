@@ -308,6 +308,16 @@ topology = """
 ]
 """
 
+
+crystal_color = """
+"crystal color": [
+    {
+        "value":""
+    }, ...
+]
+"""
+
+
 etc = """
 "etc": [
     {

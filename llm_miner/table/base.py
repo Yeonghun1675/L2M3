@@ -1,4 +1,3 @@
-import ast
 from typing import Any, Dict, List, Optional
 
 from langchain.base_language import BaseLanguageModel
@@ -41,7 +40,7 @@ class TableMiningAgent(Chain):
             input_variables=['paragraph'],
         )
         convert_chain = LLMChain(llm=simple_llm, prompt=template_convert)
-        categorize_agent = CategorizeAgent.from_llm(llm, **kwargs)
+        categorize_agent = CategorizeAgent.from_llm(simple_llm, **kwargs)
         crystal_table_agent = CrystalTableAgent.from_llm(llm, **kwargs)
         property_table_agent = PropertyTableAgent.from_llm(llm, **kwargs)
 
@@ -95,7 +94,7 @@ class TableMiningAgent(Chain):
             props = self.crystal_table_agent.included_props
             element.set_include_properties(props)
         elif table_type in ["Bond & Angle", "Coordinate"]:
-            output = f"{table_type} type of table is not target"
+            output = [f"{table_type} type of table is not target"]
         elif table_type == "Property":
             output = self.property_table_agent.run(
                 paragraph=md_table,

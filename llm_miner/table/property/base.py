@@ -80,6 +80,10 @@ class PropertyTableAgent(Chain):
         self._write_log(str(self.included_props), _run_manager)
 
         props = self.included_props[:]
+
+        if not props:
+            return {"output": ["No properties found"]}
+
         format = self._make_format(props)
         output = self.extract_chain.run(
             prop=props,

@@ -75,11 +75,17 @@ class CrystalTableAgent(Chain):
             stop=["Input:"]
         )
         self.included_props = self._parse_output_props(included_props)
-        self._write_log(str(self.included_props), _run_manager)
+
+        for_print_props = [item.replace("_", " ") for item in self.included_props]
+        self._write_log(str(for_print_props), _run_manager)
 
         props = self.included_props[:]
-        if "chemical formula" in props:
-            props.remove("chemical formula")
+        if "chemical_formula" in props:
+            props.remove("chemical_formula")
+
+        if not props:
+            return {"output": ["No properties found"]}
+
         format = self._make_format(props)
         output = self.extract_chain.run(
             prop=props,
@@ -109,6 +115,8 @@ class CrystalTableAgent(Chain):
             raise TokenLimitError(e)
         else:
             output = output[:end_point].strip()
+
+        print(output)
 
         try:
             list_ = ast.literal_eval(output)
