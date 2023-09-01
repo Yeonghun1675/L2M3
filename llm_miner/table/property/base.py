@@ -131,6 +131,7 @@ class PropertyTableAgent(Chain):
             "lattice_parameters",
             "catalytic_activity",
             "crystal_system",
+            "thermal_weight_loss"
         ]
         formatter = Formatter
         target_items = list(formatter.explanation.keys())

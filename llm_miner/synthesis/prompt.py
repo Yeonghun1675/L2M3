@@ -40,8 +40,8 @@ You must follow rules belows:
 - If the sentence includes more than one information, you must extract the information for each separately.
 - If symbol is written altogether like "4-6", write three different results. There is at least one metal precursor and one organic precursor.
 - If several symbols exist at the same paragraph, you must write separately all the things.
-- In some cases, there are commons parts and you must recognize it.
 - You must include chemical formula if information exists. Chemical formula consists of combination of several elements and numbers like C2H5OH.
+- When "Ln" exists in the paragraph, you must write other elements instead of "Ln". ex) ChemLn (Ln=Pr(1), Gd(2), Dy(3), Er(4)), There are four chemicals; ChemPr, ChemGd, ChemDy, ChemEr
 
 If you"re uncertain, please reply with "I do not know".
 
