@@ -20,13 +20,13 @@ class CategorizeAgent(Chain):
     @property
     def input_keys(self) -> List[str]:
         return [self.input_key]
-    
+
     @property
     def output_keys(self) -> List[str]:
         return [self.output_key]
-    
+
     def _write_log(self, text: str, run_manager):
-        run_manager.on_text(f'\n[Categorize] ', verbose=self.verbose)
+        run_manager.on_text('\n[Categorize] ', verbose=self.verbose)
         run_manager.on_text(text, verbose=self.verbose, color='yellow')
 
     def _parse_output(self, output: str) -> Dict[str, str]:
@@ -36,7 +36,7 @@ class CategorizeAgent(Chain):
         if output.startswith("\""):
             output = output[1:-1]
         return output
-    
+
     def _call(
             self,
             inputs: Dict[str, Any],
@@ -49,14 +49,14 @@ class CategorizeAgent(Chain):
         para = inputs[self.input_key]
         token_checker: TokenChecker = inputs['token_checker']
 
-        llm_kwargs={
+        llm_kwargs = {
             'paragraph': para,
         }
 
         llm_output = self.categorize_chain.run(
             **llm_kwargs,
-            callbacks = callbacks,
-            stop = ['Input:'],
+            callbacks=callbacks,
+            stop=['Input:'],
         )
 
         if token_checker:
@@ -67,18 +67,18 @@ class CategorizeAgent(Chain):
                 llm_kwargs=llm_kwargs,
                 llm_output=llm_output,
             )
-            
+
         output = self._parse_output(llm_output)
 
         if not output:
-            raise ContextError(f'There are no categories in table')
+            raise ContextError('There are no categories in table')
         if output not in self.labels:
             raise ContextError(f'Class of table must be one of {self.labels}, not {output}')
 
         self._write_log(str(output), _run_manager)
 
         return {self.output_key: output}
-    
+
     @classmethod
     def from_llm(
         cls,

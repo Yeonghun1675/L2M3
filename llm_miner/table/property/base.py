@@ -97,6 +97,10 @@ class PropertyTableAgent(Chain):
         self._write_log(str(self.included_props), _run_manager)
 
         props = self.included_props[:]
+
+        if not props:
+            return {"output": ["No properties found"]}
+
         format = self._make_format(props)
 
         llm_kwargs = {
@@ -131,10 +135,11 @@ class PropertyTableAgent(Chain):
             "lattice_parameters",
             "catalytic_activity",
             "crystal_system",
+            "etc"
         ]
         formatter = Formatter
         target_items = list(formatter.explanation.keys())
-        target_items = [item for item in target_items if item not in erase_list]
+        target_items = [item for item in target_items if item not in erase_list] + ["etc"]
         explained_props = ""
         for item in target_items:
             explained_props += "\n" + f"- {item}: " + formatter.explanation[item].strip()
