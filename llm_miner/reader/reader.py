@@ -32,34 +32,46 @@ class JournalReader(BaseModel):
     @property
     def filename(self):
         return self.filepath.name.strip()
-    
+
     @property
     def doi(self):
         return self.metadata.doi.strip()
-    
+
     @property
     def title(self):
         return self.metadata.title.strip()
-    
+
     @property
     def url(self):
         return f'https://doi.org/{self.doi}'
-    
+
     def get_tables(self) -> List[Paragraph]:
         return self.elements.get_tables()
-            
+
     def get_texts(self) -> List[Paragraph]:
         return self.elements.get_texts()
-                
+
     def get_figures(self) -> List[Paragraph]:
         return self.elements.get_figures()
-    
+
     def get_synthesis_conditions(self) -> List[Paragraph]:
         return self.elements.get_synthesis_conditions()
-    
+
     def get_properties(self) -> List[Paragraph]:
         return self.elements.get_properties()
-    
+
+    def to_dict(self,) -> Dict[str, Any]:
+        return {
+            'filepath': str(self.filepath),
+            'publisher': self.publisher,
+            'elements': self.elements.to_dict(),
+            'metadata': self.metadata.to_dict(),
+        }
+
+    def to_json(self, filepath) -> Dict[str, Any]:
+        with open(filepath, 'w') as f:
+            json.dump(self.to_dict(), f)
+
     @classmethod
     def from_file(cls, filepath: str, publisher: str = None):
         if publisher is None:
@@ -71,7 +83,7 @@ class JournalReader(BaseModel):
 
         parser: BaseParser = parser_dict[publisher]
         file_bs = parser.open_file(filepath)
-        
+
         elements = parser.parsing(file_bs)
         metadata = parser.get_metadata(file_bs)
 
@@ -81,18 +93,6 @@ class JournalReader(BaseModel):
             elements=Elements(elements=elements),
             metadata=metadata,
         )
-    
-    def to_dict(self,) -> Dict[str, Any]:
-        return {
-            'filepath': str(self.filepath),
-            'publisher': self.publisher,
-            'elements': self.elements.to_dict(),
-            'metadata': self.metadata.to_dict(),
-        }
-    
-    def to_json(self, filepath) -> Dict[str, Any]:
-        with open(filepath, 'w') as f:
-            json.dump(self.to_dict(), f)
 
     @classmethod
     def from_dict(cls, data):
@@ -102,7 +102,7 @@ class JournalReader(BaseModel):
             elements=Elements.from_dict(data['elements']),
             metadata=Metadata.from_dict(data['metadata'])
         )
-    
+
     @classmethod
     def from_json(cls, filepath):
         with open(filepath) as f:

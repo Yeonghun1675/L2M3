@@ -19,15 +19,15 @@ class BaseParser(object, metaclass=ABCMeta):
     @classmethod
     def check_suffix(cls, suffix):
         return suffix == cls.suffix
-    
+
     @abstractclassmethod
     def open_file(cls, filePath: str):
         raise NotImplementedError()
-    
+
     @abstractclassmethod
     def parsing(cls, file: str):
         raise NotImplementedError()
-    
+
     @abstractclassmethod
     def get_metadata(cls, file: str):
         raise NotImplementedError()
@@ -44,7 +44,7 @@ class Paragraph(BaseModel):
 
     def __getitem__(self, item):
         return getattr(self, item)
-    
+
     def print(self, ) -> str:
         string = (
             f"Type : {self.type}\n"
@@ -53,8 +53,8 @@ class Paragraph(BaseModel):
             f"Include Properties : {self.include_properties}\n"
             f"Data :\n{pprint.pformat(self.data, sort_dicts=False)}"
         )
-        print (string)
-    
+        print(string)
+
     def append(self, others):
         self.content += others.content
         self.clean_text += '\n'+others.clean_text
@@ -64,7 +64,7 @@ class Paragraph(BaseModel):
                 self.data += others.data
             else:
                 self.data = others.data
-    
+
     def set_data(self, data) -> None:
         if self.data is None:
             self.data = data
@@ -73,7 +73,7 @@ class Paragraph(BaseModel):
 
     def get_data(self, ) -> List[Dict[str, Any]]:
         return self.data
-    
+
     def set_classification(self, cls) -> None:
         if self.classification is None:
             if isinstance(cls, str):
@@ -85,7 +85,7 @@ class Paragraph(BaseModel):
                 self.classification += [cls]
             else:
                 self.classification += cls
-    
+
     def set_clean_text(self, text) -> None:
         self.clean_text = text
 
@@ -124,31 +124,31 @@ class Elements(Sequence, BaseModel):
 
     def __getitem__(self, idx: int) -> Paragraph:
         return self.elements[idx]
-    
+
     def __len__(self,) -> int:
         return len(self.elements)
-    
+
     def get_tables(self) -> List[Paragraph]:
-        return [e for e in self.elements if e.type == 'table'] 
-    
+        return [e for e in self.elements if e.type == 'table']
+
     def get_texts(self) -> List[Paragraph]:
         text_type = ['text', 'synthesis condition', 'property', 'else']
-        return [e for e in self.elements if e.type in text_type] 
-    
+        return [e for e in self.elements if e.type in text_type]
+
     def get_figures(self) -> List[Paragraph]:
-        return [e for e in self.elements if e.type == 'figure'] 
-    
+        return [e for e in self.elements if e.type == 'figure']
+
     def get_synthesis_conditions(self) -> List[Paragraph]:
-        return [e for e in self.elements if e.type == 'synthesis condition'] 
-    
+        return [e for e in self.elements if e.type == 'synthesis condition']
+
     def get_properties(self) -> List[Paragraph]:
-        return [e for e in self.elements if e.type == 'property'] 
-    
-    def to_dict(self, )-> List[Dict[str, Any]]:
+        return [e for e in self.elements if e.type == 'property']
+
+    def to_dict(self, ) -> List[Dict[str, Any]]:
         return [
             para.to_dict() for para in self.elements
         ]
-    
+
     @classmethod
     def from_dict(cls, data: List[Dict[str, Any]]):
         return cls(
@@ -165,7 +165,7 @@ class Metadata(BaseModel):
 
     def __getitem__(self, item):
         return getattr(self, item)
-    
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             'doi': self.doi,
