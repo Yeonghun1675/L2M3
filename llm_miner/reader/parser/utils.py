@@ -1,7 +1,7 @@
 import regex
 
 
-def clean_text(text):
+def clean_text(text: str):
     """
     - literally cleaning up the text
     """
@@ -17,6 +17,7 @@ def clean_text(text):
     unicode_middle_dot = r"\u2022|\u2024|\u2027|\u00B7"  # "\u22C5"
 
     # replace unicode stuffs
+    text.replace("\n", "")
     text = regex.sub(unicode_space, " ", text)
     text = regex.sub(unicode_waste, "", text)
     text = regex.sub(unicode_minus, "-", text)

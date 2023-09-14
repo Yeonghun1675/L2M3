@@ -1,8 +1,9 @@
 import pprint
 from pydantic import BaseModel
-from typing import List, Any, Dict, Optional
+from typing import List, Any, Dict, Optional, Union
 from abc import ABCMeta, abstractclassmethod
 from collections.abc import Sequence
+import copy
 
 
 class BaseParser(object, metaclass=ABCMeta):
@@ -34,7 +35,7 @@ class BaseParser(object, metaclass=ABCMeta):
 
 
 class Paragraph(BaseModel):
-    idx: int
+    idx: Union[int, str]
     type: str
     classification: Optional[Any] = None
     content: str
@@ -47,6 +48,7 @@ class Paragraph(BaseModel):
     
     def print(self, ) -> str:
         string = (
+            f"Idx : {self.idx}\n"
             f"Type : {self.type}\n"
             f"Classification: {self.classification}\n"
             f"Content: \n{self.clean_text}\n"
@@ -55,9 +57,11 @@ class Paragraph(BaseModel):
         )
         print (string)
     
-    def append(self, others):
+    def merge(self, others, merge_idx=False):
+        if merge_idx:
+            self.idx = f'{self.idx}, {others.idx}' 
         self.content += others.content
-        self.clean_text += '\n'+others.clean_text
+        self.clean_text += '\n\n'+others.clean_text
 
         if isinstance(others.data, list):
             if isinstance(self.data, list):
@@ -95,6 +99,9 @@ class Paragraph(BaseModel):
         else:
             self.include_properties += props
 
+    def copy(self, ):
+        return copy.deepcopy(self)
+
     def to_dict(self, ) -> Dict[str, Any]:
         return {
             'idx': self.idx,
@@ -128,27 +135,36 @@ class Elements(Sequence, BaseModel):
     def __len__(self,) -> int:
         return len(self.elements)
     
+    def __bool__(self) -> bool:
+        return bool(self.elements)
+    
     def get_tables(self) -> List[Paragraph]:
         return [e for e in self.elements if e.type == 'table'] 
     
     def get_texts(self) -> List[Paragraph]:
-        text_type = ['text', 'synthesis condition', 'property', 'else']
-        return [e for e in self.elements if e.type in text_type] 
+        return [e for e in self.elements if e.type  == 'text'] 
     
     def get_figures(self) -> List[Paragraph]:
         return [e for e in self.elements if e.type == 'figure'] 
     
     def get_synthesis_conditions(self) -> List[Paragraph]:
-        return [e for e in self.elements if e.type == 'synthesis condition'] 
+        return [e for e in self.elements if e.classification and 'synthesis condition' in e.classification] 
     
     def get_properties(self) -> List[Paragraph]:
-        return [e for e in self.elements if e.type == 'property'] 
+        return [e for e in self.elements if e.classification and 'property' in e.classification] 
     
     def to_dict(self, )-> List[Dict[str, Any]]:
         return [
             para.to_dict() for para in self.elements
         ]
     
+    def append(self, para: Paragraph) -> None:
+        self.elements.append(para)
+
+    @classmethod
+    def empty(cls, ):
+        return cls(elements=list())
+
     @classmethod
     def from_dict(cls, data: List[Dict[str, Any]]):
         return cls(

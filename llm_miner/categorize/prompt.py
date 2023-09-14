@@ -27,3 +27,14 @@ List: ["else"]
 Paragraph: {paragraph}
 List:
 """
+
+
+FT_CATEGORIZE = (
+    "Categorize the paragraph given. "
+    "Select one or more categories from \"synthesis condition\" and \"property\". "
+    "If the paragraph does not fit into either of these categories, choose \"else\". "
+    "\"property\" paragraph must include specific numerical value of the property. "
+    "ex) surface area of 2500 m2/g"
+)
+
+FT_HUMAN = "{paragraph}"

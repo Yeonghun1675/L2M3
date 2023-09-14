@@ -240,23 +240,6 @@ heat treatment: {
 "cooling rate":""
 }
 """
-hydrothermal_reaction="""
-hydrothermal reaction: {
-"working temperature":"",
-"ramping rate":"",
-"cooling rate":"",
-"reactant name1":"", ... ,
-"reactant amount1":"", ... , 
-"reactant concentration1":"", ... , 
-"surfactant name1":"", ... ,
-"surfactant amount1":"", ... ,
-"surfactant concentration1":"", ... ,
-"solvent":"",
-"working pressure":"",
-"substrate":"",
-"time":""
-}
-"""
 microwave_assisted_synthesis="""
 microwave-assisted synthesis: {
 "precursor name":"",

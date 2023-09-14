@@ -1,13 +1,18 @@
-import json
+import ast
 from typing import Any, Dict, List, Optional
 
 from langchain.base_language import BaseLanguageModel
 from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
+from langchain.prompts.chat import (
+    ChatPromptTemplate,
+    SystemMessagePromptTemplate,
+    HumanMessagePromptTemplate,
+)
 from langchain.prompts import PromptTemplate
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
-from llm_miner.categorize.prompt import PROMPT_CATEGORIZE
+from llm_miner.categorize.prompt import PROMPT_CATEGORIZE, FT_CATEGORIZE, FT_HUMAN
 from llm_miner.error import StructuredFormatError, ContextError
 from llm_miner.reader.parser.base import Paragraph
 from llm_miner.pricing import TokenChecker, update_token_checker
@@ -34,7 +39,7 @@ class CategorizeAgent(Chain):
     def _parse_output(self, output: str) -> Dict[str, str]:
         output = output.replace("List:", "").strip()  # remove `List`
         try:
-            return json.loads(output)
+            return ast.literal_eval(output)
         except Exception as e:
             raise StructuredFormatError(e)
     
@@ -47,7 +52,7 @@ class CategorizeAgent(Chain):
         callbacks = _run_manager.get_child()
         
         para: Paragraph = inputs[self.input_key]
-        token_checker: TokenChecker = inputs['token_checker']
+        token_checker: TokenChecker = inputs.get('token_checker')
 
         if para.type in self.labels:
             self._write_log([para.type], _run_manager)
@@ -71,7 +76,6 @@ class CategorizeAgent(Chain):
                 llm_kwargs=llm_kwargs,
                 llm_output=llm_output
             )
-
         output = self._parse_output(llm_output)
         para.set_classification(output)
 
@@ -89,11 +93,27 @@ class CategorizeAgent(Chain):
         cls,
         llm: BaseLanguageModel,
         prompt: str = PROMPT_CATEGORIZE,
+        ft_prompt: str = FT_CATEGORIZE,
+        ft_human: str = FT_HUMAN,
         **kwargs,
     ) -> Chain:
-        template = PromptTemplate(
-            template=prompt,
-            input_variables=["paragraph"],
-        )
-        categorize_chain = LLMChain(llm=llm, prompt=template)
+        
+        if llm.model_name.startswith('ft:'): # fine-tuned model
+            system_prompt = SystemMessagePromptTemplate.from_template(ft_prompt)
+            human_prompt = HumanMessagePromptTemplate.from_template(ft_human)
+            chat_prompt = ChatPromptTemplate.from_messages(
+                [system_prompt, human_prompt]
+            )
+            categorize_chain = LLMChain(
+                llm=llm,
+                prompt=chat_prompt,
+            )
+
+        else:  # gpt base model
+            template = PromptTemplate(
+                template=prompt,
+                input_variables=["paragraph"],
+            )
+            categorize_chain = LLMChain(llm=llm, prompt=template)
+
         return cls(categorize_chain=categorize_chain, **kwargs)
