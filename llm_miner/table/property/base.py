@@ -136,6 +136,7 @@ class PropertyTableAgent(Chain):
             "catalytic_activity",
             "crystal_system",
             "etc"
+
         ]
         formatter = Formatter
         target_items = list(formatter.explanation.keys())
