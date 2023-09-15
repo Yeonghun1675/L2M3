@@ -10,7 +10,7 @@ with open("README.md", "r") as f:
 
 extras_require = {"docs": ["sphinx", "livereload", "myst-parser"]}
 
-with open("llm_minder/__init__.py") as f:
+with open("llm_miner/__init__.py") as f:
     version = re.search(r"__version__ = [\'\"](?P<version>.+)[\.\"]", f.read()).group("version")
 
 

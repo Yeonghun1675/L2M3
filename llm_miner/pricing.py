@@ -1,8 +1,9 @@
-import tiktoken
 from pydantic import BaseModel
 from typing import Dict, Literal, Any
 
 from langchain.chains import LLMChain
+
+from llm_miner.utils import num_tokens_from_string
 
 
 PRICES = {
@@ -11,13 +12,10 @@ PRICES = {
     'gpt-3.5-turbo-16k': {'input':0.003, 'output':0.004},
     'davinci-002': {'input':0.002, 'output':0.002},
     'babbage-002': {'input':0.0004, 'output':0.0004},
+    'ft:gpt-3.5-turbo': {'input': 0.012, 'output': 0.016},
+    'ft:davinci': {'input': 0.012, 'output': 0.012},
+    'ft:babbage': {'input': 0.0016, 'output': 0.0016},
 }
-
-
-def num_tokens_from_string(string: str, model: str) -> int:
-    encoding = tiktoken.encoding_for_model(model)
-    num_tokens = len(encoding.encode(string))
-    return num_tokens
 
 
 class Step(BaseModel):
@@ -75,6 +73,17 @@ class TokenChecker(BaseModel):
         return total_price
     
 
+def parse_model_name(model_name: str) -> str:
+    model_name = str(model_name)
+    if model_name.startswith('ft:gpt-3.5-turbo'):
+        return 'ft:gpt-3.5-turbo'
+    elif model_name.stratswith('ft:davinci'):
+        return 'ft:davinci'
+    elif model_name.startswith('ft:babbage'):
+        return 'ft:babbage'
+    else:
+        return model_name
+
 
 def update_token_checker(
     name_step: str,
@@ -87,10 +96,10 @@ def update_token_checker(
     token_checker.update_token(
         text=prompt,
         name_step=f'input-{name_step}',
-        name_model=str(chain.llm.model_name)
+        name_model=parse_model_name(chain.llm.model_name)
     )
     token_checker.update_token(
         text=llm_output,
         name_step=f'output-{name_step}',
-        name_model=str(chain.llm.model_name)
+        name_model=parse_model_name(chain.llm.model_name)
     )

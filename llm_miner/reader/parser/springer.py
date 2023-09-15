@@ -1,6 +1,7 @@
 from typing import List
 from bs4 import BeautifulSoup
 from llm_miner.reader.parser.base import BaseParser, Paragraph, Metadata
+from llm_miner.reader.parser.utils import clean_text as f_clean
 
 
 class SpringerParser(BaseParser):
@@ -27,12 +28,12 @@ class SpringerParser(BaseParser):
                 clean_text = ''
             elif element.name in cls.figure_tags:
                 type_ = 'figure'
-                clean_text = element.text
+                clean_text = f_clean(element.text)
             elif element.name in cls.para_tags and cls._is_para(element):
                 type_ = 'text'
                 for tags in element(['fig', 'table-wrap']):
                     tags.extract()
-                clean_text = element.text
+                clean_text = f_clean(element.text)
             else:
                 continue
 
@@ -44,7 +45,7 @@ class SpringerParser(BaseParser):
             )
             
             if title_para and type_ == 'text':
-                title_para.append(data)
+                title_para.merge(data, merge_idx=False)
                 data = title_para
                 title_para = None
             else:
