@@ -23,6 +23,9 @@ def merge_para_by_token(
     ) -> Elements:
 
     total_tokens = 0
+    if not ls_para:  # there are no paragraph in ls_para
+        return elements
+    
     b_para = ls_para[0].copy()
     b_para.classification = classification
     for para in ls_para[1:]:

@@ -101,3 +101,10 @@ spectrum = """
 etc = """
 In "etc" part, you must only include information that does not fit into another cateogry.
 """
+
+lattice_parameters = """
+
+"""
+
+cell_volume = """
+"""
