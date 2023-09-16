@@ -20,6 +20,9 @@ class BaseFormatter(Mapping):
 
     def __len__(self):
         return len(self.data)
+    
+    def list_keys(self):
+        return list(self.data.keys())
 
 
 class BaseStucturedData(BaseFormatter):

@@ -11,7 +11,7 @@ from langchain.callbacks.manager import CallbackManagerForChainRun
 from llm_miner.text.prompt import PROMPT_TYPE, PROMPT_EXT
 from llm_miner.reader.parser.base import Paragraph
 from llm_miner.format import Formatter
-from llm_miner.error import StructuredFormatError
+from llm_miner.error import StructuredFormatError, LangchainError
 from llm_miner.pricing import TokenChecker, update_token_checker
 
 
@@ -59,11 +59,14 @@ class TextMiningAgent(Chain):
             'explanation': explanation,
             'paragraph': paragraph,
         }
-        llm_output = self.type_chain.run(
-            **llm_kwargs,
-            callbacks=callbacks,
-            stop=["Paragraph:"]
-        )
+        try:
+            llm_output = self.type_chain.run(
+                **llm_kwargs,
+                callbacks=callbacks,
+                stop=["Paragraph:"]
+            )
+        except Exception as e:
+            raise LangchainError(e)
 
         if token_checker:
             update_token_checker(
@@ -95,11 +98,14 @@ class TextMiningAgent(Chain):
                 'example': example,
                 'paragraph': paragraph,
             }
-            llm_output = self.extract_chain.run(
-                **llm_kwargs,
-                callbacks=callbacks,
-                stop=["Paragraph:"]
-            )
+            try:
+                llm_output = self.extract_chain.run(
+                    **llm_kwargs,
+                    callbacks=callbacks,
+                    stop=["Paragraph:"]
+                )
+            except Exception as e:
+                raise LangchainError(e)
 
             if token_checker:
                 update_token_checker(
