@@ -1,31 +1,10 @@
 PROMPT_TYPE = """Find all the processes used during synthesis. Each process unconditionally must belongs to one of the elements in the following list:
-[
-    "ball_milling",
-    "centrifugation",
-    "chemical_mechanical_polishing",
-    "chemical_synthesis",
-    "chemical_vapor_deposition",
-    "drying",
-    "electrochemical_deposition",
-    "heat_treatment",
-    "hydrothermal_reaction",
-    "microwave_assisted_synthesis",
-    "mixing",
-    "rinsing",
-    "solvothermal_synthesis",
-    "sol_gel_syntehsis",
-    "sonication",
-    "sonochemical_syntehsis",
-    "thermal_evaporation",
-    "wet_etching",
-    "washing",
-    "cooling"
-]
+{list_operation}
 
 You must write processes in the above list.
 
 Paragraph: A mixture of tris-(4-bromophenyl)amine (2.00 g, 4.15 mmol) and CuCN (1.70 g, 18.98 mmol) was heated at reflux in 25 mL of anhydrous dimethylformamide (DMF) for 6 h under a nitrogen atmosphere at 150 °C. Upon cooling to room temperature (RT), the FeCl3/H2O/ethanol (8.00 g/10 mL/8 mL) mixture solvent was added to the reaction mixture and then heated to 125 °C. Then, dilute hydrochloric acid (100 mL, 2 M) was added into the solution. The resulting mixture was extracted with CH2Cl2 (5 × 50 mL), washed with ethylenediaminetetraacetic acid-2Na aqueous solution (5 × 100 mL), evaporated under a rotary evaporator, and dried over anhydrous MgSO4. The crude product was purified by flash chromatography on silica gel using CH2Cl2 as an eluent to afford 0.90 g (67.8%) of tris-(4-cyanophenyl)amine as a primrose yellow powder.
-List: ["chemical_synthesis","washing"]
+List: ["chemical_synthesis", "washing"]
 
 Paragraph:{paragraph}
 List:
@@ -34,7 +13,7 @@ List:
 PROMPT_STRUCT = """Extract the relevant information about the synthesis of MOFs mentioned in the paragraph.
 
 There are guildlines for output format:
-- You must write like {{"Mof name": str, "symbol":float, "processes": list, "yield": str, "chemial formula":str, and "other properties": [str, str, ...]}}.
+- You must write like {{"Mof name": str, "symbol": float, "processes": list, "yield": str, "chemial formula":str, and "other properties": [str, str, ...]}}.
 - The "process" list consists of several dictionaries. Each dictionary consists of {{"synthesis method": str, information(different according to synthesis method)}}.
 
 For each process, you must follow these formats:
@@ -42,9 +21,9 @@ For each process, you must follow these formats:
 
 
 You must follow rules belows:
-- According to the synthesis type, information you must write is different. You must write one dictionary per one product.
-- If there are several products in the text, you must write several dictionaries. Each product usually has an index, so you must check the index and write accurately which characteristics correspond to which product.
-- In some cases, it is stated that the synthesis method is the same as before. In this case, check the product with the same synthesis method and fill in the information(precursor, temperature, pressure, time, etc) based on what you recorded earlier.
+- According to the synthesis type, information you must write is different. You must write one dictionary per one material.
+- If there are several material in the text, you must write several dictionaries. Each product usually has an index, so you must check the index and write accurately which characteristics correspond to which product.
+- In some cases, it is stated that the synthesis method is the same as before. In this case, check the product with the same synthesis method and fill in the information (precursor, temperature, pressure, time, etc) based on what you recorded earlier.
 - For each dictionary, you must include yield, chemical formula and other properties if information exists.
 - According to the synthesis method, you must include other information about {synthesis_type}.
 - In case of precursor, reactant, additive, surfactant, source, solution, solvent and reducing agent, if these exist more than 2, you must write all the things. 
@@ -61,9 +40,9 @@ You must follow rules belows:
 - If symbol is written altogether like "4-6", write three different results. There is at least one metal precursor and one organic precursor.
 - If several symbols exist at the same paragraph, you must write separately all the things.
 - You must include chemical formula if information exists. Chemical formula consists of combination of several elements and numbers like C2H5OH.
-- When "Ln" exists in the paragraph, you must write other elements instead of "Ln". ex) ChemLn (Ln=Pr(1), Gd(2), Dy(3), Er(4)), There are four chemicals; ChemPr, ChemGd, ChemDy, ChemEr
+- When "Ln" or "M" exists in the paragraph, you must write other metals instead of "Ln" or "M". ex) ChemLn (Ln=Pr(1), Gd(2), Dy(3), Er(4)), There are four chemicals; ChemPr, ChemGd, ChemDy, ChemEr
 
-If you"re uncertain, please reply with "I do not know".
+If you are uncertain, please reply with "I do not know".
 
 
 Begin!

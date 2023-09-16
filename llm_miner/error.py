@@ -14,5 +14,9 @@ class ContextError(BaseMiningError):
     pass
 
 
+class LangchainError(BaseMiningError):
+    pass
+
+
 class ReaderError(BaseMiningError):
     pass
