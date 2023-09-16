@@ -11,7 +11,7 @@ from langchain.callbacks.manager import CallbackManagerForChainRun
 
 from llm_miner.synthesis.prompt import PROMPT_TYPE, PROMPT_STRUCT, EXAMPLE_STRUCT
 from llm_miner.reader.parser.base import Paragraph
-from llm_miner.error import StructuredFormatError
+from llm_miner.error import StructuredFormatError, LangchainError, TokenLimitError
 from llm_miner.format import Formatter
 from llm_miner.pricing import TokenChecker, update_token_checker
 
@@ -56,17 +56,20 @@ class SynthesisMiningAgent(Chain):
         callbacks = _run_manager.get_child()
         
         element: Paragraph = inputs[self.input_key]
-        token_checker: TokenChecker = inputs['token_checker']
+        token_checker: TokenChecker = inputs.get('token_checker')
         paragraph: str = element.content
 
         llm_kwargs={
             'paragraph': paragraph,
         }
-        llm_output = self.type_chain.run(
-            **llm_kwargs,
-            callbacks=callbacks,
-            stop=["Paragraph:"]
-        )
+        try:
+            llm_output = self.type_chain.run(
+                **llm_kwargs,
+                callbacks=callbacks,
+                stop=["Paragraph:"]
+            )
+        except Exception as e:
+            raise LangchainError(e)
 
         if token_checker:
             update_token_checker(
@@ -95,11 +98,15 @@ class SynthesisMiningAgent(Chain):
             'synthesis_type': synthesis_type,
             'format': prop_string,
         }
-        llm_output = self.type_struct.run(
-            **llm_kwargs,
-            callbacks=callbacks,
-            stop=["Paragraph:"]
-        )
+
+        try:
+            llm_output = self.type_struct.run(
+                **llm_kwargs,
+                callbacks=callbacks,
+                stop=["Paragraph:"]
+            )
+        except Exception as e:
+            raise LangchainError(e)
 
         if token_checker:
             update_token_checker(
@@ -125,16 +132,15 @@ class SynthesisMiningAgent(Chain):
         example_struct: str = EXAMPLE_STRUCT,
         **kwargs,
     ) -> Chain:
-        
         template_type = PromptTemplate(
             template=prompt_type,
             input_variables=["paragraph"],
+            partial_variables={"list_operation": str(Formatter.operation.list_keys())},
         )
         template_struct = PromptTemplate(
             template=prompt_struct,
-            input_variables=["synthesis_type", "paragraph","format"],
+            input_variables=["synthesis_type", "paragraph", "format"],
             partial_variables={"example": example_struct},
-
         )
 
         type_chain = LLMChain(llm=llm, prompt=template_type)
