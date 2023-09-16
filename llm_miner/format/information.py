@@ -11,7 +11,7 @@ crystal_size = """
 """
 
 gas_adsorption = """
-
+Hydrogen is H2.
 """
 
 porosity = """
@@ -25,7 +25,6 @@ pore_diameter = """
 
 
 crystal_system = """
-
 """
 
 space_group = """
@@ -34,7 +33,7 @@ space_group = """
 
 
 decomposition_temperature = """
-
+TGA means decomposition temperature.
 """
 
 heat_capacity = """
@@ -81,7 +80,7 @@ magnetic_moment = """
 """
 
 magnetic_susceptibility = """
-
+Do not extract expected or anticipated values.
 """
 
 chemical_formula_weight = """
@@ -101,7 +100,4 @@ spectrum = """
 
 etc = """
 In "etc" part, you must only include information that does not fit into another cateogry.
-"""
-
-thermal_weight_loss ="""
 """

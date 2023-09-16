@@ -82,6 +82,12 @@ class TextMiningAgent(Chain):
         element.set_include_properties(property_type)
 
         output = {}
+
+        st_data_string = ""
+        info_string = ""
+        example_string = ""
+        prop_string = ""
+
         for prop in property_type:
             try:
                 st_data = Formatter.structured_data[prop]
@@ -90,38 +96,42 @@ class TextMiningAgent(Chain):
             except KeyError:
                 self._write_log(f"There are no format for {prop}", _run_manager)
                 continue
+
+            st_data_string += f"- {st_data}\n"
+            info_string += f"- {info}\n"
+            example_string += f"- {example}\n"
+            prop_string += f"{prop}, "
+
+        llm_kwargs={
+            'prop': prop_string,
+            'structured_data': st_data_string,
+            'information': info_string,
+            'example': example_string,
+            'paragraph': paragraph,
+        }
+        try:
+          llm_output = self.extract_chain.run(
+              **llm_kwargs,
+              callbacks=callbacks,
+              stop=["Paragraph:"]
+          )
+        except Exception as e:
+            raise LangchainError(e)
             
-            llm_kwargs={
-                'prop': prop,
-                'structured_data': st_data,
-                'information': info,
-                'example': example,
-                'paragraph': paragraph,
-            }
-            try:
-                llm_output = self.extract_chain.run(
-                    **llm_kwargs,
-                    callbacks=callbacks,
-                    stop=["Paragraph:"]
-                )
-            except Exception as e:
-                raise LangchainError(e)
+        if token_checker:
+            update_token_checker(
+                name_step='text-property-extract',
+                chain=self.extract_chain,
+                token_checker=token_checker, 
+                llm_kwargs=llm_kwargs, 
+                llm_output=llm_output
+            )
 
-            if token_checker:
-                update_token_checker(
-                    name_step='text-property-extract',
-                    chain=self.extract_chain,
-                    token_checker=token_checker, 
-                    llm_kwargs=llm_kwargs, 
-                    llm_output=llm_output
-                )
+        st_output = self._parse_output(llm_output)
+        self._write_log(f"{st_output}", _run_manager)
 
-            st_output = self._parse_output(llm_output)
-            self._write_log(f"{prop} : {st_output}", _run_manager)
-            output[prop] = st_output
-
-        element.set_data([output])
-        return {"output": output}
+        element.set_data([st_output])
+        return {"output": st_output}
     
     def _add_explanation(self):
         erase_list = [
