@@ -175,3 +175,13 @@ JSON: [{{"property name": "electrical conductivity", "value":"0.02", "unit":"S/c
 Paragraph: NOTT-202 displays an electrical resistance of approximately 10^7 ohm·cm, positioning it as a potential insulating material in electronic applications. Its low electrical conductivity makes it useful for reducing electromagnetic interference in electronic circuits.
 JSON: [{{"property name": "electrical resistance", "value": "10000000", "unit": "ohm·cm", "condition": ""}}]
 """
+
+lattice_parameters = """
+Paragraph: Crystallographic data for Compound 2: C36H42N6O4, M = 622.75, monoclinic, P21/c, a = 10.812(4) Å, b = 15.261(6) Å, c = 13.973(5) Å, V = 2293.0(14) cm^3, Z = 4, Dc = 1.292 g cm^−3, μ (X-ray) = 1.012 mm^−1, T = 298(2) K, 14056 reflections collected, 3668 unique (Rint = 0.0573), R1 on F(wR2 on F2) = 0.0397 (0.0884) for 3447 observed (I > 2σ(I)) reflections.
+JSON: [{{"value": {{"a": "10.812", "b": "15.261", "c": "13.973", "alpha": "", "beta": "", "gamma": ""}}]
+"""
+
+cell_volume = """
+Paragraph: Crystallographic data for Compound 2: C36H42N6O4, M = 622.75, monoclinic, P21/c, a = 10.812(4) Å, b = 15.261(6) Å, c = 13.973(5) Å, V = 2293.0(14) cm^3, Z = 4, Dc = 1.292 g cm^−3, μ (X-ray) = 1.012 mm^−1, T = 298(2) K, 14056 reflections collected, 3668 unique (Rint = 0.0573), R1 on F(wR2 on F2) = 0.0397 (0.0884) for 3447 observed (I > 2σ(I)) reflections.
+JSON: [{{"value":"2293.0", "unit":"cm^3"}}]
+"""

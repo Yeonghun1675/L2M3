@@ -129,7 +129,6 @@ class TextMiningAgent(Chain):
     def _add_explanation(self):
         erase_list = [
             "cell_volume",
-            "lattice_parameters",
             "conversion",
             "reaction_yield",
             "chemical_formula",
