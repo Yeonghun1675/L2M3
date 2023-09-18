@@ -20,15 +20,15 @@ class BaseParser(object, metaclass=ABCMeta):
     @classmethod
     def check_suffix(cls, suffix):
         return suffix == cls.suffix
-    
+
     @abstractclassmethod
     def open_file(cls, filePath: str):
         raise NotImplementedError()
-    
+
     @abstractclassmethod
     def parsing(cls, file: str):
         raise NotImplementedError()
-    
+
     @abstractclassmethod
     def get_metadata(cls, file: str):
         raise NotImplementedError()
@@ -45,7 +45,7 @@ class Paragraph(BaseModel):
 
     def __getitem__(self, item):
         return getattr(self, item)
-    
+
     def print(self, ) -> str:
         string = (
             f"Idx : {self.idx}\n"
@@ -55,11 +55,17 @@ class Paragraph(BaseModel):
             f"Include Properties : {self.include_properties}\n"
             f"Data :\n{pprint.pformat(self.data, sort_dicts=False)}"
         )
+<<<<<<< HEAD
+        print(string)
+
+    def append(self, others):
+=======
         print (string)
     
     def merge(self, others, merge_idx=False):
         if merge_idx:
             self.idx = f'{self.idx}, {others.idx}' 
+>>>>>>> bd28cb77907c8246f630854b25ad38074d0796cb
         self.content += others.content
         self.clean_text += '\n\n'+others.clean_text
 
@@ -68,7 +74,7 @@ class Paragraph(BaseModel):
                 self.data += others.data
             else:
                 self.data = others.data
-    
+
     def set_data(self, data) -> None:
         if self.data is None:
             self.data = data
@@ -77,7 +83,7 @@ class Paragraph(BaseModel):
 
     def get_data(self, ) -> List[Dict[str, Any]]:
         return self.data
-    
+
     def set_classification(self, cls) -> None:
         if self.classification is None:
             if isinstance(cls, str):
@@ -89,7 +95,7 @@ class Paragraph(BaseModel):
                 self.classification += [cls]
             else:
                 self.classification += cls
-    
+
     def set_clean_text(self, text) -> None:
         self.clean_text = text
 
@@ -131,23 +137,44 @@ class Elements(Sequence, BaseModel):
 
     def __getitem__(self, idx: int) -> Paragraph:
         return self.elements[idx]
-    
+
     def __len__(self,) -> int:
         return len(self.elements)
+<<<<<<< HEAD
+
+=======
     
     def __bool__(self) -> bool:
         return bool(self.elements)
     
+>>>>>>> bd28cb77907c8246f630854b25ad38074d0796cb
     def get_tables(self) -> List[Paragraph]:
-        return [e for e in self.elements if e.type == 'table'] 
-    
+        return [e for e in self.elements if e.type == 'table']
+
     def get_texts(self) -> List[Paragraph]:
+<<<<<<< HEAD
+        text_type = ['text', 'synthesis condition', 'property', 'else']
+        return [e for e in self.elements if e.type in text_type]
+
+=======
         return [e for e in self.elements if e.type  == 'text'] 
     
+>>>>>>> bd28cb77907c8246f630854b25ad38074d0796cb
     def get_figures(self) -> List[Paragraph]:
-        return [e for e in self.elements if e.type == 'figure'] 
-    
+        return [e for e in self.elements if e.type == 'figure']
+
     def get_synthesis_conditions(self) -> List[Paragraph]:
+<<<<<<< HEAD
+        return [e for e in self.elements if e.type == 'synthesis condition']
+
+    def get_properties(self) -> List[Paragraph]:
+        return [e for e in self.elements if e.type == 'property']
+
+    def to_dict(self, ) -> List[Dict[str, Any]]:
+        return [
+            para.to_dict() for para in self.elements
+        ]
+=======
         return [e for e in self.elements if e.classification and 'synthesis condition' in e.classification] 
     
     def get_properties(self) -> List[Paragraph]:
@@ -164,6 +191,7 @@ class Elements(Sequence, BaseModel):
     @classmethod
     def empty(cls, ):
         return cls(elements=list())
+>>>>>>> bd28cb77907c8246f630854b25ad38074d0796cb
 
     @classmethod
     def from_dict(cls, data: List[Dict[str, Any]]):
@@ -181,7 +209,7 @@ class Metadata(BaseModel):
 
     def __getitem__(self, item):
         return getattr(self, item)
-    
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             'doi': self.doi,
