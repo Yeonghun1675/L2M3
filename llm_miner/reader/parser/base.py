@@ -55,6 +55,7 @@ class Paragraph(BaseModel):
             f"Include Properties : {self.include_properties}\n"
             f"Data :\n{pprint.pformat(self.data, sort_dicts=False)}"
         )
+        print(string)
     
     def merge(self, others, merge_idx=False):
         if merge_idx:
