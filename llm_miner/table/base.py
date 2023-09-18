@@ -66,6 +66,7 @@ class TableMiningAgent(Chain):
         run_manager.on_text(f'\n[Table Mining] {action}: ', verbose=self.verbose)
         run_manager.on_text(text, verbose=self.verbose, color='yellow')
 
+    @staticmethod
     def remove_attributes(xml_str):
         # Remove xmlns, id, view, nameend, namest, and valign attributes
         cleaned_xml = regex.sub(r' (xmlns|id|view|nameend|namest|valign)="[^"]+"', '', xml_str)
@@ -100,7 +101,7 @@ class TableMiningAgent(Chain):
 
         element: Paragraph = inputs[self.input_key]
         token_checker: TokenChecker = inputs['token_checker']
-        paragraph: str = self.remove_attributes(element.content)
+        paragraph: str = TableMiningAgent.remove_attributes(element.content)
 
         llm_kwargs = {
             'paragraph': paragraph
