@@ -48,22 +48,6 @@ class JournalReader(BaseModel):
         return f'https://doi.org/{self.doi}'
 
     def get_tables(self) -> List[Paragraph]:
-<<<<<<< HEAD
-        return self.elements.get_tables()
-
-    def get_texts(self) -> List[Paragraph]:
-        return self.elements.get_texts()
-
-    def get_figures(self) -> List[Paragraph]:
-        return self.elements.get_figures()
-
-    def get_synthesis_conditions(self) -> List[Paragraph]:
-        return self.elements.get_synthesis_conditions()
-
-    def get_properties(self) -> List[Paragraph]:
-        return self.elements.get_properties()
-
-=======
         if self.cln_elements:
             return self.cln_elements.get_tables()
         else:
@@ -93,7 +77,6 @@ class JournalReader(BaseModel):
         else:
             return self.elements.get_properties()
     
->>>>>>> bd28cb77907c8246f630854b25ad38074d0796cb
     def to_dict(self,) -> Dict[str, Any]:
         return {
             'filepath': str(self.filepath),
@@ -101,17 +84,11 @@ class JournalReader(BaseModel):
             'elements': self.elements.to_dict(),
             'metadata': self.metadata.to_dict(),
         }
-<<<<<<< HEAD
-
-=======
     
->>>>>>> bd28cb77907c8246f630854b25ad38074d0796cb
     def to_json(self, filepath) -> Dict[str, Any]:
         with open(filepath, 'w') as f:
             json.dump(self.to_dict(), f)
 
-<<<<<<< HEAD
-=======
     def reconstruct(
             self, 
             max_tokens: int = 4000, 
@@ -142,7 +119,6 @@ class JournalReader(BaseModel):
         for figure in self.elements.get_figures():
             self.cln_elements.append(figure)
 
->>>>>>> bd28cb77907c8246f630854b25ad38074d0796cb
     @classmethod
     def from_file(cls, filepath: str, publisher: str = None):
         if publisher is None:
