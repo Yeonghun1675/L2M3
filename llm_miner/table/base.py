@@ -1,3 +1,4 @@
+import regex
 from typing import Any, Dict, List, Optional
 
 from langchain.base_language import BaseLanguageModel
@@ -65,6 +66,30 @@ class TableMiningAgent(Chain):
         run_manager.on_text(f'\n[Table Mining] {action}: ', verbose=self.verbose)
         run_manager.on_text(text, verbose=self.verbose, color='yellow')
 
+    def remove_attributes(xml_str):
+        # Remove xmlns, id, view, nameend, namest, and valign attributes
+        cleaned_xml = regex.sub(r' (xmlns|id|view|nameend|namest|valign)="[^"]+"', '', xml_str)
+
+        # Remove hsp, vsp, and colspec elements
+        cleaned_xml = regex.sub(r'<(ce:)?hsp[^>]*>.*?</(ce:)?hsp>', '', cleaned_xml)
+        cleaned_xml = regex.sub(r'<vsp[^>]*>.*?</vsp>', '', cleaned_xml)
+        cleaned_xml = regex.sub(r'<colspec[^>]*>.*?</colspec>', '', cleaned_xml)
+
+        # Remove ce:italic, ce:bold, italic, and bold tags but keep their content
+        cleaned_xml = regex.sub(r'<(ce:)?italic>(.*?)</(ce:)?italic>', r'\2', cleaned_xml)
+        cleaned_xml = regex.sub(r'<(ce:)?bold>(.*?)</(ce:)?bold>', r'\2', cleaned_xml)
+
+        # Remove MathML elements
+        cleaned_xml = regex.sub(r'<mml:math.*?>.*?</mml:math>', '', cleaned_xml, flags=regex.DOTALL)
+
+        # Remove <inf loc="post"> tags and their content
+        cleaned_xml = regex.sub(r'<(ce:)?inf loc="post">(.*?)</(ce:)?inf>', r'\2', cleaned_xml)
+        cleaned_xml = regex.sub(r' (frame|loc)="[^"]+"', '', cleaned_xml)
+
+        # Remove multiple enters
+        cleaned_xml = regex.sub(r'\n+', '\n', cleaned_xml)
+        return cleaned_xml
+
     def _call(
             self,
             inputs: Dict[str, Any],
@@ -75,9 +100,9 @@ class TableMiningAgent(Chain):
 
         element: Paragraph = inputs[self.input_key]
         token_checker: TokenChecker = inputs['token_checker']
-        paragraph: str = element.content
+        paragraph: str = self.remove_attributes(element.content)
 
-        llm_kwargs={
+        llm_kwargs = {
             'paragraph': paragraph
         }
         md_output = self.convert_chain.run(
