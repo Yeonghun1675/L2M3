@@ -9,7 +9,7 @@ from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
-from llm_miner.synthesis.prompt import PROMPT_TYPE, PROMPT_STRUCT, EXAMPLE_STRUCT
+from llm_miner.synthesis.prompt import PROMPT_TYPE, PROMPT_STRUCT
 from llm_miner.reader.parser.base import Paragraph
 from llm_miner.error import StructuredFormatError, LangchainError, TokenLimitError
 from llm_miner.format import Formatter
@@ -35,7 +35,10 @@ class SynthesisMiningAgent(Chain):
         run_manager.on_text(text, verbose=self.verbose, color="yellow")
 
     def _parse_output(self, output: str) -> Dict[str, str]:
-        output = output.replace("List:", "").strip()  # remove `List`
+        output = output.replace("```JSON", "")
+        output = output.replace("```", "")
+        output = output.strip()
+
         if regex.search(r"[Ii] do not know", output):
             return [output]
         try:
@@ -129,7 +132,6 @@ class SynthesisMiningAgent(Chain):
         llm: BaseLanguageModel,
         prompt_type: str = PROMPT_TYPE,
         prompt_struct: str = PROMPT_STRUCT,
-        example_struct: str = EXAMPLE_STRUCT,
         **kwargs,
     ) -> Chain:
         template_type = PromptTemplate(
@@ -140,7 +142,6 @@ class SynthesisMiningAgent(Chain):
         template_struct = PromptTemplate(
             template=prompt_struct,
             input_variables=["synthesis_type", "paragraph", "format"],
-            partial_variables={"example": example_struct},
         )
 
         type_chain = LLMChain(llm=llm, prompt=template_type)

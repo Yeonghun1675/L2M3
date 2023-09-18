@@ -34,7 +34,9 @@ class TextMiningAgent(Chain):
         run_manager.on_text(text, verbose=self.verbose, color="yellow")
 
     def _parse_output(self, output: str) -> Dict[str, str]:
-        output = output.replace("List:", "").strip()  # remove `List`
+        output = output.replace("```JSON","")
+        output = output.replace("```","")
+        output = output.strip()
         if regex.search(r"[Ii] do not know", output):
             return [output]
         try:
