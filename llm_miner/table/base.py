@@ -7,7 +7,7 @@ from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
 
-from llm_miner.error import ContextError, TokenLimitError
+from llm_miner.error import ContextError, TokenLimitError, LangchainError
 from llm_miner.reader.parser.base import Paragraph
 from llm_miner.table.categorize.base import CategorizeAgent
 from llm_miner.table.crystal.base import CrystalTableAgent
@@ -105,11 +105,15 @@ class TableMiningAgent(Chain):
         llm_kwargs = {
             'paragraph': paragraph
         }
-        md_output = self.convert_chain.run(
-            **llm_kwargs,
-            callbacks=callbacks,
-            stop=["Input:"]
-        )
+        try:
+            md_output = self.convert_chain.run(
+                **llm_kwargs,
+                callbacks=callbacks,
+                stop=["Input:"]
+            )
+        except Exception as e:
+            raise LangchainError(e)
+            
         if token_checker:
             update_token_checker(
                 name_step='table-convert2MD',

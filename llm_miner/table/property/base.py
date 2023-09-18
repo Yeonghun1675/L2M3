@@ -7,7 +7,7 @@ from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
 
-from llm_miner.error import StructuredFormatError, TokenLimitError
+from llm_miner.error import StructuredFormatError, TokenLimitError, LangchainError
 from llm_miner.format import Formatter
 from llm_miner.table.property.prompt import PROPERTY_CATEGORIZE, PROPERTY_EXTRACT
 from llm_miner.pricing import TokenChecker, update_token_checker
@@ -77,12 +77,14 @@ class PropertyTableAgent(Chain):
             'explanation':explanation,
             'paragraph': paragraph,
         }
-
-        included_props = self.categorize_chain.run(
-            **llm_kwargs,
-            callbacks=callbacks,
-            stop=["Input:"]
-        )
+        try:
+            included_props = self.categorize_chain.run(
+                **llm_kwargs,
+                callbacks=callbacks,
+                stop=["Input:"]
+            )
+        except Exception as e:
+            raise LangchainError(e)
 
         if token_checker:
             update_token_checker(
@@ -108,11 +110,14 @@ class PropertyTableAgent(Chain):
             'format': format,
             'paragraph': paragraph,
         }
-        output = self.extract_chain.run(
-            **llm_kwargs,
-            callbacks=callbacks,
-            stop=["Input:"]
-        )
+        try:
+            output = self.extract_chain.run(
+                **llm_kwargs,
+                callbacks=callbacks,
+                stop=["Input:"]
+            )
+        except Exception as e:
+            raise LangchainError(e)
 
         if token_checker:
             update_token_checker(
@@ -136,6 +141,7 @@ class PropertyTableAgent(Chain):
             "catalytic_activity",
             "crystal_system",
             "etc"
+
         ]
         formatter = Formatter
         target_items = list(formatter.explanation.keys())

@@ -6,10 +6,14 @@ You must follow rules below:
 - If there are both "synthesis condition" and "property", return ["property", "synthesis condition"].
 - When the paragraph does not include both synthesis condition and property, it means that there is no information. In this case, you must return ["else"].
 - Only possible answer is ["property"], ["synthesis condition"], ["property","synthesis condition"] or ["else"]
+- If "TGA" is in the paragraph, it means that it contains only "property", not "synthesis condition".
 
 Begin!
 
 Paragraph: MOF-5, a well-known Zn-based MOF, boasts a high surface area, with a value reaching up to 2,900 m2/g. This remarkable property makes MOF-5 a potential candidate for various applications, such as gas storage and separation. Furthermore, the pores in MOF-5 are uniform with diameters around 14 Å, ensuring selective adsorption of specific molecules based on their size.
+List: ["property"]
+
+Paragraph: TGA was conducted on compounds 5 to 8 under a continuous nitrogen atmosphere. Interestingly, these compounds exhibit distinct thermal behaviors. TG profiles for compounds 5 and 6 reveal a single plateau extending from room temperature to 380°C, after which the ligand decomposition triggers a complete structural breakdown. In contrast, compounds 7 and 8 display two distinct plateaus in their TG curves. For compound 7, the initial weight loss of 22% between 270 and approximately 320°C corresponds to the complete liberation of diethyl ether molecules (calculated: 21.4%), with the residual framework [Mn(lig)]n exhibiting no weight loss up to approximately 400°C. Comparative powder X-ray diffraction analyses confirm that the framework [Mn(lig)]n remains unchanged at 300°C, transitioning to an unidentified phase only after the complete removal of diethyl ether ligands at 350°C (). The total solvent-accessible volume of 7 is estimated at 36.2% using the PLATON program. The TGA profile of compound 8 closely mirrors that of compound 7, although compound 8 demonstrates greater thermal stability. Supported by powder X-ray diffraction patterns, it is evident that the framework of compound 8 remains unaltered even at 350°C.
 List: ["property"]
 
 Paragraph: A mixture of H2L (0.0138 g, 0.05 mmol), Zn(NO3)2·6H2O (0.0149 g, 0.05 mmol), and NaOH (0.0040 g, 0.1 mmol) in 6 mL of mixed H2O–MeCN (1:1 v/v) was placed in a Teflon-lined stainless steel vessel, heated to 120 °C for 3 days, and then cooled to room temperature. Colorless block-like crystals of 1 were obtained in 80% yield based on zinc. Anal. Calcd for C13H9NO5SZn (356.64): C, 43.74; H, 2.53; N, 3.93. Found: C, 43.70 ; H, 2.57; N, 3.98. IR/cm–1 (KBr): 3423(s), 1604(s), 1424(s), 1375(s), 1356(s).
@@ -27,3 +31,14 @@ List: ["else"]
 Paragraph: {paragraph}
 List:
 """
+
+
+FT_CATEGORIZE = (
+    "Categorize the paragraph given. "
+    "Select one or more categories from \"synthesis condition\" and \"property\". "
+    "If the paragraph does not fit into either of these categories, choose \"else\". "
+    "\"property\" paragraph must include specific numerical value of the property. "
+    "ex) surface area of 2500 m2/g"
+)
+
+FT_HUMAN = "{paragraph}"

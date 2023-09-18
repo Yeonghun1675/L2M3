@@ -2,6 +2,7 @@ from typing import List, Any, Tuple
 from bs4 import BeautifulSoup
 from llm_miner.reader.parser.base import BaseParser, Paragraph, Metadata
 from llm_miner.reader.parser.utils import word_find
+from llm_miner.reader.parser.utils import clean_text as f_clean
 
 
 class RSCParser(BaseParser):
@@ -32,12 +33,12 @@ class RSCParser(BaseParser):
             elif element.name in cls.figure_tags:
                 if element.name == "div" and word_find(["image_table"], element, 'class'):
                     type_ = 'figure'
-                    clean_text = element.text
+                    clean_text = f_clean(element.text)
                 else:
                     continue
             elif element.name in cls.para_tags and cls._is_para(element):
                 type_ = 'text'
-                clean_text = element.text
+                clean_text = f_clean(element.text)
             else:
                 continue
 
@@ -49,7 +50,7 @@ class RSCParser(BaseParser):
             )
             
             if title_para and type_ == 'text':
-                title_para.append(data)
+                title_para.merge(data, merge_idx=False)
                 data = title_para
                 title_para = None
             else:

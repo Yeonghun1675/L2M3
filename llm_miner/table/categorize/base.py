@@ -7,7 +7,7 @@ from langchain.prompts import PromptTemplate
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
 from llm_miner.table.categorize.prompt import PROMPT_CATEGORIZE
-from llm_miner.error import ContextError
+from llm_miner.error import ContextError, LangchainError
 from llm_miner.pricing import TokenChecker, update_token_checker
 
 
@@ -52,12 +52,14 @@ class CategorizeAgent(Chain):
         llm_kwargs = {
             'paragraph': para,
         }
-
-        llm_output = self.categorize_chain.run(
-            **llm_kwargs,
-            callbacks=callbacks,
-            stop=['Input:'],
-        )
+        try:
+            llm_output = self.categorize_chain.run(
+                **llm_kwargs,
+                callbacks=callbacks,
+                stop=['Input:'],
+            )
+        except Exception as e:
+            raise LangchainError(e)
 
         if token_checker:
             update_token_checker(

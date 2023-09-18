@@ -20,7 +20,7 @@ surface_area = """
 
 
 pore_volume = """
-"total pore volume": [
+"pore volume": [
     {
         "probe": "", ex) N2, H2
         "value": "",
@@ -104,7 +104,8 @@ decomposition_temperature = """
 "decomposition temperature": [
     {
         "value": "",
-        "unit": ""
+        "unit": "",
+        "type": ""
 
     }, ...
 ]
@@ -326,17 +327,7 @@ etc = """
         "property name": "",
         "value":"",
         "unit":"",
-        "conditon": "",
+        "condition": "",
     }, ...
-]
-"""
-
-thermal_weight_loss = """
-"thermal weight loss": [
-    {
-        "value":"",
-        "unit":"",
-        "range":""
-    }
 ]
 """
