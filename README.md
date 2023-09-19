@@ -1,3 +1,3 @@
-# LLM Material DataMinder
+# LLM Material DataMinder for Battery
 
-This is LLM material minder
+This is LLM material miner for battery mining
