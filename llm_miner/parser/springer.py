@@ -1,7 +1,8 @@
 from typing import List
 from bs4 import BeautifulSoup
-from llm_miner.reader.parser.base import BaseParser, Paragraph, Metadata
-from llm_miner.reader.parser.utils import clean_text as f_clean
+from llm_miner.schema import Paragraph
+from llm_miner.parser.base import BaseParser, Metadata
+from llm_miner.parser.utils import clean_text as f_clean
 
 
 class SpringerParser(BaseParser):

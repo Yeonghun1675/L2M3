@@ -14,7 +14,7 @@ from langchain.callbacks.manager import CallbackManagerForChainRun
 
 from llm_miner.categorize.prompt import PROMPT_CATEGORIZE, FT_CATEGORIZE, FT_HUMAN
 from llm_miner.error import StructuredFormatError, ContextError, LangchainError
-from llm_miner.reader.parser.base import Paragraph
+from llm_miner.schema import Paragraph
 from llm_miner.pricing import TokenChecker, update_token_checker
 
 

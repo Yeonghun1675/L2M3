@@ -5,9 +5,9 @@ from langchain.base_language import BaseLanguageModel
 from langchain.chains.base import Chain
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
-from llm_miner.reader.parser.base import Paragraph
+from llm_miner.schema import Paragraph
 from llm_miner.config import config
-from llm_miner.reader.reader import JournalReader
+from llm_miner.reader import JournalReader
 from llm_miner.categorize.base import CategorizeAgent
 from llm_miner.synthesis.base import SynthesisMiningAgent
 from llm_miner.text.base import TextMiningAgent

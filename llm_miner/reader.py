@@ -4,24 +4,14 @@ from typing import List, Any, Dict
 from pydantic import BaseModel
 from pathlib import Path
 
-from llm_miner.reader.parser.base import Paragraph, Elements, Metadata, BaseParser
-from llm_miner.reader.parser.elsevier import ElsevierParser
-from llm_miner.reader.parser.acs import ACSParser
-from llm_miner.reader.parser.rsc import RSCParser
-from llm_miner.reader.parser.springer import SpringerParser
-from llm_miner.reader.parser.utils import publisher_finder
-from llm_miner.utils import num_tokens_from_string, merge_para_by_token
-from llm_miner.error import ReaderError
+from llm_miner.schema import Paragraph, Elements
+from llm_miner.parser import parser_dict, Metadata, BaseParser
+from llm_miner.parser.utils import publisher_finder
+from llm_miner.utils import merge_para_by_token
+from llm_miner.error import ReaderError, ParserError
+from llm_miner.config import config
 
 warnings.filterwarnings("ignore", category=UserWarning, module='bs4')
-
-
-parser_dict = {
-    'elsevier': ElsevierParser,
-    'acs': ACSParser,
-    'rsc': RSCParser,
-    'springer': SpringerParser,
-}
 
 
 class JournalReader(BaseModel):
@@ -76,6 +66,12 @@ class JournalReader(BaseModel):
             return self.cln_elements.get_properties()
         else:
             return self.elements.get_properties()
+        
+    def get_idx(self, idx: int) -> Paragraph:
+        for element in self.elements:
+            if int(element.idx) == idx:
+                return element
+        raise IndexError(f'There are no idx {idx} in elements.')
     
     def to_dict(self,) -> Dict[str, Any]:
         return {
@@ -91,7 +87,6 @@ class JournalReader(BaseModel):
 
     def reconstruct(
             self, 
-            max_tokens: int = 4000, 
             model_name:str = 'gpt-4'
     ) -> None:
         if self.cln_elements:    # clear cln_elements
@@ -100,7 +95,7 @@ class JournalReader(BaseModel):
         merge_para_by_token(
             ls_para = self.elements.get_synthesis_conditions(),
             classification = 'synthesis condition',
-            max_tokens = max_tokens,
+            max_tokens = config['input_max_tokens_synthesis'],
             model_name = model_name,
             elements = self.cln_elements
         )
@@ -108,31 +103,34 @@ class JournalReader(BaseModel):
         merge_para_by_token(
             ls_para = self.elements.get_properties(),
             classification = 'property',
-            max_tokens = max_tokens,
+            max_tokens = config['input_max_tokens_property'],
             model_name = model_name,
             elements = self.cln_elements
         )
 
         for table in self.elements.get_tables():
-            self.cln_elements.append(table)
+            self.cln_elements.append(table.copy())
 
         for figure in self.elements.get_figures():
-            self.cln_elements.append(figure)
+            self.cln_elements.append(figure.copy())
 
     @classmethod
     def from_file(cls, filepath: str, publisher: str = None):
         if publisher is None:
-            publisher = publisher_finder(filepath)
+            raise NotImplementedError('publisher finder is not implemented.')
+            #publisher = publisher_finder(filepath)
 
         publisher = publisher.lower()
         if publisher not in parser_dict:
             raise ReaderError(f'publisher must be one of [`acs`, `rsc`, `elsevier`, `springer], not {publisher}')
 
         parser: BaseParser = parser_dict[publisher]
-        file_bs = parser.open_file(filepath)
-
-        elements = parser.parsing(file_bs)
-        metadata = parser.get_metadata(file_bs)
+        try:
+            file_bs = parser.open_file(filepath)
+            elements = parser.parsing(file_bs)
+            metadata = parser.get_metadata(file_bs)
+        except Exception as e:
+            raise ParserError(e)
 
         return cls(
             filepath=Path(filepath),

@@ -8,7 +8,7 @@ from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
 
 from llm_miner.error import ContextError, TokenLimitError, LangchainError
-from llm_miner.reader.parser.base import Paragraph
+from llm_miner.schema import Paragraph
 from llm_miner.table.categorize.base import CategorizeAgent
 from llm_miner.table.crystal.base import CrystalTableAgent
 from llm_miner.table.property.base import PropertyTableAgent

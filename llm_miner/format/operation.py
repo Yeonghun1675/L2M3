@@ -199,11 +199,16 @@ cooling: {
 "time":""
 }
 """
-
 pH_adjustment="""
 pH adjustment: {
 "pH":"",
 "modulator":""
 }
-
+"""
+filtration="""
+filtration: {
+"time":"",
+"atmosphere":"",
+"pressure":"",
+}
 """
