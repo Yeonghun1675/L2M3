@@ -23,8 +23,7 @@ centrifugation: {
 "relative centrifugal force":"",
 "time":"",
 "temperature":"",
-"additive name":"",
-"additive amount":"",
+"additive":[{"name":"", "amount":"", "unit":""}, ...],
 "tube material":"",
 "tube volume":""
 }
