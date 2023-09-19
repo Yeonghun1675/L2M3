@@ -10,7 +10,7 @@ from langchain.prompts import PromptTemplate
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
 from llm_miner.synthesis.prompt import PROMPT_TYPE, PROMPT_STRUCT
-from llm_miner.reader.parser.base import Paragraph
+from llm_miner.schema import Paragraph
 from llm_miner.error import StructuredFormatError, LangchainError, TokenLimitError
 from llm_miner.format import Formatter
 from llm_miner.pricing import TokenChecker, update_token_checker

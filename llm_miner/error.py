@@ -20,3 +20,7 @@ class LangchainError(BaseMiningError):
 
 class ReaderError(BaseMiningError):
     pass
+
+
+class ParserError(BaseMiningError):
+    pass

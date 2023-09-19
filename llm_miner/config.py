@@ -12,4 +12,7 @@ config = {
 
     # config - agent
     'reconstruct': True,  # merge paragraph for reducing tokens
+    'input_max_tokens_synthesis': None,
+    'input_max_tokens_property': 3500,
+
 }
