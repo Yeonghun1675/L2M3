@@ -76,7 +76,8 @@ class LLMMiner(Chain):
                 )
             except BaseMiningError as e:
                 element.set_data([str(e)])
-            print (output)
+            else:
+                print (output)
 
         for element in jr.get_properties():
             try:
@@ -87,7 +88,8 @@ class LLMMiner(Chain):
                 )
             except BaseMiningError as e:
                 element.set_data([str(e)])
-            print (output)
+            else:
+                print (output)
 
         for element in jr.get_tables():
             try:

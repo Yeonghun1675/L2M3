@@ -11,7 +11,7 @@ from langchain.callbacks.manager import CallbackManagerForChainRun
 from llm_miner.text.prompt import PROMPT_TYPE, PROMPT_EXT
 from llm_miner.reader.parser.base import Paragraph
 from llm_miner.format import Formatter
-from llm_miner.error import StructuredFormatError, LangchainError
+from llm_miner.error import StructuredFormatError, LangchainError, TokenLimitError
 from llm_miner.pricing import TokenChecker, update_token_checker
 
 
@@ -34,6 +34,11 @@ class TextMiningAgent(Chain):
         run_manager.on_text(text, verbose=self.verbose, color="yellow")
 
     def _parse_output(self, output: str) -> Dict[str, str]:
+        if not regex.search(r"^\s*```JSON", output):
+            raise StructuredFormatError('output is not started with "```JSON" ')
+        if not regex.search(r"```\s*$", output):
+            raise TokenLimitError('Output does not finished before token limits')
+        
         output = output.replace("```JSON","")
         output = output.replace("```","")
         output = output.strip()

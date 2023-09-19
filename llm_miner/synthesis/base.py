@@ -35,6 +35,9 @@ class SynthesisMiningAgent(Chain):
         run_manager.on_text(text, verbose=self.verbose, color="yellow")
 
     def _parse_output(self, output: str) -> Dict[str, str]:
+        if regex.search(r"^\s*```JSON", output) and not regex.search(r"```\s*$", output):
+            raise TokenLimitError('Output does not finished before token limits', output)
+        
         output = output.replace("```JSON", "")
         output = output.replace("```", "")
         output = output.strip()

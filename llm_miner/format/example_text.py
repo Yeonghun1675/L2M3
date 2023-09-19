@@ -41,9 +41,9 @@ JSON: ```JSON
 [{{"value":"0.87", "unit":""}}]
 ```
 
-Paragraph: The total solvent-accessible volume of 2 is estimated to be 43.2% using the PLATON program.
+Paragraph: The calculated solvent-accessible void space within the framework measures 852.8 Å3, representing approximately 38.2% of the unit cell volume of 2230.6 Å3.
 JSON: ```JSON
-[{{"value":"43.2", "unit":"%"}}]
+[{{"value":"38.2", "unit":"%"}}, {{"value":"852.8", "unit":"Å3"}}]
 ```
 """
 
