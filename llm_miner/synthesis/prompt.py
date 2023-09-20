@@ -71,3 +71,10 @@ JSON: ```JSON
 
 Paragraph: {paragraph}
 JSON: """
+
+
+FT_TYPE = """Find all the processes used during synthesis. Each process unconditionally must belongs to one of the elements in the following list:
+['pH_adjustment', 'filtration', 'ball_milling', 'centrifugation', 'chemical_mechanical_polishing', 'chemical_synthesis', 'chemical_vapor_deposition', 'drying', 'electrochemical_deposition', 'heat_treatment', 'microwave_assisted_synthesis', 'mixing', 'rinsing', 'solvothermal_synthesis', 'sol_gel_synthesis', 'sonication', 'sonochemical_synthesis', 'thermal_evaporation', 'wet_etching', 'washing', 'cooling']"""
+
+
+FT_HUMAN = "{paragraph}"

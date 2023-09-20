@@ -110,7 +110,6 @@ class CategorizeAgent(Chain):
                 llm=llm,
                 prompt=chat_prompt,
             )
-
         else:  # gpt base model
             template = PromptTemplate(
                 template=prompt,

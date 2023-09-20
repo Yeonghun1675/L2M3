@@ -73,3 +73,14 @@ Begin!
 Paragraph: {paragraph}
 JSON:
 """
+
+FT_TYPE = (
+    "You must decide whether properties exist or not. "
+    "Except for topology, crystal system, and space group, property must have a float value. "
+    "If there is no property in the paragraph, please return an empty list. "
+    "You must find all the properties in the paragraphs. "
+    "Names of properties must be one of following:\n"
+    "['bulk_modulus', 'catalytic_activity', 'chemical_formula_weight', 'crystal_size', 'crystal_system', 'decomposition_temperature', 'density', 'etc', 'gas_adsorption', 'heat_capacity', 'lattice_parameters', 'magnetic_moment', 'magnetic_susceptibility', 'poissons_ratio', 'pore_diameter', 'pore_volume', 'porosity', 'refractive_index', 'selectivity', 'shear_modulus', 'space_group', 'spectrum', 'surface_area', 'thermal_conductivity', 'thermal_expansion_coefficient', 'topology', 'youngs_modulus']"
+)
+
+FT_HUMAN = "{paragraph}"
