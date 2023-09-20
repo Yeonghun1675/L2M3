@@ -14,9 +14,10 @@ def save_file(filepath, content):
 
 openai.api_key = "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"  # molsim1
 model_name = "gpt-3.5-turbo"
-jsonl_file = "text_categorize.jsonl"
-file_id = "file-YGLMeuBShz566rC1V94T0FcV"
-job_id = "ftjob-hQHYAivQWqAkyaV7rDYSI2Xo"
+jsonl_file = "property_inclusion.jsonl"
+file_id = "file-NORdDd2egKhdWua2m33k3K9G"
+job_id = "ftjob-HdkahxADbJ4TWud13BZ8Gm97"
+created = "ft:gpt-3.5-turbo-0613:molsimllm::80kQMux0"
 
 
 # File upload
@@ -49,4 +50,6 @@ def retrieve_job(job_id):
     for event in events:
         print(event["message"])
 
+# file_upload(jsonl_file)
+# job_upload(file_id)
 retrieve_job(job_id)

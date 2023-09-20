@@ -63,42 +63,42 @@ class LLMMiner(Chain):
 
             print (categories)
         
-        # reconstruct elements -> merge paragraph for reducing tokens
-        if config.get('reconstruct'):
-            jr.reconstruct()
+        # # reconstruct elements -> merge paragraph for reducing tokens
+        # if config.get('reconstruct'):
+        #     jr.reconstruct()
 
-        for element in jr.get_synthesis_conditions():
-            try:
-                output = self.synthesis_agent.run(
-                    element=element,
-                    callbacks=callbacks,
-                    token_checker=token_checker
-                )
-            except BaseMiningError as e:
-                element.set_data([str(e)])
-            print (output)
+        # for element in jr.get_synthesis_conditions():
+        #     try:
+        #         output = self.synthesis_agent.run(
+        #             element=element,
+        #             callbacks=callbacks,
+        #             token_checker=token_checker
+        #         )
+        #     except BaseMiningError as e:
+        #         element.set_data([str(e)])
+        #     print (output)
 
-        for element in jr.get_properties():
-            try:
-                output = self.property_agent.run(
-                    element=element,
-                    callbakcs=callbacks,
-                    token_checker = token_checker
-                )
-            except BaseMiningError as e:
-                element.set_data([str(e)])
-            print (output)
+        # for element in jr.get_properties():
+        #     try:
+        #         output = self.property_agent.run(
+        #             element=element,
+        #             callbakcs=callbacks,
+        #             token_checker = token_checker
+        #         )
+        #     except BaseMiningError as e:
+        #         element.set_data([str(e)])
+        #     print (output)
 
-        for element in jr.get_tables():
-            try:
-                output = self.table_agent.run(
-                    element=element,
-                    callbakcs=callbacks,
-                    token_checker = token_checker
-                )
-            except BaseMiningError as e:
-                element.set_data([str(e)])
-            print (output)
+        # for element in jr.get_tables():
+        #     try:
+        #         output = self.table_agent.run(
+        #             element=element,
+        #             callbakcs=callbacks,
+        #             token_checker = token_checker
+        #         )
+        #     except BaseMiningError as e:
+        #         element.set_data([str(e)])
+        #     print (output)
 
         if config['reconstruct']:
             return {self.output_key: jr.cln_elements}
