@@ -5,7 +5,6 @@ from langchain.base_language import BaseLanguageModel
 from langchain.chains.base import Chain
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
-from llm_miner.schema import Paragraph
 from llm_miner.config import config
 from llm_miner.reader import JournalReader
 from llm_miner.categorize.base import CategorizeAgent
@@ -112,18 +111,38 @@ class LLMMiner(Chain):
         cls,
         llm: BaseLanguageModel,
         simple_llm: BaseLanguageModel,
-        ft_text_categorize_llm: Optional[BaseLanguageModel] = None,
+        *,
+        ft_model_dict: Optional[Dict[str, BaseLanguageModel]] = None,
         **kwargs,
     ) -> Chain:
+        if ft_model_dict is None:
+            ft_model_dict = dict()
+
+        categorize_agent = CategorizeAgent.from_llm(
+            llm = ft_model_dict.get('ft_text_categorize', simple_llm), 
+            **kwargs
+        )
+
+        synthesis_agent = SynthesisMiningAgent.from_llm(
+            type_llm = ft_model_dict.get('ft_text_synthesis_type', llm), 
+            extract_llm = ft_model_dict.get('ft_text_synthesis_extract', llm),
+            **kwargs
+        )
+
+        property_agent = TextMiningAgent.from_llm(
+            type_llm = ft_model_dict.get('ft_text_property_type', llm), 
+            extract_llm = ft_model_dict.get('ft_text_property_extract', llm),
+            **kwargs
+        )
+
+        table_agent = TableMiningAgent.from_llm(
+            convert_llm = ft_model_dict.get('ft_table_convert', llm),
+            categorize_llm = simple_llm,
+            crystal_tabel_llm=llm,
+            property_table_llm=llm,
+            **kwargs
+        )
         
-        if not ft_text_categorize_llm:
-            ft_text_categorize_llm = simple_llm
-
-        categorize_agent = CategorizeAgent.from_llm(ft_text_categorize_llm, **kwargs)
-        synthesis_agent = SynthesisMiningAgent.from_llm(llm, **kwargs)
-        table_agent = TableMiningAgent.from_llm(llm, simple_llm, **kwargs)
-        property_agent = TextMiningAgent.from_llm(llm, **kwargs)
-
         return cls(
             categorize_agent=categorize_agent,
             table_agent=table_agent,
@@ -137,16 +156,10 @@ class LLMMiner(Chain):
         cls,
         config: Dict[str, Any],
     ) -> Chain:
-        # model name
         model_name = config['model_name']
         simple_model_name = config['simple_model_name']
-
-        # fine-tuned model
-        ft_text_categorize_model = config.get('ft_text_categorize_model', simple_model_name)
-
-        # options
         temperature = config['temperature']
-        
+
         llm = ChatOpenAI(
             model_name = model_name,
             temperature = temperature
@@ -156,15 +169,16 @@ class LLMMiner(Chain):
             temperature = temperature
         )
 
-        ft_text_categorize_llm = ChatOpenAI(
-            model_name = ft_text_categorize_model,
-            temperature = temperature
-        )
+        # fine-tuned model
+        ft_model_dict = {
+            ft_name: ChatOpenAI(model_name=ft_model, temperature=temperature)
+            for ft_name, ft_model in config['fine_tuning_models'].items() if ft_model
+        }
 
         return cls.from_llm(
             llm=llm,
             simple_llm=simple_llm,
-            ft_text_categorize_llm=ft_text_categorize_llm,
+            ft_model_dict = ft_model_dict,
             verbose=config['verbose']
         )
     

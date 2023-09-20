@@ -4,7 +4,15 @@ config = {
     "simple_model_name": "gpt-3.5-turbo-16k",
 
     # fine-tuned llms (optional)
-    'ft_text_categorize_model': 'ft:gpt-3.5-turbo-0613:personal::7ycNfB2h',
+    "fine_tuning_models": {
+        'ft_text_categorize': 'ft:gpt-3.5-turbo-0613:molsimllm::80Qa4CA7',
+        'ft_text_property_type': 'ft:gpt-3.5-turbo-0613:molsimllm::80kQMux0',
+        'ft_text_property_extract': None,
+        'ft_text_synthesis_type': 'ft:gpt-3.5-turbo-0613:molsimllm::80Qd6Ylb',
+        'ft_text_synthesis_extract': None,
+        'ft_table_convert': 'ft:gpt-3.5-turbo-0613:molsimllm::80ONu8vL',
+        'ft_table_categorize': None,
+    },
 
     # llm options
     "temperature": 0.0,

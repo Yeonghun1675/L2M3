@@ -189,3 +189,9 @@ Selected geometric parameters for 2 (Å, °)[^a]
 Input:
 {paragraph}
 MD table:"""
+
+
+FT_CONVERT = """Your goal is to convert the provided XML/HTML table into a clear and concise Markdown format, ensuring that essential information, such as title label, captions and foonotes, is not omitted. You must conclude with \"<END>\""""
+
+
+FT_HUMAN = "{paragraph}"
