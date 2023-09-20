@@ -7,11 +7,16 @@ from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
 from langchain.callbacks.manager import CallbackManagerForChainRun
+from langchain.prompts.chat import (
+    ChatPromptTemplate,
+    SystemMessagePromptTemplate,
+    HumanMessagePromptTemplate,
+)
 
-from llm_miner.text.prompt import PROMPT_TYPE, PROMPT_EXT
-from llm_miner.reader.parser.base import Paragraph
+from llm_miner.text.prompt import PROMPT_TYPE, PROMPT_EXT, FT_TYPE, FT_HUMAN
+from llm_miner.schema import Paragraph
 from llm_miner.format import Formatter
-from llm_miner.error import StructuredFormatError, LangchainError
+from llm_miner.error import StructuredFormatError, LangchainError, TokenLimitError
 from llm_miner.pricing import TokenChecker, update_token_checker
 
 
@@ -34,7 +39,12 @@ class TextMiningAgent(Chain):
         run_manager.on_text(text, verbose=self.verbose, color="yellow")
 
     def _parse_output(self, output: str) -> Dict[str, str]:
-        output = output.replace("List:", "").strip()  # remove `List`
+        if regex.search(r"^\s*```JSON", output) and not regex.search(r"```\s*$", output):
+            raise TokenLimitError('Output does not finished before token limits', output)
+        
+        output = output.replace("```JSON","")
+        output = output.replace("```","")
+        output = output.strip()
         if regex.search(r"[Ii] do not know", output):
             return [output]
         try:
@@ -52,7 +62,7 @@ class TextMiningAgent(Chain):
 
         explanation = self._add_explanation()
         element: Paragraph = inputs[self.input_key]
-        token_checker: TokenChecker = inputs['token_checker']
+        token_checker: TokenChecker = inputs.get('token_checker')
         paragraph: str = element.content
 
         llm_kwargs = {
@@ -80,8 +90,6 @@ class TextMiningAgent(Chain):
         property_type = self._parse_output(llm_output)
         self._write_log(str(property_type), _run_manager)
         element.set_include_properties(property_type)
-
-        output = {}
 
         st_data_string = ""
         info_string = ""
@@ -133,7 +141,7 @@ class TextMiningAgent(Chain):
         element.set_data([st_output])
         return {"output": st_output}
     
-    def _add_explanation(self):
+    def _add_explanation(self,) -> str:
         erase_list = [
             "cell_volume",
             "conversion",
@@ -151,23 +159,41 @@ class TextMiningAgent(Chain):
     @classmethod
     def from_llm(
         cls,
-        llm: BaseLanguageModel,
+        type_llm: BaseLanguageModel,
+        extract_llm: BaseLanguageModel,
+        *,
         prompt_type: str = PROMPT_TYPE,
         prompt_extract: str = PROMPT_EXT,
+        ft_type: str = FT_TYPE,
+        ft_human: str = FT_HUMAN,
         **kwargs,
     ) -> Chain:
         
-        template_type = PromptTemplate(
-            template=prompt_type,
-            input_variables=["explanation", "paragraph"],
-        )
-        template_extract = PromptTemplate(
-            template=prompt_extract,
-            input_variables=["prop", "structured_data", "information", "example", "paragraph"],
-        )
+        if type_llm.model_name.startswith('ft:'): # fine-tuned model
+            system_prompt = SystemMessagePromptTemplate.from_template(ft_type)
+            human_prompt = HumanMessagePromptTemplate.from_template(ft_human)
+            chat_prompt = ChatPromptTemplate.from_messages(
+                [system_prompt, human_prompt]
+            )
+            type_chain = LLMChain(
+                llm=type_llm,
+                prompt=chat_prompt,
+            )
+        else:
+            template_type = PromptTemplate(
+                template=prompt_type,
+                input_variables=["explanation", "paragraph"],
+            )
+            type_chain = LLMChain(llm=type_llm, prompt=template_type)
 
-        type_chain = LLMChain(llm=llm, prompt=template_type)
-        extract_chain = LLMChain(llm=llm, prompt=template_extract)
+        if extract_llm.model_name.startswith('ft:'): # fine-tuned model
+            raise NotImplementedError('Fine-tuning model for extract is not implemented.')
+        else:
+            template_extract = PromptTemplate(
+                template=prompt_extract,
+                input_variables=["prop", "structured_data", "information", "example", "paragraph"],
+            )
+            extract_chain = LLMChain(llm=extract_llm, prompt=template_extract)
 
         return cls(
             type_chain=type_chain,

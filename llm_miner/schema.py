@@ -1,37 +1,8 @@
 import pprint
 from pydantic import BaseModel
 from typing import List, Any, Dict, Optional, Union
-from abc import ABCMeta, abstractclassmethod
 from collections.abc import Sequence
 import copy
-
-
-class BaseParser(object, metaclass=ABCMeta):
-    suffix: str
-    parser: str
-    para_tags: List[str]
-    table_tags: List[str]
-    figure_tags: List[str]
-
-    @classmethod
-    def all_tags(cls):
-        return cls.para_tags + cls.table_tags + cls.figure_tags
-
-    @classmethod
-    def check_suffix(cls, suffix):
-        return suffix == cls.suffix
-
-    @abstractclassmethod
-    def open_file(cls, filePath: str):
-        raise NotImplementedError()
-
-    @abstractclassmethod
-    def parsing(cls, file: str):
-        raise NotImplementedError()
-
-    @abstractclassmethod
-    def get_metadata(cls, file: str):
-        raise NotImplementedError()
 
 
 class Paragraph(BaseModel):
@@ -169,34 +140,4 @@ class Elements(Sequence, BaseModel):
     def from_dict(cls, data: List[Dict[str, Any]]):
         return cls(
             elements=[Paragraph.from_dict(d) for d in data]
-        )
-
-
-class Metadata(BaseModel):
-    doi: Optional[str] = None
-    title: Optional[str] = None
-    journal: Optional[str] = None
-    date: Optional[str] = None
-    author_list: Optional[List[str]] = None
-
-    def __getitem__(self, item):
-        return getattr(self, item)
-
-    def to_dict(self) -> Dict[str, Any]:
-        return {
-            'doi': self.doi,
-            'title': self.title,
-            'journal': self.journal,
-            'date': self.date,
-            'author_list': self.author_list
-        }
-
-    @classmethod
-    def from_dict(cls, data):
-        return cls(
-            doi=data['doi'],
-            type=data['title'],
-            journal=data['journal'],
-            date=data['date'],
-            author_list=data['author_list']
         )

@@ -8,9 +8,14 @@ from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
 from langchain.callbacks.manager import CallbackManagerForChainRun
+from langchain.prompts.chat import (
+    ChatPromptTemplate,
+    SystemMessagePromptTemplate,
+    HumanMessagePromptTemplate,
+)
 
-from llm_miner.synthesis.prompt import PROMPT_TYPE, PROMPT_STRUCT, EXAMPLE_STRUCT
-from llm_miner.reader.parser.base import Paragraph
+from llm_miner.synthesis.prompt import PROMPT_TYPE, PROMPT_STRUCT, FT_TYPE, FT_HUMAN
+from llm_miner.schema import Paragraph
 from llm_miner.error import StructuredFormatError, LangchainError, TokenLimitError
 from llm_miner.format import Formatter
 from llm_miner.pricing import TokenChecker, update_token_checker
@@ -18,7 +23,7 @@ from llm_miner.pricing import TokenChecker, update_token_checker
 
 class SynthesisMiningAgent(Chain):
     type_chain: LLMChain
-    type_struct: LLMChain
+    extract_chain: LLMChain
     input_key: str = "element"
     output_key: str = "output"
 
@@ -35,7 +40,13 @@ class SynthesisMiningAgent(Chain):
         run_manager.on_text(text, verbose=self.verbose, color="yellow")
 
     def _parse_output(self, output: str) -> Dict[str, str]:
-        output = output.replace("List:", "").strip()  # remove `List`
+        if regex.search(r"^\s*```JSON", output) and not regex.search(r"```\s*$", output):
+            raise TokenLimitError('Output does not finished before token limits', output)
+        
+        output = output.replace("```JSON", "")
+        output = output.replace("```", "")
+        output = output.strip()
+
         if regex.search(r"[Ii] do not know", output):
             return [output]
         try:
@@ -100,7 +111,7 @@ class SynthesisMiningAgent(Chain):
         }
 
         try:
-            llm_output = self.type_struct.run(
+            llm_output = self.extract_chain.run(
                 **llm_kwargs,
                 callbacks=callbacks,
                 stop=["Paragraph:"]
@@ -111,7 +122,7 @@ class SynthesisMiningAgent(Chain):
         if token_checker:
             update_token_checker(
                 name_step='text-synthesis-struct',
-                chain=self.type_struct,
+                chain=self.extract_chain,
                 token_checker=token_checker,
                 llm_kwargs=llm_kwargs,
                 llm_output=llm_output
@@ -126,29 +137,45 @@ class SynthesisMiningAgent(Chain):
     @classmethod
     def from_llm(
         cls,
-        llm: BaseLanguageModel,
+        type_llm: BaseLanguageModel,
+        extract_llm: BaseLanguageModel,
+        *,
         prompt_type: str = PROMPT_TYPE,
-        prompt_struct: str = PROMPT_STRUCT,
-        example_struct: str = EXAMPLE_STRUCT,
+        prompt_extract: str = PROMPT_STRUCT,
+        ft_type: str = FT_TYPE,
+        ft_human: str = FT_HUMAN,
         **kwargs,
     ) -> Chain:
-        template_type = PromptTemplate(
-            template=prompt_type,
-            input_variables=["paragraph"],
-            partial_variables={"list_operation": str(Formatter.operation.list_keys())},
-        )
-        template_struct = PromptTemplate(
-            template=prompt_struct,
-            input_variables=["synthesis_type", "paragraph", "format"],
-            partial_variables={"example": example_struct},
-        )
+        if type_llm.model_name.startswith('ft:'): # fine-tuned model
+            system_prompt = SystemMessagePromptTemplate.from_template(ft_type)
+            human_prompt = HumanMessagePromptTemplate.from_template(ft_human)
+            chat_prompt = ChatPromptTemplate.from_messages(
+                [system_prompt, human_prompt]
+            )
+            type_chain = LLMChain(
+                llm=type_llm,
+                prompt=chat_prompt,
+            )
+        else:
+            template_type = PromptTemplate(
+                template=prompt_type,
+                input_variables=["paragraph"],
+                partial_variables={"list_operation": str(Formatter.operation.list_keys())},
+            )
+            type_chain = LLMChain(llm=type_llm, prompt=template_type)
 
-        type_chain = LLMChain(llm=llm, prompt=template_type)
-        type_struct = LLMChain(llm=llm, prompt=template_struct)
+        if extract_llm.model_name.startswith('ft:'): # fine-tuned model
+            raise NotImplementedError('Fine-tuning model for extract is not implemented.')
+        else:
+            template_extract = PromptTemplate(
+                template=prompt_extract,
+                input_variables=["synthesis_type", "paragraph", "format"],
+            )
+            extract_chain = LLMChain(llm=extract_llm, prompt=template_extract)
 
         return cls(
             type_chain=type_chain,
-            type_struct=type_struct,
+            extract_chain=extract_chain,
             **kwargs
         )
     

@@ -6,13 +6,18 @@ from langchain.callbacks.manager import CallbackManagerForChainRun
 from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
+from langchain.prompts.chat import (
+    ChatPromptTemplate,
+    SystemMessagePromptTemplate,
+    HumanMessagePromptTemplate,
+)
 
 from llm_miner.error import ContextError, TokenLimitError, LangchainError
-from llm_miner.reader.parser.base import Paragraph
+from llm_miner.schema import Paragraph
 from llm_miner.table.categorize.base import CategorizeAgent
 from llm_miner.table.crystal.base import CrystalTableAgent
 from llm_miner.table.property.base import PropertyTableAgent
-from llm_miner.table.prompt import CONVERT2MD
+from llm_miner.table.prompt import CONVERT2MD, FT_CONVERT, FT_HUMAN
 from llm_miner.pricing import TokenChecker, update_token_checker
 
 
@@ -31,20 +36,36 @@ class TableMiningAgent(Chain):
     @classmethod
     def from_llm(
         cls,
-        llm: BaseLanguageModel,
-        simple_llm: BaseLanguageModel,
+        convert_llm: BaseLanguageModel,
+        categorize_llm: BaseLanguageModel,
+        crystal_tabel_llm: BaseLanguageModel,
+        property_table_llm: BaseLanguageModel,
+        *,
         prompt_convert: str = CONVERT2MD,
+        ft_convert: str = FT_CONVERT,
+        ft_human: str = FT_HUMAN,
         **kwargs,
     ) -> Chain:
+        if convert_llm.model_name.startswith('ft:'): # fine-tuned model
+            system_prompt = SystemMessagePromptTemplate.from_template(ft_convert)
+            human_prompt = HumanMessagePromptTemplate.from_template(ft_human)
+            chat_prompt = ChatPromptTemplate.from_messages(
+                [system_prompt, human_prompt]
+            )
+            convert_chain = LLMChain(
+                llm=convert_llm,
+                prompt=chat_prompt,
+            )
+        else:
+            template_convert = PromptTemplate(
+                template=prompt_convert,
+                input_variables=['paragraph'],
+            )
+            convert_chain = LLMChain(llm=convert_llm, prompt=template_convert)
 
-        template_convert = PromptTemplate(
-            template=prompt_convert,
-            input_variables=['paragraph'],
-        )
-        convert_chain = LLMChain(llm=simple_llm, prompt=template_convert)
-        categorize_agent = CategorizeAgent.from_llm(simple_llm, **kwargs)
-        crystal_table_agent = CrystalTableAgent.from_llm(llm, **kwargs)
-        property_table_agent = PropertyTableAgent.from_llm(llm, **kwargs)
+        categorize_agent = CategorizeAgent.from_llm(categorize_llm, **kwargs)
+        crystal_table_agent = CrystalTableAgent.from_llm(crystal_tabel_llm, **kwargs)
+        property_table_agent = PropertyTableAgent.from_llm(property_table_llm, **kwargs)
 
         return cls(
             convert_chain=convert_chain,

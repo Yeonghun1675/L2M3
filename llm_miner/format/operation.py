@@ -23,8 +23,7 @@ centrifugation: {
 "relative centrifugal force":"",
 "time":"",
 "temperature":"",
-"additive name":"",
-"additive amount":"",
+"additive":[{"name":"", "amount":"", "unit":""}, ...],
 "tube material":"",
 "tube volume":""
 }
@@ -36,8 +35,7 @@ chemical mechanical polishing: {
 "viscosity":"",
 "polishing rate":"",
 "surface roughness":"",
-"precursor name":"",
-"precursor amount":"",
+"precursor":[{"name":"", "amount":"", "unit":""}, ...],
 "pressure":"",
 "temperature":"",
 "atmosphere":"",
@@ -46,9 +44,8 @@ chemical mechanical polishing: {
 """
 chemical_synthesis="""
 chemical synthesis: {
-"precursor name":"",
-"precursor amount":"",
-"solution":"",
+"precursor":[{"name":"", "amount":"", "unit":""}, ...],
+"solution":[{"name":"", "amount":"", "unit":""}, ...],
 "pressure":"",
 "temperature":"",
 "time":""
@@ -59,7 +56,7 @@ chemical vapor deposition: {
 "working pressure":"",
 "carrier gas name":"",
 "carrier gas flow rate":"",
-"precursor":"",
+"precursor":[{"name":"", "amount":"", "unit":""}, ...],
 }
 """
 drying="""
@@ -72,8 +69,7 @@ drying: {
 """
 electrochemical_deposition="""
 electrochemical deposition: {
-"precursor name":"",
-"precursor amount":"",
+"precursor":[{"name":"", "amount":"", "unit":""}, ...],
 "solvent":"",
 "concentration":"",
 "pH":"",
@@ -101,10 +97,8 @@ heat treatment: {
 """
 microwave_assisted_synthesis="""
 microwave-assisted synthesis: {
-"precursor name":"",
-"precursor amount":"",
-"solution name":"",
-"solution amount":"",
+"precursor":[{"name":"", "amount":"", "unit":""}, ...],
+"solution":[{"name":"", "amount":"", "unit":""}, ...],
 "temperature":"",
 "atmosphere":"",
 "time":""
@@ -131,14 +125,10 @@ rinsing: {
 """
 solvothermal_synthesis="""
 solvothermal synthesis: {
-"precursor name":"",
-"precursor amount":"",
-"solvent name":"",
-"solvent amount":"",
-"reducing agent name":"",
-"reducing agent amount":"",
-"surfactant name":"",
-"surfactant amount":"",
+"precursor":[{"name":"", "amount":"", "unit":""}, ...],
+"solvent":[{"name":"", "amount":"", "unit":""}, ...],
+"reducing agent":[{"name":"", "amount":"", "unit":""}, ...],
+"surfactant":[{"name":"", "amount":"", "unit":""}, ...],
 "pressure":"",
 "temperature":"",
 "time":"",
@@ -149,8 +139,8 @@ solvothermal synthesis: {
 sol_gel_syntehsis="""
 sol-gel syntehsis: {
 "temperature":"",
-"precursor":"",
-"solvent":"",
+"precursor":[{"name":"", "amount":"", "unit":""}, ...],
+"solvent":[{"name":"", "amount":"", "unit":""}],
 "time":""
 }
 """
@@ -166,10 +156,8 @@ sonication: {
 """
 sonochemical_synthesis="""
 sonochemical synthesis: {
-"precursor name":"",
-"precursor amount":"",
-"solvent name":"",
-"solvent amount":"",
+"precursor":[{"name":"", "amount":"", "unit":""}, ...],
+"solvent":[{"name":"", "amount":"", "unit":""}, ...],
 "temperature":"",
 "ultrasonic frequency":"",
 "power":"",
@@ -178,8 +166,7 @@ sonochemical synthesis: {
 """
 thermal_evaporation="""
 thermal evaporation: {
-"precursor name":"",
-"precursor amount":"",
+"precursor":[{"name":"", "amount":"", "unit":""}, ...],
 "working pressure":"",
 "substrate temperature":"",
 "deposition rate":"",
@@ -209,5 +196,18 @@ cooling: {
 "temperature":"",
 "cooling rate":"",
 "time":""
+}
+"""
+pH_adjustment="""
+pH adjustment: {
+"pH":"",
+"modulator":""
+}
+"""
+filtration="""
+filtration: {
+"time":"",
+"atmosphere":"",
+"pressure":"",
 }
 """

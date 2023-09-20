@@ -44,6 +44,9 @@ List: ["magnetic_susceptibility"]
 Paragraph: Crystallographic data for Compound 2: C36H42N6O4, M = 622.75, monoclinic, P21/c, a = 10.812(4) Å, b = 15.261(6) Å, c = 13.973(5) Å, V = 2293.0(14) cm^3, Z = 4, Dc = 1.292 g cm^−3, μ (X-ray) = 1.012 mm^−1, T = 298(2) K, 14056 reflections collected, 3668 unique (Rint = 0.0573), R1 on F(wR2 on F2) = 0.0397 (0.0884) for 3447 observed (I > 2σ(I)) reflections.
 List: ["chemical_formula_weight", "crystal_system", "space_group", "lattice_parameter", "density"]
 
+Paragraph: The calculated solvent-accessible void space within the framework measures 852.8 Å3, representing approximately 38.2% of the unit cell volume of 2230.6 Å3.
+List: ["porosity"]
+
 Paragraph: {paragraph}
 List:"""
 
@@ -70,3 +73,14 @@ Begin!
 Paragraph: {paragraph}
 JSON:
 """
+
+FT_TYPE = (
+    "You must decide whether properties exist or not. "
+    "Except for topology, crystal system, and space group, property must have a float value. "
+    "If there is no property in the paragraph, please return an empty list. "
+    "You must find all the properties in the paragraphs. "
+    "Names of properties must be one of following:\n"
+    "['bulk_modulus', 'catalytic_activity', 'chemical_formula_weight', 'crystal_size', 'crystal_system', 'decomposition_temperature', 'density', 'etc', 'gas_adsorption', 'heat_capacity', 'lattice_parameters', 'magnetic_moment', 'magnetic_susceptibility', 'poissons_ratio', 'pore_diameter', 'pore_volume', 'porosity', 'refractive_index', 'selectivity', 'shear_modulus', 'space_group', 'spectrum', 'surface_area', 'thermal_conductivity', 'thermal_expansion_coefficient', 'topology', 'youngs_modulus']"
+)
+
+FT_HUMAN = "{paragraph}"
