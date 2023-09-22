@@ -151,3 +151,23 @@ Other properties not included in the list above but can be represented by numeri
 chemical_formula = """
 empirical formula of materials.
 """
+
+equation = """
+An equation that explains a certain property value, e.g., ax1+bx2+cx3+...
+"""
+
+charge_related = """
+Properties related to charge, such as charge distribution, charge transfer, etc.
+"""
+
+material_color = """
+The color of material crystal or bulk.
+"""
+
+parameters = """
+A parameter is a variable, constant, or factor in a mathematical or statistical model, a scientific experiment
+"""
+
+energy_related = """
+Properties related to the energy of a material, such as isosteric heat, etc.
+"""

@@ -1,4 +1,4 @@
-PROMPT_TYPE = """Find all the processes used during synthesis. Each process unconditionally must belongs to one of the elements in the following list:
+PROMPT_TYPE = """Find all the processes used during synthesis. Each process unconditionally must belong to one of the elements in the following list:
 {list_operation}
 
 You must write processes in the above list.
@@ -14,7 +14,7 @@ List: ```JSON
 ["solvothermal_synthesis"]
 ```
 
-Paragraph: The pH level was modified to 7.0 using ammonium hydroixde.
+Paragraph: The pH level was modified to 7.0 using ammonium hydroxide.
 List: ```JSON
 ["pH_adjustment"]
 ```
@@ -24,26 +24,26 @@ List: """
 
 PROMPT_STRUCT = """Extract the relevant information about the synthesis of MOFs mentioned in the paragraph.
 
-There are guildlines for output format:
-- You must write like {{"meta":{{"name":"", "symbol":"", "chemical formula":""}}, "processes": list, "yield": str,and "other properties": [str, str, ...]}}.
+There are guidelines for output format:
+- Output must be in the format {{"meta":{{"name":"", "symbol":"", "chemical formula":""}}, "processes": list, "yield": str,and "other properties": [str, str, ...]}}.
 - The "process" list consists of several dictionaries. Each dictionary consists of {{"synthesis method": str, information(different according to synthesis method)}}.
 
 For each process, you must follow these formats:
 {format}
 
 
-You must follow rules belows:
-- According to the synthesis type, information you must write is different. You must write one dictionary per one material.
-- If there are several "meta"s in the text, you must write several dictionaries.
-- If the synthesis procedure is same as certain compound except for certain material, write same synthesis method with that compound except for certain material.
-- For each dictionary, you must include yield, chemical formula and other properties if information exists. Chemical formula consists of combination of several elements and numbers like C2H5OH.
-- According to the synthesis method, you must include other information about {synthesis_type}.
-- In case of precursor, additive, surfactant, solution, solvent and reducing agent, if these exist more than 2, you must write all the things in one dictionary. 
-- Do not confuse precursor with solution. Precursor has a unit of mass and solution has a unit of volume.
-- You never forge information that is not in the paragraph. Do not write the information in the example.
-- If symbol is written altogether like "4-6", write three different results.
-- When "Ln" or "M" exists in the paragraph, you must write other metals instead of "Ln" or "M". ex) ChemLn (Ln=Pr(1), Gd(2), Dy(3), Er(4)), There are four chemicals; ChemPr, ChemGd, ChemDy, ChemEr
-- If "Teflon-lined" or "seal" exists in the paragraph, it includes "solvothermal_synthesis".
+You must follow rules below:
+- According to the synthesis type, information you must write is different.
+- If there are several "meta"s in the text, you must write several dictionaries for each "meta".
+- If the synthesis procedure is same for a certain compound, write same synthesis method with that compound except for certain material.
+- In each dictionary, you must include yield, chemical formula and other properties if such information is available.
+- Based on the synthesis method, ensure to include any additional details related to {synthesis_type}.
+- If there are more than two instances of a precursor, additive, surfactant, solution, solvent, or reducing agent, list all of them in a single dictionary.
+- Remember, a precursor is measured in units of mass, while a solution is measured in units of volume.
+- Never fabricate or add information that isn't present in the paragraph. Do not write the information in the example.
+- If a range symbol like "4-6" is provided, produce separate results for each number in the range.
+- When "Ln" or "M" appears in the paragraph, you should substitute them with the specified metals. ex) ChemLn (Ln=Pr(1), Gd(2), Dy(3), Er(4)), There are four chemicals; ChemPr, ChemGd, ChemDy, ChemEr
+- If the terms "Teflon-lined" or "seal" appear in the paragraph, consider them indicative of "solvothermal_synthesis".
 
 If you are uncertain, please reply with "I do not know".
 
@@ -66,7 +66,7 @@ JSON: ```JSON
 
 Paragraph: The synthesis of [(Ca(H2O)6)(CaLn(oda)3)2]·4H2O (Ln = Er (10), Ho (11), Yb (12)) was carried out as follows: A mixture of Ln2O3 (0.12 mmol), CaCl2·2H2O (50 mg, 0.35 mmol), and 2,2-oxydiacetic acid (90 mg, 0.65 mmol) was dissolved in 20 mL of water. The solution was placed in a Teflon-lined 50 mL stainless steel acid digestion vessel and heated at 130°C for 3 days. Subsequently, the clear solution was left to evaporate at room temperature, resulting in the formation of well-defined cubic crystals after several weeks. The yield ranged from 35% to 50%. Elemental analysis yielded the following results: Calculated for C28H52O40Ca3Ln2: C, 21.2; H, 3.3 (10); C, 21.0; H, 3.2 (11); C, 20.8; H, 3.1 (12). Found: C, 21.1; H, 3.5 (10); C, 21.0; H, 3.3 (11); C, 20.7; H, 3.0 (12)%.
 JSON: ```JSON
-[{{"meta":{{"name":"(Ca(H2O)6)(CaEr(oda)3)2]·4H2O", "symbol":"10", "chemical formula":"C28H52O40Ca3Er2"}}, "processes":[{{"synthesis method": "solveothermal synthesis", "precursor":[{{"name":"Er2O3", "amount":"0.12", "unit":"mmol"}}, {{"name":"CaCl2·2H2O", "amount":"50", "unit":"mg"}}, {{"name":"2,2-oxydiacetic acid", "amount":"90", "unit":"mg"}}], "solvent":[{{"name":"water", "amount":"20", "unit":"mL"}}], "reducing agent":[{{"name":"", "amount":"", "unit":""}}], "surfactant":[{{"name":"", "amount":"", "unit":""}}], "pressure":"", "temperature":"130°C", "time":"3 days", "heating rate":"", "cooling rate":""}}], "yield":"35% to 50%"}}, {{"meta":{{"name":"(Ca(H2O)6)(CaHo(oda)3)2]·4H2O", "symbol":"10", "chemical formula":"C28H52O40Ca3Ho2"}}, "processes":[{{"synthesis method": "solveothermal synthesis", "precursor":[{{"name":"Ho2O3", "amount":"0.12", "unit":"mmol"}}, {{"name":"CaCl2·2H2O", "amount":"50", "unit":"mg"}}, {{"name":"2,2-oxydiacetic acid", "amount":"90", "unit":"mg"}}], "solvent":[{{"name":"water", "amount":"20", "unit":"mL"}}], "reducing agent":[{{"name":"", "amount":"", "unit":""}}], "surfactant":[{{"name":"", "amount":"", "unit":""}}], "pressure":"", "temperature":"130°C", "time":"3 days", "heating rate":"", "cooling rate":""}}], "yield":"35% to 50%"}}, {{"meta":{{"name":"(Ca(H2O)6)(CaYb(oda)3)2]·4H2O", "symbol":"10", "chemical formula":"C28H52O40Ca3Yb2"}}, "processes":[{{"synthesis method": "solveothermal synthesis", "precursor":[{{"name":"Yb2O3", "amount":"0.12", "unit":"mmol"}}, {{"name":"CaCl2·2H2O", "amount":"50", "unit":"mg"}}, {{"name":"2,2-oxydiacetic acid", "amount":"90", "unit":"mg"}}], "solvent":[{{"name":"water", "amount":"20", "unit":"mL"}}], "reducing agent":[{{"name":"", "amount":"", "unit":""}}], "surfactant":[{{"name":"", "amount":"", "unit":""}}], "pressure":"", "temperature":"130°C", "time":"3 days", "heating rate":"", "cooling rate":""}}], "yield":"35% to 50%"}}]
+[{{"meta":{{"name":"(Ca(H2O)6)(CaEr(oda)3)2]·4H2O", "symbol":"10", "chemical formula":"C28H52O40Ca3Er2"}}, "processes":[{{"synthesis method": "solvothermal synthesis", "precursor":[{{"name":"Er2O3", "amount":"0.12", "unit":"mmol"}}, {{"name":"CaCl2·2H2O", "amount":"50", "unit":"mg"}}, {{"name":"2,2-oxydiacetic acid", "amount":"90", "unit":"mg"}}], "solvent":[{{"name":"water", "amount":"20", "unit":"mL"}}], "reducing agent":[{{"name":"", "amount":"", "unit":""}}], "surfactant":[{{"name":"", "amount":"", "unit":""}}], "pressure":"", "temperature":"130°C", "time":"3 days", "heating rate":"", "cooling rate":""}}], "yield":"35% to 50%"}}, {{"meta":{{"name":"(Ca(H2O)6)(CaHo(oda)3)2]·4H2O", "symbol":"11", "chemical formula":"C28H52O40Ca3Ho2"}}, "processes":[{{"synthesis method": "solveothermal synthesis", "precursor":[{{"name":"Ho2O3", "amount":"0.12", "unit":"mmol"}}, {{"name":"CaCl2·2H2O", "amount":"50", "unit":"mg"}}, {{"name":"2,2-oxydiacetic acid", "amount":"90", "unit":"mg"}}], "solvent":[{{"name":"water", "amount":"20", "unit":"mL"}}], "reducing agent":[{{"name":"", "amount":"", "unit":""}}], "surfactant":[{{"name":"", "amount":"", "unit":""}}], "pressure":"", "temperature":"130°C", "time":"3 days", "heating rate":"", "cooling rate":""}}], "yield":"35% to 50%"}}, {{"meta":{{"name":"(Ca(H2O)6)(CaYb(oda)3)2]·4H2O", "symbol":"12", "chemical formula":"C28H52O40Ca3Yb2"}}, "processes":[{{"synthesis method": "solveothermal synthesis", "precursor":[{{"name":"Yb2O3", "amount":"0.12", "unit":"mmol"}}, {{"name":"CaCl2·2H2O", "amount":"50", "unit":"mg"}}, {{"name":"2,2-oxydiacetic acid", "amount":"90", "unit":"mg"}}], "solvent":[{{"name":"water", "amount":"20", "unit":"mL"}}], "reducing agent":[{{"name":"", "amount":"", "unit":""}}], "surfactant":[{{"name":"", "amount":"", "unit":""}}], "pressure":"", "temperature":"130°C", "time":"3 days", "heating rate":"", "cooling rate":""}}], "yield":"35% to 50%"}}]
 ```
 
 Paragraph: {paragraph}
