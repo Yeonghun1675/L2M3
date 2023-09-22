@@ -312,10 +312,11 @@ topology = """
 """
 
 
-crystal_color = """
-"crystal color": [
+material_color = """
+"material color": [
     {
-        "value":""
+        "value":"",
+        "type":""
     }, ...
 ]
 """
@@ -324,10 +325,53 @@ crystal_color = """
 etc = """
 "etc": [
     {
-        "property name": "",
+        "property name":"",
         "value":"",
         "unit":"",
-        "condition": "",
+        "condition":"",
     }, ...
+]
+"""
+
+equation = """
+"equation": [
+    {
+        "value":"",
+        "parameters":"",
+        "name":""
+    }
+]
+"""
+
+charge_related = """
+"charge_related": [
+    {
+        "value":"",
+        "unit":"",
+        "type":""
+    }
+]
+
+"""
+
+parameters = """
+"parameters": [
+    {
+        "symbol":"",
+        "value":"",
+        "unit":"",
+        "type":""
+    }
+
+]
+"""
+
+energy_related = """
+"energy_related": [
+    {
+        "value":"",
+        "unit":"",
+        "type":""
+    }
 ]
 """

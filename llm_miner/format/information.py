@@ -108,3 +108,22 @@ lattice_parameters = """
 
 cell_volume = """
 """
+
+equation = """
+"""
+
+charge_related = """
+
+"""
+
+material_color = """
+
+"""
+
+parameter = """
+
+"""
+
+energy_related = """
+
+"""
