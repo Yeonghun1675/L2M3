@@ -17,7 +17,7 @@ model_name = "gpt-3.5-turbo"
 jsonl_file = "table_crystal_inclusion_rev.jsonl"
 file_id = "file-TOvmSZzS85NwhAEs3jubC4iq"
 job_id = "ftjob-MpWVcxHpH1L8voeQEHVH5K64"
-# created = "ft:gpt-3.5-turbo-0613:molsimllm::818aR034"
+created = "ft:gpt-3.5-turbo-0613:molsimllm::81ALrhlf"
 
 # File upload
 def file_upload(jsonl_file):
