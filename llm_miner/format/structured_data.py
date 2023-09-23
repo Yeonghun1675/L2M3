@@ -114,7 +114,7 @@ decomposition_temperature = """
     {
         "value": "",
         "unit": "",
-        "type": "",  # ex) lattice collapse, etc.
+        "type": "",  # ex) lattice collapse, weight loss, departure of water molecules, etc.
         "condition": "",
     }, ...
 ]
