@@ -14,6 +14,7 @@ surface_area = """
         "probe": "",
         "value": "",
         "unit": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -25,6 +26,7 @@ pore_volume = """
         "probe": "", ex) N2, H2
         "value": "",
         "unit": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -35,6 +37,7 @@ crystal_size = """
     {
         "value": "",
         "unit": "",  # ex) mm
+        "condition": "",
     }, ...
 ]
 """
@@ -48,6 +51,7 @@ gas_adsorption = """
         "unit": "",
         "temperature": "",
         "pressure": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -58,6 +62,7 @@ porosity = """
     {
         "value": "",
         "unit": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -68,6 +73,7 @@ pore_diameter = """
     {
         "value": "",
         "unit": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -77,6 +83,7 @@ crystal_system = """
 "crystal system": [
     {
         "value": "",  # ex) Triclinic
+        "condition": "",
     }, ...
 ]
 """
@@ -86,6 +93,7 @@ space_group = """
 "space group": [
     {
         "value": "",  # ex) P1
+        "condition": "",
     }, ...
 ]
 """
@@ -95,7 +103,8 @@ chemical_formula_weight = """
 "chemical formula weight": [
     {
         "value": "",
-        "unit": ""
+        "unit": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -105,8 +114,8 @@ decomposition_temperature = """
     {
         "value": "",
         "unit": "",
-        "type": ""
-
+        "type": "",  # ex) lattice collapse, etc.
+        "condition": "",
     }, ...
 ]
 """
@@ -115,7 +124,8 @@ heat_capacity = """
 "heat capacity": [
     {
         "value": "",
-        "unit": ""
+        "unit": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -124,7 +134,8 @@ thermal_expansion_coefficient = """
 "thermal expansion coefficient": [
     {
         "value": "",
-        "unit": ""
+        "unit": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -133,7 +144,8 @@ thermal_conductivity = """
 "thermal conductivity": [
     {
         "value": "",
-        "unit": ""
+        "unit": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -142,7 +154,8 @@ youngs_modulus = """
 "Young's modulus": [
     {
         "value": "",
-        "unit": ""
+        "unit": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -151,7 +164,8 @@ bulk_modulus = """
 "bulk modulus": [
     {
         "value": "",
-        "unit": ""
+        "unit": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -160,7 +174,8 @@ shear_modulus = """
 "shear modulus": [
     {
         "value": "",
-        "unit": ""
+        "unit": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -169,7 +184,7 @@ poissons_ratio = """
 "Poisson's ratio": [
     {
         "value": "",
-
+        "condition": "",
     }, ...
 ]
 """
@@ -223,9 +238,10 @@ reaction_yield = """
 catalytic_activity = """
 "catalytic activity": [
     {
-        "value":"",
-        "unit":"",
-        "time":""
+        "value": "",
+        "unit": "",
+        "time": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -234,8 +250,9 @@ catalytic_activity = """
 density = """
 "density": [
     {
-        "value":"",
-        "unit":""  # ex) g/cm^3
+        "value": "",
+        "unit": "",  # ex) g/cm^3
+        "condition": "",
     }, ...
 ]
 """
@@ -245,7 +262,8 @@ magnetic_moment = """
     {
         "value":"",
         "unit":"",
-        "temperature":""
+        "temperature":"",
+        "condition": "",
     }, ...
 ]
 """
@@ -253,9 +271,10 @@ magnetic_moment = """
 magnetic_susceptibility = """
 "magnetic susceptibility": [
     {
-        "value":"",
-        "unit":"",
-        "temperature":""
+        "value": "",
+        "unit": "",
+        "temperature": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -264,7 +283,8 @@ magnetic_susceptibility = """
 refractive_index = """
 "refractive index": [
     {
-        "value":""
+        "value": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -272,8 +292,9 @@ refractive_index = """
 spectrum = """
 "spectrum": [
     {
-        "value":"",
-        "unit":""
+        "value": "",
+        "unit": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -281,8 +302,9 @@ spectrum = """
 cell_volume = """
 "cell volume": [
     {
-        "value":"",
-        "unit":""  # ex) Å^3
+        "value": "",
+        "unit": "",  # ex) Å^3
+        "condition": "",
     }, ...
 ]
 """
@@ -298,6 +320,7 @@ lattice_parameters = """
             "alpha": "",
             "beta": "",
             "gamma": "",
+        "condition": "",
         }
     }, ...
 ]
@@ -306,7 +329,8 @@ lattice_parameters = """
 topology = """
 "topology" : [
     {
-        "value":"", # ex) pcu
+        "value": "", # ex) pcu
+        "condition": "",
     }, ...
 ]
 """
@@ -315,30 +339,29 @@ topology = """
 material_color = """
 "material color": [
     {
-        "value":"",
-        "type":""
+        "value": "",
+        "condition": "",
     }, ...
 ]
 """
 
 
-etc = """
-"etc": [
+material_shape = """
+"material shape": [
     {
-        "property name":"",
-        "value":"",
-        "unit":"",
-        "condition":"",
+        "value": "",
+        "condition": "",
     }, ...
 ]
 """
+
 
 equation = """
 "equation": [
     {
-        "value":"",
-        "parameters":"",
-        "name":""
+        "equation name": "",  # ex) qurie law
+        "value": "",
+        "parameters": "",
     }
 ]
 """
@@ -346,9 +369,10 @@ equation = """
 charge_related = """
 "charge_related": [
     {
-        "value":"",
-        "unit":"",
-        "type":""
+        "value": "",
+        "unit": "",
+        "type": "",
+        "condition": "",
     }
 ]
 
@@ -357,10 +381,10 @@ charge_related = """
 parameters = """
 "parameters": [
     {
-        "symbol":"",
-        "value":"",
-        "unit":"",
-        "type":""
+        "symbol": "",  # ex) σ
+        "value": "",
+        "unit": "",
+        "type": "",  # lennard-jones potential
     }
 
 ]
@@ -369,9 +393,21 @@ parameters = """
 energy_related = """
 "energy_related": [
     {
-        "value":"",
-        "unit":"",
-        "type":""
+        "value": "",
+        "unit": "",
+        "type": "",
+        "condition": "",
     }
+]
+"""
+
+etc = """
+"etc": [
+    {
+        "property name": "",
+        "value": "",
+        "unit": "",
+        "condition": "",
+    }, ...
 ]
 """

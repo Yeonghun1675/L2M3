@@ -164,6 +164,11 @@ material_color = """
 The color of material crystal or bulk.
 """
 
+material_shape = """
+The shape of material crystal or bulk. e.g., cylinder
+"""
+
+
 parameters = """
 A parameter is a variable, constant, or factor in a mathematical or statistical model, a scientific experiment
 """
