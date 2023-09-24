@@ -96,7 +96,7 @@ Input:
 List:"""
 
 
-PROPERTY_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the example below. You must conclude with "<END>".
+PROPERTY_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the example below. You must conclude with "<END>". When lanthanides (Ln) or halogens (X) or things that can be substituted like metal (M) come out, indicate by substituting. The "condition" attribute not only refers to conditions like temperature and pressure, but also refers to conditions regarding the material in characteristic measurements, such as whether it is a single crystal or powder. If there isn't any, leave it blank.
 {{format}}
 
 Begin!
@@ -119,7 +119,7 @@ Structure and H2 absorption parameters for compounds I and II.
 [^a]: Calculated from single crystal structures with PLATON [36].
 [^b]: Calculated from N2 isotherms.
 
-Output:
+Output: ```JSON
 [
     {
         "meta": {
@@ -133,33 +133,38 @@ Output:
                 "probe": "",
                 "value": "480.4",
                 "unit": "",
+                "condition": "",
             },
             {
                 "type": "BET",
                 "probe": "N2",
                 "value": "405.7",
                 "unit": "m^2/g",
+                "condition": "",
             },
-        ]
+        ],
         "porosity": [
             {
                 "probe": "",
                 "value": "24.7",
                 "unit": "%",
+                "condition": "calculated from single crystal structures with PLATON",
             },
-        ]
+        ],
         "pore volume": [
             {
                 "probe": "",
                 "value": "0.183",
                 "unit": "cm^3/g",
+                "condition": "calculated from single crystal structures with PLATON",
             },
             {
                 "probe": "N2",
                 "value": "0.104",
                 "unit": "cm^3/g",
+                "condition": "calculated from N2 isotherms",
             },
-        ]
+        ],
         "gas adsorption": [
             {
                 "adsorbate": "H2",
@@ -167,6 +172,7 @@ Output:
                 "unit": "wt%",
                 "temperature": "",
                 "pressure": "1 bar",
+                "condition": "",
             },
             {
                 "adsorbate": "H2",
@@ -174,6 +180,7 @@ Output:
                 "unit": "wt%",
                 "temperature": "",
                 "pressure": "20 bar",
+                "condition": "",
             },
             {
                 "adsorbate": "H2",
@@ -181,16 +188,17 @@ Output:
                 "unit": "wt%",
                 "temperature": "",
                 "pressure": "total",
-            },
-        ]
-        "etc": [
-            {
-                "property name": "ΔH_ads",
-                "value": "7.81–5.87"
-                "unit": "kJ/mol",
                 "condition": "",
             },
-        ]
+        ],
+        "energy_related": [
+            {
+                "value": "7.81–5.87"
+                "unit": "kJ/mol",
+                "type": "ΔH_ads",
+                "condition": "",
+            },
+        ],
     },
     {
         "meta": {
@@ -204,33 +212,38 @@ Output:
                 "probe": "",
                 "value": "462.7",
                 "unit": "",
+                "condition": "",
             },
             {
                 "type": "BET",
                 "probe": "N2",
                 "value": "445.3",
                 "unit": "m^2/g",
+                "condition": "",
             },
-        ]
+        ],
         "porosity": [
             {
                 "probe": "",
                 "value": "16.8",
                 "unit": "%",
+                "condition": "calculated from single crystal structures with PLATON",
             },
-        ]
+        ],
         "pore volume": [
             {
                 "probe": "",
                 "value": "0.135",
                 "unit": "cm^3/g",
+                "condition": "calculated from single crystal structures with PLATON",
             },
             {
                 "probe": "N2",
                 "value": "0.108",
                 "unit": "cm^3/g",
+                "condition": "calculated from N2 isotherms",
             },
-        ]
+        ],
         "gas adsorption": [
             {
                 "adsorbate": "H2",
@@ -238,6 +251,7 @@ Output:
                 "unit": "wt%",
                 "temperature": "",
                 "pressure": "1 bar",
+                "condition": "",
             },
             {
                 "adsorbate": "H2",
@@ -245,6 +259,7 @@ Output:
                 "unit": "wt%",
                 "temperature": "",
                 "pressure": "20 bar",
+                "condition": "",
             },
             {
                 "adsorbate": "H2",
@@ -252,18 +267,20 @@ Output:
                 "unit": "wt%",
                 "temperature": "",
                 "pressure": "total",
-            },
-        ]
-        "etc": [
-            {
-                "property name": "ΔH_ads",
-                "value": "5.88–4.94"
-                "unit": "kJ/mol",
                 "condition": "",
             },
-        ]
-    }
+        ],
+        "energy_related": [
+            {
+                "value": "5.88–4.94"
+                "unit": "kJ/mol",
+                "type": "ΔH_ads",
+                "condition": "",
+            },
+        ],
+    },
 ]
+```
 <END>
 
 Input:
@@ -280,7 +297,7 @@ Cyclohexene oxidation in varying reaction temperature and time.[^a]
 
 [^a]: Conditions: Cyclohexene (1 mmol), H2O2 (1 mmol), CH3COOH (0.5 mmol) and C1 (0.1 mol%) in 2 mL CH3CN at 0°C.
 
-Output:
+Output: ```JSON
 [
     {
         "meta": {
@@ -311,7 +328,7 @@ Output:
                 "solvent": "CH3CN",
                 "time": "1h",
             },
-        ]
+        ],
     },
     {
         "meta": {
@@ -404,9 +421,10 @@ Output:
                 "solvent": "CH3CN",
                 "time": "4h",
             },
-        ]
+        ],
     },
 ]
+```
 <END>
 
 Input:
@@ -422,7 +440,7 @@ Table 3
 | Solid |
 | 1 | 57.5, 53.6 | 62.5 | 184.9, 179.8 |
 
-Output:
+Output: ```JSON
 [
     {
         "meta": {
@@ -461,9 +479,17 @@ Output:
         ],
     },
 ]
+```
 <END>
 
 Input:
 {{paragraph}}
 
 Output:"""
+
+
+FT_TYPE = """From the provided markdown table, generate a Python list of item names with data present. You must exclude absent items and return an empty list if any key items are missing. Names of items must be one of following:
+['bulk_modulus', 'charge_related', 'conversion', 'crystal_size', 'decomposition_temperature', 'density', 'energy_related', 'equation', 'gas_adsorption', 'heat_capacity', 'magnetic_moment', 'magnetic_susceptibility', 'material_color', 'material_shape', 'parameters', 'poissons_ratio', 'pore_diameter', 'pore_volume', 'porosity', 'reaction_yield', 'selectivity', 'shear_modulus', 'space_group', 'spectrum', 'surface_area', 'thermal_conductivity', 'thermal_expansion_coefficient', 'topology', 'youngs_modulus', 'etc']"""
+
+
+FT_HUMAN = "{paragraph}"

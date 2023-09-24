@@ -38,8 +38,10 @@ class TableMiningAgent(Chain):
         cls,
         convert_llm: BaseLanguageModel,
         categorize_llm: BaseLanguageModel,
-        crystal_tabel_llm: BaseLanguageModel,
-        property_table_llm: BaseLanguageModel,
+        crystal_table_type_llm: BaseLanguageModel,
+        crystal_table_extract_llm: BaseLanguageModel,
+        property_table_type_llm: BaseLanguageModel,
+        property_table_extract_llm: BaseLanguageModel,
         *,
         prompt_convert: str = CONVERT2MD,
         ft_convert: str = FT_CONVERT,
@@ -64,8 +66,8 @@ class TableMiningAgent(Chain):
             convert_chain = LLMChain(llm=convert_llm, prompt=template_convert)
 
         categorize_agent = CategorizeAgent.from_llm(categorize_llm, **kwargs)
-        crystal_table_agent = CrystalTableAgent.from_llm(crystal_tabel_llm, **kwargs)
-        property_table_agent = PropertyTableAgent.from_llm(property_table_llm, **kwargs)
+        crystal_table_agent = CrystalTableAgent.from_llm(crystal_table_type_llm, crystal_table_extract_llm, **kwargs)
+        property_table_agent = PropertyTableAgent.from_llm(property_table_type_llm, property_table_extract_llm, **kwargs)
 
         return cls(
             convert_chain=convert_chain,
@@ -153,6 +155,7 @@ class TableMiningAgent(Chain):
             callbacks=callbacks,
             token_checker=token_checker
         )
+        table_type = str(table_type)
         element.set_classification(table_type)
 
         if table_type == "Crystal":
