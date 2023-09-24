@@ -83,6 +83,7 @@ You must follow below rules:
 - When property is "etc", do not extract {prop}.
 - Make a list that shows properties of each material. The list consists of several dictionaries of all materials. Each dictionary must include "meta":{{"name":"", "symbol":"", "chemical formula":""}}. ex) [{{"meta":{{"name":"", "symbol":"", "chemical formula":""}}, {structured_data}]
 - When material is expressed as a number, you must fill in "symbol" of "meta". ex) Paragraph: The corresponding BET surface area is 100 m2/g for 1. JSON: [{{"meta":{{"name":"", "symbol":"1", "chemical formula":""}}, "surface area": {{"type": "BET", "probe": "", "value": "100", "unit": "m2/g"}}}}]
+- "condition" means not only pressure, temperature, but specific details of property like crystal form.
 
 {information} 
 
