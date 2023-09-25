@@ -83,7 +83,7 @@ Input:
 List:"""
 
 
-CRYSTAL_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the example below. When giving output, you should not use ellipses to shorten the content. You must conclude with "<END>".
+CRYSTAL_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the example below. When giving output, you should not use ellipses to shorten the content. You must conclude with "<END>". When lanthanides (Ln) or halogens (X) or things that can be substituted like metal (M) come out, indicate by substituting. The "condition" attribute not only refers to conditions like temperature and pressure, but also refers to conditions regarding the material in characteristic measurements, such as whether it is a single crystal or powder. If there isn't any, leave it blank.
 {{format}}
 
 Begin!
@@ -97,7 +97,7 @@ Input:
 | Formula weight | 404.07 | 407.40 | 415.12 |
 | Crystal system | Triclinic | Triclinic | Triclinic |
 
-Output:
+Output: ```JSON
 [
     {
         "meta": {
@@ -105,16 +105,19 @@ Output:
             "symbol": "1",
             "chemical formula": "C₈H₉PrNO₉",
         },
-        "formula weight": [
+        "chemical formula weight": [
             {
                 "value": "404.07",
+                "unit": "",
+                "condition": "",
             },
-        ]
+        ],
         "crystal system": [
             {
                 "value": "Triclinic",
+                "condition": "",
             },
-        ]
+        ],
     },
     {
         "meta": {
@@ -122,16 +125,19 @@ Output:
             "symbol": "2",
             "chemical formula": "C₈H₉NdNO₉",
         },
-        "formula weight": [
+        "chemical formula weight": [
             {
                 "value": "407.40",
+                "unit": "",
+                "condition": "",
             },
-        ]
+        ],
         "crystal system": [
             {
                 "value": "Triclinic",
+                "condition": "",
             },
-        ]
+        ],
     },
     {
         "meta": {
@@ -139,18 +145,22 @@ Output:
             "symbol": "3",
             "chemical formula": "C₈H₉EuNO₉",
         },
-        "formula weight": [
+        "chemical formula weight": [
             {
                 "value": "415.12",
+                "unit": "",
+                "condition": "",
             },
-        ]
+        ],
         "crystal system": [
             {
                 "value": "Triclinic",
+                "condition": "",
             },
-        ]
+        ],
     },
 ]
+```
 <END>
 
 Input:
@@ -163,7 +173,7 @@ Crystal data and structure refinement for the [Hg(μ-4,4′-bipy)(μ-AcO)(AcO)]n
 | Crystal system      | monoclinic |
 | Crystal size (mm)   | 0.32 × 0.28 × 0.24 |
 
-Output:
+Output: ```JSON
 [
     {
         "meta": {
@@ -174,19 +184,29 @@ Output:
         "crystal system": [
             {
                 "value": "monoclinic",
+                "condition": "",
             },
-        ]
+        ],
         "crystal size: [
             {
                 "value": "0.32 x 0.28 x 0.24",
                 "unit": "mm"
+                "condition": "",
             }
-        ]
+        ],
     },
 ]
+```
 <END>
 
 Input:
 {{paragraph}}
 
 Output:"""
+
+
+FT_TYPE = """From the provided markdown table, generate a Python list of item names with data present. You must exclude absent items and return an empty list if any key items are missing. Names of items must be one of following:
+['chemical_formula', 'chemical_formula weight', 'space_group', 'crystal_system', 'lattice_parameters', 'cell_volume', 'density', 'crystal_size', 'material_color']"""
+
+
+FT_HUMAN = "{paragraph}"

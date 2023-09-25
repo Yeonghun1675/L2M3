@@ -1,12 +1,18 @@
+import ast
 from typing import Any, Dict, List, Optional
 
 from langchain.base_language import BaseLanguageModel
 from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
+from langchain.prompts.chat import (
+      ChatPromptTemplate,
+      SystemMessagePromptTemplate,
+      HumanMessagePromptTemplate,
+)
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
-from llm_miner.table.categorize.prompt import PROMPT_CATEGORIZE
+from llm_miner.table.categorize.prompt import PROMPT_CATEGORIZE, FT_CATEGORIZE, FT_HUMAN
 from llm_miner.error import ContextError, LangchainError
 from llm_miner.pricing import TokenChecker, update_token_checker
 
@@ -71,6 +77,13 @@ class CategorizeAgent(Chain):
             )
 
         output = self._parse_output(llm_output)
+        try:
+            tmp_ast = ast.literal_eval(output)
+        except ValueError:
+            pass
+        else:
+            if isinstance(tmp_ast, list):
+                output = tmp_ast[0]
 
         if not output:
             raise ContextError('There are no categories in table')
@@ -78,7 +91,6 @@ class CategorizeAgent(Chain):
             raise ContextError(f'Class of table must be one of {self.labels}, not {output}')
 
         self._write_log(str(output), _run_manager)
-
         return {self.output_key: output}
 
     @classmethod
@@ -86,12 +98,25 @@ class CategorizeAgent(Chain):
         cls,
         llm: BaseLanguageModel,
         prompt: str = PROMPT_CATEGORIZE,
+
+        ft_categorize: str = FT_CATEGORIZE,
+        ft_human: str = FT_HUMAN,
+
         **kwargs,
     ) -> Chain:
-        template = PromptTemplate(
-            template=prompt,
-            template_format="jinja2",
-            input_variables=['paragraph'],
-        )
-        categorize_chain = LLMChain(llm=llm, prompt=template)
+        if llm.model_name.startswith('ft:'):
+            system_prompt = SystemMessagePromptTemplate.from_template(ft_categorize)
+            human_prompt = HumanMessagePromptTemplate.from_template(ft_human)
+            chat_prompt = ChatPromptTemplate.from_messages(
+                [system_prompt, human_prompt]
+            )
+            categorize_chain = LLMChain(llm=llm, prompt=chat_prompt)
+
+        else:
+            template = PromptTemplate(
+                template=prompt,
+                template_format="jinja2",
+                input_variables=['paragraph'],
+            )
+            categorize_chain = LLMChain(llm=llm, prompt=template)
         return cls(categorize_chain=categorize_chain, **kwargs)

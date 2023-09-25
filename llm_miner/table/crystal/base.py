@@ -6,10 +6,14 @@ from langchain.callbacks.manager import CallbackManagerForChainRun
 from langchain.chains.base import Chain
 from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
-
+from langchain.prompts.chat import (
+      ChatPromptTemplate,
+      SystemMessagePromptTemplate,
+      HumanMessagePromptTemplate,
+)
 from llm_miner.error import StructuredFormatError, TokenLimitError, LangchainError
 from llm_miner.format import Formatter
-from llm_miner.table.crystal.prompt import CRYSTAL_CATEGORIZE, CRYSTAL_EXTRACT
+from llm_miner.table.crystal.prompt import CRYSTAL_CATEGORIZE, CRYSTAL_EXTRACT, FT_TYPE, FT_HUMAN
 from llm_miner.pricing import TokenChecker, update_token_checker
 
 
@@ -23,25 +27,36 @@ class CrystalTableAgent(Chain):
     @classmethod
     def from_llm(
         cls,
-        llm: BaseLanguageModel,
+        type_llm: BaseLanguageModel,
+        extract_llm: BaseLanguageModel,
+        *,
         prompt_categorize: str = CRYSTAL_CATEGORIZE,
         prompt_extract: str = CRYSTAL_EXTRACT,
+        ft_type: str = FT_TYPE,
+        ft_human: str = FT_HUMAN,
         **kwargs,
     ) -> Chain:
-
-        template_categorize = PromptTemplate(
-            template=prompt_categorize,
-            template_format="jinja2",
-            input_variables=['paragraph'],
-        )
-        categorize_chain = LLMChain(llm=llm, prompt=template_categorize)
+        if type_llm.model_name.startswith('ft:'):
+            system_prompt = SystemMessagePromptTemplate.from_template(ft_type)
+            human_prompt = HumanMessagePromptTemplate.from_template(ft_human)
+            chat_prompt = ChatPromptTemplate.from_messages(
+                [system_prompt, human_prompt]
+            )
+            categorize_chain = LLMChain(llm=type_llm, prompt=chat_prompt)
+        else:
+            template_categorize = PromptTemplate(
+                template=prompt_categorize,
+                template_format="jinja2",
+                input_variables=['paragraph'],
+            )
+            categorize_chain = LLMChain(llm=type_llm, prompt=template_categorize)
 
         template_extract = PromptTemplate(
             template=prompt_extract,
             template_format="jinja2",
             input_variables=['prop', 'format', 'paragraph'],
         )
-        extract_chain = LLMChain(llm=llm, prompt=template_extract)
+        extract_chain = LLMChain(llm=extract_llm, prompt=template_extract)
 
         return cls(
             categorize_chain=categorize_chain,
@@ -71,7 +86,6 @@ class CrystalTableAgent(Chain):
 
         paragraph = inputs[self.input_key]
         token_checker: TokenChecker = inputs['token_checker']
-
         llm_kwargs={
             'paragraph': paragraph
         }
@@ -79,7 +93,7 @@ class CrystalTableAgent(Chain):
             included_props = self.categorize_chain.run(
                 **llm_kwargs,
                 callbacks=callbacks,
-                stop=["Input:"]
+                # stop=["Input:"]
             )
         except Exception as e:
             raise LangchainError(e)
@@ -94,6 +108,7 @@ class CrystalTableAgent(Chain):
             )
 
         self.included_props = self._parse_output_props(included_props)
+        # print("self.included_props: ", self.included_props)
 
         for_print_props = [item.replace("_", " ") for item in self.included_props]
         self._write_log(str(for_print_props), _run_manager)
@@ -129,8 +144,8 @@ class CrystalTableAgent(Chain):
                 llm_kwargs=llm_kwargs,
                 llm_output=output,
             )
-
         output = self._parse_output_json(output)
+        # print("OUTPUT arrived: ", output)
         return {"output": output}
 
     def _parse_output_props(self, output: str) -> Dict[str, str]:
@@ -144,14 +159,15 @@ class CrystalTableAgent(Chain):
 
     def _parse_output_json(self, output: str) -> Dict[str, str]:
         output = output.replace("Output:", "").strip()
+        output = output.replace("```JSON", "").strip()
+        output = output.replace("```", "").strip()
         try:
             end_point = output.index("<END>")
         except ValueError as e:
             raise TokenLimitError(e)
         else:
             output = output[:end_point].strip()
-
-        print(output)
+        # print(output)
 
         try:
             list_ = ast.literal_eval(output)

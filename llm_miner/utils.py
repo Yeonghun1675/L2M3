@@ -9,6 +9,8 @@ def num_tokens_from_string(string: str, model: str) -> int:
     :param str model: name of models
     :returns: Number of tokens
     """
+    if model == "ft:gpt-3.5-turbo":
+        model = "gpt-3.5-turbo"
     encoding = tiktoken.encoding_for_model(model)
     num_tokens = len(encoding.encode(string))
     return num_tokens
