@@ -92,6 +92,7 @@ class LLMMiner(Chain):
                 pass
                 # print (output)
 
+
         for element in jr.get_tables():
             try:
                 output = self.table_agent.run(
@@ -102,6 +103,7 @@ class LLMMiner(Chain):
             except BaseMiningError as e:
                 element.set_data([str(e)])
             # print (output)
+
 
         if config['reconstruct']:
             return {self.output_key: jr.cln_elements}

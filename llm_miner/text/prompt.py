@@ -9,6 +9,7 @@ You must follow below rules:
 - Do not be confused between gas adsorption and selectivity. Gas adsorption is a property that has a unit and selectivity is unitless. Even though there is a word "selectivity", it is not always selectivity. If there is a value with unit, it is gas adsorption.
 - In crystal system, there are triclinic, monoclinic, orthorhombic, tetragonal, trigonal, hexagonal, and cubic. If one of them exists in the paragraph, it means there is "crystal system" information.
 - If "TGA" or "TG" exists in the paragraph, it includes "decomposition_temperature".
+- When property does not exist in the list, write "etc".
 
 If you are uncertain, please reply with "I do not know".
 
@@ -41,7 +42,7 @@ List: ```JSON
 
 Paragraph: An intense emission occurs at 407nm with the excitation wavelength at 318nm.
 List: ```JSON
-["spectrum"]
+["peak_spectrum"]
 ```
 
 Paragraph: In the case of 2, during the entire decomposition process up to 550°C, the residual material observed at the end comprises approximately 22.3% of the original sample, possibly indicating a mixture of ZrO2 and ZrC (calculated 23.8%).
@@ -61,7 +62,7 @@ List: ```JSON
 
 Paragraph: Crystallographic data for Compound 2: C36H42N6O4, M = 622.75, monoclinic, P21/c, a = 10.812(4) Å, b = 15.261(6) Å, c = 13.973(5) Å, V = 2293.0(14) cm^3, Z = 4, Dc = 1.292 g cm^−3, μ (X-ray) = 1.012 mm^−1, T = 298(2) K, 14056 reflections collected, 3668 unique (Rint = 0.0573), R1 on F(wR2 on F2) = 0.0397 (0.0884) for 3447 observed (I > 2σ(I)) reflections.
 List: ```JSON
-["chemical_formula_weight", "crystal_system", "space_group", "lattice_parameter", "density"]
+["chemical_formula_weight", "crystal_system", "space_group", "lattice_parameters", "density"]
 ```
 
 Paragraph: The calculated solvent-accessible void space within the framework measures 852.8 Å3, representing approximately 38.2% of the unit cell volume of 2230.6 Å3.
@@ -103,7 +104,8 @@ FT_TYPE = (
     "If there is no property in the paragraph, please return an empty list. "
     "You must find all the properties in the paragraphs. "
     "Names of properties must be one of following:\n"
-    "['bulk_modulus', 'catalytic_activity', 'charge_related', 'chemical_formula_weight', 'crystal_size', 'crystal_system', 'decomposition_temperature', 'density', 'energy_related', 'equation', 'gas_adsorption', 'heat_capacity', 'lattice_parameters', 'magnetic_moment', 'magnetic_susceptibility', 'material_color', 'material_shape', 'parameters', 'poissons_ratio', 'pore_diameter', 'pore_volume', 'porosity', 'refractive_index', 'selectivity', 'shear_modulus', 'space_group', 'spectrum', 'surface_area', 'thermal_conductivity', 'thermal_expansion_coefficient', 'topology', 'youngs_modulus']"
+    "['bulk_modulus', 'catalytic_activity', 'charge_related', 'chemical_formula_weight', 'crystal_size', 'crystal_system', 'decomposition_temperature', 'density', 'energy_related', 'etc', 'equation', 'gas_adsorption', 'heat_capacity', 'lattice_parameters', 'magnetic_moment', 'magnetic_susceptibility', 'material_color', 'material_shape', 'simulation_parameters', 'poissons_ratio', 'pore_diameter', 'pore_volume', 'porosity', 'refractive_index', 'selectivity', 'shear_modulus', 'space_group', 'peak_spectrum', 'surface_area', 'thermal_conductivity', 'thermal_expansion_coefficient', 'topology', 'youngs_modulus']"
+
 )
 
 FT_HUMAN = "{paragraph}"

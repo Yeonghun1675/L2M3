@@ -191,7 +191,7 @@ JSON: ```JSON
 ```
 """
 
-spectrum = """
+peak_spectrum = """
 Paragraph: The analysis of the MOF-A using infrared spectroscopy revealed a unique spectrum, with peaks at 1650 cm-1 and 3400 cm-1, suggesting the presence of carbonyl and hydroxyl groups, respectively.
 JSON: ```JSON
 [{{"value":"1650, 3400", "unit":"cm-1", "condition":""}}]
@@ -257,10 +257,10 @@ JSON: ```JSON
 ```
 """
 
-parameters = """
-Paragraph: The experimental data conforms to the Van der Waals equation of state with a value of 'a' equal to 3.42 L^2 atm/mol^2 and 'b' equal to 0.0342 L/mol.
+simulation_parameters = """
+Paragraph: In the mathematical model for population growth, the simulation parameters were fine-tuned to fit the observed data, with values set as follows: a = 0.05, b = -0.002, and c = 1.2, resulting in an accurate representation of population dynamics over time.
 JSON: ```JSON
-[{{"symbol": "a", "value": "3.42", "unit": "L^2 atm/mol^2", "type": "Van der Waals equation"}}, {{"symbol": "b", "value": "0.0342", "unit": "L/mol", "type": "Van der Waals equation"}}]
+[{{"symbol": "a", "value": "0.05", "unit": "", "type": "mathematical model for population growth"}}, {{"symbol": "b", "value": "-0.002", "unit": "", "type": "mathematical model for population growth"}}, {{"symbol": "c", "value": "1.2", "unit": "", "type": "mathematical model for population growth"}}]
 ```
 """
 
