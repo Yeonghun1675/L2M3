@@ -105,6 +105,7 @@ FT_TYPE = (
     "You must find all the properties in the paragraphs. "
     "Names of properties must be one of following:\n"
     "['bulk_modulus', 'catalytic_activity', 'charge_related', 'chemical_formula_weight', 'crystal_size', 'crystal_system', 'decomposition_temperature', 'density', 'energy_related', 'etc', 'equation', 'gas_adsorption', 'heat_capacity', 'lattice_parameters', 'magnetic_moment', 'magnetic_susceptibility', 'material_color', 'material_shape', 'simulation_parameters', 'poissons_ratio', 'pore_diameter', 'pore_volume', 'porosity', 'refractive_index', 'selectivity', 'shear_modulus', 'space_group', 'peak_spectrum', 'surface_area', 'thermal_conductivity', 'thermal_expansion_coefficient', 'topology', 'youngs_modulus']"
+
 )
 
 FT_HUMAN = "{paragraph}"

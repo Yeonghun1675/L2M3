@@ -60,7 +60,7 @@ class LLMMiner(Chain):
             except BaseMiningError:
                 element.classification = 'error'
 
-            print (categories)
+            # print (categories)
         
         # reconstruct elements -> merge paragraph for reducing tokens
         if config.get('reconstruct'):
@@ -76,7 +76,8 @@ class LLMMiner(Chain):
             except BaseMiningError as e:
                 element.set_data([str(e)])
             else:
-                print (output)
+                pass
+                # print (output)
 
         for element in jr.get_properties():
             try:
@@ -88,18 +89,21 @@ class LLMMiner(Chain):
             except BaseMiningError as e:
                 element.set_data([str(e)])
             else:
-                print (output)
+                pass
+                # print (output)
 
-        # for element in jr.get_tables():
-        #     try:
-        #         output = self.table_agent.run(
-        #             element=element,
-        #             callbakcs=callbacks,
-        #             token_checker = token_checker
-        #         )
-        #     except BaseMiningError as e:
-        #         element.set_data([str(e)])
-        #     print (output)
+
+        for element in jr.get_tables():
+            try:
+                output = self.table_agent.run(
+                    element=element,
+                    callbakcs=callbacks,
+                    token_checker = token_checker
+                )
+            except BaseMiningError as e:
+                element.set_data([str(e)])
+            # print (output)
+
 
         if config['reconstruct']:
             return {self.output_key: jr.cln_elements}
@@ -137,9 +141,11 @@ class LLMMiner(Chain):
 
         table_agent = TableMiningAgent.from_llm(
             convert_llm = ft_model_dict.get('ft_table_convert', llm),
-            categorize_llm = simple_llm,
-            crystal_tabel_llm=llm,
-            property_table_llm=llm,
+            categorize_llm = ft_model_dict.get('ft_table_categorize', llm),
+            crystal_table_type_llm = ft_model_dict.get('ft_table_crystal_type', llm),
+            crystal_table_extract_llm=llm,
+            property_table_type_llm= ft_model_dict.get('ft_table_property_type', llm),
+            property_table_extract_llm=llm,
             **kwargs
         )
         

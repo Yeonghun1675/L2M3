@@ -77,7 +77,7 @@ def parse_model_name(model_name: str) -> str:
     model_name = str(model_name)
     if model_name.startswith('ft:gpt-3.5-turbo'):
         return 'ft:gpt-3.5-turbo'
-    elif model_name.stratswith('ft:davinci'):
+    elif model_name.startswith('ft:davinci'):
         return 'ft:davinci'
     elif model_name.startswith('ft:babbage'):
         return 'ft:babbage'

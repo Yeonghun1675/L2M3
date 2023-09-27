@@ -58,8 +58,9 @@ gas_adsorption = """
 
 
 porosity = """
-"porosity(void fraction)": [
+"porosity": [
     {
+        "proboe": "",
         "value": "",
         "unit": "",
         "condition": "",

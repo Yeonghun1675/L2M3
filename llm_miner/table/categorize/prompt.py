@@ -272,3 +272,9 @@ Input:
 {{paragraph}}
 
 Output:"""
+
+
+FT_CATEGORIZE = """Determine the category of the given markdown table from the following options: ["Crystal", "Bond & Angle", "Coordinate", "Property"]. If the table doesn"t fit any category, return an empty string ""."""
+
+
+FT_HUMAN = "{paragraph}"

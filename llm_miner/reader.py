@@ -78,6 +78,7 @@ class JournalReader(BaseModel):
             'filepath': str(self.filepath),
             'publisher': self.publisher,
             'elements': self.elements.to_dict(),
+            'cln_elements': self.cln_elements.to_dict(),
             'metadata': self.metadata.to_dict(),
         }
     
