@@ -289,8 +289,8 @@ refractive_index = """
 ]
 """
 
-spectrum = """
-"spectrum": [
+peak_spectrum = """
+"peak_spectrum": [
     {
         "value": "",
         "unit": "",
@@ -378,8 +378,8 @@ charge_related = """
 
 """
 
-parameters = """
-"parameters": [
+simulation_parameters = """
+"simulation_parameters": [
     {
         "symbol": "",  # ex) σ
         "value": "",
