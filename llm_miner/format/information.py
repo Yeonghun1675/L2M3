@@ -94,7 +94,7 @@ refractive_index = """
 topology = """
 """
 
-spectrum = """
+peak_spectrum = """
 
 """
 
@@ -124,7 +124,7 @@ material_shape = """
 
 """
 
-parameter = """
+simulation_parameters = """
 
 """
 
