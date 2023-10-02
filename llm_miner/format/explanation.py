@@ -123,7 +123,7 @@ how light propagates through medium.
 """
 
 
-spectrum = """
+peak_spectrum = """
 absorbed or transmitted wavelength of material.
 """
 
@@ -169,8 +169,8 @@ The shape of material crystal or bulk. e.g., cylinder
 """
 
 
-parameters = """
-A parameter is a variable, constant, or factor in a mathematical or statistical model, a scientific experiment
+simulation_parameters = """
+simulation parameters are variable, constant, or factor used in computer simulation. ex) sigma, epsilon of lennard-jones potential
 """
 
 energy_related = """

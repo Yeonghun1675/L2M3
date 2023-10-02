@@ -104,7 +104,7 @@ class TableMiningAgent(Chain):
         cleaned_xml = regex.sub(r'<(ce:)?bold>(.*?)</(ce:)?bold>', r'\2', cleaned_xml)
 
         # Remove MathML elements
-        cleaned_xml = regex.sub(r'<mml:math.*?>.*?</mml:math>', '', cleaned_xml, flags=regex.DOTALL)
+        # cleaned_xml = regex.sub(r'<mml:math.*?>.*?</mml:math>', '', cleaned_xml, flags=regex.DOTALL)
 
         # Remove <inf loc="post"> tags and their content
         cleaned_xml = regex.sub(r'<(ce:)?inf loc="post">(.*?)</(ce:)?inf>', r'\2', cleaned_xml)
