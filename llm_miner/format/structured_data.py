@@ -291,7 +291,7 @@ refractive_index = """
 """
 
 peak_spectrum = """
-"peak_spectrum": [
+"peak spectrum": [
     {
         "value": "",
         "unit": "",
@@ -368,7 +368,7 @@ equation = """
 """
 
 charge_related = """
-"charge_related": [
+"charge related": [
     {
         "value": "",
         "unit": "",
@@ -380,7 +380,7 @@ charge_related = """
 """
 
 simulation_parameters = """
-"simulation_parameters": [
+"simulation parameters": [
     {
         "symbol": "",  # ex) σ
         "value": "",
@@ -392,7 +392,7 @@ simulation_parameters = """
 """
 
 energy_related = """
-"energy_related": [
+"energy related": [
     {
         "value": "",
         "unit": "",

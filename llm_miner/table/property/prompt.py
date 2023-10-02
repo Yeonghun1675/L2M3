@@ -96,7 +96,7 @@ Input:
 List:"""
 
 
-PROPERTY_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the example below. You must conclude with "<END>". When lanthanides (Ln) or halogens (X) or things that can be substituted like metal (M) come out, indicate by substituting. The "condition" attribute not only refers to conditions like temperature and pressure, but also refers to conditions regarding the material in characteristic measurements, such as whether it is a single crystal or powder. If there isn't any, leave it blank.
+PROPERTY_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the example below. When lanthanides (Ln) or halogens (X) or metal (M) come out, indicate by substituting. You must conclude with "<END>". 
 {{format}}
 
 Begin!
@@ -489,7 +489,7 @@ Output:"""
 
 
 FT_TYPE = """From the provided markdown table, generate a Python list of item names with data present. You must exclude absent items and return an empty list if any key items are missing. Names of items must be one of following:
-['bulk_modulus', 'charge_related', 'conversion', 'crystal_size', 'decomposition_temperature', 'density', 'energy_related', 'equation', 'gas_adsorption', 'heat_capacity', 'magnetic_moment', 'magnetic_susceptibility', 'material_color', 'material_shape', 'parameters', 'poissons_ratio', 'pore_diameter', 'pore_volume', 'porosity', 'reaction_yield', 'selectivity', 'shear_modulus', 'space_group', 'spectrum', 'surface_area', 'thermal_conductivity', 'thermal_expansion_coefficient', 'topology', 'youngs_modulus', 'etc']"""
+['bulk_modulus', 'charge_related', 'conversion', 'crystal_size', 'decomposition_temperature', 'density', 'energy_related', 'equation', 'gas_adsorption', 'heat_capacity', 'magnetic_moment', 'magnetic_susceptibility', 'material_color', 'material_shape', 'simulation_parameters', 'poissons_ratio', 'pore_diameter', 'pore_volume', 'porosity', 'reaction_yield', 'selectivity', 'shear_modulus', 'space_group', 'peak_spectrum', 'surface_area', 'thermal_conductivity', 'thermal_expansion_coefficient', 'topology', 'youngs_modulus', 'etc']"""
 
 
 FT_HUMAN = "{paragraph}"

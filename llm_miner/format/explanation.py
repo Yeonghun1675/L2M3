@@ -170,7 +170,7 @@ The shape of material crystal or bulk. e.g., cylinder
 
 
 simulation_parameters = """
-A parameter is a variable, constant, or factor in a mathematical or statistical model, a scientific experiment
+simulation parameters are variable, constant, or factor used in computer simulation. ex) sigma, epsilon of lennard-jones potential
 """
 
 energy_related = """

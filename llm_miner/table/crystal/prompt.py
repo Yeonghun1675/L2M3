@@ -83,7 +83,7 @@ Input:
 List:"""
 
 
-CRYSTAL_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the example below. When giving output, you should not use ellipses to shorten the content. You must conclude with "<END>". When lanthanides (Ln) or halogens (X) or things that can be substituted like metal (M) come out, indicate by substituting. The "condition" attribute not only refers to conditions like temperature and pressure, but also refers to conditions regarding the material in characteristic measurements, such as whether it is a single crystal or powder. If there isn't any, leave it blank.
+CRYSTAL_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the example below. When giving output, you should not use ellipses to shorten the content. When lanthanides (Ln) or halogens (X) or metal (M) come out, indicate by substituting. You must conclude with "<END>". 
 {{format}}
 
 Begin!
