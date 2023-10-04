@@ -16,7 +16,7 @@ openai.api_key = "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"  # molsim
 model_name = "gpt-3.5-turbo"
 jsonl_file = "table_categorize2.jsonl"
 file_id = "file-FxWCdsVwEkGCeW0e8lyRj3iY"
-# job_id = "ftjob-wC4EOEEajTej0yRCoqafZD06"
+job_id = "ftjob-CKpwbM0HNU5wUjQnqtv6z9iz"
 # created = "ft:gpt-3.5-turbo-0613:molsimllm::80nXElRv"
 
 # File upload
@@ -50,5 +50,5 @@ def retrieve_job(job_id):
         print(event["message"])
 
 # file_upload(jsonl_file)
-job_upload(file_id)
-# retrieve_job(job_id)
+# job_upload(file_id)
+retrieve_job(job_id)

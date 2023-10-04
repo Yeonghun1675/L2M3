@@ -1,19 +1,26 @@
 config = {
     # default llms
-    "model_name": "gpt-4",
+    # "model_name": "gpt-4",
+    "model_name": "gpt-3.5-turbo-16k",
     "simple_model_name": "gpt-3.5-turbo-16k",
 
     # fine-tuned llms (optional)
     "fine_tuning_models": {
-        'ft_text_categorize': 'ft:gpt-3.5-turbo-0613:molsimllm::80Qa4CA7',
-        'ft_text_property_type': 'ft:gpt-3.5-turbo-0613:molsimllm::81XcMVpc',
+        # 'ft_text_categorize': 'ft:gpt-3.5-turbo-0613:molsimllm::80Qa4CA7',
+        'ft_text_categorize': 'ft:gpt-3.5-turbo-0613:molsimllm::85CFxPWL',
+        # 'ft_text_property_type': 'ft:gpt-3.5-turbo-0613:molsimllm::81XcMVpc',
+        'ft_text_property_type': 'ft:gpt-3.5-turbo-0613:molsimllm::85Bdqx9X',
         'ft_text_property_extract': None,
         'ft_text_synthesis_type': 'ft:gpt-3.5-turbo-0613:molsimllm::80Qd6Ylb',
         'ft_text_synthesis_extract': None,
-        'ft_table_convert': 'ft:gpt-3.5-turbo-0613:molsimllm::80ONu8vL',
-        'ft_table_categorize': 'ft:gpt-3.5-turbo-0613:molsimllm::80nXElRv',
+        # 'ft_table_convert': 'ft:gpt-3.5-turbo-0613:molsimllm::80ONu8vL',
+        'ft_table_convert': 'ft:gpt-3.5-turbo-0613:molsimllm::85Bau9jE',
+        # 'ft_table_categorize': 'ft:gpt-3.5-turbo-0613:molsimllm::80nXElRv',
+        'ft_table_categorize': 'ft:gpt-3.5-turbo-0613:molsimllm::85C8Tv6b',
         'ft_table_crystal_type': 'ft:gpt-3.5-turbo-0613:molsimllm::81ALrhlf',
-        'ft_table_property_type': 'ft:gpt-3.5-turbo-0613:molsimllm::81pfyxT4',
+        # 'ft_table_property_type': 'ft:gpt-3.5-turbo-0613:molsimllm::81pfyxT4',
+        # 'ft_table_property_type': 'ft:gpt-3.5-turbo-0613:molsimllm::85CbvJF7',
+        'ft_table_property_type': 'ft:gpt-3.5-turbo-0613:molsimllm::85g6MbRS',
     },
 
     # llm options
