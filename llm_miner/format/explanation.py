@@ -58,7 +58,7 @@ dimensional change with temperature variation.
 """
 
 
-thermal_conductivity = """
+thermal_conductivity_coefficient = """
 material's ability to conduct heat.
 """
 
@@ -118,11 +118,6 @@ how much a material will become magnetized.
 """
 
 
-refractive_index = """
-how light propagates through medium.
-"""
-
-
 peak_spectrum = """
 absorbed or transmitted wavelength of material.
 """
@@ -152,14 +147,6 @@ chemical_formula = """
 empirical formula of materials.
 """
 
-equation = """
-An equation that explains a certain property value, e.g., ax1+bx2+cx3+...
-"""
-
-charge_related = """
-Properties related to charge, such as charge distribution, charge transfer, etc.
-"""
-
 material_color = """
 The color of material crystal or bulk.
 """
@@ -168,11 +155,6 @@ material_shape = """
 The shape of material crystal or bulk. e.g., cylinder
 """
 
-
 simulation_parameters = """
 simulation parameters are variable, constant, or factor used in computer simulation. ex) sigma, epsilon of lennard-jones potential
-"""
-
-energy_related = """
-Properties related to the energy of a material, such as isosteric heat, etc.
 """
