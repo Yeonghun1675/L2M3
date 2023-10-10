@@ -141,8 +141,8 @@ thermal_expansion_coefficient = """
 ]
 """
 
-thermal_conductivity = """
-"thermal conductivity": [
+thermal_conductivity_coefficient = """
+"thermal conductivity_coefficient": [
     {
         "value": "",
         "unit": "",
@@ -281,21 +281,12 @@ magnetic_susceptibility = """
 """
 
 
-refractive_index = """
-"refractive index": [
-    {
-        "value": "",
-        "condition": "",
-    }, ...
-]
-"""
-
 peak_spectrum = """
 "peak spectrum": [
     {
         "value": "",
         "unit": "",
-        "condition": "",
+        "type": "",
     }, ...
 ]
 """
@@ -356,29 +347,6 @@ material_shape = """
 ]
 """
 
-
-equation = """
-"equation": [
-    {
-        "equation name": "",  # ex) qurie law
-        "value": "",
-        "parameters": "",
-    }
-]
-"""
-
-charge_related = """
-"charge related": [
-    {
-        "value": "",
-        "unit": "",
-        "type": "",
-        "condition": "",
-    }
-]
-
-"""
-
 simulation_parameters = """
 "simulation parameters": [
     {
@@ -388,17 +356,6 @@ simulation_parameters = """
         "type": "",  # lennard-jones potential
     }
 
-]
-"""
-
-energy_related = """
-"energy related": [
-    {
-        "value": "",
-        "unit": "",
-        "type": "",
-        "condition": "",
-    }
 ]
 """
 
