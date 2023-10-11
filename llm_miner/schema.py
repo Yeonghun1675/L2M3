@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from typing import List, Any, Dict, Optional, Union
 from collections.abc import Sequence
 import copy
+import json
 
 
 class Paragraph(BaseModel):
@@ -83,6 +84,10 @@ class Paragraph(BaseModel):
             'data': self.data,
             'include_properties': self.include_properties,
         }
+    
+    def to_json(self, filepath) -> Dict[str, Any]:
+        with open(filepath, 'w') as f:
+            json.dump(self.to_dict(), f)
 
     @classmethod
     def from_dict(cls, data):
@@ -95,6 +100,12 @@ class Paragraph(BaseModel):
             data=data['data'],
             include_properties=data['include_properties']
         )
+    
+    @classmethod
+    def from_json(cls, filepath):
+        with open(filepath) as f:
+            data = json.load(f)
+        return cls.from_dict(data)
 
 
 class Elements(Sequence, BaseModel):
@@ -129,6 +140,10 @@ class Elements(Sequence, BaseModel):
             para.to_dict() for para in self.elements
         ]
     
+    def to_json(self, filepath) -> Dict[str, Any]:
+        with open(filepath, 'w') as f:
+            json.dump(self.to_dict(), f)
+    
     def append(self, para: Paragraph) -> None:
         self.elements.append(para)
 
@@ -141,3 +156,9 @@ class Elements(Sequence, BaseModel):
         return cls(
             elements=[Paragraph.from_dict(d) for d in data]
         )
+    
+    @classmethod
+    def from_json(cls, filepath):
+        with open(filepath) as f:
+            data = json.load(f)
+        return cls.from_dict(data)
