@@ -110,7 +110,7 @@ JSON:```JSON
 ```
 """
 
-thermal_conductivity = """
+thermal_conductivity_coefficient = """
 Paragraph: The MOF-A demonstrated a thermal conductivity of 0.2 W/m·K, indicating its potential as a thermal insulator.
 JSON:```JSON
 [{{"value":"0.2", "unit":"W/m·K", "condition":""}}]
@@ -184,17 +184,11 @@ JSON: ```JSON
 ```
 """
 
-refractive_index = """
-Paragraph: The refractive index of the MOF-A was found to be 1.42, indicating its ability to significantly bend light.
-JSON: ```JSON
-[{{"value":"1.42", "condition":""}}]
-```
-"""
 
 peak_spectrum = """
 Paragraph: The analysis of the MOF-A using infrared spectroscopy revealed a unique spectrum, with peaks at 1650 cm-1 and 3400 cm-1, suggesting the presence of carbonyl and hydroxyl groups, respectively.
 JSON: ```JSON
-[{{"value":"1650, 3400", "unit":"cm-1", "condition":""}}]
+[{{"value":"1650, 3400", "unit":"cm-1", "type":""}}]
 ```
 """
 
@@ -229,20 +223,6 @@ JSON: ```JSON
 ```
 """
 
-equation = """
-Paragraph: The adsorption capacity of MOF-123 for methane (CH4) can be accurately predicted using the Langmuir equation, which is expressed as: Q = (Qmax * K * P) / (1 + (K * P))
-JSON: ```JSON
-[{{"value":"Q = (Qmax * K * P) / (1 + (K * P))", "parameters":"", "name":"Langmuir equation"}}]
-```
-"""
-
-charge_related = """
-Paragraph: In the MOF known as 'MOF-456,' the charge distribution is characterized by a net charge of -0.15 on the metal center and a partial positive charge of +0.08 on the organic ligands, indicating a strong interaction between the metal clusters and ligands
-JSON: ```JSON
-[{{"value":"-0.15", "unit":"", "type":"on the metal center"}}, {{"value":"+0.8", "unit":"", "type":"on the organic ligands"}}]
-```
-"""
-
 material_color = """
 Paragraph: The material color of the MOF 'MOF-789' is a deep ruby red, imparting a distinctive and attractive appearance to the crystal lattice.
 JSON: ```JSON
@@ -261,12 +241,5 @@ simulation_parameters = """
 Paragraph: In the mathematical model for population growth, the simulation parameters were fine-tuned to fit the observed data, with values set as follows: a = 0.05, b = -0.002, and c = 1.2, resulting in an accurate representation of population dynamics over time.
 JSON: ```JSON
 [{{"symbol": "a", "value": "0.05", "unit": "", "type": "mathematical model for population growth"}}, {{"symbol": "b", "value": "-0.002", "unit": "", "type": "mathematical model for population growth"}}, {{"symbol": "c", "value": "1.2", "unit": "", "type": "mathematical model for population growth"}}]
-```
-"""
-
-energy_related = """
-Paragraph: The isosteric heat of adsorption (Q\nst) of 1 was also calculated. At zero coverage, the Q\nst is 3.33kJ/mol.
-JSON: ```JSON
-[{{"value": "3.33", "unit": "kJ/mol", "type": "isoteric heat of adsorption", "condition": "at zero coverage"}}]
 ```
 """

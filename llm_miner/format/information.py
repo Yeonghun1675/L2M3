@@ -44,7 +44,7 @@ thermal_expansion_coefficient = """
 
 """
 
-thermal_conductivity = """
+thermal_conductivity_coefficient = """
 
 """
 
@@ -87,10 +87,6 @@ chemical_formula_weight = """
 
 """
 
-refractive_index = """
-
-"""
-
 topology = """
 """
 
@@ -109,13 +105,6 @@ lattice_parameters = """
 cell_volume = """
 """
 
-equation = """
-"""
-
-charge_related = """
-
-"""
-
 material_color = """
 
 """
@@ -125,9 +114,5 @@ material_shape = """
 """
 
 simulation_parameters = """
-
-"""
-
-energy_related = """
 
 """

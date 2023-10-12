@@ -1,6 +1,6 @@
 import warnings
 import json
-from typing import List, Any, Dict
+from typing import List, Any, Dict, Union, Iterable
 from pydantic import BaseModel
 from pathlib import Path
 
@@ -20,6 +20,9 @@ class JournalReader(BaseModel):
     elements: Elements
     cln_elements: Elements = Elements.empty()
     metadata: Metadata
+
+    def __getitem__(self, idx = Union[int, Iterable[int]]) -> Paragraph:
+        return self.get_idx(idx)
 
     @property
     def filename(self):
@@ -67,11 +70,18 @@ class JournalReader(BaseModel):
         else:
             return self.elements.get_properties()
         
-    def get_idx(self, idx: int) -> Paragraph:
-        for element in self.elements:
-            if int(element.idx) == idx:
-                return element
-        raise IndexError(f'There are no idx {idx} in elements.')
+    def get_idx(self, idx: Union[int, Iterable[int]]) -> Paragraph:
+        if isinstance(idx, int):
+            for element in self.elements:
+                if int(element.idx) == idx:
+                    return element
+            raise IndexError(f'There are no idx {idx} in elements.')
+        else:
+            ls_para = [self.get_idx(i).copy() for i in idx]
+            b_para = ls_para[0]
+            for para in ls_para[1:]:
+                b_para.merge(para, merge_idx=True)
+            return b_para
     
     def to_dict(self,) -> Dict[str, Any]:
         return {
