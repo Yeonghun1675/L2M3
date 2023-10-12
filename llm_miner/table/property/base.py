@@ -176,15 +176,21 @@ class PropertyTableAgent(Chain):
             return list_
 
     def _parse_output_json(self, output: str) -> Dict[str, str]:
+        try:
+            list_ = ast.literal_eval(output)
+        except Exception as e:
+            pass
+        else:
+            return list_
+
         output = output.replace("Output:", "").strip()
         output = output.replace("```JSON", "").strip()
-        output = output.replace("```", "").strip()
         try:
-            end_point = output.index("<END>")
+            end_point = output.index("```")
         except ValueError as e:
             raise TokenLimitError(e)
         else:
-            output = output[:end_point].strip()
+            output = output.replace("```", "").strip()
 
         try:
             list_ = ast.literal_eval(output)
