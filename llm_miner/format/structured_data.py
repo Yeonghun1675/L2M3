@@ -354,7 +354,7 @@ simulation_parameters = """
         "value": "",
         "unit": "",
         "type": "",  # lennard-jones potential
-    }
+    }, ...
 
 ]
 """
@@ -366,6 +366,21 @@ etc = """
         "value": "",
         "unit": "",
         "condition": "",
+    }, ...
+]
+"""
+
+proton_conductivity = """
+"proton_conductivity": [
+    {
+        "value": "",
+        "value unit": "",
+        "temperature": "",
+        "temperature unit": "",
+        "RH": "",
+        "name": "",
+        "Ea": "",
+        "guest": "",
     }, ...
 ]
 """
