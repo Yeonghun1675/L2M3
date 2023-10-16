@@ -33,6 +33,11 @@ class Step(BaseModel):
         self.tokens += n_tokens
         self.number += 1
 
+    @property
+    def price(self) -> float:
+        pricing = self.tokens * PRICES[self.name_model][self.type] / 1000
+        return pricing
+
 
 class TokenChecker(BaseModel):
     steps: Dict[str, Step] = dict()
