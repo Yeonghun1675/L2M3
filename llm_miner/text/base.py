@@ -63,7 +63,7 @@ class TextMiningAgent(Chain):
         explanation = self._add_explanation()
         element: Paragraph = inputs[self.input_key]
         token_checker: TokenChecker = inputs.get('token_checker')
-        paragraph: str = element.content
+        paragraph: str = element.clean_text   # change content -> clean_text
 
         llm_kwargs = {
             'explanation': explanation,

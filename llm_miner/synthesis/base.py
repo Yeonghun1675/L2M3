@@ -19,6 +19,8 @@ from llm_miner.schema import Paragraph
 from llm_miner.error import StructuredFormatError, LangchainError, TokenLimitError
 from llm_miner.format import Formatter
 from llm_miner.pricing import TokenChecker, update_token_checker
+from llm_miner.utils import num_tokens_from_string
+from llm_miner.config import config
 
 
 class SynthesisMiningAgent(Chain):
@@ -39,7 +41,7 @@ class SynthesisMiningAgent(Chain):
         run_manager.on_text(f"\n[Synthesis Mining] ", verbose=self.verbose)
         run_manager.on_text(text, verbose=self.verbose, color="yellow")
 
-    def _parse_output(self, output: str) -> Dict[str, str]:
+    def _parse_output(self, output: str) -> List[Any]:
         if regex.search(r"^\s*```JSON", output) and not regex.search(r"```\s*$", output):
             raise TokenLimitError('Output does not finished before token limits', output)
         
@@ -58,6 +60,31 @@ class SynthesisMiningAgent(Chain):
         except Exception as e:
             raise StructuredFormatError(e, output)
     
+    def reconstruct_paragraph(
+            self, 
+            content: str, 
+            max_token: int, 
+            sep: str="\n"
+    ) -> List[str]:
+        ls_para = []
+        ls_content = content.split(sep) 
+        tmp_para = ls_content[0]
+        tmp_token = 0
+
+        for para in ls_content[1:]:
+            if not para.strip():
+                continue
+            tmp_token += num_tokens_from_string(para, self.type_chain.llm.model_name)
+            if tmp_token > max_token:
+                ls_para.append(tmp_para)
+                tmp_para = para
+                tmp_token = 0
+            else:
+                tmp_para += sep + para
+        ls_para.append(tmp_para)
+
+        return ls_para
+    
     def _call(
             self,
             inputs: Dict[str, Any],
@@ -68,30 +95,34 @@ class SynthesisMiningAgent(Chain):
         
         element: Paragraph = inputs[self.input_key]
         token_checker: TokenChecker = inputs.get('token_checker')
-        paragraph: str = element.content
+        element.clear()
+    
+        max_token_type: int = config['input_max_token_synthesis_type']
+        synthesis_type: list = []
 
-        llm_kwargs={
-            'paragraph': paragraph,
-        }
-        try:
-            llm_output = self.type_chain.run(
-                **llm_kwargs,
-                callbacks=callbacks,
-                stop=["Paragraph:"]
-            )
-        except Exception as e:
-            raise LangchainError(e)
+        for paragraph in self.reconstruct_paragraph(element.clean_text, max_token_type):
+            llm_kwargs={
+                'paragraph': paragraph,
+            }
+            try:
+                llm_output = self.type_chain.run(
+                    **llm_kwargs,
+                    callbacks=callbacks,
+                    stop=["Paragraph:"]
+                )
+            except Exception as e:
+                raise LangchainError(e)
 
-        if token_checker:
-            update_token_checker(
-                name_step='text-synthesis-type',
-                chain=self.type_chain,
-                token_checker=token_checker,
-                llm_kwargs=llm_kwargs,
-                llm_output=llm_output
-            )
-
-        synthesis_type = self._parse_output(llm_output)
+            if token_checker:
+                update_token_checker(
+                    name_step='text-synthesis-type',
+                    chain=self.type_chain,
+                    token_checker=token_checker,
+                    llm_kwargs=llm_kwargs,
+                    llm_output=llm_output
+                )
+            synthesis_type.extend(self._parse_output(llm_output))
+        synthesis_type = list(set(synthesis_type))   # remove duplicated type
         self._write_log(str(synthesis_type), _run_manager)
         element.set_include_properties(synthesis_type)
 
@@ -103,13 +134,12 @@ class SynthesisMiningAgent(Chain):
                 self._write_log(f"There are no operation information for {prop}", _run_manager)
                 continue
             prop_string += f"- {structure}\n"
-
+        
         llm_kwargs={
-            'paragraph': paragraph,
+            'paragraph': element.clean_text,
             'synthesis_type': synthesis_type,
             'format': prop_string,
         }
-
         try:
             llm_output = self.extract_chain.run(
                 **llm_kwargs,
