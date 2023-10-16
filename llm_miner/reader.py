@@ -21,9 +21,6 @@ class JournalReader(BaseModel):
     cln_elements: Elements = Elements.empty()
     metadata: Metadata
 
-    def __getitem__(self, idx = Union[int, Iterable[int]]) -> Paragraph:
-        return self.get_idx(idx)
-
     @property
     def filename(self):
         return self.filepath.name.strip()
