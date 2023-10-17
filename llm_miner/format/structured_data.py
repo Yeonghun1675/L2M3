@@ -60,7 +60,7 @@ gas_adsorption = """
 porosity = """
 "porosity": [
     {
-        "proboe": "",
+        "probe": "",
         "value": "",
         "unit": "",
         "condition": "",
