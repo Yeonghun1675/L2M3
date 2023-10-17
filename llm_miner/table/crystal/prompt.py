@@ -83,7 +83,7 @@ Input:
 List:"""
 
 
-CRYSTAL_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the example below. When giving output, you should not use ellipses to shorten the content. When lanthanides (Ln) or halogens (X) or metal (M) come out, indicate by substituting. You must conclude with "<END>". 
+CRYSTAL_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the example below. When giving output, you should not use ellipses to shorten the content. When lanthanides (Ln) or halogens (X) or metal (M) come out, indicate by substituting.
 {{format}}
 
 Begin!
@@ -161,7 +161,6 @@ Output: ```JSON
     },
 ]
 ```
-<END>
 
 Input:
 Table 1
@@ -197,7 +196,6 @@ Output: ```JSON
     },
 ]
 ```
-<END>
 
 Input:
 {{paragraph}}

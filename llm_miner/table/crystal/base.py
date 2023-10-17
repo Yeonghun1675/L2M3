@@ -108,7 +108,6 @@ class CrystalTableAgent(Chain):
             )
 
         self.included_props = self._parse_output_props(included_props)
-        # print("self.included_props: ", self.included_props)
 
         for_print_props = [item.replace("_", " ") for item in self.included_props]
         self._write_log(str(for_print_props), _run_manager)
@@ -144,6 +143,7 @@ class CrystalTableAgent(Chain):
                 llm_kwargs=llm_kwargs,
                 llm_output=output,
             )
+
         output = self._parse_output_json(output)
         # print("OUTPUT arrived: ", output)
         return {"output": output}
@@ -158,16 +158,21 @@ class CrystalTableAgent(Chain):
             return list_
 
     def _parse_output_json(self, output: str) -> Dict[str, str]:
+        try:
+            list_ = ast.literal_eval(output)
+        except Exception as e:
+            pass
+        else:
+            return list_
+
         output = output.replace("Output:", "").strip()
         output = output.replace("```JSON", "").strip()
-        output = output.replace("```", "").strip()
         try:
-            end_point = output.index("<END>")
+            end_point = output.index("```")
         except ValueError as e:
             raise TokenLimitError(e)
         else:
-            output = output[:end_point].strip()
-        # print(output)
+            output = output.replace("```", "").strip()
 
         try:
             list_ = ast.literal_eval(output)
