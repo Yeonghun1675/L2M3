@@ -34,12 +34,12 @@ JSON: ```JSON
 porosity ="""
 Paragraph: MOF-A is a MOF renowned for its high porosity fraction. MOF-A possesses a remarkable porosity fraction of approximately 0.87, indicating that nearly 87% of its structure is composed of voids and pores. This substantial porosity fraction arises from the unique arrangement of its zinc and imidazole-based organic linkers.
 JSON: ```JSON
-[{{"value":"0.87", "unit":"", "condition":""}}]
+[{{"probe":"", "value":"0.87", "unit":"", "condition":""}}]
 ```
 
 Paragraph: The calculated solvent-accessible void space within the framework measures 852.8 Å3, representing approximately 38.2% of the unit cell volume of 2230.6 Å3.
 JSON: ```JSON
-[{{"value":"38.2", "unit":"%", "conditioin":""}}, {{"value":"852.8", "unit":"Å3", "condition":""}}]
+[{{"probe":"", "value":"38.2", "unit":"%", "conditioin":""}}, {{"probe":"", "value":"852.8", "unit":"Å3", "condition":""}}]
 ```
 """
 
