@@ -131,6 +131,7 @@ heat_capacity = """
 ]
 """
 
+
 thermal_expansion_coefficient = """
 "thermal expansion coefficient": [
     {
@@ -140,6 +141,7 @@ thermal_expansion_coefficient = """
     }, ...
 ]
 """
+
 
 thermal_conductivity_coefficient = """
 "thermal conductivity_coefficient": [
@@ -151,8 +153,20 @@ thermal_conductivity_coefficient = """
 ]
 """
 
-youngs_modulus = """
-"Young's modulus": [
+
+elastic_constant = """
+"elastic constant": [
+    {
+        "value": "",
+        "unit": "",
+        "condition": "",
+        "type": "",  # ex) young's modulus, bulk modulus, shear_modulus, poissons ratio, etc
+    }, ...
+]
+"""
+
+formation_energy = """
+"formation energy": [
     {
         "value": "",
         "unit": "",
@@ -161,8 +175,8 @@ youngs_modulus = """
 ]
 """
 
-bulk_modulus = """
-"bulk modulus": [
+adsorption_energy = """
+"adsorption energy": [
     {
         "value": "",
         "unit": "",
@@ -171,8 +185,8 @@ bulk_modulus = """
 ]
 """
 
-shear_modulus = """
-"shear modulus": [
+henry_coefficient = """
+"henry coefficient": [
     {
         "value": "",
         "unit": "",
@@ -181,14 +195,6 @@ shear_modulus = """
 ]
 """
 
-poissons_ratio = """
-"Poisson's ratio": [
-    {
-        "value": "",
-        "condition": "",
-    }, ...
-]
-"""
 
 selectivity = """
 "selectivity": [
@@ -286,7 +292,7 @@ peak_spectrum = """
     {
         "value": "",
         "unit": "",
-        "type": "",
+        "type": "",  # ex) IR, NMR, UV, electronic, etc
     }, ...
 ]
 """

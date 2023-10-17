@@ -62,24 +62,20 @@ thermal_conductivity_coefficient = """
 material's ability to conduct heat.
 """
 
-
-youngs_modulus = """
-stiffness of the material.
+elastic_constant = """
+various aspects of material's response to external forces. elastic constants include Young's Modulus, Bulk Modulus, Shear Modulus, Poisson's ratio and etc.
 """
 
-
-bulk_modulus = """
-material's response to hydrostatic pressure.
+formation_energy = """
+the energy change associated with creating a specific atomic or molecular arrangement from its constituent elements in their most stable states
 """
 
-
-shear_modulus = """
-material's response to shear stress.
+henry_coefficient = """
+coefficient that quantifies the equilibrium gas solubility in a liquid and represents the ratio of gas concentration in the liquid phase to its partial pressure in the gas phase
 """
 
-
-poissons_ratio = """
-ratio of transverse strain to axial strain in a loaded material.
+adsorption_energy = """
+the energy change associated with the process of molecules or particles adhering to a surface, reflecting the strength of the attractive forces between the adsorbate and the adsorbent.
 """
 
 

@@ -2,6 +2,7 @@ import json
 from llm_miner.synthesis.prompt import FT_TYPE as syn_include_prompt
 from llm_miner.text.prompt import FT_TYPE as prop_include_prompt
 from llm_miner.categorize.prompt import FT_CATEGORIZE as categorize_prompt
+from llm_miner.table.prompt import FT_CONVERT as table_convert_prompt
 from llm_miner.table.categorize.prompt import FT_CATEGORIZE as table_categorize_prompt
 from llm_miner.table.crystal.prompt import FT_TYPE as table_cry_include_prompt
 from llm_miner.table.property.prompt import FT_TYPE as table_prop_include_prompt
@@ -33,6 +34,7 @@ class FT:
             "property inclusion": prop_include_prompt,
             "synthesis inclusion": syn_include_prompt,
             "text categorize": categorize_prompt,
+            "table convert": table_convert_prompt,
             "table categorize": table_categorize_prompt,
             "table property inclusion": table_prop_include_prompt,
             "table crystal inclusion": table_cry_include_prompt
