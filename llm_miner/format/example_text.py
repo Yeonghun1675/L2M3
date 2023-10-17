@@ -116,31 +116,42 @@ JSON:```JSON
 [{{"value":"0.2", "unit":"W/m·K", "condition":""}}]
 ```
 """
-youngs_modulus = """
+
+elastic_constant = """
 Paragraph: The Young's modulus of the MOF-A was found to be 10 GPa, indicating its relative stiffness.
 JSON:```JSON
-[{{"value":"10", "unit":"GPa", "condition":""}}]
+[{{"value":"10", "unit":"GPa", "condition":"", "type": "young's modulus"}}]
 ```
-"""
 
-bulk_modulus = """
 Paragraph: The MOF-A's high bulk modulus of 15 GPa suggests it's resistant to uniform compression.
 JSON:```JSON
-[{{"value":"15", "unit":"GPa", "condition":""}}]
+[{{"value":"15", "unit":"GPa", "condition":"", "type": "bulk modulus"}}]
 ```
-"""
 
-shear_modulus = """
 Paragraph: A shear modulus of 5 GPa for the MOF-A indicates its ability to resist shearing forces.
 JSON:```JSON
-[{{"value":"5", "unit":"GPa", "condition":""}}]
+[{{"value":"5", "unit":"GPa", "condition":"", "type": "shear modulus"}}]
 ```
 """
 
-poissons_ratio = """
-Paragraph: With a Poisson's ratio of 0.3, the MOF-A displayed typical volumetric deformation under axial strain.
+formation_energy = """
+Paragraph:The formation energy of the ZIF-8 was calculated to be -37.2 kcal/mol.
 JSON:```JSON
-[{{"value":"0.3", "condition":"axial strain"}}]
+[{{"value": "-37.2", "unit": "kcal/mol", "condition": ""}}]
+```
+"""
+
+adsorption_energy = """
+Paragraph: The adsorption energy of CO2 on the HKUST-1 MOF was found to be -45.6 kJ/mol.
+JSON:```JSON
+[{{"value": "-45.6", "unit": "kJ/mol", "condition": ""}}]
+```
+"""
+
+henry_coefficient = """
+Paragraph: The Henry coefficient for hydrogen (H2) adsorption on the MOF-5 material was determined to be 3.8 x 10^5 mol/(kg·Pa).
+JSON:```JSON
+[{{"value": "3.8 x 10^5", "unit": "mol/(kg·Pa)", "condition": "", "gas type": "H2"}}]
 ```
 """
 
@@ -245,12 +256,9 @@ JSON: ```JSON
 """
 
 proton_conductivity = """
-Paragraph: Proton conductivities measured at 298 K are in the range from 1x10-6 to 1x10-5 S cm^(-1) over 40–95% RH for LaCo and LaCr.
+Paragraph: Proton conductivities measured at 298 K are in the range from 1x10-6 to 1x10-5 S cm^(-1) over 40–95% RH for LaCo.
 JSON:```JSON
-[{{"value":"1x10-6","temperature": "298", "value unit":"S/cm", "temperature unit":"K", "RH":"40", "name":"LaCo","Ea": "", "guest":""}},
- {{"value":"1x10-5","value unit":"S/cm","temperature": "298", "temperature unit":"K", "RH":"95", "name":"LaCo","Ea": "", "guest":""}},
-{{"value":"1x10-6","value unit":"S/cm","temperature": "298", "temperature unit":"K", "RH":"40", "name":"LaCr", "Ea": "","guest":""}}, 
-{{"value":"1x10-5","value unit":"S/cm","temperature": "298", "temperature unit":"K", "RH":"95", "name":"LaCr", "Ea": "","guest":""}}]
+[{{"value":"1x10-6","temperature": "298", "value unit":"S/cm", "temperature unit":"K", "RH":"40", "name":"LaCo","Ea": "", "guest":""}}, {{"value":"1x10-5","value unit":"S/cm","temperature": "298", "temperature unit":"K", "RH":"95", "name":"LaCo","Ea": "", "guest":""}}]
 ```
 
 Paragraph: In summary, we have successfully achieved a high-performance MOF-based proton-conducting material via the facile encapsulation of the imidazole guests within the pores of robust MOF-808 and demonstrated that Im@MOF-808 possesses high proton conductivity with the value of 3.45 × 10−2 S cm−1 (338 K and 99% RH).The Arrhenius plot of Im@MOF-808 displayed in Figure 2b shows Ea = 0.25 eV,(<0.4 eV),
@@ -260,7 +268,6 @@ JSON:```JSON
 
 Paragraph: We report the proton conduction properties of a 2D flexible MOF and a 1D coordination polymer having the molecular formulas {[Zn(C10H2O8)0.5(C10S2N2H8)]·5H2O]}n (1) and {[Zn-(C10H2O8)0.5(C10S2N2H8)]·2H2O]}n (2), respectively. Compounds 1 and 2 show high conductivity values of 2.55 × 10−7 and 4.39 × 10−4 S cm−1 at 80 °C and 95% RH. As determined from least-squares fits of the slopes of Arrhenius plots, the activation energies of compounds 1 and 2 were 0.96 and 0.84 eV.
 JSON:```JSON
-[{{"value":"2.55 × 10−7","value unit":"S/cm","temperature": "80", "temperature unit":"°C", "RH":"95", "name":"{[Zn(C10H2O8)0.5(C10S2N2H8)]·5H2O]}n","Ea": "0.96", "guest":""}},
-{{"value":"4.39 × 10−4","value unit":"S/cm","temperature": "80", "temperature unit":"°C", "RH":"95", "name":"{[Zn-(C10H2O8)0.5(C10S2N2H8)]·2H2O]}n", "Ea": "0.84","guest":""}}]
+[{{"value":"2.55 × 10−7","value unit":"S/cm","temperature": "80", "temperature unit":"°C", "RH":"95", "name":"{[Zn(C10H2O8)0.5(C10S2N2H8)]·5H2O]}n","Ea": "0.96", "guest":""}}, {{"value":"4.39 × 10−4","value unit":"S/cm","temperature": "80", "temperature unit":"°C", "RH":"95", "name":"{[Zn-(C10H2O8)0.5(C10S2N2H8)]·2H2O]}n", "Ea": "0.84","guest":""}}]
 ```
 """

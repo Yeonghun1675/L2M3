@@ -48,19 +48,19 @@ thermal_conductivity_coefficient = """
 
 """
 
-youngs_modulus = """
+elastic_constant = """
 
 """
 
-bulk_modulus = """
+formation_energy = """
 
 """
 
-shear_modulus = """
+adsorption_energy = """
 
 """
 
-poissons_ratio = """
+henry_coefficient = """
 
 """
 
