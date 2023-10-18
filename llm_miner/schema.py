@@ -14,6 +14,7 @@ class Paragraph(BaseModel):
     clean_text: Optional[str] = None
     data: Optional[List[Any]] = None
     include_properties: Optional[Any] = None
+    intermediate_step: Dict[str, Any] = dict()
 
     def __getitem__(self, item):
         return getattr(self, item)
@@ -41,6 +42,9 @@ class Paragraph(BaseModel):
             else:
                 self.data = others.data
 
+    def add_intermediate_step(self, step: str, output: str) -> None:
+        self.intermediate_step[step] = output
+
     def set_data(self, data) -> None:
         if self.data is None:
             self.data = data
@@ -49,6 +53,9 @@ class Paragraph(BaseModel):
 
     def get_data(self, ) -> List[Dict[str, Any]]:
         return self.data
+    
+    def get_intermediate_step(self,) -> Dict[str, Any]:
+        return self.intermediate_step
 
     def set_classification(self, cls) -> None:
         if self.classification is None:
@@ -77,6 +84,7 @@ class Paragraph(BaseModel):
     def clear(self,) -> None:
         self.data = None
         self.include_properties = None
+        self.intermediate_step = dict()
 
     def to_dict(self, ) -> Dict[str, Any]:
         return {
@@ -87,6 +95,7 @@ class Paragraph(BaseModel):
             'clean_text': self.clean_text,
             'data': self.data,
             'include_properties': self.include_properties,
+            'intermediate_step': self.intermediate_step,
         }
     
     def to_json(self, filepath) -> Dict[str, Any]:
@@ -94,7 +103,7 @@ class Paragraph(BaseModel):
             json.dump(self.to_dict(), f)
 
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data: Dict[str, Any]):
         return cls(
             idx=data['idx'],
             type=data['type'],
@@ -102,7 +111,8 @@ class Paragraph(BaseModel):
             content=data['content'],
             clean_text=data['clean_text'],
             data=data['data'],
-            include_properties=data['include_properties']
+            include_properties=data['include_properties'],
+            intermediate_step=data.get('intermediate_step', dict())
         )
     
     @classmethod
