@@ -68,7 +68,10 @@ class CategorizeAgent(Chain):
                 stop = ["List:"],
             )
         except Exception as e:
+            para.add_intermediate_step('categorize', str(e))
             raise LangchainError(e)
+        else:
+            para.add_intermediate_step('categorize', llm_output)
 
         if token_checker:
             update_token_checker(
@@ -82,8 +85,10 @@ class CategorizeAgent(Chain):
         para.set_classification(output)
 
         if not output:
+            para.add_intermediate_step('categorize-parsing', 'no categories error')
             raise ContextError(f"There are no categories in paragraph")
         if any([v not in self.labels for v in output]):
+            para.add_intermediate_step('categorize-parsing', 'not included error')
             raise ContextError(f"Class of paragraph must be one of {self.labels}, not {output}")
 
         self._write_log(str(output), _run_manager)

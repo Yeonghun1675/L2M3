@@ -12,6 +12,7 @@ from langchain.prompts.chat import (
 )
 from langchain.callbacks.manager import CallbackManagerForChainRun
 
+from llm_miner.schema import Paragraph
 from llm_miner.table.categorize.prompt import PROMPT_CATEGORIZE, FT_CATEGORIZE, FT_HUMAN
 from llm_miner.error import ContextError, LangchainError
 from llm_miner.pricing import TokenChecker, update_token_checker
@@ -20,7 +21,7 @@ from llm_miner.pricing import TokenChecker, update_token_checker
 class CategorizeAgent(Chain):
     categorize_chain: LLMChain
     labels: List[str] = ["Crystal", "Bond & Angle", "Coordinate", "Property"]
-    input_key: str = "paragraph"
+    input_key: str = "element"
     output_key: str = "output"
 
     @property
@@ -52,7 +53,8 @@ class CategorizeAgent(Chain):
         _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
         callbacks = _run_manager.get_child()
 
-        para = inputs[self.input_key]
+        element: Paragraph = inputs[self.input_key]
+        para: str = element.clean_text
         token_checker: TokenChecker = inputs['token_checker']
 
         llm_kwargs = {
@@ -65,7 +67,10 @@ class CategorizeAgent(Chain):
                 stop=['Input:'],
             )
         except Exception as e:
+            element.add_intermediate_step('table-categorize', str(e))
             raise LangchainError(e)
+        else:
+            element.add_intermediate_step('table-categorize', llm_output)
 
         if token_checker:
             update_token_checker(

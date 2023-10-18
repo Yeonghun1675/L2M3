@@ -111,7 +111,10 @@ class SynthesisMiningAgent(Chain):
                     stop=["Paragraph:"]
                 )
             except Exception as e:
+                element.add_intermediate_step('text-synthesis-type', str(e))
                 raise LangchainError(e)
+            else:
+                element.add_intermediate_step('text-synthesis-type', llm_output)
 
             if token_checker:
                 update_token_checker(
@@ -125,6 +128,10 @@ class SynthesisMiningAgent(Chain):
         synthesis_type = list(set(synthesis_type))   # remove duplicated type
         self._write_log(str(synthesis_type), _run_manager)
         element.set_include_properties(synthesis_type)
+
+        if not synthesis_type:
+            self._write_log(f"There are no synthesis type", _run_manager)
+            return {"output": ["No synthesis type found"]}
 
         prop_string = ""
         for prop in synthesis_type:
@@ -147,7 +154,10 @@ class SynthesisMiningAgent(Chain):
                 stop=["Paragraph:"]
             )
         except Exception as e:
+            element.add_intermediate_step('text-synthesis-struct', str(e))
             raise LangchainError(e)
+        else:
+            element.add_intermediate_step('text-synthesis-struct', llm_output)
 
         if token_checker:
             update_token_checker(

@@ -11,6 +11,8 @@ from langchain.prompts.chat import (
       SystemMessagePromptTemplate,
       HumanMessagePromptTemplate,
 )
+
+from llm_miner.schema import Paragraph
 from llm_miner.error import StructuredFormatError, TokenLimitError, LangchainError
 from llm_miner.format import Formatter
 from llm_miner.table.crystal.prompt import CRYSTAL_CATEGORIZE, CRYSTAL_EXTRACT, FT_TYPE, FT_HUMAN
@@ -20,7 +22,7 @@ from llm_miner.pricing import TokenChecker, update_token_checker
 class CrystalTableAgent(Chain):
     categorize_chain: LLMChain
     extract_chain: LLMChain
-    input_key: str = "paragraph"
+    input_key: str = "element"
     output_key: str = "output"
     included_props: list = []
 
@@ -84,7 +86,8 @@ class CrystalTableAgent(Chain):
         _run_manager = run_manager or CallbackManagerForChainRun.get_noop_manager()
         callbacks = _run_manager.get_child()
 
-        paragraph = inputs[self.input_key]
+        element: Paragraph = inputs[self.input_key]
+        paragraph: str = element.clean_text
         token_checker: TokenChecker = inputs['token_checker']
         llm_kwargs={
             'paragraph': paragraph
@@ -96,7 +99,10 @@ class CrystalTableAgent(Chain):
                 # stop=["Input:"]
             )
         except Exception as e:
+            element.add_intermediate_step('table-crystal-categorize', str(e))
             raise LangchainError(e)
+        else:
+            element.add_intermediate_step('table-crystal-categorize', included_props)
 
         if token_checker:
             update_token_checker(
@@ -133,7 +139,10 @@ class CrystalTableAgent(Chain):
                 stop=["Input:"]
             )
         except Exception as e:
+            element.add_intermediate_step('table-crystal-categorize', str(e))
             raise LangchainError(e)
+        else:
+            element.add_intermediate_step('table-crystal-categorize', output)
 
         if token_checker:
             update_token_checker(

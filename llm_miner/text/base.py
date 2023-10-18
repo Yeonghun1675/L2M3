@@ -76,7 +76,10 @@ class TextMiningAgent(Chain):
                 stop=["Paragraph:"]
             )
         except Exception as e:
+            element.add_intermediate_step('text-property-type', str(e))
             raise LangchainError(e)
+        else:
+            element.add_intermediate_step('text-property-type', llm_output)
 
         if token_checker:
             update_token_checker(
@@ -124,7 +127,10 @@ class TextMiningAgent(Chain):
               stop=["Paragraph:"]
           )
         except Exception as e:
+            element.add_intermediate_step('text-property-extract', str(e))
             raise LangchainError(e)
+        else:
+            element.add_intermediate_step('text-property-extract', llm_output)
             
         if token_checker:
             update_token_checker(
