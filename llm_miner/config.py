@@ -29,7 +29,8 @@ config = {
 
     # config - agent
     'reconstruct': True,  # merge paragraph for reducing tokens
-    'input_max_tokens_synthesis': None,
-    'input_max_tokens_property': 3500,
+    'input_max_tokens_synthesis': None,      # max tokens for reconstruct
+    'input_max_token_synthesis_type': 3500,  # max tokens for synthesis-type 
+    'input_max_tokens_property': 3500,       # max tokens for reconstruct
 
 }

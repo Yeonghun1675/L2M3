@@ -15,7 +15,7 @@ If you are uncertain, please reply with "I do not know".
 
 Begin!
 
-Paragraph: MOF-A exhibits a surface area of 1500 m2/g and a pore volume of 0.9 cm3/g. Another notable MOF, MOF-C, possesses a surface_area of 4000 m2/g and a pore_volume of 1.5 cm3/g.
+Paragraph: MOF-A exhibits a surface area of 1500 m2/g and a pore volume of 0.9 cm3/g. Another notable MOF, MOF-C, possesses a surface_area of 4000 m2/g and a pore volume of 1.5 cm3/g.
 List: ```JSON
 ["surface_area", "pore_volume"]
 ```
@@ -70,6 +70,11 @@ List: ```JSON
 ["porosity"]
 ```
 
+Paragraph: In summary, we have successfully achieved a high-performance MOF-based proton-conducting material via the facile encapsulation of the imidazole guests within the pores of robust MOF-808 and demonstrated that Im@MOF-808 possesses high proton conductivity with the value of 3.45 × 10−2 S cm−1 (338 K and 99% RH).
+List: ```JSON
+["proton_conductivity"]
+```
+
 Paragraph: {paragraph}
 List:"""
 
@@ -104,7 +109,7 @@ FT_TYPE = (
     "If there is no property in the paragraph, please return an empty list. "
     "You must find all the properties in the paragraphs. "
     "Names of properties must be one of following:\n"
-    "['bulk_modulus', 'catalytic_activity', 'charge_related', 'chemical_formula_weight', 'crystal_size', 'crystal_system', 'decomposition_temperature', 'density', 'energy_related', 'equation', 'gas_adsorption', 'heat_capacity', 'lattice_parameters', 'magnetic_moment', 'magnetic_susceptibility', 'material_color', 'material_shape', 'simulation_parameters', 'poissons_ratio', 'pore_diameter', 'pore_volume', 'porosity', 'refractive_index', 'selectivity', 'shear_modulus', 'space_group', 'peak_spectrum', 'surface_area', 'thermal_conductivity', 'thermal_expansion_coefficient', 'topology', 'youngs_modulus', 'etc']"
+    "['adsorption_energy', 'catalytic_activity', 'chemical_formula_weight', 'crystal_size', 'crystal_system', 'decomposition_temperature', 'density', 'elastic_constant', 'formation_energy', 'gas_adsorption', 'heat_capacity', 'henry_coefficient', 'lattice_parameters', 'magnetic_moment', 'magnetic_susceptibility', 'material_color', 'material_shape', 'simulation_parameters', 'pore_diameter', 'pore_volume', 'porosity', 'selectivity', 'space_group', 'peak_spectrum', 'surface_area', 'thermal_conductivity_coefficient', 'thermal_expansion_coefficient', 'topology', 'etc', 'proton_conductivity']"
 )
 
 FT_HUMAN = "{paragraph}"

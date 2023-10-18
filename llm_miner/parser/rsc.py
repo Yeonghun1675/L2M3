@@ -1,3 +1,4 @@
+import re
 from typing import List, Any, Tuple
 from bs4 import BeautifulSoup
 from llm_miner.schema import Paragraph
@@ -24,7 +25,7 @@ class RSCParser(BaseParser):
         elements = []
         title_para = None
 
-        for element in file_bs(cls.all_tags()):
+        for element in file_bs.find_all(cls.all_tags()):
             if element.name in cls.table_tags:
                 success, element = cls._is_table(element)
                 if not success:
@@ -39,6 +40,12 @@ class RSCParser(BaseParser):
                     continue
             elif element.name in cls.para_tags and cls._is_para(element):
                 type_ = 'text'
+                for tags in element(['a']): # extract a tag
+                    tags.extract()
+                for tags in element.find_all('span', attrs=['sup_ref']):
+                    tags.extract()
+                if not element.text:
+                    continue
                 clean_text = f_clean(element.text)
             else:
                 continue
@@ -86,12 +93,12 @@ class RSCParser(BaseParser):
             parent_name = element.parent.name
         except AttributeError:
             return False
-        else:
-            if parent_name in ["h2", "h3", "div"]:
+        for attr in ['sup_ref', 'bold', 'ref', 'sub_ref', 'italic', 'small_caps']:
+            if attr in element.get_attribute_list('class'):
                 return False
         if "id" in element.attrs.keys():
             return False
-        elif word_find(["btnContainer", "italic", "header_text"], element, 'class'):
+        elif word_find(["btnContainer", "italic", "header_text", 'graphic_title'], element, 'class'):
             return False
         else:
             return True

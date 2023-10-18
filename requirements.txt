@@ -7,3 +7,4 @@ regex
 tiktoken
 requests
 jinja2
+jsonlines

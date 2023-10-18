@@ -34,12 +34,12 @@ JSON: ```JSON
 porosity ="""
 Paragraph: MOF-A is a MOF renowned for its high porosity fraction. MOF-A possesses a remarkable porosity fraction of approximately 0.87, indicating that nearly 87% of its structure is composed of voids and pores. This substantial porosity fraction arises from the unique arrangement of its zinc and imidazole-based organic linkers.
 JSON: ```JSON
-[{{"value":"0.87", "unit":"", "condition":""}}]
+[{{"probe":"", "value":"0.87", "unit":"", "condition":""}}]
 ```
 
 Paragraph: The calculated solvent-accessible void space within the framework measures 852.8 Å3, representing approximately 38.2% of the unit cell volume of 2230.6 Å3.
 JSON: ```JSON
-[{{"value":"38.2", "unit":"%", "conditioin":""}}, {{"value":"852.8", "unit":"Å3", "condition":""}}]
+[{{"probe":"", "value":"38.2", "unit":"%", "conditioin":""}}, {{"probe":"", "value":"852.8", "unit":"Å3", "condition":""}}]
 ```
 """
 
@@ -116,31 +116,42 @@ JSON:```JSON
 [{{"value":"0.2", "unit":"W/m·K", "condition":""}}]
 ```
 """
-youngs_modulus = """
+
+elastic_constant = """
 Paragraph: The Young's modulus of the MOF-A was found to be 10 GPa, indicating its relative stiffness.
 JSON:```JSON
-[{{"value":"10", "unit":"GPa", "condition":""}}]
+[{{"value":"10", "unit":"GPa", "condition":"", "type": "young's modulus"}}]
 ```
-"""
 
-bulk_modulus = """
 Paragraph: The MOF-A's high bulk modulus of 15 GPa suggests it's resistant to uniform compression.
 JSON:```JSON
-[{{"value":"15", "unit":"GPa", "condition":""}}]
+[{{"value":"15", "unit":"GPa", "condition":"", "type": "bulk modulus"}}]
 ```
-"""
 
-shear_modulus = """
 Paragraph: A shear modulus of 5 GPa for the MOF-A indicates its ability to resist shearing forces.
 JSON:```JSON
-[{{"value":"5", "unit":"GPa", "condition":""}}]
+[{{"value":"5", "unit":"GPa", "condition":"", "type": "shear modulus"}}]
 ```
 """
 
-poissons_ratio = """
-Paragraph: With a Poisson's ratio of 0.3, the MOF-A displayed typical volumetric deformation under axial strain.
+formation_energy = """
+Paragraph:The formation energy of the ZIF-8 was calculated to be -37.2 kcal/mol.
 JSON:```JSON
-[{{"value":"0.3", "condition":"axial strain"}}]
+[{{"value": "-37.2", "unit": "kcal/mol", "condition": ""}}]
+```
+"""
+
+adsorption_energy = """
+Paragraph: The adsorption energy of CO2 on the HKUST-1 MOF was found to be -45.6 kJ/mol.
+JSON:```JSON
+[{{"value": "-45.6", "unit": "kJ/mol", "condition": ""}}]
+```
+"""
+
+henry_coefficient = """
+Paragraph: The Henry coefficient for hydrogen (H2) adsorption on the MOF-5 material was determined to be 3.8 x 10^5 mol/(kg·Pa).
+JSON:```JSON
+[{{"value": "3.8 x 10^5", "unit": "mol/(kg·Pa)", "condition": "", "gas type": "H2"}}]
 ```
 """
 
@@ -178,7 +189,7 @@ JSON: ```JSON
 """
 
 magnetic_susceptibility = """
-Paragraph:Solid-state DC magnetic susceptibility measurements were carried out on desiccated sample 2 under a constant magnetic field of 0.15 T over a temperature range of 5.0–350 K. The χM*T product at room temperature was determined to be 0.98 cm3 mol-1 K per hexanuclear unit, closely approximating the anticipated value of 1.05 cm3 mol-1 K for six interacting Fe(III) ions with a calculated g value of 2.0.
+Paragraph:Solid-state DC magnetic susceptibility measurements were carried out on desiccated sample 2 under a constant magnetic field of 0.15 T over a temperature range of 5.0–350 K. The χM*T product at room temperature was determined to be 0.98 cm3 mol-1 K per hexanuclear unit.
 JSON: ```JSON
 [{{"value":"0.98", "unit":"cm3 mol-1 K", "temperature":"room temperature", "condition":""}}]
 ```
@@ -188,7 +199,7 @@ JSON: ```JSON
 peak_spectrum = """
 Paragraph: The analysis of the MOF-A using infrared spectroscopy revealed a unique spectrum, with peaks at 1650 cm-1 and 3400 cm-1, suggesting the presence of carbonyl and hydroxyl groups, respectively.
 JSON: ```JSON
-[{{"value":"1650, 3400", "unit":"cm-1", "type":""}}]
+[{{"value":"1650, 3400", "unit":"cm-1", "type":"infrared spectroscopy"}}]
 ```
 """
 
@@ -210,7 +221,7 @@ JSON: ```JSON
 """
 
 lattice_parameters = """
-Paragraph: Crystallographic data for Compound 2: C36H42N6O4, M = 622.75, monoclinic, P21/c, a = 10.812(4) Å, b = 15.261(6) Å, c = 13.973(5) Å, V = 2293.0(14) cm^3, Z = 4, Dc = 1.292 g cm^−3, μ (X-ray) = 1.012 mm^−1, T = 298(2) K, 14056 reflections collected, 3668 unique (Rint = 0.0573), R1 on F(wR2 on F2) = 0.0397 (0.0884) for 3447 observed (I > 2σ(I)) reflections.
+Paragraph: Crystallographic data for MOF-A: C36H42N6O4, M = 622.75, monoclinic, P21/c, a = 10.812(4) Å, b = 15.261(6) Å, c = 13.973(5) Å, V = 2293.0(14) cm^3, Z = 4, Dc = 1.292 g cm^−3, μ (X-ray) = 1.012 mm^−1, T = 298(2) K, 14056 reflections collected, 3668 unique (Rint = 0.0573), R1 on F(wR2 on F2) = 0.0397 (0.0884) for 3447 observed (I > 2σ(I)) reflections.
 JSON: ```JSON
 [{{"value": {{"a": "10.812", "b": "15.261", "c": "13.973", "alpha": "", "beta": "", "gamma": "", "condition": "T = 298(2) K"}}]
 ```
@@ -241,5 +252,22 @@ simulation_parameters = """
 Paragraph: In the mathematical model for population growth, the simulation parameters were fine-tuned to fit the observed data, with values set as follows: a = 0.05, b = -0.002, and c = 1.2, resulting in an accurate representation of population dynamics over time.
 JSON: ```JSON
 [{{"symbol": "a", "value": "0.05", "unit": "", "type": "mathematical model for population growth"}}, {{"symbol": "b", "value": "-0.002", "unit": "", "type": "mathematical model for population growth"}}, {{"symbol": "c", "value": "1.2", "unit": "", "type": "mathematical model for population growth"}}]
+```
+"""
+
+proton_conductivity = """
+Paragraph: Proton conductivities measured at 298 K are in the range from 1x10-6 to 1x10-5 S cm^(-1) over 40–95% RH for LaCo.
+JSON:```JSON
+[{{"value":"1x10-6","temperature": "298", "value unit":"S/cm", "temperature unit":"K", "RH":"40", "name":"LaCo","Ea": "", "guest":""}}, {{"value":"1x10-5","value unit":"S/cm","temperature": "298", "temperature unit":"K", "RH":"95", "name":"LaCo","Ea": "", "guest":""}}]
+```
+
+Paragraph: In summary, we have successfully achieved a high-performance MOF-based proton-conducting material via the facile encapsulation of the imidazole guests within the pores of robust MOF-808 and demonstrated that Im@MOF-808 possesses high proton conductivity with the value of 3.45 × 10−2 S cm−1 (338 K and 99% RH).The Arrhenius plot of Im@MOF-808 displayed in Figure 2b shows Ea = 0.25 eV,(<0.4 eV),
+JSON:```JSON
+[{{"value":"3.45 × 10−2","value unit":"S/cm","temperature": "338", "temperature unit":"K", "RH":"99", "name":"Im@MOF-808", "Ea": "0.25","guest":"imidazole"}}]
+```
+
+Paragraph: We report the proton conduction properties of a 2D flexible MOF and a 1D coordination polymer having the molecular formulas {[Zn(C10H2O8)0.5(C10S2N2H8)]·5H2O]}n (1) and {[Zn-(C10H2O8)0.5(C10S2N2H8)]·2H2O]}n (2), respectively. Compounds 1 and 2 show high conductivity values of 2.55 × 10−7 and 4.39 × 10−4 S cm−1 at 80 °C and 95% RH. As determined from least-squares fits of the slopes of Arrhenius plots, the activation energies of compounds 1 and 2 were 0.96 and 0.84 eV.
+JSON:```JSON
+[{{"value":"2.55 × 10−7","value unit":"S/cm","temperature": "80", "temperature unit":"°C", "RH":"95", "name":"{[Zn(C10H2O8)0.5(C10S2N2H8)]·5H2O]}n","Ea": "0.96", "guest":""}}, {{"value":"4.39 × 10−4","value unit":"S/cm","temperature": "80", "temperature unit":"°C", "RH":"95", "name":"{[Zn-(C10H2O8)0.5(C10S2N2H8)]·2H2O]}n", "Ea": "0.84","guest":""}}]
 ```
 """

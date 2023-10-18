@@ -73,6 +73,10 @@ class Paragraph(BaseModel):
 
     def copy(self, ):
         return copy.deepcopy(self)
+    
+    def clear(self,) -> None:
+        self.data = None
+        self.include_properties = None
 
     def to_dict(self, ) -> Dict[str, Any]:
         return {

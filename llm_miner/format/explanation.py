@@ -154,3 +154,7 @@ The shape of material crystal or bulk. e.g., cylinder
 simulation_parameters = """
 simulation parameters are variable, constant, or factor used in computer simulation. ex) sigma, epsilon of lennard-jones potential
 """
+
+proton_conductivity = """
+
+"""
