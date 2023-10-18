@@ -1,46 +1,13 @@
-PROMPT_CATEGORIZE = """Determine the category of the given markdown table from the following options: ["Crystal", "Bond & Angle", "Coordinate", "Property"]. If the table doesn"t fit any category, return an empty string "".
+PROMPT_CATEGORIZE = """Determine the category of the given markdown table from the following options: ["Crystal", "Bond & Angle", "Coordinate", "Elemental Composition", "Property"].
 
 You must follow rules below:
-- Typical "Crystal" markdown table includes lattice parameter, spacegroup, crystal system, cell volume and etc. "Crystal" table is mostly comprised of crystal information. In that case, return "Crystal".
-- If the markdown table is mostly comprised of bond and angle information of specific materials, return "Bond & Angle".
+- Typical "Crystal" markdown table includes lattice parameter, spacegroup and etc. "Crystal" table is mostly comprised of crystal information. In that case, return "Crystal".
+- If the markdown table is mostly comprised of bond or angle information of specific materials, return "Bond & Angle".
 - If the markdown table is mostly comprised of coorination information of specific materials, return "Coordinate".
-- If the markdown table is not included in "Crystal", "Bond & Angle", and "Coordinate", but contains any data that can be represented by numeric values, return "Property".
+- If the markdown table is mostly comprised of elemental composition information of specific materials, return "Elemental Composition".
+- If the markdown table is not included in "Crystal", "Bond & Angle", "Coordinate", and "Elemental Composition", return "Property".
 
 Begin!
-
-Input:
-Table 1
-
-Crystallographic data for [La5Cl2(edta)3(H2O)18]nCln·8nH2O (1), [La2(NO3)2(edta)(H2O)5]n·3nH2O (2) and [La2(SO4)(edta)(H2O)3]n (3).
-
-| Compound reference | 1 | 2 | 3 |
-|--------------------|---|---|---|
-| Empirical formula  | C30H88Cl3La5N6O50 | C10H28La2N4O22 | C10H18La2N2O15S |
-| Formula weight     | 2133.92 | 834.18 | 716.14 |
-| Crystal system     | trigonal | monoclinic | monoclinic |
-| a (Å)              | 17.242(1) | 12.7623(4) | 8.1727(2) |
-| b (Å)              | 17.242(1) | 8.3831(2) | 9.2832(2) |
-| c (Å)              | 17.242(1) | 23.9610(7) | 24.6545(7) |
-| α (°)              | 61.04 |  |  |
-| β (°)              | 61.04 | 104.924(3) | 90.535(3) |
-| γ (°)              | 61.04 |  |  |
-| Unit cell volume (Å^3) | 3709.4(5) | 2477.1(1) | 1870.43(8) |
-| T (K)              |  | 173(2) |  |
-| Space group        | R-3c | P2_1/n | P2_1/c |
-| No. of formula units per unit cell, Z | 2 | 4 | 4 |
-| No. of reflections measured | 13,524 | 21,005 | 6417 |
-| No. of independent reflections | 2303 | 5490 | 3765 |
-| Rint               | 0.0674 | 0.0488 | 0.0253 |
-| Final R1 values (I > 2σ(I))^a | 0.0792 | 0.0330 | 0.0303 |
-| Final wR(F^2) values (I > 2σ(I)) | 0.2184 | 0.0714 | 0.1028 |
-| Final R1 values (all data)^b | 0.0897 | 0.0407 | 0.0342 |
-| Final wR(F^2) values (all data) | 0.2295 | 0.0747 | 0.1075 |
-| Goodness-of-fit (GOF) on F^2 | 0.790 | 1.156 | 0.840 |
-
-a R1 = Σ|Fo|-|Fc|/Σ|Fo|
-b wR2 = Σ[w(Fo^2 - Fc^2)]/Σ[w(Fo^2)]^1/2
-
-Output: "Crystal"
 
 Input:
 Table 1
@@ -94,33 +61,6 @@ Output: "Crystal"
 Input:
 Table 2
 
-Selected bond lengths (Å) and angles (°) for this Zn(II) compound.
-
-| Zn(1)-O(2) | 2.011(5) | Zn(1)-O(8)[^a^] | 2.020(6) |
-|------------|----------|-----------------|----------|
-| Zn(1)-O(6) | 2.046(5) | Zn(1)-N(3)[^b^] | 2.053(6) |
-| Zn(1)-O(4) | 2.058(5) | Zn(2)-O(3)       | 2.022(5) |
-| Zn(2)-O(5) | 2.022(6) | Zn(2)-O(7)[^a^] | 2.051(6) |
-| Zn(2)-O(1) | 2.052(5) | Zn(2)-N(1)       | 2.063(7) |
-| O(2)-Zn(1)-O(8)[^a^] | 86.9(2) | O(2)-Zn(1)-O(6) | 87.8(2) |
-| O(8)[^a^]-Zn(1)-O(6) | 157.9(2) | O(2)-Zn(1)-N(3)[^b^] | 104.6(2) |
-| O(8)[^a^]-Zn(1)-N(3)[^b^] | 102.1(3) | O(6)-Zn(1)-N(3)[^b^] | 100.0(3) |
-| O(2)-Zn(1)-O(4) | 153.1(2) | O(8)[^a^]-Zn(1)-O(4) | 87.8(2) |
-| O(6)-Zn(1)-O(4) | 87.3(2) | N(3)[^b^]-Zn(1)-O(4) | 102.4(2) |
-| O(3)-Zn(2)-O(5) | 86.6(3) | O(3)-Zn(2)-O(7)[^a^] | 86.5(2) |
-| O(5)-Zn(2)-O(7)[^a^] | 153.8(2) | O(3)-Zn(2)-O(1) | 157.9(2) |
-| O(5)-Zn(2)-O(1) | 90.7(3) | O(7)[^a^]-Zn(2)-O(1) | 86.3(2) |
-| O(3)-Zn(2)-N(1) | 101.4(2) | O(5)-Zn(2)-N(1) | 102.7(3) |
-| O(7)[^a^]-Zn(2)-N(1) | 103.4(3) | O(1)-Zn(2)-N(1) | 100.6(3) |
-
-[^a^]: Symmetry codes: x + 1/2, y, -z + 1/2.
-[^b^]: -x + 1/2, -y + 1, z + 1/2.
-
-Output: "Bond & Angle"
-
-Input:
-Table 2
-
 Bond lengths (Å) and bond angles (°) in **1**
 
 | Bond lengths |  |  |  |
@@ -165,6 +105,22 @@ Characteristics of hydrogen bonds in 1a–1e
 Output: "Bond & Angle"
 
 Input:
+Table 1. Chemical analysis results for [Ln(abdc)(Habdc), nH2O]∞ with Ln=La–Eu (except Pm) and n =10.[^*]
+
+| Ln | MW (gmol−1) | Anal. Calculated (found) | O (%) | C (%) | H (%) | N (%) |
+|----|-------------|---------------------------|-------|-------|-------|-------|
+| La | 678.33      | 20.5(20.5)                 | 42.5(42.4) | 28.3(28.2) | 4.6(4.8) | 4.1(4.1) |
+| Ce | 679.54      | 20.6(20.7)                 | 42.4(42.5) | 28.3(28.0) | 4.6(4.7) | 4.1(4.1) |
+| Pr | 680.33      | 20.7(20.4)                 | 42.3(42.2) | 28.2(28.4) | 4.6(4.7) | 4.1(4.2) |
+| Nd | 683.66      | 21.1(20.8)                 | 42.1(42.3) | 28.1(28.2) | 4.6(4.7) | 4.1(4.0) |
+| Sm | 689.78      | 21.8(21.8)                 | 41.7(41.6) | 27.8(28.1) | 4.5(4.3) | 4.1(4.1) |
+| Eu | 691.39      | 22.0(22.2)                 | 41.6(41.5) | 27.8(27.8) | 4.5(4.5) | 4.1(4.0) |
+
+[^*]: The reported chemical analysis is those for compounds with n =10. Other chemical analyses are not reported.
+
+Output: "Elemental Composition"
+
+Input:
 Table 2
 
 Atomic coordinates (×10^4) and equivalent isotropic displacement parameters (Å^2×10^3) for ZnF(TAZ)·solvents
@@ -185,33 +141,6 @@ Atomic coordinates (×10^4) and equivalent isotropic displacement parameters (Å
 | O(7)  | 5630(30)| 3670(50)| 620(40) | 100     |
 
 Ueq is defined as one-third of the trace of the orthogonalized Uij tensor.
-
-Output: "Coordinate"
-
-Input:
-Table 4
-
-Atomic coordinates and equivalent isotropic displacement parameters (Å²) for Sr₂Zr(C₂O₄)₄·11H₂O
-
-| Atom | Site | Occup | x    | y    | z    | Ueq    |
-|------|------|-------|------|------|------|--------|
-| Sr   | 16e  | 1     | 1/4  | 0.5128(1) | 1/2  | 0.023(1) |
-| Zr   | 8a   | 1     | 1/2  | 3/4  | 0.08750 | 0.013(1) |
-| O(1) | 32g  | 1     | 0.1846(2) | 0.5622(2) | 0.6275(1) | 0.028(1) |
-| O(2) | 32g  | 1     | 0.4440(2) | 0.6954(2) | 0.9741(1) | 0.031(1) |
-| O(3) | 32g  | 1     | 0.4084(2) | 0.8423(2) | 0.9066(1) | 0.030(1) |
-| O(4) | 32g  | 1     | 0.3517(2) | 0.3932(2) | 0.4787(2) | 0.057(1) |
-| C(1) | 32g  | 1     | 0.6346(2) | 0.8821(2) | 0.8902(2) | 0.023(1) |
-| C(2) | 32g  | 1     | 0.6123(2) | 0.8592(2) | 0.9696(2) | 0.030(1) |
-| O(w1A) | 32g | 0.72(1) | 0.3741(13) | 0.5936(9) | 0.5483(8) | 0.096(5) |
-| O(w1B) | 32g | 0.28  | 0.4030(20) | 0.5570(40) | 0.5260(20) | 0.096(5) |
-| O(w2A) | 32g | 0.41(1) | 0.2610(30) | 0.6779(7) | 0.5080(20) | 0.138(9) |
-| O(w2B) | 32g | 0.09  | 0.1770(70) | 0.6450(50) | 0.4643(18) | 0.138(9) |
-| O(w3)  | 8b   | 1     | 1/2  | 3/4  | 0.11250 | 0.099(5) |
-| O(w4A) | 32g | 0.66(1) | 0.7718(14) | 0.7602(6) | 0.8733(6) | 0.091(4) |
-| O(w4B) | 32g | 0.34  | 0.8230(30) | 0.7604(10) | 0.8777(7) | 0.091(4) |
-
-Ueq is defined as one third of the trace of the orthogonalized Uij tensor.
 
 Output: "Coordinate"
 
@@ -250,31 +179,12 @@ Determined by GC based on the carbonyl substrate.
 Output: "Property"
 
 Input:
-Table 1
-
-Epoxidation of different olefin substrates catalyzed by 1 and 2.[^a]
-
-| Substrate         | Structure | Conv. (%) | Sel.[^b] (%) | TOF[^c] (h^-1) | Conv. (%) | Sel.[^b] (%) | TOF[^c] (h^-1) |
-|-------------------|-----------|-----------|--------------|----------------|-----------|--------------|----------------|
-| Cyclohexene       | Figure 2  | 66.9      | 80.3         | 167            | 74.3      | 84.6         | 186            |
-| Styrene           | Figure 3  | 78.3      | 60.7         | 196            | 75.2      | 48.9         | 188            |
-| α-Methylstyrene   | Figure 4  | 99.9      | 37.8         | 250            | 95.1      | 30.5         | 238            |
-| Ethyl cinnamate   | Figure 5  | 4.3       | 0.5          | 11             | 0.9       | 0.1          | 2              |
-| Stiblene          | Figure 6  | 0.6       | NA           | NA             | 0.4       | NA           | NA             |
-
-[^a]: Typical reaction conditions: olefin (10 mmol), TBHP (5 mL), cyclohexane (10 mL), catalyst (6 mg), reaction temperature (80 °C), reaction time (8 h). The product yields were determined by GC.
-[^b]: The selectivity of epoxide.
-[^c]: Moles of olefin conversion per mole of tetranuclear Cu(II) of the catalysts per hour.
-
-Output: "Property"
-
-Input:
 {{paragraph}}
 
 Output:"""
 
 
-FT_CATEGORIZE = """Determine the category of the given markdown table from the following options: ["Crystal", "Bond & Angle", "Coordinate", "Property"]. If the table doesn"t fit any category, return an empty string ""."""
+FT_CATEGORIZE = """Determine the category of the given markdown table from the following options: ["Crystal", "Bond & Angle", "Coordinate", "Elemental Composition", "Property"]."""
 
 
 FT_HUMAN = "{paragraph}"
