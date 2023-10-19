@@ -158,7 +158,7 @@ JSON:```JSON
 selectivity= """
 Paragraph: Metal-Organic Frameworks (MOFs) are well-known for their remarkable selectivity in gas separation and adsorption processes. Among various MOFs, MOF-A stands out with its exceptional CO2 selectivity over other gases, displaying a selectivity value of 20 at room temperature and 1 atm. This high CO2 selectivity makes MOF-A a promising candidate for carbon capture and storage applications. On the other hand, MOF-B exhibits impressive selectivity towards hydrogen, selectively adsorbing H2 over other gases with a selectivity value of 50 at 77 K and 1 bar. This makes MOF-B highly suitable for hydrogen purification and storage.
 JSON: ```JSON
-[{{"value": "20", "unit": "", "substrate": "CO2", "catalyst": "", "pressure":"1 atm", "temperature":"", "solvent": "", "time": ""}}, {{B", "value": "50", "unit": "", "substrate": "H2", "catalyst": "", "pressure":"1 bar", "temperature":"77 K", "solvent": "", "time": ""}}]
+[{{"value": "20", "unit": "", "substrate": "CO2", "catalyst": "", "pressure":"1 atm", "temperature":"", "solvent": "", "time": "", "condition": ""}}, {{B", "value": "50", "unit": "", "substrate": "H2", "catalyst": "", "pressure":"1 bar", "temperature":"77 K", "solvent": "", "time": "", "condition": ""}}]
 ```
 """
 

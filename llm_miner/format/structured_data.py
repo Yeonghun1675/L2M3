@@ -181,6 +181,7 @@ adsorption_energy = """
         "value": "",
         "unit": "",
         "condition": "",
+        "gas type": "",
     }, ...
 ]
 """
@@ -191,7 +192,7 @@ henry_coefficient = """
         "value": "",
         "unit": "",
         "condition": "",
-        "gas type": ""
+        "gas type": "",
     }, ...
 ]
 """

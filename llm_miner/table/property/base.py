@@ -56,7 +56,7 @@ class PropertyTableAgent(Chain):
         template_extract = PromptTemplate(
             template=prompt_extract,
             template_format="jinja2",
-            input_variables=['prop', 'format', 'paragraph'],
+            input_variables=['prop', 'format', 'examples', 'paragraph'],
         )
         extract_chain = LLMChain(llm=extract_llm, prompt=template_extract)
 
@@ -126,10 +126,12 @@ class PropertyTableAgent(Chain):
             return {"output": ["No properties found"]}
 
         format = self._make_format(props)
+        examples = self._make_examples(props)
 
         llm_kwargs = {
             'prop': props,
             'format': format,
+            'examples': examples,
             'paragraph': paragraph,
         }
         try:
@@ -219,12 +221,40 @@ class PropertyTableAgent(Chain):
             item = '\n'.join(['    ' + line for line in formatter.structured_data[item].split('\n')])
             formatted_props += "\n"+item
 
-        example = f"""Example:
+        example = f"""Format:
 ```
 {{{formatted_props}
 }}
 ```"""
         return example
 
-    def _choose_examples(self):
-        pass
+    def _make_examples(self, props):
+        included_in_examples = []
+        choosen_examples = []
+
+        for item in props:
+            candidate_examples = []
+            
+            if item.replace("_", " ") in included_in_examples:
+                continue
+            
+            for key, value in formatter.example_table.items():
+                if key in choosen_examples:
+                    continue
+                
+                if item.replace("_", " ") in value['contain']:
+                    candidate_examples.append(key)
+                    
+            if candidate_examples:
+                choosen = random.choice(candidate_examples)
+                choosen_examples.append(choosen)
+                included_in_examples += formatter.example_table[choosen]['contain']
+                
+        included_in_examples = list(set(included_in_examples))
+        if len(choosen_examples) < 2:
+            choosen_examples.append(random.choice(list(formatter.example_table.keys())))
+            
+        result = [formatter.example_table[item]['content'].strip() for item in choosen_examples]
+        result = "\n\n".join(result)
+        return result
+

@@ -673,15 +673,85 @@ Output: ```JSON
 [
     {
         "meta": {
-            "name": "NU-110",
+            "name": "Mg<sub>2</sub>(DHFUMA)",
             "symbol": "",
             "chemical formula": "",
         },
         "henry coefficient": [
             {
-                "value": "6229",
+                "value": "10.7",
                 "unit": "mol/kg/Pa",
                 "condition": "313 K",
+                "gas type": "CO<sub>2</sub>",
+            },
+            {
+                "value": "0.22",
+                "unit": "mol/kg/Pa",
+                "condition": "400 K",
+                "gas type": "CO<sub>2</sub>",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "Mg<sub>2</sub>(DOBDC)",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "henry coefficient": [
+            {
+                "value": "1.56",
+                "unit": "mol/kg/Pa",
+                "condition": "313 K",
+                "gas type": "CO<sub>2</sub>",
+            },
+            {
+                "value": "0.064",
+                "unit": "mol/kg/Pa",
+                "condition": "400 K",
+                "gas type": "CO<sub>2</sub>",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "Fe<sub>2</sub>(DHFUMA)",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "henry coefficient": [
+            {
+                "value": "1.8",
+                "unit": "mol/kg/Pa",
+                "condition": "313 K",
+                "gas type": "CO<sub>2</sub>",
+            },
+            {
+                "value": "0.07",
+                "unit": "mol/kg/Pa",
+                "condition": "400 K",
+                "gas type": "CO<sub>2</sub>",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "Fe<sub>2</sub>(DOBDC)",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "henry coefficient": [
+            {
+                "value": "0.20",
+                "unit": "mol/kg/Pa",
+                "condition": "313 K",
+                "gas type": "CO<sub>2</sub>",
+            },
+            {
+                "value": "0.017",
+                "unit": "mol/kg/Pa",
+                "condition": "400 K",
+                "gas type": "CO<sub>2</sub>",
             },
         ],
     },
@@ -691,49 +761,830 @@ Output: ```JSON
 }
 
 
+example_9 = {
+    "contain": ["pore diameter", "pore volume"],
+    "content": """
+Input:
+Table 1. Pore Diameters, and Pore Volumes for NU-1000 and SALI-Derived Variants
+
+| MOF        | BJH pore diameter (Å) | pore vol. (cm<sup>3</sup> g<sup>–1</sup>) |
+|------------|-----------------------|-------------------------------------------|
+| NU-1000    | 31                    | 1.46                                      |
+| SALI-BA    | 28                    | 1.21                                      |
+| SALI-PPA@2 | 30                    | 1.27                                      |
+
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "NU-1000",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "pore diameter": [
+            {
+                "value": "31",
+                "unit": "Å",
+                "condition": "",
+            },
+        ],
+        "pore volume": [
+            {
+                "probe": "",
+                "value": "1.46",
+                "unit": "cm<sup>3</sup> g<sup>–1</sup>",
+                "condition": "",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "SALI-BA",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "pore diameter": [
+            {
+                "value": "28",
+                "unit": "Å",
+                "condition": "",
+            },
+        ],
+        "pore volume": [
+            {
+                "probe": "",
+                "value": "1.21",
+                "unit": "cm<sup>3</sup> g<sup>–1</sup>",
+                "condition": "",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "SALI-PPA@2",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "pore diameter": [
+            {
+                "value": "30",
+                "unit": "Å",
+                "condition": "",
+            },
+        ],
+        "pore volume": [
+            {
+                "probe": "",
+                "value": "1.27",
+                "unit": "cm<sup>3</sup> g<sup>–1</sup>",
+                "condition": "",
+            },
+        ],
+    },
+]
+```
+"""
+}
 
 
+example_10 = {
+    "contain": ["gas adsorption", "etc"],
+    "content": """
+Input:
+Table 4. Adsorption Uptakes of CH<sub>4</sub> and Working Capacities (Considering Desorption at 5 bar) at Room Temperature for 1 and 2
+
+|           | P = 35 bar |           | P = 65 bar |           |
+|-----------|------------|-----------|------------|-----------|
+|           | uptake     | working capacity | uptake     | working capacity |
+| UiO-67    | 102        | 72        | 127        | 104       |
+| UiO-67-Me | 113        | 75        | 135        | 104       |
+
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "UiO-67",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "gas adsorption": [
+            {
+                "adsorbate": "CH<sub>4</sub>",
+                "adsorbed amount": "102",
+                "unit": "",
+                "temperature": "room temperature",
+                "pressure": "35 bar",
+                "condition": "",
+            },
+            {
+                "adsorbate": "CH<sub>4</sub>",
+                "adsorbed amount": "127",
+                "unit": "",
+                "temperature": "room temperature",
+                "pressure": "65 bar",
+                "condition": "",
+            },
+        ],
+        "etc": [
+            {
+                "property name": "CH4 working capacity",
+                "value": "72",
+                "unit": "",
+                "condition": "35 bar, desorption at 5bar, room temperature",
+            },
+            {
+                "property name": "CH4 working capacity",
+                "value": "104",
+                "unit": "",
+                "condition": "65 bar, desorption at 5bar, room temperature",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "UiO-67-Me",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "gas adsorption": [
+            {
+                "adsorbate": "CH<sub>4</sub>",
+                "adsorbed amount": "113",
+                "unit": "",
+                "temperature": "room temperature",
+                "pressure": "35 bar",
+                "condition": "",
+            },
+            {
+                "adsorbate": "CH<sub>4</sub>",
+                "adsorbed amount": "135",
+                "unit": "",
+                "temperature": "room temperature",
+                "pressure": "65 bar",
+                "condition": "",
+            },
+        ],
+        "etc": [
+            {
+                "property name": "CH4 working capacity",
+                "value": "75",
+                "unit": "",
+                "condition": "35 bar, desorption at 5bar, room temperature",
+            },
+            {
+                "property name": "CH4 working capacity",
+                "value": "104",
+                "unit": "",
+                "condition": "65 bar, desorption at 5bar, room temperature",
+            },
+        ],
+    },
+]
+```
+"""
+}
 
 
-# Table 1. BET Surface Areas, Pore Diameters, and Pore Volumes for NU-1000 and SALI-Derived Variants
+example_11 = {
+    "contain": ["adsorption energy", "etc"],
+    "content": """
+Input:
+Table 5. Heats of Adsorption (kJ mol–1) Calculated by Extrapolation of the Low Pressure Data of the Virial Isotherms (n vs ln­(p/n)) for 1 and 3 at 25, 40, and 70 °C
 
-# | MOF      | ligand       | ligand:Zr<sub>6</sub><xref rid="t1fn1"></xref> | BET surface area (m<sup>2</sup> g<sup>–1</sup>) | BJH pore diameter (Å) | pore vol. (cm<sup>3</sup> g<sup>–1</sup>)<xref rid="t1fn1"></xref> |
-# |----------|--------------|----------------------------------------------|------------------------------------------------|-----------------------|-----------------------------------------------------------------------|
-# | NU-1000  | –OH, −H<sub>2</sub>O |                                              | 2145                                           | 31                    | 1.46                                                                  |
-# | SALI-BA  | PhCO<sub>2</sub>–   | 4.0                                          | 2005                                           | 28                    | 1.21                                                                  |
-# | SALI-PPA@2 | PhPO<sub>2</sub>(OH)– | 2.4                                        | 1920                                           | 30                    | 1.27                                                                  |
+|         | CH<sub>4</sub> | CO<sub>2</sub> |
+|---------|----------------|----------------|
+| UiO-67  | 15.2           | 23.6           |
+| UiO-67-BN | 20.3           | 20.6           |
+
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "UiO-67",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "adsorption energy": [
+            {
+                "value": "15.2",
+                "unit": "kJ mol-1",
+                "condition": "",
+                "gas type": "CH<sub>4</sub>",
+            },
+            {
+                "value": "23.6",
+                "unit": "kJ mol-1",
+                "condition": "",
+                "gas type": "CO<sub>2</sub>",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "UiO-67-BN",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "adsorption energy": [
+            {
+                "value": "20.3",
+                "unit": "kJ mol-1",
+                "condition": "",
+                "gas type": "CH<sub>4</sub>",
+            },
+            {
+                "value": "20.6",
+                "unit": "kJ mol-1",
+                "condition": "",
+                "gas type": "CO<sub>2</sub>",
+            },
+        ],
+    },
+]
+```
+"""
+}
 
 
+example_12 = {
+    "contain": ["density", "etc"],
+    "content": """
+Input:
+Table 2. Comparison of the results for HKUST-1 and IRMOF1
 
-# Table 4. Adsorption Uptakes of CH<sub>4</sub> and Working Capacities (Considering Desorption at 5 bar) at Room Temperature for 1 and 2[^a]
+| property | HKUST-1 PB | HKUST-1 Zeo++ | IRMOF-1 PB | IRMOF-1 Zeo++ |
+|----------|------------|--------------|------------|--------------|
+| density [g/cm³] | 0.884 | 0.884 | 0.593 | 0.593 |
+| CPU time [s] | 116.847 | 683.857 | 92.104 | 672.437 |
 
-# |           | P = 35 bar |           | P = 65 bar |           |
-# |-----------|------------|-----------|------------|-----------|
-# |           | uptake     | working capacity | uptake     | working capacity |
-# | UiO-67    | 102        | 72        | 127        | 104       |
-# | UiO-67-Me | 113        | 75        | 135        | 104       |
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "HKUST-1",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "density": [
+            {
+                "value": "0.884",
+                "unit": "g/cm³",
+                "condition": "PB",
+            },
+            {
+                "value": "0.884",
+                "unit": "g/cm³",
+                "condition": "Zeo++",
+            },
+        ],
+        "etc": [
+            {
+                "property name": "CPU time",
+                "value": "116.847",
+                "unit": "s",
+                "condition": "PB",
+            },
+            {
+                "property name": "CPU time",
+                "value": "683.857",
+                "unit": "s",
+                "condition": "Zeo++",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "IRMOF1",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "density": [
+            {
+                "value": "0.593",
+                "unit": "g/cm³",
+                "condition": "PB",
+            },
+            {
+                "value": "0.593",
+                "unit": "g/cm³",
+                "condition": "Zeo++",
+            },
+        ],
+        "etc": [
+            {
+                "property name": "CPU time",
+                "value": "92.104",
+                "unit": "s",
+                "condition": "PB",
+            },
+            {
+                "property name": "CPU time",
+                "value": "672.437",
+                "unit": "s",
+                "condition": "Zeo++",
+            },
+        ],
+    },
+]
+```
+"""
+}
 
-# [^a]: Volumes are given in cm<sup>3</sup>(STP) cm<sup>–3</sup>.
+
+example_13 = {
+    "contain": ["crystal size"],
+    "content": """
+Input:
+Table 1
+Crystal data and structure refinement for the [Hg(μ-4,4′-bipy)(μ-AcO)(AcO)]n·n/2H2O (1)
+
+| Identification code | compound 1 |
+|---------------------|------------|
+| Empirical formula   | C28H30Hg2N4O9 |
+| Crystal size (mm)   | 0.32 × 0.28 × 0.24 |
+
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "[Hg(μ-4,4′-bipy)(μ-AcO)(AcO)]n·n/2H2O",
+            "symbol": "compound 1",
+            "chemical formula": "C28H30Hg2N4O9",
+        },
+        "crystal size": [
+            {
+                "value": "0.32 x 0.28 x 0.24",
+                "unit": "mm"
+                "condition": "",
+            }
+        ],
+    },
+]
+```
+"""
+}
 
 
+example_14 = {
+    "contain": ["material color", "material shape"],
+    "content": """
+Input:
+Table 1. Data for isolated copper(I) complexes of pyrazine carboxamide
 
-# Table 5. Heats of Adsorption (kJ mol–1) Calculated by Extrapolation of the Low Pressure Data of the Virial Isotherms (n vs ln­(p/n)) for 1 and 3 at 25, 40, and 70 °C
+| Complex | Colour |
+|---------|--------|
+| Cu(pyza)2Cl (1) | red fine needle-like crystals |
+| Cu(pyza)2Br (2) | red needle-like crystals |
+| Cu(pyza)2I (3) | red crystals |
 
-# |         | CH<sub>4</sub> | CO<sub>2</sub> |
-# |---------|----------------|----------------|
-# | UiO-67  | 15.2           | 23.6           |
-# | UiO-67-BN | 20.3           | 20.6           |
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "Cu(pyza)2Cl",
+            "symbol": "1",
+            "chemical formula": "",
+        },
+        "material color": [
+            {
+                "value": "red",
+                "condition": "",
+            }
+        ],
+        "material shape": [
+            {
+                "value": "fine needle-like crystals",
+                "condition": "",
+            }
+        ],
+    },
+    {
+        "meta": {
+            "name": "Cu(pyza)2Br",
+            "symbol": "2",
+            "chemical formula": "",
+        },
+        "material color": [
+            {
+                "value": "red",
+                "condition": "",
+            }
+        ],
+        "material shape": [
+            {
+                "value": "needle-like crystals",
+                "condition": "",
+            }
+        ],
+    },
+    {
+        "meta": {
+            "name": "Cu(pyza)2I",
+            "symbol": "3",
+            "chemical formula": "",
+        },
+        "material color": [
+            {
+                "value": "red",
+                "condition": "",
+            }
+        ],
+        "material shape": [
+            {
+                "value": "crystals",
+                "condition": "",
+            }
+        ],
+    },
+]
+```
+"""
+}
 
 
+example_15 = {
+    "contain": ["space group", "etc"],
+    "content": """
+Input:
+Table 5. Data for the Metal Shell of Metal Complexes of Uncharged Erythritol
+
+| stoichiometry | space group | M−Cl distance (Å) |
+|---------------|-------------|-------------------|
+| 2CaCl<sub>2</sub>·C<sub>4</sub>H<sub>10</sub>O<sub>4</sub>·4H<sub>2</sub>O | P2<sub>1</sub>/c | 2.7171 |
+| CaCl<sub>2</sub>·C<sub>4</sub>H<sub>10</sub>O<sub>4</sub>·4H<sub>2</sub>O | C2/c | 2.418 |
+| CaCl<sub>2</sub>·2C<sub>4</sub>H<sub>10</sub>O<sub>4</sub>·4H<sub>2</sub>O | Fddd | 2.416 |
+
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "2CaCl<sub>2</sub>·C<sub>4</sub>H<sub>10</sub>O<sub>4</sub>·4H<sub>2</sub>O",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "space group": [
+            {
+                "value": "P2<sub>1</sub>/c",
+                "condition": "",
+            }
+        ],
+        "etc": [
+            {
+                "property name": "M-Cl distance",
+                "value": "2.7171",
+                "unit": "Å",
+                "condition": "",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "CaCl<sub>2</sub>·C<sub>4</sub>H<sub>10</sub>O<sub>4</sub>·4H<sub>2</sub>O",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "space group": [
+            {
+                "value": "C2/c",
+                "condition": "",
+            }
+        ],
+        "etc": [
+            {
+                "property name": "M-Cl distance",
+                "value": "2.418",
+                "unit": "Å",
+                "condition": "",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "CaCl<sub>2</sub>·2C<sub>4</sub>H<sub>10</sub>O<sub>4</sub>·4H<sub>2</sub>O",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "space group": [
+            {
+                "value": "Fddd",
+                "condition": "",
+            }
+        ],
+        "etc": [
+            {
+                "property name": "M-Cl distance",
+                "value": "2.416",
+                "unit": "Å",
+                "condition": "",
+            },
+        ],
+    },
+]
+```
+"""
+}
 
 
-# "['selectivity', 'henry_coefficient', 'etc']"
-# Table 1. Virial Graph Analysis of Compound 1A
+example_16 = {
+    "contain": ["decomposition temperature", "elastic constant"],
+    "content": """
+Input:
+Table 1. Decomposition Temperature and the Mechanical Properties of Hybrid Membranes
 
-# | temperature (K) | adsorbate | A₀ ln(mol g⁻¹ Pa⁻¹) | Henry's const Kₕ (mol g⁻¹ Pa⁻¹) | R²   | Sᵢⱼ |
-# |-----------------|-----------|-------------------|-------------------------------|------|-----|
-# | 273             | CO₂       | -17.45994         | 2.6 × 10⁻⁸                   | 0.988|     |
-# | 273             | CH₄       | -20.79051         | 9.3497 × 10⁻¹⁰               | 0.846| 28  |
-# | 273             | H₂        | -23.04742         | 9.7866 × 10⁻¹¹               | 0.972| 266 |
+| sample name       | MNS content (in weight) | T<sub>d</sub> (°C) | Young’s modulus (GPa) | maximum elongation (%) |
+|-------------------|-------------------------|---------------------|-----------------------|-------------------------|
+| SNF-PAEK          | 0                       | 244.93              | 0.90 ± 0.14           | 118 ± 26                |
+| MNS@SNF-PAEK-1%   | 1%                      | 247.72              | 0.91 ± 0.17           | 123 ± 19                |
 
-# a. The selectivity for CO₂ (i) over different gases (j) calculated as Sᵢⱼ = Kₕ (CO₂)/Kₕ(j).
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "SNF-PAEK",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "decomposition temperature": [
+            {
+                "value": "244.93",
+                "unit": "°C",
+                "type": "",
+                "condition": "MNS content 0%",
+            }
+        ],
+        "elastic constant": [
+            {
+                "value": "0.90 ± 0.14",
+                "unit": "GPa",
+                "condition": "MNS content 0%",
+                "type": "Young's modulus",
+            },
+            {
+                "value": "118 ± 26",
+                "unit": "%",
+                "condition": "MNS content 0%",
+                "type": "maximum elongation",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "MNS@SNF-PAEK-1%",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "decomposition temperature": [
+            {
+                "value": "247.72",
+                "unit": "°C",
+                "type": "",
+                "condition": "MNS content 1%",
+            }
+        ],
+        "elastic constant": [
+            {
+                "value": "0.91 ± 0.17",
+                "unit": "GPa",
+                "condition": "MNS content 1%",
+                "type": "Young's modulus",
+            },
+            {
+                "value": "123 ± 19",
+                "unit": "%",
+                "condition": "MNS content 1%",
+                "type": "maximum elongation",
+            },
+        ],
+    },
+]
+```
+"""
+}
+
+
+example_17 = {
+    "contain": ["magnetic susceptibility", "magnetic moment"],
+    "content": """
+Input:
+Table 3. Main Magnetic Parameters for 1 and 2
+
+|   | χT (300 K)/cm³ K mol⁻¹ | M (70 kOe, 1.8 K)/μB |
+|---|------------------------|----------------------|
+| 1 | 4.73                   |  6.02                |
+| 2 | 5.99                   |  0.82                |
+
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "1",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "magnetic susceptibility": [
+            {
+                "value": "4.73",
+                "unit": "cm³ K mol⁻¹",
+                "temperature": "300 K",
+                "condition": "",
+            },
+        ],
+        "magnetic moment": [
+            {
+                "value": "6.02",
+                "unit": "μB",
+                "temperature": "1.8 K",
+                "condition": "70 kOe",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "2",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "magnetic susceptibility": [
+            {
+                "value": "5.99",
+                "unit": "cm³ K mol⁻¹",
+                "temperature": "300 K",
+                "condition": "",
+            },
+        ],
+        "magnetic moment": [
+            {
+                "value": "0.82",
+                "unit": "μB",
+                "temperature": "1.8 K",
+                "condition": "70 kOe",
+            },
+        ],
+    },
+]
+```
+"""
+}
+
+
+example_18 = {
+    "contain": ["proton conductivity", "etc"],
+    "content": """
+Input:
+Table 4. Proton Conductivity (σ) and Methanol Permeability (P) of Different Types of Hybrid PEMs Studied in Previous Works
+
+| hybrid PEMs      | σ (S·cm–1) | P (10–7 cm2·s–1) | references |
+|------------------|------------|------------------|------------|
+| MNS@SNF-PAEK-3%  | 0.198      | 5.28             | this work  |
+| SPEEK/SHGO       | 0.136      | 30.83            | [36]       |
+
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "MNS@SNF-PAEK-3%",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "proton conductivity": [
+            {
+                "value": "0.198",
+                "unit": "S·cm–1",
+                "temperature": "",
+                "RH": "",
+                "Ea": "",
+                "guest": "",
+            },
+        ],
+        "etc": [
+            {
+                "property name": "Methanol Permeability (P)",
+                "value": "5.28",
+                "unit": "10–7 cm2·s–1",
+                "condition": "",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "SPEEK/SHGO",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "proton conductivity": [
+            {
+                "value": "0.136",
+                "unit": "S·cm–1",
+                "temperature": "",
+                "RH": "",
+                "Ea": "",
+                "guest": "",
+            },
+        ],
+        "etc": [
+            {
+                "property name": "Methanol Permeability (P)",
+                "value": "30.83",
+                "unit": "10–7 cm2·s–1",
+                "condition": "",
+            },
+        ],
+    },
+]
+```
+"""
+}
+
+
+example_19 = {
+    "contain": ["topology"],
+    "content": """
+Input:
+Table 1. Nets Assigned to MOFs Described in the Text
+
+| MOF     | unit  | all node |
+|---------|-------|----------|
+| MOF-505 | Figure b | fof   |
+| JUC-62  | Figure b | fog   |
+
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "MOF-505",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "topology": [
+            {
+                "value": "fof",
+                "condition": "all node",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "JUC-62",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "topology": [
+            {
+                "value": "fog",
+                "condition": "all node",
+            },
+        ],
+    },
+]
+```
+"""
+}
+
+
+example_20 = {
+    "contain": ["formation energy"],
+    "content": """
+Input:
+Table 1. Formation Energies for Species As Calculated by DFT
+
+| species | formation energy (kcal/mol) |
+|---------|-----------------------------|
+| (H<sub>4</sub>TTFTB)<sub>2</sub> | –1.62 |
+| (H<sub>4</sub>TTFTB)<sub>2</sub><sup>•+</sup> | –5.52 |
+
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "(H<sub>4</sub>TTFTB)<sub>2</sub>",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "formation energy": [
+            {
+                "value": "-1.62",
+                "unit": "kcal/mol",
+                "condition": "calculate by DFT",
+            },
+        ],
+    },
+    {
+        "meta": {
+            "name": "(H<sub>4</sub>TTFTB)<sub>2</sub><sup>•+</sup>",
+            "symbol": "",
+            "chemical formula": "",
+        },
+        "formation energy": [
+            {
+                "value": "-5.52",
+                "unit": "kcal/mol",
+                "condition": "calculate by DFT",
+            },
+        ],
+    },
+]
+```
+"""
+}
+
+
