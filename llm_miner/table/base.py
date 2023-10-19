@@ -136,7 +136,10 @@ class TableMiningAgent(Chain):
                 stop=["Input:"]
             )
         except Exception as e:
+            element.add_intermediate_step('table-convert2MD', str(e))
             raise LangchainError(e)
+        else:
+            element.add_intermediate_step('table-convert2MD', md_output)
             
         if token_checker:
             update_token_checker(
@@ -151,7 +154,8 @@ class TableMiningAgent(Chain):
         element.set_clean_text(md_table)
 
         table_type = self.categorize_agent.run(
-            paragraph=md_table,
+            #paragraph=md_table,
+            element=element,
             callbacks=callbacks,
             token_checker=token_checker
         )
@@ -160,7 +164,8 @@ class TableMiningAgent(Chain):
 
         if table_type == "Crystal":
             output = self.crystal_table_agent.run(
-                paragraph=md_table,
+                #paragraph=md_table,
+                element=element,
                 callbacks=callbacks,
                 token_checker=token_checker
             )
@@ -170,7 +175,8 @@ class TableMiningAgent(Chain):
             output = [f"{table_type} type of table is not target"]
         elif table_type == "Property":
             output = self.property_table_agent.run(
-                paragraph=md_table,
+                #paragraph=md_table,
+                element=element,
                 callbacks=callbacks,
                 token_checker=token_checker
             )

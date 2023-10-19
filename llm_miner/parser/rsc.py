@@ -97,8 +97,13 @@ class RSCParser(BaseParser):
             if attr in element.get_attribute_list('class'):
                 return False
         if "id" in element.attrs.keys():
-            return False
-        elif word_find(["btnContainer", "italic", "header_text", 'graphic_title'], element, 'class'):
+            #print (3, element.get_attribute_list('id'), element.text)
+            attributes = " ".join(element.get_attribute_list('id'))
+            if re.search(r"(^|\s)fn", attributes):    # footnotes
+                return True
+            else:                                     # fig / citiation / etc
+                return False
+        if word_find(["btnContainer", "italic", "header_text", 'graphic_title'], element, 'class'):
             return False
         else:
             return True

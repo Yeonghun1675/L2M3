@@ -11,6 +11,8 @@ from langchain.prompts.chat import (
       SystemMessagePromptTemplate,
       HumanMessagePromptTemplate,
 )
+
+from llm_miner.schema import Paragraph
 from llm_miner.error import StructuredFormatError, TokenLimitError, LangchainError
 from llm_miner.format import Formatter
 from llm_miner.table.property.prompt import PROPERTY_CATEGORIZE, PROPERTY_EXTRACT, FT_TYPE, FT_HUMAN
@@ -20,7 +22,7 @@ from llm_miner.pricing import TokenChecker, update_token_checker
 class PropertyTableAgent(Chain):
     categorize_chain: LLMChain
     extract_chain: LLMChain
-    input_key: str = "paragraph"
+    input_key: str = "element"
     output_key: str = "output"
     included_props: list = []
 
@@ -85,7 +87,8 @@ class PropertyTableAgent(Chain):
         callbacks = _run_manager.get_child()
 
         explanation = self._add_explanation()
-        paragraph = inputs[self.input_key]
+        element: Paragraph = inputs[self.input_key]
+        paragraph: str = element.clean_text
         token_checker: TokenChecker = inputs['token_checker']
 
         llm_kwargs={
@@ -99,7 +102,10 @@ class PropertyTableAgent(Chain):
                 stop=["Input:"]
             )
         except Exception as e:
+            element.add_intermediate_step('table-property-type', str(e))
             raise LangchainError(e)
+        else:
+            element.add_intermediate_step('table-property-type', included_props)
 
         if token_checker:
             update_token_checker(
@@ -116,6 +122,7 @@ class PropertyTableAgent(Chain):
         props = self.included_props[:]
 
         if not props:
+            self._write_log('There are no properties', _run_manager)
             return {"output": ["No properties found"]}
 
         format = self._make_format(props)
@@ -132,7 +139,10 @@ class PropertyTableAgent(Chain):
                 stop=["Input:"]
             )
         except Exception as e:
+            element.add_intermediate_step('table-property-extract', str(e))
             raise LangchainError(e)
+        else:
+            element.add_intermediate_step('table-property-extract', output)
 
         if token_checker:
             update_token_checker(

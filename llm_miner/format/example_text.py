@@ -199,7 +199,7 @@ JSON: ```JSON
 peak_spectrum = """
 Paragraph: The analysis of the MOF-A using infrared spectroscopy revealed a unique spectrum, with peaks at 1650 cm-1 and 3400 cm-1, suggesting the presence of carbonyl and hydroxyl groups, respectively.
 JSON: ```JSON
-[{{"value":"1650, 3400", "unit":"cm-1", "type":"infrared spectroscopy"}}]
+[{{"value":"1650, 3400", "unit":"cm-1", "condition":"", "type":"infrared spectroscopy"}}]
 ```
 """
 
@@ -258,16 +258,16 @@ JSON: ```JSON
 proton_conductivity = """
 Paragraph: Proton conductivities measured at 298 K are in the range from 1x10-6 to 1x10-5 S cm^(-1) over 40–95% RH for LaCo.
 JSON:```JSON
-[{{"value":"1x10-6","temperature": "298", "value unit":"S/cm", "temperature unit":"K", "RH":"40", "name":"LaCo","Ea": "", "guest":""}}, {{"value":"1x10-5","value unit":"S/cm","temperature": "298", "temperature unit":"K", "RH":"95", "name":"LaCo","Ea": "", "guest":""}}]
+[{{"value":"1x10-6", "unit":"S/cm", "temperature": "298 K", "RH":"40", "Ea": "", "guest":""}}, {{"value":"1x10-5","unit":"S/cm","temperature": "298 K", "RH":"95", "Ea": "", "guest":""}}]
 ```
 
 Paragraph: In summary, we have successfully achieved a high-performance MOF-based proton-conducting material via the facile encapsulation of the imidazole guests within the pores of robust MOF-808 and demonstrated that Im@MOF-808 possesses high proton conductivity with the value of 3.45 × 10−2 S cm−1 (338 K and 99% RH).The Arrhenius plot of Im@MOF-808 displayed in Figure 2b shows Ea = 0.25 eV,(<0.4 eV),
 JSON:```JSON
-[{{"value":"3.45 × 10−2","value unit":"S/cm","temperature": "338", "temperature unit":"K", "RH":"99", "name":"Im@MOF-808", "Ea": "0.25","guest":"imidazole"}}]
+[{{"value":"3.45 × 10−2","unit":"S/cm","temperature": "338 K", "RH":"99", "Ea": "0.25","guest":"imidazole"}}]
 ```
 
 Paragraph: We report the proton conduction properties of a 2D flexible MOF and a 1D coordination polymer having the molecular formulas {[Zn(C10H2O8)0.5(C10S2N2H8)]·5H2O]}n (1) and {[Zn-(C10H2O8)0.5(C10S2N2H8)]·2H2O]}n (2), respectively. Compounds 1 and 2 show high conductivity values of 2.55 × 10−7 and 4.39 × 10−4 S cm−1 at 80 °C and 95% RH. As determined from least-squares fits of the slopes of Arrhenius plots, the activation energies of compounds 1 and 2 were 0.96 and 0.84 eV.
 JSON:```JSON
-[{{"value":"2.55 × 10−7","value unit":"S/cm","temperature": "80", "temperature unit":"°C", "RH":"95", "name":"{[Zn(C10H2O8)0.5(C10S2N2H8)]·5H2O]}n","Ea": "0.96", "guest":""}}, {{"value":"4.39 × 10−4","value unit":"S/cm","temperature": "80", "temperature unit":"°C", "RH":"95", "name":"{[Zn-(C10H2O8)0.5(C10S2N2H8)]·2H2O]}n", "Ea": "0.84","guest":""}}]
+[{{"value":"2.55 × 10−7","unit":"S/cm","temperature": "80 °C", "RH":"95", "Ea": "0.96", "guest":""}}, {{"value":"4.39 × 10−4","unit":"S/cm","temperature": "80 °C", "RH":"95", "Ea": "0.84","guest":""}}]
 ```
 """
