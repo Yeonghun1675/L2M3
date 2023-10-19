@@ -485,7 +485,7 @@ Output:"""
 
 
 FT_TYPE = """From the provided markdown table, generate a Python list of item names with data present. You must exclude absent items and return an empty list if any key items are missing. Names of items must be one of following:
-['elastic constant', 'conversion', 'crystal_size', 'decomposition_temperature', 'density', 'energy_related', 'equation', 'gas_adsorption', 'heat_capacity', 'magnetic_moment', 'magnetic_susceptibility', 'material_color', 'material_shape', 'simulation_parameters', 'poissons_ratio', 'pore_diameter', 'pore_volume', 'porosity', 'reaction_yield', 'selectivity', 'shear_modulus', 'space_group', 'peak_spectrum', 'surface_area', 'thermal_conductivity_coefficient', 'thermal_expansion_coefficient', 'topology', 'youngs_modulus', 'formation_energy', 'henry_coefficient', 'adsorption_energy', 'etc']"""
+['proton_conductivity', 'elastic_constant', 'conversion', 'crystal_size', 'decomposition_temperature', 'density', 'gas_adsorption', 'heat_capacity', 'magnetic_moment', 'magnetic_susceptibility', 'material_color', 'material_shape', 'simulation_parameters', 'pore_diameter', 'pore_volume', 'porosity', 'reaction_yield', 'selectivity', 'space_group', 'peak_spectrum', 'surface_area', 'thermal_conductivity_coefficient', 'thermal_expansion_coefficient', 'topology', 'formation_energy', 'henry_coefficient', 'adsorption_energy', 'etc']"""
 
 
 FT_HUMAN = "{paragraph}"

@@ -203,10 +203,11 @@ selectivity = """
         "unit": "",
         "substrate": "",
         "catalyst": "",
-        "pressure":"",
-        "temperature":""
+        "pressure": "",
+        "temperature": "",
         "solvent": "",
         "time": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -293,6 +294,7 @@ peak_spectrum = """
         "value": "",
         "unit": "",
         "type": "",  # ex) IR, NMR, UV, electronic, etc
+        "condition": "",
     }, ...
 ]
 """

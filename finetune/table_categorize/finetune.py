@@ -14,10 +14,10 @@ def save_file(filepath, content):
 
 openai.api_key = "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"  # molsim1
 model_name = "gpt-3.5-turbo"
-jsonl_file = "table_categorize2.jsonl"
-file_id = "file-FxWCdsVwEkGCeW0e8lyRj3iY"
-job_id = "ftjob-CKpwbM0HNU5wUjQnqtv6z9iz"
-# created = "ft:gpt-3.5-turbo-0613:molsimllm::80nXElRv"
+jsonl_file = "table_categorize_1017.jsonl"
+file_id = "file-QdkeWk0Ke3g8Mv6Nv5NWoy2k"
+job_id = "ftjob-Wu9leAAYBYB0FYyAqOzMq4tN"
+created = "ft:gpt-3.5-turbo-0613:molsimllm::8AwI64O2"
 
 # File upload
 def file_upload(jsonl_file):

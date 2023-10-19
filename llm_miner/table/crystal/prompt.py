@@ -216,6 +216,62 @@ Output: ```JSON
 ```
 
 Input:
+Table 1. Results for [Ln(abdc)(Habdc), nH2O]∞ with Ln=La–Pr and n =10.[^*]
+
+| Ln | MW (gmol−1) |
+|----|-------------|
+| La | 678.33      |
+| Ce | 679.54      |
+| Pr | 680.33      |
+
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "",
+            "symbol": "",
+            "chemical formula": "[La(abdc)(Habdc), nH2O]",
+        },
+        "chemical formula weight": [
+            {
+                "value": "678.33",
+                "unit": "",
+                "condition": "n=10",
+            },
+        ]
+    },
+    {
+        "meta": {
+            "name": "",
+            "symbol": "",
+            "chemical formula": "[Ce(abdc)(Habdc), nH2O]",
+        },
+        "chemical formula weight": [
+            {
+                "value": "679.54",
+                "unit": "",
+                "condition": "n=10",
+            },
+        ]
+    },
+    {
+        "meta": {
+            "name": "",
+            "symbol": "",
+            "chemical formula": "[Pr(abdc)(Habdc), nH2O]",
+        },
+        "chemical formula weight": [
+            {
+                "value": "680.33",
+                "unit": "",
+                "condition": "n=10",
+            },
+        ]
+    },
+]
+```
+
+Input:
 {{paragraph}}
 
 Output:"""
