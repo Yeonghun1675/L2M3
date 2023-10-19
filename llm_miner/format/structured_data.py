@@ -191,6 +191,7 @@ henry_coefficient = """
         "value": "",
         "unit": "",
         "condition": "",
+        "gas type": ""
     }, ...
 ]
 """
@@ -380,11 +381,9 @@ proton_conductivity = """
 "proton_conductivity": [
     {
         "value": "",
-        "value unit": "",
+        "unit": "",
         "temperature": "",
-        "temperature unit": "",
         "RH": "",
-        "name": "",
         "Ea": "",
         "guest": "",
     }, ...
