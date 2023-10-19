@@ -199,7 +199,7 @@ JSON: ```JSON
 peak_spectrum = """
 Paragraph: The analysis of the MOF-A using infrared spectroscopy revealed a unique spectrum, with peaks at 1650 cm-1 and 3400 cm-1, suggesting the presence of carbonyl and hydroxyl groups, respectively.
 JSON: ```JSON
-[{{"value":"1650, 3400", "unit":"cm-1", "type":"infrared spectroscopy"}}]
+[{{"value":"1650, 3400", "unit":"cm-1", "condition":"", "type":"infrared spectroscopy"}}]
 ```
 """
 
