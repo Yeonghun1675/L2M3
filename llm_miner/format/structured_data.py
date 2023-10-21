@@ -205,7 +205,7 @@ selectivity = """
         "substrate": "",
         "catalyst": "",
         "pressure":"",
-        "temperature":""
+        "temperature":"",
         "solvent": "",
         "time": "",
     }, ...
@@ -220,7 +220,7 @@ conversion = """
         "substrate": "",
         "catalyst": "",
         "pressure":"",
-        "temperature":""
+        "temperature":"",
         "solvent": "",
         "time": "",
     }, ...

@@ -1,5 +1,5 @@
 surface_area="""
-Paragraph: A boasts exceptional features such as a pore volume of 1.2 cm3/g, a BET surface area of 1500 m2/g, and an adsorption capacity of 35.6 wt% for CO2 at 25°C and 1 atm. B showcases its versatility with a pore volume of 0.9 cm3/g, a Langmuir surface area of 1200 m2/g, and an adsorption capacity of 27.8 wt% for N2 at 77 K and 1 atm.
+Paragraph: MOF-A boasts exceptional features such as a pore volume of 1.2 cm3/g, a BET surface area of 1500 m2/g, and an adsorption capacity of 35.6 wt% for CO2 at 25°C and 1 atm. MOF-B showcases its versatility with a pore volume of 0.9 cm3/g, a Langmuir surface area of 1200 m2/g, and an adsorption capacity of 27.8 wt% for N2 at 77 K and 1 atm.
 JSON: ```JSON
 [{{"probe": "", "type": "BET", "value": "1500", "unit": "m2/g", "condition": ""}}, {{"probe": "", "type": "Langmuir", "value": "1200", "unit": "m2/g", "condition": ""}}]
 ```
@@ -85,14 +85,14 @@ JSON:```JSON
 [{{"value":"400", "unit":"°C", "type":"decomposition point", "condition":""}}]
 ```
 
-Paragraph: Complex 4 exhibits remarkable thermal stability, remaining stable up to a temperature of 155°C. A modest weight loss of 4.8% (calculated 4.6%) between 155 and 250°C can be attributed to the removal of coordinated solvent molecules. Beyond this point, the compound undergoes a consecutive weight loss process that persists until heating to 680°C.
+Paragraph: MOF-B exhibits remarkable thermal stability, remaining stable up to a temperature of 155°C. A modest weight loss of 4.8% (calculated 4.6%) between 155 and 250°C can be attributed to the removal of coordinated solvent molecules. Beyond this point, the compound undergoes a consecutive weight loss process that persists until heating to 680°C.
 JSON:```JSON
-[{{"value":"150", "unit":"°C", "type":"stable", "condition":""}}, {{"value":"150 and 250", "unit":"°C", "type":"removal of coordinated solvent molecules", "condition":""}}, {{"value":"680", "unit":"°C", "type":"consecutive weight loss", "condition":""}}]
+[{{"value":"155", "unit":"°C", "type":"stable", "condition":""}}, {{"value":"155 and 250", "unit":"°C", "type":"removal of coordinated solvent molecules", "condition":""}}, {{"value":"680", "unit":"°C", "type":"consecutive weight loss", "condition":""}}]
 ```
 
-Paragraph: In the case of MOF-XYZ, it was observed that there was an initial weight loss of 7.82% before reaching 120°C, corresponding closely to the departure of guest molecules. Subsequently, a temperature range spanning from 110°C to 280°C was attributed to the gradual removal of coordinated water molecules (experimental: 8.15%; calculated: 7.28%), after which the structure underwent decomposition. 
+Paragraph: In the case of MOF-A, it was observed that there was an initial weight loss of 7.82% before reaching 120°C, corresponding closely to the departure of guest molecules. Subsequently, a temperature range spanning from 140°C to 280°C was attributed to the gradual removal of coordinated water molecules (experimental: 8.15%; calculated: 7.28%), after which the structure underwent decomposition. 
 JSON: ```JSON
-[{{"value":"120", "unit":"°C", "type":"an initial weight loss"}}, {{"value":"110 to 280", "unit":"°C", "type":"gradual removal of coordinated water molecules"}}]
+[{{"value":"120", "unit":"°C", "type":"an initial weight loss"}}, {{"value":"140 to 280", "unit":"°C", "type":"gradual removal of coordinated water molecules"}}]
 ```
 """
 
@@ -142,23 +142,23 @@ JSON:```JSON
 """
 
 adsorption_energy = """
-Paragraph: The adsorption energy of CO2 on the HKUST-1 MOF was found to be -45.6 kJ/mol.
+Paragraph: The adsorption energy of CO2 on the MOF-A was found to be -45.6 kJ/mol.
 JSON:```JSON
 [{{"value": "-45.6", "unit": "kJ/mol", "condition": ""}}]
 ```
 """
 
 henry_coefficient = """
-Paragraph: The Henry coefficient for hydrogen (H2) adsorption on the MOF-5 material was determined to be 3.8 x 10^5 mol/(kg·Pa).
+Paragraph: The Henry coefficient for hydrogen (H2) adsorption on the MOF-A material was determined to be 3.8 x 10^5 mol/(kg·Pa).
 JSON:```JSON
 [{{"value": "3.8 x 10^5", "unit": "mol/(kg·Pa)", "condition": "", "gas type": "H2"}}]
 ```
 """
 
 selectivity= """
-Paragraph: Metal-Organic Frameworks (MOFs) are well-known for their remarkable selectivity in gas separation and adsorption processes. Among various MOFs, MOF-A stands out with its exceptional CO2 selectivity over other gases, displaying a selectivity value of 20 at room temperature and 1 atm. This high CO2 selectivity makes MOF-A a promising candidate for carbon capture and storage applications. On the other hand, MOF-B exhibits impressive selectivity towards hydrogen, selectively adsorbing H2 over other gases with a selectivity value of 50 at 77 K and 1 bar. This makes MOF-B highly suitable for hydrogen purification and storage.
+Paragraph: Among various MOFs, MOF-A stands out with its exceptional CO2 selectivity over other gases, displaying a selectivity value of 20 at room temperature and 1 atm. This high CO2 selectivity makes MOF-A a promising candidate for carbon capture and storage applications. On the other hand, MOF-B exhibits impressive selectivity towards hydrogen, selectively adsorbing H2 over other gases with a selectivity value of 50 at 77 K and 1 bar.
 JSON: ```JSON
-[{{"value": "20", "unit": "", "substrate": "CO2", "catalyst": "", "pressure":"1 atm", "temperature":"", "solvent": "", "time": ""}}, {{B", "value": "50", "unit": "", "substrate": "H2", "catalyst": "", "pressure":"1 bar", "temperature":"77 K", "solvent": "", "time": ""}}]
+[{{"value": "20", "unit": "", "substrate": "CO2", "catalyst": "", "pressure":"1 atm", "temperature":"", "solvent": "", "time": ""}}, {{"value": "50", "unit": "", "substrate": "H2", "catalyst": "", "pressure":"1 bar", "temperature":"77 K", "solvent": "", "time": ""}}]
 ```
 """
 
@@ -189,7 +189,7 @@ JSON: ```JSON
 """
 
 magnetic_susceptibility = """
-Paragraph:Solid-state DC magnetic susceptibility measurements were carried out on desiccated sample 2 under a constant magnetic field of 0.15 T over a temperature range of 5.0–350 K. The χM*T product at room temperature was determined to be 0.98 cm3 mol-1 K per hexanuclear unit.
+Paragraph:Solid-state DC magnetic susceptibility measurements were carried out on desiccated MOF-A under a constant magnetic field of 0.15 T over a temperature range of 5.0–350 K. The χM*T product at room temperature was determined to be 0.98 cm3 mol-1 K per hexanuclear unit.
 JSON: ```JSON
 [{{"value":"0.98", "unit":"cm3 mol-1 K", "temperature":"room temperature", "condition":""}}]
 ```
@@ -214,7 +214,7 @@ JSON: ```JSON
 [{{"property name": "electrical conductivity", "value":"0.02", "unit": "S/cm", "condition": ""}}]
 ```
 
-Paragraph: NOTT-202 displays an electrical resistance of approximately 10^7 ohm·cm, positioning it as a potential insulating material in electronic applications. Its low electrical conductivity makes it useful for reducing electromagnetic interference in electronic circuits.
+Paragraph: MOF-C displays an electrical resistance of approximately 10^7 ohm·cm, positioning it as a potential insulating material in electronic applications. Its low electrical conductivity makes it useful for reducing electromagnetic interference in electronic circuits.
 JSON: ```JSON
 [{{"property name": "electrical resistance", "value": "10000000", "unit": "ohm·cm", "condition": ""}}]
 ```
@@ -223,26 +223,26 @@ JSON: ```JSON
 lattice_parameters = """
 Paragraph: Crystallographic data for MOF-A: C36H42N6O4, M = 622.75, monoclinic, P21/c, a = 10.812(4) Å, b = 15.261(6) Å, c = 13.973(5) Å, V = 2293.0(14) cm^3, Z = 4, Dc = 1.292 g cm^−3, μ (X-ray) = 1.012 mm^−1, T = 298(2) K, 14056 reflections collected, 3668 unique (Rint = 0.0573), R1 on F(wR2 on F2) = 0.0397 (0.0884) for 3447 observed (I > 2σ(I)) reflections.
 JSON: ```JSON
-[{{"value": {{"a": "10.812", "b": "15.261", "c": "13.973", "alpha": "", "beta": "", "gamma": "", "condition": "T = 298(2) K"}}]
+[{{"value": {{"a": "10.812", "b": "15.261", "c": "13.973", "alpha": "", "beta": "", "gamma": "", "condition": "T = 298(2) K"}}}}]
 ```
 """
 
 cell_volume = """
-Paragraph: Crystallographic data for Compound 2: C36H42N6O4, M = 622.75, monoclinic, P21/c, a = 10.812(4) Å, b = 15.261(6) Å, c = 13.973(5) Å, V = 2293.0(14) cm^3, Z = 4, Dc = 1.292 g cm^−3, μ (X-ray) = 1.012 mm^−1, T = 298(2) K, 14056 reflections collected, 3668 unique (Rint = 0.0573), R1 on F(wR2 on F2) = 0.0397 (0.0884) for 3447 observed (I > 2σ(I)) reflections.
+Paragraph: Crystallographic data for MOF-A: C36H42N6O4, M = 622.75, monoclinic, P21/c, a = 10.812(4) Å, b = 15.261(6) Å, c = 13.973(5) Å, V = 2293.0(14) cm^3, Z = 4, Dc = 1.292 g cm^−3, μ (X-ray) = 1.012 mm^−1, T = 298(2) K, 14056 reflections collected, 3668 unique (Rint = 0.0573), R1 on F(wR2 on F2) = 0.0397 (0.0884) for 3447 observed (I > 2σ(I)) reflections.
 JSON: ```JSON
 [{{"value":"2293.0", "unit":"cm^3", "condition": "T = 298(2) K"}}]
 ```
 """
 
 material_color = """
-Paragraph: The material color of the MOF 'MOF-789' is a deep ruby red, imparting a distinctive and attractive appearance to the crystal lattice.
+Paragraph: The material color of the MOF-A is a deep ruby red, imparting a distinctive and attractive appearance to the crystal lattice.
 JSON: ```JSON
 [{{"value":"deep ruby red", "type":"material color", "condition": ""}}]
 ```
 """
 
 material_shape = """
-Paragraph: MOF-Pyramid showcases a striking pyramid-shaped crystal structure, offering intriguing geometric properties for applications in materials science and catalysis.
+Paragraph: MOF-A showcases a striking pyramid-shaped crystal structure, offering intriguing geometric properties for applications in materials science and catalysis.
 JSON: ```JSON
 [{{"value": "pyramid-shaped crystal", "condition": ""}}]
 ```
@@ -256,7 +256,7 @@ JSON: ```JSON
 """
 
 proton_conductivity = """
-Paragraph: Proton conductivities measured at 298 K are in the range from 1x10-6 to 1x10-5 S cm^(-1) over 40–95% RH for LaCo.
+Paragraph: Proton conductivities measured at 298 K are in the range from 1x10-6 to 1x10-5 S cm^(-1) over 40–95% RH for MOF-A.
 JSON:```JSON
 [{{"value":"1x10-6", "unit":"S/cm", "temperature": "298 K", "RH":"40", "Ea": "", "guest":""}}, {{"value":"1x10-5","unit":"S/cm","temperature": "298 K", "RH":"95", "Ea": "", "guest":""}}]
 ```
@@ -266,7 +266,7 @@ JSON:```JSON
 [{{"value":"3.45 × 10−2","unit":"S/cm","temperature": "338 K", "RH":"99", "Ea": "0.25","guest":"imidazole"}}]
 ```
 
-Paragraph: We report the proton conduction properties of a 2D flexible MOF and a 1D coordination polymer having the molecular formulas {[Zn(C10H2O8)0.5(C10S2N2H8)]·5H2O]}n (1) and {[Zn-(C10H2O8)0.5(C10S2N2H8)]·2H2O]}n (2), respectively. Compounds 1 and 2 show high conductivity values of 2.55 × 10−7 and 4.39 × 10−4 S cm−1 at 80 °C and 95% RH. As determined from least-squares fits of the slopes of Arrhenius plots, the activation energies of compounds 1 and 2 were 0.96 and 0.84 eV.
+Paragraph: We report the proton conduction properties of a 2D flexible MOF and a 1D coordination polymer having the molecular formulas MOF-A and MOF-B, respectively. MOF-A and MOF-B show high conductivity values of 2.55 × 10−7 and 4.39 × 10−4 S cm−1 at 80 °C and 95% RH. As determined from least-squares fits of the slopes of Arrhenius plots, the activation energies of MOF-A and MOF-B were 0.96 and 0.84 eV.
 JSON:```JSON
 [{{"value":"2.55 × 10−7","unit":"S/cm","temperature": "80 °C", "RH":"95", "Ea": "0.96", "guest":""}}, {{"value":"4.39 × 10−4","unit":"S/cm","temperature": "80 °C", "RH":"95", "Ea": "0.84","guest":""}}]
 ```
