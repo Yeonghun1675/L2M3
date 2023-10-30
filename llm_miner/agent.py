@@ -162,6 +162,7 @@ class LLMMiner(Chain):
     def from_config(
         cls,
         config: Dict[str, Any],
+        openai_api_key:str = None,
     ) -> Chain:
         model_name = config['model_name']
         simple_model_name = config['simple_model_name']
@@ -169,16 +170,22 @@ class LLMMiner(Chain):
 
         llm = ChatOpenAI(
             model_name = model_name,
-            temperature = temperature
+            temperature = temperature,
+            openai_api_key=openai_api_key
         )
         simple_llm = ChatOpenAI(
             model_name = simple_model_name,
-            temperature = temperature
+            temperature = temperature,
+            openai_api_key=openai_api_key
         )
 
         # fine-tuned model
         ft_model_dict = {
-            ft_name: ChatOpenAI(model_name=ft_model, temperature=temperature)
+            ft_name: ChatOpenAI(
+                model_name=ft_model, 
+                temperature=temperature, 
+                openai_api_key=openai_api_key
+            )
             for ft_name, ft_model in config['fine_tuning_models'].items() if ft_model
         }
 
@@ -190,6 +197,6 @@ class LLMMiner(Chain):
         )
     
     @classmethod
-    def create(cls, ):
+    def create(cls, openai_api_key=None):
         """Auto creation using config (default)"""
-        return cls.from_config(config)
+        return cls.from_config(config, openai_api_key)

@@ -22,6 +22,7 @@ List: ```JSON
 Paragraph:{paragraph}
 List: """
 
+
 PROMPT_STRUCT = """Extract the relevant information about the synthesis of MOFs mentioned in the paragraph.
 
 There are guidelines for output format:
@@ -35,7 +36,7 @@ For each process, you must follow these formats:
 You must follow rules below:
 - According to the synthesis type, information you must write is different.
 - If there are several "meta"s in the text, you must write several dictionaries for each "meta".
-- If the synthesis procedure is same for a certain compound, write same synthesis method with that compound except for certain material.
+- If the synthesis procedure for a particular material remains consistent (including "similar", "substitute", "instead of", etc.), import the same synthesis method for that material, but must change only the precursor or condition specified in the article.
 - In each dictionary, you must include yield, chemical formula and other properties if such information is available.
 - Based on the synthesis method, ensure to include any additional details related to {synthesis_type}.
 - If there are more than two instances of a precursor, additive, surfactant, solution, solvent, or reducing agent, list all of them in a single dictionary.
@@ -56,7 +57,7 @@ JSON:```JSON
 [{{"meta":{{"name":"[Ag3(Z[6])2(TDA)3(Cl)2(H2O)10][Ag(TDA)(H2O)5]·6Cl·nH2O", "symbol":"2", "chemical formula": "C104H142Ag3N71O95Cl7·12H2O"}}, "processes": [{{"synthesis method": "chemical synthesis", "precursor":[{{"name":"Z[6]", "amount":"20", "unit":"mg"}}, {{"name":"Silver chloride", "amount":"536.1", "unit":"mg"}}, {{"name":"tetradecanoic acid", "amount":"576.3", "unit":"mg"}}], "solution":[{{"name":"DI water", "amount":"4.0", "unit":"mL"}}], "pressure": "", "temperature": "", "time": "1 week"}}, {{"synthesis method": "pH adjustment", "pH": "7", "modulator": "diluted sodium hydroxide"}}, {{"synthesis method": "drying", "pressure": "", "temperature": "", "atmosphere": "vacuum", "time": ""}}], "yield": "68%"}}]
 ```
 
-Paragraph:Synthesis of ([Ni(bdpx)2(OH2)2]·2ClO4·2H2O)n (3)
+Paragraph: Synthesis of ([Ni(bdpx)2(OH2)2]·2ClO4·2H2O)n (3)
 A solution of Ni(ClO4)2·6H2O (139.6 mg, 0.4 mmol) in 4 mL of H2O was added slowly into a MeOH/H2O solution (6:1 v/v) of bdpx (100.2 mg, 0.4 mmol) without stirring. The mixture was left to stand at room temperature (RT) for crystallization. After several days, green plate-shaped crystals were filtered off and washed with water. Yield 78%. Anal. Calcd C24H32NiN14O12: C, 37.89; H, 4.24; N, 25.76%. Found: C, 37.82; H, 4.27; N, 25.49%.
 Synthesis of ([Cu(bdpx)2(OH2)2]·2ClO4·2H2O)n (4)
 4 was synthesized in a procedure analogous to that of 3 except that Cu(ClO4)2·6H2O (134.5 mg, 0.4 mmol) was used instead of Ni(ClO4)2·6H2O. Blue rod-shaped crystals were filtered off and washed with water. Yield 71%. Anal. Calcd C24H32CuN14O12: C, 37.55; H, 4.20; N, 25.55%. Found: C, 37.50; H, 4.22; N, 25.33%.
