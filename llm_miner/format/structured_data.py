@@ -181,6 +181,7 @@ adsorption_energy = """
         "value": "",
         "unit": "",
         "condition": "",
+        "gas type": "",
     }, ...
 ]
 """
@@ -191,7 +192,7 @@ henry_coefficient = """
         "value": "",
         "unit": "",
         "condition": "",
-        "gas type": ""
+        "gas type": "",
     }, ...
 ]
 """
@@ -204,10 +205,16 @@ selectivity = """
         "unit": "",
         "substrate": "",
         "catalyst": "",
+<<<<<<< HEAD
+        "pressure": "",
+        "temperature": "",
+=======
         "pressure":"",
         "temperature":"",
+>>>>>>> 80ceb36a5171296843926a1caeac1489c3bfa679
         "solvent": "",
         "time": "",
+        "condition": "",
     }, ...
 ]
 """
@@ -294,6 +301,7 @@ peak_spectrum = """
         "value": "",
         "unit": "",
         "type": "",  # ex) IR, NMR, UV, electronic, etc
+        "condition": "",
     }, ...
 ]
 """

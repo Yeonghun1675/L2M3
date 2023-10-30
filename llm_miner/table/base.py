@@ -23,6 +23,8 @@ from llm_miner.pricing import TokenChecker, update_token_checker
 
 class TableMiningAgent(Chain):
     convert_chain: LLMChain
+    emergency_chain: LLMChain
+
     categorize_agent: Chain
     crystal_table_agent: Chain
     property_table_agent: Chain
@@ -37,6 +39,7 @@ class TableMiningAgent(Chain):
     def from_llm(
         cls,
         convert_llm: BaseLanguageModel,
+        emergency_llm: BaseLanguageModel,
         categorize_llm: BaseLanguageModel,
         crystal_table_type_llm: BaseLanguageModel,
         crystal_table_extract_llm: BaseLanguageModel,
@@ -65,12 +68,16 @@ class TableMiningAgent(Chain):
             )
             convert_chain = LLMChain(llm=convert_llm, prompt=template_convert)
 
+        emergency_convert = PromptTemplate(template=prompt_convert, input_variables=['paragraph'])
+        emergency_chain = LLMChain(llm=emergency_llm, prompt=emergency_convert)
+
         categorize_agent = CategorizeAgent.from_llm(categorize_llm, **kwargs)
         crystal_table_agent = CrystalTableAgent.from_llm(crystal_table_type_llm, crystal_table_extract_llm, **kwargs)
         property_table_agent = PropertyTableAgent.from_llm(property_table_type_llm, property_table_extract_llm, **kwargs)
 
         return cls(
             convert_chain=convert_chain,
+            emergency_chain=emergency_chain,
             categorize_agent=categorize_agent,
             crystal_table_agent=crystal_table_agent,
             property_table_agent=property_table_agent,
@@ -137,29 +144,61 @@ class TableMiningAgent(Chain):
             )
         except Exception as e:
             element.add_intermediate_step('table-convert2MD', str(e))
-            raise LangchainError(e)
         else:
-            element.add_intermediate_step('table-convert2MD', md_output)
-            
-        if token_checker:
-            update_token_checker(
-                name_step='table-convert2MD',
-                chain=self.convert_chain,
-                token_checker=token_checker,
-                llm_kwargs=llm_kwargs,
-                llm_output=md_output,
+            element.add_intermediate_step('table-convert2MD', "[gpt.ft]"+md_output)
+
+        try:
+            md_table = self._parse_convert_output(md_output)
+            element.set_clean_text(md_table)
+            if token_checker:
+                update_token_checker(
+                    name_step='table-conver2MD',
+                    chain=self.convert_chain,
+                    token_checker=token_checker,
+                    llm_kwargs=llm_kwargs,
+                    llm_output=md_output,
+                )
+        except (TokenLimitError, UnboundLocalError):
+            try:
+                print("non-ft model try: due to token limit")
+                md_output = self.emergency_chain.run(
+                    **llm_kwargs,
+                    callbacks=callbacks,
+                    stop=["Input:"]
+                )
+            except Exception as e:
+                element.add_intermediate_step('table-convert2MD', str(e))
+                raise LangchainError(e)
+            else:
+                element.add_intermediate_step('table-convert2MD', "[gpt3.5]"+md_output)
+
+            try:
+                md_table = self._parse_convert_output(md_output)
+                element.set_clean_text(md_table)
+            except Exception as e:
+                element.add_intermediate_step('table-convert2MD', str(e))
+                raise TokenLimitError
+            else:
+                if token_checker:
+                    update_token_checker(
+                        name_step='table-conver2MD',
+                        chain=self.emergency_chain,
+                        token_checker=token_checker,
+                        llm_kwargs=llm_kwargs,
+                        llm_output=md_output,
+                    )
+
+        if md_table == "Empty content":
+            table_type = "None"
+
+        else:
+            table_type = self.categorize_agent.run(
+                #paragraph=md_table,
+                element=element,
+                callbacks=callbacks,
+                token_checker=token_checker
             )
-
-        md_table = self._parse_convert_output(md_output)
-        element.set_clean_text(md_table)
-
-        table_type = self.categorize_agent.run(
-            #paragraph=md_table,
-            element=element,
-            callbacks=callbacks,
-            token_checker=token_checker
-        )
-        table_type = str(table_type)
+            table_type = str(table_type)
         element.set_classification(table_type)
 
         if table_type == "Crystal":
@@ -171,7 +210,7 @@ class TableMiningAgent(Chain):
             )
             props = self.crystal_table_agent.included_props
             element.set_include_properties(props)
-        elif table_type in ["Bond & Angle", "Coordinate"]:
+        elif table_type in ["Bond & Angle", "Coordinate", "Elemental Composition"]:
             output = [f"{table_type} type of table is not target"]
         elif table_type == "Property":
             output = self.property_table_agent.run(
@@ -182,8 +221,10 @@ class TableMiningAgent(Chain):
             )
             props = self.property_table_agent.included_props
             element.set_include_properties(props)
+        elif table_type == "None":
+            output = ["Table seems to be empty"]
         else:
-            raise ContextError("Must be one of [Crytstal, Bond & Angle, Coordinate, Property]")
+            raise ContextError("Must be one of [Crytstal, Bond & Angle, Coordinate, Property, Elemental Composition]")
 
         element.set_data(output)
         return {"output": output}

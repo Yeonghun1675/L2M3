@@ -14,10 +14,10 @@ def save_file(filepath, content):
 
 openai.api_key = "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"  # molsim1
 model_name = "gpt-3.5-turbo"
-jsonl_file = "text_categorize3_revise.jsonl"
-file_id = "file-Cfxyo5FjmFf1fNyROVMdOkFJ"
-job_id = "ftjob-5ea0xPIq9RmiuxxUOd0SMLQz"
-# created = "ft:gpt-3.5-turbo-0613:molsimllm::80Qa4CA7"
+jsonl_file = "text_categorize4.jsonl"
+file_id = "file-tzBuvT5A78Rk4iVx47rsCqgZ"
+job_id = "ftjob-DwDAw8IcoUS6S8rEK8AQ2srZ"
+created = "ft:gpt-3.5-turbo-0613:molsimllm::8BMh4gKR"
 
 # File upload
 def file_upload(jsonl_file):
@@ -52,3 +52,5 @@ def retrieve_job(job_id):
 # file_upload(jsonl_file)
 # job_upload(file_id)
 retrieve_job(job_id)
+
+print(openai.FineTuningJob.retrieve(job_id))

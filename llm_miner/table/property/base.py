@@ -1,5 +1,6 @@
 import ast
 from typing import Any, Dict, List, Optional
+import random
 
 from langchain.base_language import BaseLanguageModel
 from langchain.callbacks.manager import CallbackManagerForChainRun
@@ -56,7 +57,7 @@ class PropertyTableAgent(Chain):
         template_extract = PromptTemplate(
             template=prompt_extract,
             template_format="jinja2",
-            input_variables=['prop', 'format', 'paragraph'],
+            input_variables=['prop', 'format', 'examples', 'paragraph'],
         )
         extract_chain = LLMChain(llm=extract_llm, prompt=template_extract)
 
@@ -126,10 +127,12 @@ class PropertyTableAgent(Chain):
             return {"output": ["No properties found"]}
 
         format = self._make_format(props)
+        examples = self._make_examples(props)
 
         llm_kwargs = {
             'prop': props,
             'format': format,
+            'examples': examples,
             'paragraph': paragraph,
         }
         try:
@@ -138,6 +141,9 @@ class PropertyTableAgent(Chain):
                 callbacks=callbacks,
                 stop=["Input:"]
             )
+            # prompt = self.extract_chain.prompt.format_prompt(**llm_kwargs).to_string()
+            # print(prompt)
+
         except Exception as e:
             element.add_intermediate_step('table-property-extract', str(e))
             raise LangchainError(e)
@@ -201,6 +207,8 @@ class PropertyTableAgent(Chain):
             raise TokenLimitError(e)
         else:
             output = output.replace("```", "").strip()
+        if "llipsis" in output:
+            return ["Ellipsis Error"]
 
         try:
             list_ = ast.literal_eval(output)
@@ -219,12 +227,46 @@ class PropertyTableAgent(Chain):
             item = '\n'.join(['    ' + line for line in formatter.structured_data[item].split('\n')])
             formatted_props += "\n"+item
 
-        example = f"""Example:
-```
+        example = f"""Format: ```JSON
 {{{formatted_props}
 }}
 ```"""
         return example
 
-    def _choose_examples(self):
-        pass
+    def _make_examples(self, props):
+        formatter = Formatter
+        included_in_examples = []
+        choosen_examples = []
+
+        for item in props:
+            candidate_examples = []
+            
+            if item.replace("_", " ") in included_in_examples:
+                continue
+            
+            for key, value in formatter.example_table.items():
+                if key in choosen_examples:
+                    continue
+                
+                if item.replace("_", " ") in value['contain']:
+                    candidate_examples.append(key)
+                    
+            if candidate_examples:
+                choosen = random.choice(candidate_examples)
+                choosen_examples.append(choosen)
+                included_in_examples += formatter.example_table[choosen]['contain']
+                
+
+        if len(choosen_examples) < 2:
+            tmp = list(formatter.example_table.keys())[:]
+            for exam in choosen_examples:
+                tmp.remove(exam)
+            extra = random.choice(tmp)
+            choosen_examples.append(extra)
+            included_in_examples += formatter.example_table[extra]['contain']
+
+        included_in_examples = list(set(included_in_examples))           
+        result = [formatter.example_table[item]['content'].strip() for item in choosen_examples]
+        result = "\n\n".join(result)
+        return result
+

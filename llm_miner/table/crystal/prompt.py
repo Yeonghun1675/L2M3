@@ -1,14 +1,15 @@
 # chemical formula는 기본적으로 물어볼 거라서 포함 안시켰음.
 CRYSTAL_CATEGORIZE = """From the provided markdown table, generate a Python list of item names with data present. You must exclude absent items and return an empty list if any key items are missing. Names of items must be one of following:
 - chemical_formula: empirical formula of materials.
-- chemical_formula weight: sum of the atomic weights of the elements present in its chemical formula.
+- chemical_formula_weight: sum of the atomic weights of the elements present in its chemical formula.
 - space_group: a mathematical description of the symmetries inherent in a periodic crystal lattice.
 - crystal_system: symmetrical and geometrical arrangements within the crystal lattice of materials.
 - lattice_parameters: cell lengths and angles
 - cell_volume: cell volume of materials.
 - density: bulk density of materials.
 - crystal_size: crystal size of materials.
-- crystal_color: color of crystal.
+- material_color: The color of material crystal or bulk
+- material_shape: The shape of material crystal or bulk. e.g., cylinder, plate
 
 Begin!
 
@@ -23,32 +24,34 @@ Input:
 List : ["chemical_formula", "chemical_formula_weight", "crystal_system"]
 
 Input:
-Table 1
+Table 1. Crystallographic Data for Mg and Mn 5-Aminonaphthalene-2-sulfonate Salts
 
-Crystal data and structure refinements for complexes 1–2.
-
-| Compound | 1 | 2 |
-| --- | --- | --- |
-| Space group | P2<sub>1</sub>/c | R -3m |
-| a (Å) | 13.990 (5) | 19.504 (3) |
-| b (Å) | 13.749 (4) | 19.504 (3) |
-| c (Å) | 14.073 (5) | 37.930 (5) |
-| α (°) | 90.00 | 90.00 |
-| β (°) | 110.538(13) | 90.00 |
-| γ (°) | 90.00 | 120.00 |
-| T (K) | 200 | 200 |
-| V (Å<sup>3</sup>) | 2534.8 (15) | 12,496 (3) |
-| Z | 4 | 18 |
-| D<sub>c</sub> (g·cm<sup>-3</sup>) | 1.299 | 0.956 |
-| μ (mm<sup>-1</sup>) | 1.011 | 0.911 |
-| F(0 0 0) | 1024 | 3667 |
-| R<sub>int</sub> | 0.1132 | 0.0830 |
-| Parameters refined | 370 | 168 |
-| Goodness-of-fit | 1.048 | 1.132 |
-
-a R<sub>1</sub> = Σ|F<sub>o</sub> - F<sub>c</sub>| / Σ|F<sub>o</sub>|.
-b wR<sub>2</sub> = |Σw(|F<sub>o</sub><sup>2</sup> - F<sub>c</sub><sup>2</sup>)| / Σw(F<sub>o</sub><sup>2</sup>)<sup>1/2</sup>, where w = 1/[σ<sup>2</sup>(F<sub>o</sub><sup>2</sup>) + (aP)<sup>2</sup> + bP]. P = (F<sub>o</sub><sup>2</sup> + 2F<sub>c</sub><sup>2</sup>)/3.
-List: ["space_group", "lattice_parameters", "cell_volume", "density"]
+| Compound | [Mg(H<sub>2</sub>O)<sub>6</sub>](H<sub>2</sub>NC<sub>10</sub>H<sub>6</sub>SO<sub>3</sub>)<sub>2</sub>·6H<sub>2</sub>O | [Mn(H<sub>2</sub>O)<sub>6</sub>](H<sub>2</sub>NC<sub>10</sub>H<sub>6</sub>SO<sub>3</sub>)<sub>2</sub>·6H<sub>2</sub>O |
+|----------|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| CCDC no. | 276650                                                                                        | 276651                                                                                        |
+| Color/shape | Mauve/plate | Mauve/plate |
+| Empirical formula | C<sub>20</sub>H<sub>40</sub>N<sub>2</sub>MgO<sub>18</sub>S<sub>2</sub> | C<sub>20</sub>H<sub>40</sub>N<sub>2</sub>MnO<sub>18</sub>S<sub>2</sub> |
+| Formula weight | 684.97 | 715.60 |
+| Temperature (K) | 110(2) | 293(2) |
+| Crystal system | Monoclinic | Monoclinic |
+| Space group | P2<sub>1</sub>/c | P2<sub>1</sub>/c |
+| a (Å) | 14.1329(18) | 14.249(3) |
+| b (Å) | 8.5789(11) | 8.5940(17) |
+| c (Å) | 12.4880(17) | 12.505(3) |
+| β (°) | 93.374(3) | 93.30(3) |
+| Volume (Å<sup>3</sup>) | 1511.5(3) | 1528.8(5) |
+| Formula units/cell (Z) | 2 | 2 |
+| D<sub>calc</sub> (g/cm<sup>3</sup>) | 1.505 | 1.554 |
+| μ(cm<sup>−1</sup>) | 2.79 | 6.49 |
+| Transmission factors | 0.967–0.981 | 0.830–0.890 |
+| Diffractometer | CCD area detector | CCD area detector |
+| θrange for data (°) | 1.44–27.54 | 2.77–27.53 |
+| Reflections measured | 9489 (±h, ±k, ±l) | 7317 (±h, ±k, ±l) |
+| Independent/observed reflections | 3486 (R<sub>int</sub>=0.091)/2104 [I &gt; 2σ(I)] | 3364 (R<sub>int</sub>=0.054)/2413 [I &gt; 2σ(I)] |
+| Data/restraints/parameters | 3486/0/276 | 3364/0/274 |
+| Goodness-of-fit on F<sup>2</sup> | 1.04 | 1.08 |
+| R indices (R1; wR2) | 0.074; 0.141 | 0.071; 0.125 |
+List: ["material_color", "material_shape", "chemical_formula", "chemical_formula_weight", "crystal_system", "space_group", "lattice_parameters", "cell_volume", "density"]
 
 Input:
 Table 1
@@ -79,11 +82,26 @@ a R<sub>1</sub> = Σ||F<sub>o</sub>|-|F<sub>c</sub>||/Σ|F<sub>o</sub>|.
 List: ["chemical_formula", "chemical_formula_weight", "crystal_system", "lattice_parameters", "crystal_size"]
 
 Input:
+Atomic Parameters Resulting from the Rietveld Refinement of the UiO-66-NDC-0BC MOF in the Fm3̅m Space Group (No. 225): Fractional Coordinates (x, y, z), Isotropic Atomic Displacement Parameters (Uiso), Occupancy Factors, Site Degeneration and Number of Atoms in the Unit Cell[^a]
+
+| atom | x       | y       | z       | Uiso (Å^2) | occupancy factor | site | atoms/unit cell |
+|------|---------|---------|---------|------------|------------------|------|-----------------|
+| Zr   | 0.1176(1) | 0       | 0       | 0.0129(8) | 1.00             | 24e  | 24              |
+| O1   | 0.1699(3) | 0       | 0.0903(3) | 0.022(2)  | 1.00             | 96j  | 96              |
+| O2   | 0.0641(4) | –x      | –x      | 0.056(5)  | 1.00             | 32f  | 32              |
+| C11  | 0.1504(2) | 0       | –x      | 0.003(4)  | 0.87             | 48h  | 41.76           |
+| C12  | 0.2012(2) | 0       | x       | 0.043(7)  | 0.87             | 48h  | 41.76           |
+| C13  | 0.2603(3) | 0.0280(5) | 0.1890(3) | 0.023(6)  | 0.435            | 192l | 83.52           |
+| C14  | 0.2724(5) | 0.056(1) | 0.1296(4) | 0.24(3)[^b] | 0.217            | 192l | 41.76           |
+| C15  | 0.3317(7) | 0.084(2) | 0.1174(6) | 0.36(5)[^b] | 0.217            | 192l | 41.76           |
+List: []
+
+Input:
 {{paragraph}}
 List:"""
 
 
-CRYSTAL_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the example below. When giving output, you should not use ellipses to shorten the content. When lanthanides (Ln) or halogens (X) or metal (M) come out, indicate by substituting.
+CRYSTAL_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the format below. When giving output, you should not use ellipses to shorten the content. When lanthanides (Ln) or halogens (X) or metal (M) come out, indicate by substituting.
 {{format}}
 
 Begin!
@@ -198,13 +216,69 @@ Output: ```JSON
 ```
 
 Input:
+Table 1. Results for [Ln(abdc)(Habdc), nH2O]∞ with Ln=La–Pr and n =10.[^*]
+
+| Ln | MW (gmol−1) |
+|----|-------------|
+| La | 678.33      |
+| Ce | 679.54      |
+| Pr | 680.33      |
+
+Output: ```JSON
+[
+    {
+        "meta": {
+            "name": "",
+            "symbol": "",
+            "chemical formula": "[La(abdc)(Habdc), nH2O]",
+        },
+        "chemical formula weight": [
+            {
+                "value": "678.33",
+                "unit": "",
+                "condition": "n=10",
+            },
+        ]
+    },
+    {
+        "meta": {
+            "name": "",
+            "symbol": "",
+            "chemical formula": "[Ce(abdc)(Habdc), nH2O]",
+        },
+        "chemical formula weight": [
+            {
+                "value": "679.54",
+                "unit": "",
+                "condition": "n=10",
+            },
+        ]
+    },
+    {
+        "meta": {
+            "name": "",
+            "symbol": "",
+            "chemical formula": "[Pr(abdc)(Habdc), nH2O]",
+        },
+        "chemical formula weight": [
+            {
+                "value": "680.33",
+                "unit": "",
+                "condition": "n=10",
+            },
+        ]
+    },
+]
+```
+
+Input:
 {{paragraph}}
 
 Output:"""
 
 
 FT_TYPE = """From the provided markdown table, generate a Python list of item names with data present. You must exclude absent items and return an empty list if any key items are missing. Names of items must be one of following:
-['chemical_formula', 'chemical_formula weight', 'space_group', 'crystal_system', 'lattice_parameters', 'cell_volume', 'density', 'crystal_size', 'material_color']"""
+['chemical_formula', 'chemical_formula_weight', 'space_group', 'crystal_system', 'lattice_parameters', 'cell_volume', 'density', 'crystal_size', 'material_color', 'material_shape']"""
 
 
 FT_HUMAN = "{paragraph}"

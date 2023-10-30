@@ -200,8 +200,7 @@ class CrystalTableAgent(Chain):
             item = '\n'.join(['    ' + line for line in formatter.structured_data[item].split('\n')])
             formatted_props += "\n"+item
 
-        example = f"""Example:
-```
+        example = f"""Format: ```JSON
 {{{formatted_props}
 }}
 ```"""
