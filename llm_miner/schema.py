@@ -46,6 +46,9 @@ class Paragraph(BaseModel):
         self.intermediate_step[step] = output
 
     def set_data(self, data) -> None:
+        if isinstance(data, list):  # data must be list, not other types
+            data = [data]
+
         if self.data is None:
             self.data = data
         else:
