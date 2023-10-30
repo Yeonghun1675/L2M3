@@ -1,5 +1,6 @@
 import ast
 from typing import Any, Dict, List, Optional
+import random
 
 from langchain.base_language import BaseLanguageModel
 from langchain.callbacks.manager import CallbackManagerForChainRun
@@ -140,6 +141,9 @@ class PropertyTableAgent(Chain):
                 callbacks=callbacks,
                 stop=["Input:"]
             )
+            # prompt = self.extract_chain.prompt.format_prompt(**llm_kwargs).to_string()
+            # print(prompt)
+
         except Exception as e:
             element.add_intermediate_step('table-property-extract', str(e))
             raise LangchainError(e)
@@ -203,6 +207,8 @@ class PropertyTableAgent(Chain):
             raise TokenLimitError(e)
         else:
             output = output.replace("```", "").strip()
+        if "llipsis" in output:
+            return ["Ellipsis Error"]
 
         try:
             list_ = ast.literal_eval(output)
@@ -221,14 +227,14 @@ class PropertyTableAgent(Chain):
             item = '\n'.join(['    ' + line for line in formatter.structured_data[item].split('\n')])
             formatted_props += "\n"+item
 
-        example = f"""Format:
-```
+        example = f"""Format: ```JSON
 {{{formatted_props}
 }}
 ```"""
         return example
 
     def _make_examples(self, props):
+        formatter = Formatter
         included_in_examples = []
         choosen_examples = []
 
@@ -250,10 +256,16 @@ class PropertyTableAgent(Chain):
                 choosen_examples.append(choosen)
                 included_in_examples += formatter.example_table[choosen]['contain']
                 
-        included_in_examples = list(set(included_in_examples))
+
         if len(choosen_examples) < 2:
-            choosen_examples.append(random.choice(list(formatter.example_table.keys())))
-            
+            tmp = list(formatter.example_table.keys())[:]
+            for exam in choosen_examples:
+                tmp.remove(exam)
+            extra = random.choice(tmp)
+            choosen_examples.append(extra)
+            included_in_examples += formatter.example_table[extra]['contain']
+
+        included_in_examples = list(set(included_in_examples))           
         result = [formatter.example_table[item]['content'].strip() for item in choosen_examples]
         result = "\n\n".join(result)
         return result

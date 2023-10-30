@@ -2,6 +2,7 @@ example_1 = {
     "contain": ["surface area", "porosity", "pore volume", "gas adsorption", "adsorption energy"],
     "content": """
 Input:
+["surface area", "porosity", "pore volume", "gas adsorption", "adsorption energy"],
 Table 2
 
 Structure and H2 absorption parameters for compounds I and II.
@@ -159,6 +160,7 @@ example_2 = {
     "contain": ["conversion", "reaction yield"],
     "content": """
 Input:
+["conversion", "reaction yield"],
 Table 7
 
 Cyclohexene oxidation in varying reaction temperature and time.[^a]
@@ -276,6 +278,7 @@ example_3 = {
     "contain": ["peak spectrum"],
     "content": """
 Input:
+["peak spectrum"],
 Table 3
 
 13C NMR spectral data (in ppm) of 1 and K4edta.
@@ -336,6 +339,7 @@ example_4 = {
     "contain": ["gas adsorption", "selectivity"],
     "content": """
 Input:
+["gas adsorption", "selectivity"],
 Table 1. Adsorption Capacity and Selectivity Calculated Based on the Dry and Humid C2H4/C2H6 Breakthrough Experiments at 293 K and 1 bar
 
 |              | C2H4 (mmol/g) | C2H6 (mmol/g) | selectivity (C2H4/C2H6) |
@@ -487,6 +491,7 @@ example_5 = {
     "contain": ["simulation parameters"],
     "content": """
 Input:
+["simulation parameters"],
 Table 1. Lennard-Jones Parameters for the Adsorbates Used, Where ε is the LJ Well Depth, k<sub>B</sub> is the Boltzmann Constant, and σ is the Molecular Diameter
 
 | adsorbate | σ (Å) | ε/k<sub>B</sub> (K) | ref |
@@ -548,6 +553,7 @@ example_6 = {
     "contain": ["simulation parameters"],
     "content": """
 Input:
+["simulation parameters"],
 Table 2. Parameters for the Langmuir Isotherm Model of Two Different Dyes
 
 | adsorbate | parameters | 298.15 K | 308.15 K | 318.15 K |
@@ -611,6 +617,7 @@ example_7 = {
     "contain": ["surface area"],
     "content": """
 Input:
+["surface area"],
 Table 1. Summary of Calculated Geometric Surface Areas for Ultrahigh Surface Area MOFs
 
 | MOF    | geometric surface area (m²g⁻¹) | ref       |
@@ -662,6 +669,7 @@ example_8 = {
     "contain": ["henry coefficient"],
     "content": """
 Input:
+["henry coefficient"],
 Table 5. Henry Coefficients (K<sub>H</sub>) × 10<sup>–3</sup> [mol/kg/Pa] of CO<sub>2</sub> in the M<sub>2</sub>(DHFUMA) vs M<sub>2</sub>(DOBDC) Series at 313 and 400 K
 
 | metal | DHFUMA 313 K | DHFUMA 400 K | DOBDC 313 K | DOBDC 400 K |
@@ -765,6 +773,7 @@ example_9 = {
     "contain": ["pore diameter", "pore volume"],
     "content": """
 Input:
+["pore diameter", "pore volume"],
 Table 1. Pore Diameters, and Pore Volumes for NU-1000 and SALI-Derived Variants
 
 | MOF        | BJH pore diameter (Å) | pore vol. (cm<sup>3</sup> g<sup>–1</sup>) |
@@ -851,6 +860,7 @@ example_10 = {
     "contain": ["gas adsorption", "etc"],
     "content": """
 Input:
+["gas adsorption", "etc"],
 Table 4. Adsorption Uptakes of CH<sub>4</sub> and Working Capacities (Considering Desorption at 5 bar) at Room Temperature for 1 and 2
 
 |           | P = 35 bar |           | P = 65 bar |           |
@@ -949,6 +959,7 @@ example_11 = {
     "contain": ["adsorption energy", "etc"],
     "content": """
 Input:
+["adsorption energy", "etc"],
 Table 5. Heats of Adsorption (kJ mol–1) Calculated by Extrapolation of the Low Pressure Data of the Virial Isotherms (n vs ln­(p/n)) for 1 and 3 at 25, 40, and 70 °C
 
 |         | CH<sub>4</sub> | CO<sub>2</sub> |
@@ -1010,6 +1021,7 @@ example_12 = {
     "contain": ["density", "etc"],
     "content": """
 Input:
+["density", "etc"],
 Table 2. Comparison of the results for HKUST-1 and IRMOF1
 
 | property | HKUST-1 PB | HKUST-1 Zeo++ | IRMOF-1 PB | IRMOF-1 Zeo++ |
@@ -1095,6 +1107,7 @@ example_13 = {
     "contain": ["crystal size"],
     "content": """
 Input:
+["crystal size"],
 Table 1
 Crystal data and structure refinement for the [Hg(μ-4,4′-bipy)(μ-AcO)(AcO)]n·n/2H2O (1)
 
@@ -1129,6 +1142,7 @@ example_14 = {
     "contain": ["material color", "material shape"],
     "content": """
 Input:
+["material color", "material shape"],
 Table 1. Data for isolated copper(I) complexes of pyrazine carboxamide
 
 | Complex | Colour |
@@ -1206,6 +1220,7 @@ example_15 = {
     "contain": ["space group", "etc"],
     "content": """
 Input:
+["space group", "etc"],
 Table 5. Data for the Metal Shell of Metal Complexes of Uncharged Erythritol
 
 | stoichiometry | space group | M−Cl distance (Å) |
@@ -1289,6 +1304,7 @@ example_16 = {
     "contain": ["decomposition temperature", "elastic constant"],
     "content": """
 Input:
+["decomposition temperature", "elastic constant"],
 Table 1. Decomposition Temperature and the Mechanical Properties of Hybrid Membranes
 
 | sample name       | MNS content (in weight) | T<sub>d</sub> (°C) | Young’s modulus (GPa) | maximum elongation (%) |
@@ -1366,6 +1382,7 @@ example_17 = {
     "contain": ["magnetic susceptibility", "magnetic moment"],
     "content": """
 Input:
+["magnetic susceptibility", "magnetic moment"],
 Table 3. Main Magnetic Parameters for 1 and 2
 
 |   | χT (300 K)/cm³ K mol⁻¹ | M (70 kOe, 1.8 K)/μB |
@@ -1431,6 +1448,7 @@ example_18 = {
     "contain": ["proton conductivity", "etc"],
     "content": """
 Input:
+["proton conductivity", "etc"],
 Table 4. Proton Conductivity (σ) and Methanol Permeability (P) of Different Types of Hybrid PEMs Studied in Previous Works
 
 | hybrid PEMs      | σ (S·cm–1) | P (10–7 cm2·s–1) | references |
@@ -1500,6 +1518,7 @@ example_19 = {
     "contain": ["topology"],
     "content": """
 Input:
+["topology"],
 Table 1. Nets Assigned to MOFs Described in the Text
 
 | MOF     | unit  | all node |
@@ -1545,6 +1564,7 @@ example_20 = {
     "contain": ["formation energy"],
     "content": """
 Input:
+["formation energy"],
 Table 1. Formation Energies for Species As Calculated by DFT
 
 | species | formation energy (kcal/mol) |

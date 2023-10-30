@@ -140,7 +140,8 @@ class LLMMiner(Chain):
         )
 
         table_agent = TableMiningAgent.from_llm(
-            convert_llm = ft_model_dict.get('ft_table_convert', llm),
+            convert_llm = ft_model_dict.get('ft_table_convert', simple_llm),
+            emergency_llm=simple_llm,
             categorize_llm = ft_model_dict.get('ft_table_categorize', llm),
             crystal_table_type_llm = ft_model_dict.get('ft_table_crystal_type', llm),
             crystal_table_extract_llm=llm,

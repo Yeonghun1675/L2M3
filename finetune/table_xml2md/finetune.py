@@ -52,3 +52,7 @@ def retrieve_job(job_id):
 # file_upload(jsonl_file)
 # job_upload(file_id)
 retrieve_job(job_id)
+
+
+
+print(openai.FineTuningJob.retrieve(job_id))

@@ -20,7 +20,7 @@ from llm_miner.pricing import TokenChecker, update_token_checker
 
 class CategorizeAgent(Chain):
     categorize_chain: LLMChain
-    labels: List[str] = ["Crystal", "Bond & Angle", "Coordinate", "Property"]
+    labels: List[str] = ["Crystal", "Bond & Angle", "Coordinate", "Property", "Elemental Composition"]
     input_key: str = "element"
     output_key: str = "output"
 
@@ -82,6 +82,9 @@ class CategorizeAgent(Chain):
             )
 
         output = self._parse_output(llm_output)
+        if output == "Empty Content":
+            output = "['Empty Content']"
+
         try:
             tmp_ast = ast.literal_eval(output)
         except ValueError:
@@ -92,7 +95,11 @@ class CategorizeAgent(Chain):
 
         if not output:
             raise ContextError('There are no categories in table')
-        if output not in self.labels:
+
+        if output == "Empty content":
+            raise ContextError(f'Table seems to be empty')
+
+        elif output not in self.labels:
             raise ContextError(f'Class of table must be one of {self.labels}, not {output}')
 
         self._write_log(str(output), _run_manager)

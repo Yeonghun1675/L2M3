@@ -205,8 +205,13 @@ selectivity = """
         "unit": "",
         "substrate": "",
         "catalyst": "",
+<<<<<<< HEAD
         "pressure": "",
         "temperature": "",
+=======
+        "pressure":"",
+        "temperature":"",
+>>>>>>> 80ceb36a5171296843926a1caeac1489c3bfa679
         "solvent": "",
         "time": "",
         "condition": "",
@@ -222,7 +227,7 @@ conversion = """
         "substrate": "",
         "catalyst": "",
         "pressure":"",
-        "temperature":""
+        "temperature":"",
         "solvent": "",
         "time": "",
     }, ...
