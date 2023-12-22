@@ -95,7 +95,7 @@ Input:
 List:"""
 
 
-PROPERTY_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the Format below. When giving output, you should not use ellipses to shorten the content. When lanthanides (Ln) or halogens (X) or metal (M) come out, indicate by substituting.
+PROPERTY_EXTRACT = """From the given Markdown table, extract information related to {{prop}} for each materials. Extracted information should be in structured json format as in the Format below but when presenting the output, strictly refrain from using ellipsis. When lanthanides (Ln) or halogens (X) or metal (M) come out, indicate by substituting.
 {{format}}
 
 Begin!
