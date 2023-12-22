@@ -11,8 +11,9 @@ from llm_miner.parser.utils import publisher_finder
 from llm_miner.utils import merge_para_by_token
 from llm_miner.error import ReaderError, ParserError
 from llm_miner.config import config
+from llm_miner.meta_collector import MetaCollector, Results
 
-warnings.filterwarnings("ignore", category=UserWarning, module='bs4')
+warnings.filterwarnings("ignore", category=UserWarning, module="bs4")
 
 
 class JournalReader(BaseModel):
@@ -20,7 +21,7 @@ class JournalReader(BaseModel):
     publisher: str
     elements: Elements
     cln_elements: Elements = Elements.empty()
-    result: list = []
+    result: Results = Results.emtpy()
     metadata: Metadata
 
     @property
@@ -37,86 +38,85 @@ class JournalReader(BaseModel):
 
     @property
     def url(self):
-        return f'https://doi.org/{self.doi}'
+        return f"https://doi.org/{self.doi}"
 
     def get_tables(self) -> List[Paragraph]:
         if self.cln_elements:
             return self.cln_elements.get_tables()
         else:
             return self.elements.get_tables()
-            
+
     def get_texts(self) -> List[Paragraph]:
         if self.cln_elements:
             return self.cln_elements.get_texts()
         else:
             return self.elements.get_texts()
-                
+
     def get_figures(self) -> List[Paragraph]:
         if self.cln_elements:
             return self.cln_elements.get_figures()
         else:
             return self.elements.get_figures()
-    
+
     def get_synthesis_conditions(self) -> List[Paragraph]:
         if self.cln_elements:
             return self.cln_elements.get_synthesis_conditions()
         else:
             return self.elements.get_synthesis_conditions()
-    
+
     def get_properties(self) -> List[Paragraph]:
         if self.cln_elements:
             return self.cln_elements.get_properties()
         else:
             return self.elements.get_properties()
-        
+
     def get_idx(self, idx: Union[int, Iterable[int]]) -> Paragraph:
         if isinstance(idx, int):
             for element in self.elements:
                 if int(element.idx) == idx:
                     return element
-            raise IndexError(f'There are no idx {idx} in elements.')
+            raise IndexError(f"There are no idx {idx} in elements.")
         else:
             ls_para = [self.get_idx(i).copy() for i in idx]
             b_para = ls_para[0]
             for para in ls_para[1:]:
                 b_para.merge(para, merge_idx=True)
             return b_para
-    
-    def to_dict(self,) -> Dict[str, Any]:
+
+    def to_dict(
+        self,
+    ) -> Dict[str, Any]:
         return {
-            'filepath': str(self.filepath),
-            'publisher': self.publisher,
-            'elements': self.elements.to_dict(),
-            'cln_elements': self.cln_elements.to_dict(),
-            'metadata': self.metadata.to_dict(),
-            'result': self.result.to_dict(),
+            "filepath": str(self.filepath),
+            "publisher": self.publisher,
+            "elements": self.elements.to_dict(),
+            "cln_elements": self.cln_elements.to_dict(),
+            "metadata": self.metadata.to_dict(),
+            "result": self.result.to_dict(),
         }
-    
+
     def to_json(self, filepath) -> Dict[str, Any]:
-        with open(filepath, 'w') as f:
+        with open(filepath, "w") as f:
             json.dump(self.to_dict(), f)
 
-    def reconstruct(
-            self, 
-            model_name:str = 'gpt-4'
-    ) -> None:
-        if self.cln_elements:    # clear cln_elements
+    def reconstruct(self, model_name: str = "gpt-4") -> None:
+        if self.cln_elements:  # clear cln_elements
             self.cln_elements = Elements.empty()
 
         merge_para_by_token(
-            ls_para = self.elements.get_synthesis_conditions(),
-            classification = 'synthesis condition',
-            max_tokens = config['input_max_tokens_synthesis'],
-            model_name = model_name,
-            elements = self.cln_elements
+            ls_para=self.elements.get_synthesis_conditions(),
+            classification="synthesis condition",
+            max_tokens=config["input_max_tokens_synthesis"],
+            model_name=model_name,
+            elements=self.cln_elements,
         )
 
         merge_para_by_token(
-            ls_para = self.elements.get_properties(),
-            classification = 'property',
-            max_tokens = config['input_max_tokens_property'],
-            model_name = model_name,
-            elements = self.cln_elements
+            ls_para=self.elements.get_properties(),
+            classification="property",
+            max_tokens=config["input_max_tokens_property"],
+            model_name=model_name,
+            elements=self.cln_elements,
         )
 
         for table in self.elements.get_tables():
@@ -128,12 +128,14 @@ class JournalReader(BaseModel):
     @classmethod
     def from_file(cls, filepath: str, publisher: str = None):
         if publisher is None:
-            raise NotImplementedError('publisher finder is not implemented.')
-            #publisher = publisher_finder(filepath)
+            raise NotImplementedError("publisher finder is not implemented.")
+            # publisher = publisher_finder(filepath)
 
         publisher = publisher.lower()
         if publisher not in parser_dict:
-            raise ReaderError(f'publisher must be one of [`acs`, `rsc`, `elsevier`, `springer], not {publisher}')
+            raise ReaderError(
+                f"publisher must be one of [`acs`, `rsc`, `elsevier`, `springer], not {publisher}"
+            )
 
         parser: BaseParser = parser_dict[publisher]
         try:
@@ -152,23 +154,23 @@ class JournalReader(BaseModel):
 
     @classmethod
     def from_dict(cls, data):
-        if 'cln_elements' in data:
-            cln_elements = Elements.from_dict(data['cln_elements'])
+        if "cln_elements" in data:
+            cln_elements = Elements.from_dict(data["cln_elements"])
         else:
             cln_elements = Elements.empty()
-        
-        if 'result' in data:
-            result = Elements.from_dict(data['result'])
+
+        if "result" in data:
+            result = Elements.from_dict(data["result"])
         else:
             result = Elements.empty()
 
         return cls(
-            filepath=Path(data['filepath']),
-            publisher=data['publisher'],
-            elements=Elements.from_dict(data['elements']),
+            filepath=Path(data["filepath"]),
+            publisher=data["publisher"],
+            elements=Elements.from_dict(data["elements"]),
             cln_elements=cln_elements,
             result=result,
-            metadata=Metadata.from_dict(data['metadata'])
+            metadata=Metadata.from_dict(data["metadata"]),
         )
 
     @classmethod
@@ -176,43 +178,3 @@ class JournalReader(BaseModel):
         with open(filepath) as f:
             data = json.load(f)
         return cls.from_dict(data)
-
-
-    def organize(self):
-        matcher = InFileMatcher(self)
-        self.result = matcher.result
-
-
-class InFileMatcher:
-    def __init__(self, output):
-        self.Data = namedtuple('Data', ['data', 'formula_source'])
-        self.output = output
-        self.result = []
-        self.filter_data()
-    
-    def filter_data(self):
-        for ele in self.output.cln_elements:
-            input = False
-            if not ele.data or ele.data == "None":
-                continue
-            while True:
-                if isinstance(ele.data[0], dict):
-                    if "meta" in ele.data[0].keys():
-                        input = True
-                        # self.result.append(ele)
-                        break
-                    else:
-                        break
-                elif isinstance(ele.data[0], list):
-                    ele.data = ele.data[0]
-                else:
-                    break
-
-            if input:
-                if ele.type == "text":
-                    formula_source = ele.classification
-                else:
-                    formula_source = ele.type
-                for material in ele.data:
-                    data = self.Data(material, formula_source)
-                    self.result.append(data)
