@@ -1,3 +1,4 @@
+from collections import namedtuple
 import warnings
 import json
 from typing import List, Any, Dict, Union, Iterable
@@ -19,6 +20,7 @@ class JournalReader(BaseModel):
     publisher: str
     elements: Elements
     cln_elements: Elements = Elements.empty()
+    result: list = []
     metadata: Metadata
 
     @property
@@ -87,6 +89,7 @@ class JournalReader(BaseModel):
             'elements': self.elements.to_dict(),
             'cln_elements': self.cln_elements.to_dict(),
             'metadata': self.metadata.to_dict(),
+            'result': self.result.to_dict(),
         }
     
     def to_json(self, filepath) -> Dict[str, Any]:
@@ -153,12 +156,18 @@ class JournalReader(BaseModel):
             cln_elements = Elements.from_dict(data['cln_elements'])
         else:
             cln_elements = Elements.empty()
+        
+        if 'result' in data:
+            result = Elements.from_dict(data['result'])
+        else:
+            result = Elements.empty()
 
         return cls(
             filepath=Path(data['filepath']),
             publisher=data['publisher'],
             elements=Elements.from_dict(data['elements']),
             cln_elements=cln_elements,
+            result=result,
             metadata=Metadata.from_dict(data['metadata'])
         )
 
@@ -168,3 +177,42 @@ class JournalReader(BaseModel):
             data = json.load(f)
         return cls.from_dict(data)
 
+
+    def organize(self):
+        matcher = InFileMatcher(self)
+        self.result = matcher.result
+
+
+class InFileMatcher:
+    def __init__(self, output):
+        self.Data = namedtuple('Data', ['data', 'formula_source'])
+        self.output = output
+        self.result = []
+        self.filter_data()
+    
+    def filter_data(self):
+        for ele in self.output.cln_elements:
+            input = False
+            if not ele.data or ele.data == "None":
+                continue
+            while True:
+                if isinstance(ele.data[0], dict):
+                    if "meta" in ele.data[0].keys():
+                        input = True
+                        # self.result.append(ele)
+                        break
+                    else:
+                        break
+                elif isinstance(ele.data[0], list):
+                    ele.data = ele.data[0]
+                else:
+                    break
+
+            if input:
+                if ele.type == "text":
+                    formula_source = ele.classification
+                else:
+                    formula_source = ele.type
+                for material in ele.data:
+                    data = self.Data(material, formula_source)
+                    self.result.append(data)

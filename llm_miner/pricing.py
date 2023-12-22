@@ -8,6 +8,7 @@ from llm_miner.utils import num_tokens_from_string
 
 PRICES = {
     'gpt-4': {'input':0.03, 'output':0.06},
+    'gpt-4-1106-preview': {'input': 0.01, 'output': 0.03},
     'gpt-3.5-turbo': {'input':0.0015, 'output':0.002},
     'gpt-3.5-turbo-16k': {'input':0.003, 'output':0.004},
     'davinci-002': {'input':0.002, 'output':0.002},

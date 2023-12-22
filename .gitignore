@@ -55,3 +55,6 @@ transfer_learning/
 
 # vscode
 .vscode/
+
+# storage
+storage/
