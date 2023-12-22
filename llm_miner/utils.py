@@ -1,10 +1,10 @@
-from typing import List, Optional
+from typing import List, Optional, Union
 import tiktoken
 from llm_miner.schema import Paragraph, Elements
 
 
 def num_tokens_from_string(string: str, model: str) -> int:
-    """ get number of tokens for OpenAI models
+    """get number of tokens for OpenAI models
     :param str string: text for input of OpenAI model
     :param str model: name of models
     :returns: Number of tokens
@@ -17,17 +17,16 @@ def num_tokens_from_string(string: str, model: str) -> int:
 
 
 def merge_para_by_token(
-        ls_para: List[Paragraph], 
-        classification: str,
-        max_tokens: Optional[int], 
-        model_name: str, 
-        elements: Elements
-    ) -> Elements:
-
+    ls_para: List[Paragraph],
+    classification: str,
+    max_tokens: Optional[int],
+    model_name: str,
+    elements: Elements,
+) -> Elements:
     total_tokens = 0
     if not ls_para:  # there are no paragraph in ls_para
         return elements
-    
+
     b_para = ls_para[0].copy()
     b_para.classification = classification
     for para in ls_para[1:]:
