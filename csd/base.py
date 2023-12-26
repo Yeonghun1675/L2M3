@@ -10,8 +10,6 @@ from pydantic import BaseModel
 import regex
 from typing import List
 
-# from llm_miner.error import ContextError
-
 
 class CSDAgent(BaseModel):
     doi: str
@@ -23,7 +21,6 @@ class CSDAgent(BaseModel):
         try:
             doi = io.EntryReader('CSD').entry(refcode).publication.doi
         except Exception:
-            # raise ContextError(f"{refcode} is not searchable in CSD")
             raise Error(f"{refcode} is not searchable in CSD")
         if not doi:
             doi = ""

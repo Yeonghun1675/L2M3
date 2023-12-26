@@ -21,7 +21,8 @@ class JournalReader(BaseModel):
     publisher: str
     elements: Elements
     cln_elements: Elements = Elements.empty()
-    result: Results = Results.emtpy()
+    result: Results = Results.empty()
+    # result: Results = []
     metadata: Metadata
 
     @property
@@ -160,9 +161,11 @@ class JournalReader(BaseModel):
             cln_elements = Elements.empty()
 
         if "result" in data:
-            result = Elements.from_dict(data["result"])
+            # result = Elements.from_dict(data["result"])
+            result = Results.from_dict(data["result"])
         else:
-            result = Elements.empty()
+            # result = Elements.empty()
+            result = Results.empty()
 
         return cls(
             filepath=Path(data["filepath"]),

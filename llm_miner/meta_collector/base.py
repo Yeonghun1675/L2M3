@@ -14,8 +14,13 @@ class Material(BaseModel):
     formula_source: Optional[str] = None
 
     def is_equal(self, other: object) -> bool:
+        s_formula, s_general = format_chemical_formula(self.chemical_formula)
+        o_formula, o_general = format_chemical_formula(other.chemical_formula)
+
         if self.name:
             if self.name == other.name or self.name == other.symbol:
+                if s_formula != o_formula and self.formula_source==other.formula_source:
+                    return False
                 return True
         if self.symbol:
             if self.symbol == other.symbol or self.symbol == other.name:
@@ -24,13 +29,19 @@ class Material(BaseModel):
             return False
 
     def concatenate(self, others: object) -> None:  # before: concatenate_data
-        # FIXME - 개선 필요
         # 같은 meta를 가지는 두 물질 정보를 합쳐서 하나의 물질 정보로 만들기
+        s_formula, s_general = format_chemical_formula(self.chemical_formula)
+        o_formula, o_general = format_chemical_formula(others.chemical_formula)
+        if s_general:
+            self.chemical_formula = s_formula
+
         if self.name == others.symbol:
-            self.name = others.name
+            if others.name:
+                self.name = others.name
             self.symbol = others.symbol
-        if others.formula_source != "synthesis condition" and others.chemical_formula:
-            self.chemical_formula = others.chemical_formula
+
+        if others.formula_source != "synthesis condition" and o_general:
+            self.chemical_formula = o_formula
             self.formula_source = others.formula_source
 
         if not self.name:
@@ -38,17 +49,21 @@ class Material(BaseModel):
         if not self.symbol:
             self.symbol = others.symbol
         if not self.chemical_formula:
-            self.chemical_formula = others.chemical_formula
+            self.chemical_formula = o_formula
             self.formula_source = others.formula_source
 
     @classmethod
     def from_data(cls, data: Dict[str, Any], formula_source: Optional[str] = None):
+        """
+        근데 이렇게 바로 넣으면 원래가 뭐였는지 확인이 좀 어렵더라.
+        """
         if not formula_source:
             formula_source = data.get("formula source")
+        chemical_formula = format_chemical_formula(data.get("chemical formula"))[0]
         return cls(
             name=format_chemical_name(data.get("name")),
             symbol=format_chemical_name(data.get("symbol")),
-            chemical_formula=data.get("chemical formula"),
+            chemical_formula=chemical_formula,
             formula_source=formula_source,
         )
 
@@ -81,7 +96,13 @@ class MinedData(BaseModel):
     ) -> str:
         return self.material.chemical_formula
 
-    def to_string(self, print_origin_data=False) -> str:
+    @property
+    def formula_source(
+        self,
+    ) -> str:
+        return self.material.formula_source
+
+    def _to_string(self, print_origin_data=False) -> str:
         string = (
             f"Name : {self.name}\n"
             f"Symbol : {self.symbol}\n"
@@ -95,7 +116,7 @@ class MinedData(BaseModel):
         return string
 
     def print(self, print_origin_data=False) -> None:
-        print(self.to_string(print_origin_data))
+        print(self._to_string(print_origin_data))
 
     def is_equal(self, other: object) -> bool:  # before : isequal_meta
         return self.material.is_equal(other.material)
@@ -165,6 +186,7 @@ class MinedData(BaseModel):
 
 class Results(Sequence, BaseModel):
     results: List[MinedData]
+    matching_dict: Dict[int, Any]
 
     def __getitem__(self, idx: int):
         return self.results[idx]
@@ -174,20 +196,23 @@ class Results(Sequence, BaseModel):
     ) -> int:
         return len(self.results)
 
-    def to_string(self, print_origin_data=False) -> str:
+    def _to_string(self, print_origin_data=False) -> str:
         string = ""
         for data in self.results:
-            string += data.to_string(print_origin_data)
+            string += data._to_string(print_origin_data)
             string += "\n" + "-" * 80 + "\n"
         return string
 
     def print(self, print_origin_data=False) -> None:
-        print(self.to_string(print_origin_data))
+        print(self._to_string(print_origin_data))
 
-    def append(self, data: MinedData):  # before: categorize_by_equality
-        for value in self.results:
+    def append(self, data: MinedData, idx):  # before: categorize_by_equality
+        for jdx, value in enumerate(self.results):
+            if jdx not in self.matching_dict.keys():
+                self.matching_dict[jdx] = []
             if value.is_equal(data):
                 value.concatenate(data)
+                self.matching_dict[jdx].append(idx)
                 return
         self.results.append(data)
 
@@ -216,4 +241,4 @@ class Results(Sequence, BaseModel):
     def empty(
         cls,
     ):
-        return cls(results=list())
+        return cls(results=list(), matching_dict=dict())
