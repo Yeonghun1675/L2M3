@@ -11,9 +11,10 @@ from llm_miner.meta_collector import Results, MinedData
 
 
 class CsdData(BaseModel):
+    # data: 
     matched_idx: List[int] = list()
     # 형식을 제가 몰라서 맞춰서 바꿔주십쇼
-
+    
     @property
     def num_mached(
         self,
@@ -47,7 +48,7 @@ class CsdData(BaseModel):
     def clear(self) -> None:
         self.matched_idx = list()
 
-    def concatenate(self, mined_data: MinedData):  # before : conctenate_csd
+    def concatenate(self, mined_data: MinedData):  # before : concatenate_csd
         raise NotImplementedError()
 
 

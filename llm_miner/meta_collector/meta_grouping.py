@@ -19,8 +19,8 @@ class MetaCollector(BaseModel):
         self,
     ) -> Results:  # before : categorize_by_equality
         results = Results.empty()
-        for data in self.list_data:
-            results.append(data)
+        for idx, data in enumerate(self.list_data):
+            results.append(data, idx)
         return results
 
     @classmethod
