@@ -96,7 +96,7 @@ class JournalReader(BaseModel):
             "result": self.result.to_dict(),
         }
 
-    def to_json(self, filepath) -> Dict[str, Any]:
+    def to_json(self, filepath):
         with open(filepath, "w") as f:
             json.dump(self.to_dict(), f)
 
