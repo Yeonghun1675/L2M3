@@ -16,7 +16,8 @@ class CsdData(BaseModel):
     element_idx: list = list()
     origin_data: List[Any] = list()
 
-    # 형식을 제가 몰라서 맞춰서 바꿔주십쇼
+    def __getitem__(self, key: str) -> Any:
+        return self.data[key]
 
     @property
     def num_matched(
@@ -107,6 +108,21 @@ class CsdData(BaseModel):
     def concatenate(self, mined_data: MinedData):  # before : concatenate_csd
         raise NotImplementedError()
 
+    def to_dict(
+        self,
+    ) -> Dict[str, Any]:
+        return {
+            "material": self.material.to_dict(),
+            "data": self.data,
+            "element_idx": self.element_idx,
+            "origin_data": self.origin_data,
+            "matched_idx": self.matched_idx,
+        }
+
+    def to_json(self, filepath) -> Dict[str, Any]:
+        with open(filepath, "w") as f:
+            json.dump(self.to_dict(), f)
+
     @classmethod
     def from_data(
         cls,
@@ -121,6 +137,22 @@ class CsdData(BaseModel):
             matched_idx=list(),
             origin_data=[data],
         )
+
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> object:
+        return cls(
+            material=Material.from_dict(data["material"]),
+            data=data["data"],
+            element_idx=data["element_idx"],
+            origin_data=data["origin_data"],
+            matched_idx=data["matched_idx"],
+        )
+
+    @classmethod
+    def from_json(cls, filepath):
+        with open(filepath) as f:
+            data = json.load(f)
+        return cls.from_dict(data)
 
 
 class CsdCollector(Sequence, BaseModel):

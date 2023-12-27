@@ -93,7 +93,7 @@ class JournalReader(BaseModel):
             "elements": self.elements.to_dict(),
             "cln_elements": self.cln_elements.to_dict(),
             "metadata": self.metadata.to_dict(),
-            # "result": self.result.to_dict(),
+            "result": self.result.to_dict(),
         }
 
     def to_json(self, filepath) -> Dict[str, Any]:
@@ -161,10 +161,8 @@ class JournalReader(BaseModel):
             cln_elements = Elements.empty()
 
         if "result" in data:
-            # result = Elements.from_dict(data["result"])
             result = Results.from_dict(data["result"])
         else:
-            # result = Elements.empty()
             result = Results.empty()
 
         return cls(
