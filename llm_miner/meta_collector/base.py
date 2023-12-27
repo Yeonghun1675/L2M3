@@ -78,9 +78,34 @@ class Material(BaseModel):
             formula_source=formula_source,
         )
 
+    def to_dict(
+        self,
+    ) -> Dict[str, Any]:
+        return {
+            "name": self.name,
+            "symbol": self.symbol,
+            "chemical_formula": self.chemical_formula,
+            "formula_source": self.formula_source,
+        }
+
+    def to_json(self, filepath) -> Dict[str, Any]:
+        with open(filepath, "w") as f:
+            json.dump(self.to_dict(), f)
+
     @classmethod
     def from_dict(cls, data: Dict[str, Any]):
-        raise NotImplementedError()
+        return cls(
+            name=data["name"],
+            symbol=data["symbol"],
+            chemical_formula=data["chemical_formula"],
+            formula_source=data["formula_source"],
+        )
+
+    @classmethod
+    def from_json(cls, filepath):
+        with open(filepath) as f:
+            data = json.load(f)
+        return cls.from_dict(data)
 
 
 class MinedData(BaseModel):
@@ -88,6 +113,9 @@ class MinedData(BaseModel):
     data: Dict[str, Any]
     element_idx: List[str]
     origin_data: List[Dict[str, Any]] = list()
+
+    def __getitem__(self, key: str) -> Any:
+        return self.data[key]
 
     @property
     def name(
@@ -156,17 +184,25 @@ class MinedData(BaseModel):
     def to_dict(
         self,
     ) -> Dict[str, Any]:
-        raise NotImplementedError()
+        return {
+            "material": self.material.to_dict(),
+            "data": self.data,
+            "element_idx": self.element_idx,
+            "origin_data": self.origin_data,
+        }
 
     def to_json(self, filepath) -> Dict[str, Any]:
         with open(filepath, "w") as f:
             json.dump(self.to_dict(), f)
 
     @classmethod
-    def from_element(
-        cls,
-    ):
-        return cls()
+    def from_dict(cls, data: Dict[str, Any]) -> object:
+        return cls(
+            material=Material.from_dict(data["material"]),
+            data=data["data"],
+            element_idx=data["element_idx"],
+            origin_data=data["origin_data"],
+        )
 
     @classmethod
     def from_data(
@@ -189,12 +225,6 @@ class MinedData(BaseModel):
             element_idx=element_idx,
             origin_data=[data],
         )
-
-    def from_dict(
-        cls,
-        data: Dict[str, Any],
-    ):
-        raise NotImplementedError()
 
     @classmethod
     def from_json(cls, filepath):
@@ -238,17 +268,21 @@ class Results(Sequence, BaseModel):
     def to_dict(
         self,
     ) -> Dict[str, Any]:
-        raise NotImplementedError()
+        return {
+            "results": [d.to_dict() for d in self.results],
+            "matching_dict": self.matching_dict,
+        }
 
     def to_json(self, filepath) -> Dict[str, Any]:
         with open(filepath, "w") as f:
             json.dump(self.to_dict(), f)
 
     @classmethod
-    def from_dict(
-        cls,
-    ):
-        raise NotImplementedError()
+    def from_dict(cls, data: Dict[str, Any]) -> object:
+        return cls(
+            results=[MinedData.from_dict(d) for d in data["results"]],
+            matching_dict=data["matching_dict"],
+        )
 
     @classmethod
     def from_json(cls, filepath):

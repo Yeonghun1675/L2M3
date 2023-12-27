@@ -51,7 +51,7 @@ def format_chemical_name(input_string: str) -> str:
 
 def format_chemical_formula(_s):
     if not _s:
-        return None
+        return None, None
 
     if _s.lower() == "unknown":
         return "", False
