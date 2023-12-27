@@ -6,12 +6,6 @@ from llm_miner.meta_collector.base import MinedData, Results
 from llm_miner.meta_collector.utils import flatten_list_of_dicts
 
 
-class ExtData(BaseModel):
-    data: List[Dict[str, Any]]
-    formula_source: str
-    meta: Dict[str, Any]
-
-
 class MetaCollector(BaseModel):
     list_data: List[MinedData]
 

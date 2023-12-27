@@ -14,7 +14,7 @@ test*.*
 cp_search_csv/
 test/
 test.ipynb
-
+*.swp
 
 .ipynb_checkpoints/
 
