@@ -230,13 +230,23 @@ class CsdCollector(Sequence, BaseModel):
             else:
                 pass
 
+    def to_dict(
+        cls,
+    ):
+        raise NotImplementedError()
+
+    def to_json(
+        cls,
+    ):
+        raise NotImplementedError()
+
     @classmethod
-    def from_json(cls, data) -> object:
+    def from_dict(cls, data) -> object:
         list_csd = [CsdData.from_data(d) for d in data]
         return cls(list_csd=list_csd)
 
     @classmethod
-    def from_file(cls, filepath) -> object:
-        with open(filepath, "r") as f:
+    def from_json(cls, filepath):
+        with open(filepath) as f:
             data = json.load(f)
-        return cls.from_json(data)
+        return cls.from_dict(data)
