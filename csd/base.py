@@ -19,18 +19,14 @@ class CSDAgent(BaseModel):
     @classmethod
     def from_refcode(cls, refcode: str):
         try:
-            doi = io.EntryReader('CSD').entry(refcode).publication.doi
+            doi = io.EntryReader("CSD").entry(refcode).publication.doi
         except Exception:
             raise Error(f"{refcode} is not searchable in CSD")
         if not doi:
             doi = ""
         refcodes = [refcode]
 
-        return cls(
-            doi=doi,
-            refcodes=refcodes,
-            data=[]
-        )
+        return cls(doi=doi, refcodes=refcodes, data=[])
 
     @classmethod
     def from_doi(cls, doi: str):
@@ -47,7 +43,7 @@ class CSDAgent(BaseModel):
 
     def extract(self):
         self.data = []
-        csd_reader = io.EntryReader('CSD')
+        csd_reader = io.EntryReader("CSD")
 
         for refcode in self.refcodes:
             ref_entry = csd_reader.entry(refcode)
@@ -71,23 +67,23 @@ class CSDAgent(BaseModel):
         self.data = self._parse_out()
 
     def _get_structure(self, entry):
-        folder = Path('./csd/structures/') / Path(self.doi.replace("/", "_"))
+        folder = Path("./csd/structures/") / Path(self.doi.replace("/", "_"))
         folder.mkdir(parents=True, exist_ok=True)
-        filepath = folder / Path(entry.identifier+".cif")
+        filepath = folder / Path(entry.identifier + ".cif")
         writer = CrystalWriter(filepath)
         writer.write(entry.molecule)
 
     def _parse_out(self):
         result = []
-        pattern = r'(\d+(\.\d+)?(-\d+(\.\d+)?)?)\s*(K|deg\.?C)?(?=(\s*dec\s*)|\s*)'
+        pattern = r"(\d+(\.\d+)?(-\d+(\.\d+)?)?)\s*(K|deg\.?C)?(?=(\s*dec\s*)|\s*)"
 
         for item in self.data:
             melt_unit = ""
             melt_value = ""
-            if not item['melting point']:
+            if not item["melting point"]:
                 pass
             else:
-                melt_p = item['melting point']
+                melt_p = item["melting point"]
                 if "K" in melt_p:
                     melt_unit = "K"
                 elif "C" in melt_p:
@@ -96,68 +92,48 @@ class CSDAgent(BaseModel):
                 melt_value = matches[0][0]
 
             tmp = {
-                'meta': {
-                    'name': item['chemical_name'],
-                    'symbol': item['synonyms'],
-                    'chemical formula': item['chemical formula'],
+                "meta": {
+                    "name": item["chemical_name"],
+                    "symbol": None,
+                    "synonyms": item["synonyms"],
+                    "chemical formula": item["chemical formula"],
                 },
-                "ccdc number": [
-                    {
-                        "value": item['ccdc_number']
-                    }
-                ],
-                "refcode": [
-                    {
-                        "value": item['refcode']
-                    }
-                ],
-                "crystal system": [
-                    {
-                        "value": item['spacegroup']
-                    }
-                ],
+                "ccdc number": [{"value": item["ccdc_number"]}],
+                "refcode": [{"value": item["refcode"]}],
+                "crystal system": [{"value": item["spacegroup"]}],
                 "lattice parameters": [
                     {
-                        'value': {
-                            'a': item['cell lengths'].a,
-                            'b': item['cell lengths'].b,
-                            'c': item['cell lengths'].c,
-                            'alpha': item['cell angles'].alpha,
-                            'beta': item['cell angles'].beta,
-                            'gamma': item['cell angles'].gamma,
+                        "value": {
+                            "a": item["cell lengths"].a,
+                            "b": item["cell lengths"].b,
+                            "c": item["cell lengths"].c,
+                            "alpha": item["cell angles"].alpha,
+                            "beta": item["cell angles"].beta,
+                            "gamma": item["cell angles"].gamma,
                         }
                     },
                 ],
                 "cell volume": [
+                    {"value": item["cell volume"], "unit": "Å^3"},
+                ],
+                "density": [
+                    {"value": item["density"], "unit": "g/cm^3"},
+                ],
+                "color": [
                     {
-                        'value': item['cell volume'],
-                        'unit':"Å^3"
+                        "value": item["color"],
                     },
                 ],
-                'density': [
+                "melting point": [
                     {
-                        'value': item['density'],
-                        'unit':"g/cm^3"
-                    },
-                ],
-                'color': [
-                    {
-                        'value': item['color'],
-                    },
-                ],
-                'melting point': [
-                    {
-                        'value': melt_value,
-                        'unit': melt_unit,
+                        "value": melt_value,
+                        "unit": melt_unit,
                     },
                 ],
             }
             result.append(tmp)
         return result
 
-    def to_json(self):
-        filepath = Path('./csd/CSD_results/') / Path(self.doi.replace("/", "_")+".json")
-        with open(filepath, 'w') as json_file:
-            json.dump(self.data, json_file)
-
-        
+    def to_json(self, filepath):
+        with open(filepath, "w") as f:
+            json.dump(self.data, f)

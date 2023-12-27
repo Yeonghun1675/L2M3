@@ -49,6 +49,12 @@ class CsdData(BaseModel):
     ) -> str:
         return self.material.symbol
 
+    @property
+    def synonyms(
+        self,
+    ) -> str:
+        return self.material.synonyms
+
     def isequal_formula(self, mined_data: MinedData) -> bool:  # FIXME
         csd_formula, _ = self.clean_chemical_formula
         mined_formula, _ = mined_data.clean_chemical_formula

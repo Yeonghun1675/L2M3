@@ -12,6 +12,7 @@ class Material(BaseModel):
     symbol: Optional[str] = None
     chemical_formula: Optional[str] = None
     formula_source: Optional[str] = None
+    synonyms: Optional[List[str]] = None
 
     @property
     def clean_chemical_formula(
@@ -61,6 +62,8 @@ class Material(BaseModel):
         if not self.chemical_formula:
             self.chemical_formula = o_formula
             self.formula_source = others.formula_source
+        if not self.synonyms:
+            self.synonyms = others.synonyms
 
     @classmethod
     def from_data(cls, data: Dict[str, Any], formula_source: Optional[str] = None):
@@ -76,6 +79,7 @@ class Material(BaseModel):
             symbol=format_chemical_name(data.get("symbol")),
             chemical_formula=chemical_formula,
             formula_source=formula_source,
+            synonyms=data.get("synonyms"),
         )
 
     def to_dict(
@@ -86,6 +90,7 @@ class Material(BaseModel):
             "symbol": self.symbol,
             "chemical_formula": self.chemical_formula,
             "formula_source": self.formula_source,
+            "synonyms": self.synonyms,
         }
 
     def to_json(self, filepath) -> Dict[str, Any]:
@@ -99,6 +104,7 @@ class Material(BaseModel):
             symbol=data["symbol"],
             chemical_formula=data["chemical_formula"],
             formula_source=data["formula_source"],
+            synonyms=data["synonyms"],
         )
 
     @classmethod
@@ -147,11 +153,18 @@ class MinedData(BaseModel):
     ) -> str:
         return self.material.formula_source
 
+    @property
+    def synonyms(
+        self,
+    ) -> str:
+        return self.material.synonyms
+
     def _to_string(self, print_origin_data=False) -> str:
         string = (
             f"Name : {self.name}\n"
             f"Symbol : {self.symbol}\n"
             f"Chemical formula : {self.chemical_formula}\n"
+            f"Synonyms : {self.synonyms}\n"
             f"Data :\n{pprint.pformat(self.data, sort_dicts=False)}"
         )
         if print_origin_data:
