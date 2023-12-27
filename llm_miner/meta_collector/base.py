@@ -13,13 +13,23 @@ class Material(BaseModel):
     chemical_formula: Optional[str] = None
     formula_source: Optional[str] = None
 
+    @property
+    def clean_chemical_formula(
+        self,
+    ) -> (str, bool):
+        formula, is_general = format_chemical_formula(self.chemical_formula)
+        return formula, is_general
+
     def is_equal(self, other: object) -> bool:
-        s_formula, s_general = format_chemical_formula(self.chemical_formula)
-        o_formula, o_general = format_chemical_formula(other.chemical_formula)
+        s_formula, _ = self.clean_chemical_formula
+        o_formula, _ = other.clean_chemical_formula
 
         if self.name:
             if self.name == other.name or self.name == other.symbol:
-                if s_formula != o_formula and self.formula_source==other.formula_source:
+                if (
+                    s_formula != o_formula
+                    and self.formula_source == other.formula_source
+                ):
                     return False
                 return True
         if self.symbol:
@@ -29,9 +39,9 @@ class Material(BaseModel):
             return False
 
     def concatenate(self, others: object) -> None:  # before: concatenate_data
-        # 같은 meta를 가지는 두 물질 정보를 합쳐서 하나의 물질 정보로 만들기
-        s_formula, s_general = format_chemical_formula(self.chemical_formula)
-        o_formula, o_general = format_chemical_formula(others.chemical_formula)
+        # 같은 meta를 가지는 두 물질 정보를 합쳐서 하나의 물질 정보로 만들기 # should be revised
+        s_formula, s_general = self.clean_chemical_formula
+        o_formula, o_general = others.clean_chemical_formula
         if s_general:
             self.chemical_formula = s_formula
 
@@ -59,7 +69,8 @@ class Material(BaseModel):
         """
         if not formula_source:
             formula_source = data.get("formula source")
-        chemical_formula = format_chemical_formula(data.get("chemical formula"))[0]
+        chemical_formula = data.get("chemical formula")
+
         return cls(
             name=format_chemical_name(data.get("name")),
             symbol=format_chemical_name(data.get("symbol")),
@@ -97,6 +108,12 @@ class MinedData(BaseModel):
         return self.material.chemical_formula
 
     @property
+    def clean_chemical_formula(
+        self,
+    ) -> str:
+        return self.material.clean_chemical_formula
+
+    @property
     def formula_source(
         self,
     ) -> str:
@@ -121,10 +138,10 @@ class MinedData(BaseModel):
     def is_equal(self, other: object) -> bool:  # before : isequal_meta
         return self.material.is_equal(other.material)
 
-    def concatenate(self, others: object) -> None:  # before : concatenate_data
+    def concatenate(self, others: object, overwrite: bool = False) -> None:
         self.material.concatenate(others.material)
         for key, value in others.data.items():
-            if key in self.data:
+            if (not overwrite) and (key in self.data):
                 idx = 1
                 new_key = f"{key}_{idx}"
                 while new_key in self.data:  # HAVE to fix.
@@ -156,12 +173,14 @@ class MinedData(BaseModel):
         cls,
         data: Dict[str, Any],
         formula_source: str = None,
-        element_idx: List[str] = None,
+        element_idx: Optional[List[str]] = None,
     ):
         if "meta" not in data:
             raise KeyError('data must include key "meta"')
 
-        if element_idx and not isinstance(element_idx, list):
+        if not element_idx:
+            element_idx = list()
+        elif not isinstance(element_idx, list):
             element_idx = [str(element_idx)]
 
         return cls(
