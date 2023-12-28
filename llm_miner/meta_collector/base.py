@@ -13,17 +13,19 @@ class Material(BaseModel):
     chemical_formula: Optional[str] = None
     formula_source: Optional[str] = None
     synonyms: Optional[List[str]] = None
+    refcode: Optional[str] = None
+    is_general: Optional[bool] = None
 
-    @property
-    def clean_chemical_formula(
-        self,
-    ) -> (str, bool):
-        formula, is_general = format_chemical_formula(self.chemical_formula)
-        return formula, is_general
+    # @property
+    # def clean_chemical_formula(
+    #     self,
+    # ) -> (str, bool):
+    #     formula, is_general = format_chemical_formula(self.chemical_formula)
+    #     return formula, is_general
 
     def is_equal(self, other: object) -> bool:
-        s_formula, _ = self.clean_chemical_formula
-        o_formula, _ = other.clean_chemical_formula
+        s_formula = self.chemical_formula
+        o_formula = other.chemical_formula
 
         if self.name:
             if self.name == other.name or self.name == other.symbol:
@@ -41,8 +43,8 @@ class Material(BaseModel):
 
     def concatenate(self, others: object) -> None:  # before: concatenate_data
         # 같은 meta를 가지는 두 물질 정보를 합쳐서 하나의 물질 정보로 만들기 # should be revised
-        s_formula, s_general = self.clean_chemical_formula
-        o_formula, o_general = others.clean_chemical_formula
+        s_formula, s_general = self.chemical_formula, self.is_general
+        o_formula, o_general = others.chemical_formula, others.is_general
         if s_general:
             self.chemical_formula = s_formula
 
@@ -64,15 +66,17 @@ class Material(BaseModel):
             self.formula_source = others.formula_source
         if not self.synonyms:
             self.synonyms = others.synonyms
+        if not self.refcode:
+            self.refcode = others.refcode
 
     @classmethod
-    def from_data(cls, data: Dict[str, Any], formula_source: Optional[str] = None):
+    def from_data(cls, data: Dict[str, Any], formula_source: Optional[str] = None, refcode: Optional[str] = None):
         """
         근데 이렇게 바로 넣으면 원래가 뭐였는지 확인이 좀 어렵더라.
         """
         if not formula_source:
             formula_source = data.get("formula source")
-        chemical_formula = data.get("chemical formula")
+        chemical_formula, is_general = format_chemical_formula(data.get("chemical formula"))
 
         return cls(
             name=format_chemical_name(data.get("name")),
@@ -80,6 +84,8 @@ class Material(BaseModel):
             chemical_formula=chemical_formula,
             formula_source=formula_source,
             synonyms=data.get("synonyms"),
+            refcode=refcode,
+            is_general=is_general,
         )
 
     def to_dict(
@@ -91,6 +97,8 @@ class Material(BaseModel):
             "chemical_formula": self.chemical_formula,
             "formula_source": self.formula_source,
             "synonyms": self.synonyms,
+            "refcode": self.refcode,
+            "is_general": self.is_general,
         }
 
     def to_json(self, filepath) -> Dict[str, Any]:
@@ -105,6 +113,8 @@ class Material(BaseModel):
             chemical_formula=data["chemical_formula"],
             formula_source=data["formula_source"],
             synonyms=data["synonyms"],
+            refcode=data["refcode"],
+            is_general=data["is_general"]
         )
 
     @classmethod
@@ -141,11 +151,11 @@ class MinedData(BaseModel):
     ) -> str:
         return self.material.chemical_formula
 
-    @property
-    def clean_chemical_formula(
-        self,
-    ) -> str:
-        return self.material.clean_chemical_formula
+    # @property
+    # def clean_chemical_formula(
+    #     self,
+    # ) -> str:
+    #     return self.material.clean_chemical_formula
 
     @property
     def formula_source(
@@ -159,12 +169,19 @@ class MinedData(BaseModel):
     ) -> str:
         return self.material.synonyms
 
+    @property
+    def refcode(
+        self,
+    ) -> str:
+        return self.material.refcode
+
     def _to_string(self, print_origin_data=False) -> str:
         string = (
             f"Name : {self.name}\n"
             f"Symbol : {self.symbol}\n"
             f"Chemical formula : {self.chemical_formula}\n"
             f"Synonyms : {self.synonyms}\n"
+            f"Refcode : {self.refcode}\n"
             f"Data :\n{pprint.pformat(self.data, sort_dicts=False)}"
         )
         if print_origin_data:

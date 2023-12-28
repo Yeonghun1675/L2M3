@@ -31,11 +31,11 @@ class CsdData(BaseModel):
     ) -> str:  # FIXME
         return self.material.chemical_formula
 
-    @property
-    def clean_chemical_formula(
-        self,
-    ) -> str:
-        return self.material.clean_chemical_formula
+    # @property
+    # def clean_chemical_formula(
+    #     self,
+    # ) -> str:
+    #     return self.material.clean_chemical_formula
 
     @property
     def name(
@@ -56,8 +56,8 @@ class CsdData(BaseModel):
         return self.material.synonyms
 
     def isequal_formula(self, mined_data: MinedData) -> bool:  # FIXME
-        csd_formula, _ = self.clean_chemical_formula
-        mined_formula, _ = mined_data.clean_chemical_formula
+        csd_formula = self.chemical_formula
+        mined_formula = mined_data.chemical_formula
         return csd_formula == mined_formula
 
     def isequal_lattice(self, mined_data: MinedData, threshold=0.01) -> bool:  # FIXME
@@ -87,7 +87,7 @@ class CsdData(BaseModel):
     def match_formula(self, results: Results):  # before: isequal_formula
         self.clear()
         for idx, mined_data in enumerate(results):
-            if self.isequal_formula(mined_data):  # FIXME
+            if self.isequal_formula(mined_data):
                 self.matched_idx.append(idx)
 
     def match_lattice(
@@ -111,8 +111,36 @@ class CsdData(BaseModel):
     def clear(self) -> None:
         self.matched_idx = list()
 
+    def format_data(self):
+        add_condition_l = ['crystal system', 'lattice parameters', 'cell volume', 'density', 'color']
+        for prop in add_condition_l:
+            tmp = []
+            for jtem in self.data[prop]:
+                jtem['condition'] = ''
+                tmp.append(jtem)
+            if prop == "color":
+                self.data['material color'] = tmp
+                del self.data['color']
+            else:
+                self.data[prop] = tmp
+
     def concatenate(self, mined_data: MinedData):  # before : concatenate_csd
-        raise NotImplementedError()
+        bring_condition_l = ['crystal system', 'lattice parameters', 'cell volume', 'density', 'material color']
+        for prop in bring_condition_l:
+            cond = None
+            try:
+                cond = mined_data.data[prop][0]['condition']
+            except Exception:
+                continue
+            if cond:
+                self.data[prop][0]['condition'] = cond
+
+        
+        mined_data.material.refcode = self.material.refcode
+        mined_data.material.synonyms = self.material.synonyms
+        mined_data.material.formula_source = "csd"
+        mined_data.material.is_general = self.material.is_general
+        mined_data.data = {**mined_data.data, **self.data}
 
     def to_dict(
         self,
@@ -136,10 +164,10 @@ class CsdData(BaseModel):
     ):
         if "meta" not in data:
             raise KeyError('data must include key "meta"')
-        material = Material.from_data(data["meta"], formula_source="CSD")
+        material = Material.from_data(data["meta"], formula_source="CSD", refcode=data["refcode"][0]['value'])
         return cls(
             material=material,
-            data={key: value for key, value in data.items() if key != "meta"},
+            data={key: value for key, value in data.items() if key not in ["meta", "refcode"]},
             matched_idx=list(),
             origin_data=[data],
         )
@@ -199,15 +227,20 @@ class CsdCollector(Sequence, BaseModel):
         """
         for i, csd_data in enumerate(self.list_csd):  # 1. formula matching
             csd_data.match_formula(results)
-            if csd_data.num_matched > 2:  # 2. lattice matching for num_matched > 2
+            if csd_data.num_matched >= 2:  # 2. lattice matching for num_matched > 2
                 csd_data.match_lattice(results, includes=csd_data.matched_idx)
 
-            for m_idx in csd_data.matched_idx:  # 3. matched dict (formula & lattice)
+            if csd_data.num_matched == 1:
+            # for m_idx in csd_data.matched_idx:  # 3. matched dict (formula & lattice)
+                m_idx = csd_data.matched_idx[0]
                 self.matching_dict[m_idx].add(i)
 
-        for value in self.matching_dict.values():
-            if len(value) > 2:
-                raise ValueError("Number of matched material > 1", self.matching_dict)
+        for key, value in self.matching_dict.items():
+            if len(value) >= 2:
+                for item in value:
+                    self.list_csd[item].clear()
+                self.matching_dict[key] = set()
+                # raise ValueError("Number of matched material > 1", self.matching_dict)
         matched_list = list(self.matching_dict.keys())  # 4. make first_draft list
 
         for i, csd_data in enumerate(
@@ -217,22 +250,27 @@ class CsdCollector(Sequence, BaseModel):
                 continue
             csd_data.match_lattice(results, excludes=matched_list)
             if csd_data.num_matched == 1:
-                for m_idx in csd_data.matched_idx:
-                    self.matching_dict[m_idx].add(i)
+                m_idx = csd_data.matched_idx[0]
+                self.matching_dict[m_idx].add(i)
+                # for m_idx in csd_data.matched_idx:
+                    # self.matching_dict[m_idx].add(i)
 
-        for value in self.matching_dict.values():
+        for key, value in self.matching_dict.items():
             if len(value) > 2:
+                for item in value:
+                    self.list_csd[item].clear()
+                self.matching_dict[key] = set()
                 raise ValueError("Number of matched material > 1")
 
     def concatenate(self, results: Results):
         for csd_data in self.list_csd:
-            print("hello")
             # new_mined_data = MinedData.from_data(csd_data.data)  # FIXME <- 필히 수정 바람.
             if csd_data.num_matched == 1:
                 m_idx = csd_data.matched_idx[0]
-                results[m_idx].concatenate(csd_data, overwrite=True)
+                csd_data.format_data()
+                csd_data.concatenate(results[m_idx])
             elif csd_data.num_matched == 0:
-                results.append(csd_data) 
+                results.results.append(csd_data)
             else:
                 pass
 
