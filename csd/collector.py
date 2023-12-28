@@ -232,7 +232,7 @@ class CsdCollector(Sequence, BaseModel):
                 m_idx = csd_data.matched_idx[0]
                 results[m_idx].concatenate(csd_data, overwrite=True)
             elif csd_data.num_matched == 0:
-                results.append(csd_data)
+                results.append(csd_data) 
             else:
                 pass
 
