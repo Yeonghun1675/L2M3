@@ -321,6 +321,7 @@ class Results(Sequence, BaseModel):
         return cls(
             results=[MinedData.from_dict(d) for d in data["results"]],
             matching_dict=data["matching_dict"],
+            doi=data["doi"],
         )
 
     @classmethod
