@@ -93,7 +93,7 @@ class JournalReader(BaseModel):
             "elements": self.elements.to_dict(),
             "cln_elements": self.cln_elements.to_dict(),
             "metadata": self.metadata.to_dict(),
-            "result": self.result.to_dict(),
+            # "result": self.result.to_dict(),
         }
 
     def to_json(self, filepath):

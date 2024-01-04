@@ -58,6 +58,7 @@ transfer_learning/
 
 # storage
 storage/
+new_storage/
 
 # upload_excel
 upload_*.xlsx

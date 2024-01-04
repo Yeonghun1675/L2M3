@@ -66,7 +66,7 @@ config2 = {
 
 config3 = {
     # default llms
-    "model_name": "gpt-4",
+    "model_name": "gpt-4-1106-preview",
     # "model_name": "gpt-3.5-turbo-16k",
     "simple_model_name": "gpt-3.5-turbo-16k",
 
@@ -99,7 +99,7 @@ config3 = {
 
 config4 = {
     # default llms
-    "model_name": "gpt-4",
+    "model_name": "gpt-3.5-turbo-16k",
     # "model_name": "gpt-3.5-turbo-16k",
     "simple_model_name": "gpt-3.5-turbo-16k",
 
@@ -125,7 +125,7 @@ config4 = {
     # config - agent
     'reconstruct': True,  # merge paragraph for reducing tokens
     'input_max_tokens_synthesis': None,      # max tokens for reconstruct
-    'input_max_token_synthesis_type': 3500,  # max tokens for synthesis-type
+    'input_max_token_synthesis_type': 3000,  # max tokens for synthesis-type
     'input_max_tokens_property': 3500,       # max tokens for reconstruct
 }
 
