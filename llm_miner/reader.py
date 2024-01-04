@@ -31,11 +31,15 @@ class JournalReader(BaseModel):
 
     @property
     def doi(self):
-        return self.metadata.doi.strip()
+        if isinstance(self.metadata.doi, str):
+            return self.metadata.doi.strip()
+        return self.metadata.doi
 
     @property
     def title(self):
-        return self.metadata.title.strip()
+        if isinstance(self.metadata.title, str):
+            return self.metadata.title.strip()
+        return self.metadata.title
 
     @property
     def url(self):

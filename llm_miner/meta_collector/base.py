@@ -241,7 +241,7 @@ class MinedData(BaseModel):
             data=data["data"],
             element_idx=data["element_idx"],
             origin_data=data["origin_data"],
-            doi=data["doi"],
+            doi=data.get("doi"),
         )
 
     @classmethod
