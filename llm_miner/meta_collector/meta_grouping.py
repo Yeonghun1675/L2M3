@@ -40,6 +40,7 @@ class MetaCollector(BaseModel):
                     data,
                     formula_source=formula_source,
                     element_idx=element.idx,
+                    doi=doi,
                 )
                 list_data.append(mined_data)
 
