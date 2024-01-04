@@ -2,7 +2,8 @@ from typing import Dict, List, Any, Optional
 from pydantic import BaseModel
 
 from llm_miner.schema import Elements
-from llm_miner.reader import JournalReader
+
+# from llm_miner.reader import JournalReader
 from llm_miner.meta_collector.base import MinedData, Results
 from llm_miner.meta_collector.utils import flatten_list_of_dicts
 
@@ -45,9 +46,9 @@ class MetaCollector(BaseModel):
         return cls(list_data=list_data, doi=doi)
 
     @classmethod
-    def from_journal_reader(cls, jr: JournalReader):
+    def from_journal_reader(cls, jr: object):
         if jr.cln_elements:
             elements = jr.cln_elements
         else:
             elements = jr.elements
-        return cls.from_elements(elements=elements, doi=doi)
+        return cls.from_elements(elements=elements, doi=jr.doi)
