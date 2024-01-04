@@ -203,7 +203,7 @@ class MinedData(BaseModel):
                 idx = 1
                 new_key = f"{key}_{idx}"
                 while new_key in self.data:  # HAVE to fix.
-                    idx + 1
+                    idx += 1
                     new_key = f"{key}_{idx}"
                 self.data[new_key] = value
             else:

@@ -71,12 +71,56 @@ class CsdData(BaseModel):
         csd_lattice = np.array([csd_lattice[item] for item in order_])
         tmp_lattice = []
         for item in order_:
-            value = organized_lattice[item]
-            if not value:
-                value = 90
+            if item not in organized_lattice.keys():
+                if item in ["alpha", "beta", "gamma"]:
+                    value = 90.0
+                elif item in ["b", "c"]:
+                    value = organized_lattice["a"]
+                else:
+                    return False
+
             else:
+                value = organized_lattice[item]
+
+            if not value and item in ["alpha", "beta", "gamma"]:
+                value = 90.0
+            elif not value and item in ["b", "c"]:
+                value = organized_lattice["a"]
+            elif not value and item in ["a"]:
+                return False
+
+            if value=="-" and item in ["alpha", "beta", "gamma"]:
+                value = 90.0
+            elif value=="-" and item in ["b", "c"]:
+                value = organized_lattice["a"]
+            elif value=="-" and item in ["a"]:
+                return False
+
+            if isinstance(value, str):
+                if value=="= a":
+                    value = organized_lattice["a"]
                 if "(" in value:
                     value = value[: value.index("(")]
+                if "±" in value:
+                    value = value[: value.index("±")]
+
+                # if "x" in value:
+                #     return False
+                value = value.replace("°", "")
+                value = value.replace(",", ".")
+                value = value.replace("⊡", ".")
+                value = value.replace("\u2009", "")
+                value = value.replace("\u202f", "")
+                value = value.replace("∼", "")
+                value = value.replace("/", "")
+                value = value.replace(">", "")
+                value = value.replace(")", "")
+                value = value.strip().replace(" ", ".")
+                parts = value.split(".")
+                value = parts[0]+"."+"".join(parts[1:])
+                if value=="." and item in ["alpha", "beta", "gamma"]:
+                    value = 90.0
+
                 value = float(value)
             tmp_lattice.append(value)
         organized_lattice = np.array(tmp_lattice)
@@ -260,7 +304,7 @@ class CsdCollector(Sequence, BaseModel):
                 for item in value:
                     self.list_csd[item].clear()
                 self.matching_dict[key] = set()
-                raise ValueError("Number of matched material > 1")
+                # raise ValueError("Number of matched material > 1")
 
     def concatenate(self, results: Results):
         for csd_data in self.list_csd:

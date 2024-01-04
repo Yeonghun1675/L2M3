@@ -29,7 +29,9 @@ class MetaCollector(BaseModel):
                 formula_source = element.type
 
             for data in flatten_list_of_dicts(element.data):
-                if "meta" not in data:
+                if isinstance(data, str):
+                    continue
+                elif "meta" not in data:
                     continue
                 mined_data = MinedData.from_data(
                     data,

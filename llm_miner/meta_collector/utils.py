@@ -125,6 +125,8 @@ def flatten_list_of_dicts(data: List[Union[dict, list]]) -> List[dict]:
             flattened_list.append(item)
         elif isinstance(item, list):
             flattened_list.extend(item)
+        elif isinstance(item, str):
+            continue  # ['No properties found'] 예외 뜨는 아이템들.
         elif not item:
             continue
         elif item == "Bond & Angle type of table is not target":
