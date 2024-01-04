@@ -97,13 +97,16 @@ class LLMMiner(Chain):
                 element.set_data([str(e)])
             # print (output)
 
+        mc = MetaCollector.from_journal_reader(jr)
+        jr.result = mc.run()
+
         if config["reconstruct"]:
-            mc = MetaCollector.from_elements(jr.cln_elements)
-            jr.result = mc.run()
+            # mc = MetaCollector.from_elements(jr.cln_elements)
+            # jr.result = mc.run()
             return {self.output_key: jr.cln_elements}
         else:
-            mc = MetaCollector.from_elements(jr.elements)
-            jr.result = mc.run()
+            # mc = MetaCollector.from_elements(jr.elements)
+            # jr.result = mc.run()
             return {self.output_key: jr.elements}
 
     @classmethod

@@ -70,13 +70,20 @@ class Material(BaseModel):
             self.refcode = others.refcode
 
     @classmethod
-    def from_data(cls, data: Dict[str, Any], formula_source: Optional[str] = None, refcode: Optional[str] = None):
+    def from_data(
+        cls,
+        data: Dict[str, Any],
+        formula_source: Optional[str] = None,
+        refcode: Optional[str] = None,
+    ):
         """
         근데 이렇게 바로 넣으면 원래가 뭐였는지 확인이 좀 어렵더라.
         """
         if not formula_source:
             formula_source = data.get("formula source")
-        chemical_formula, is_general = format_chemical_formula(data.get("chemical formula"))
+        chemical_formula, is_general = format_chemical_formula(
+            data.get("chemical formula")
+        )
 
         return cls(
             name=format_chemical_name(data.get("name")),
@@ -114,7 +121,7 @@ class Material(BaseModel):
             formula_source=data["formula_source"],
             synonyms=data["synonyms"],
             refcode=data["refcode"],
-            is_general=data["is_general"]
+            is_general=data["is_general"],
         )
 
     @classmethod
@@ -266,6 +273,7 @@ class MinedData(BaseModel):
 class Results(Sequence, BaseModel):
     results: List[MinedData]
     matching_dict: Dict[int, Any]
+    doi: Optional[str]
 
     def __getitem__(self, idx: int):
         return self.results[idx]
@@ -301,6 +309,7 @@ class Results(Sequence, BaseModel):
         return {
             "results": [d.to_dict() for d in self.results],
             "matching_dict": self.matching_dict,
+            "doi": self.doi,
         }
 
     def to_json(self, filepath) -> Dict[str, Any]:
@@ -321,7 +330,5 @@ class Results(Sequence, BaseModel):
         return cls.from_dict(data)
 
     @classmethod
-    def empty(
-        cls,
-    ):
-        return cls(results=list(), matching_dict=dict())
+    def empty(cls, doi: Optional[str] = None):
+        return cls(results=list(), matching_dict=dict(), doi=doi)
