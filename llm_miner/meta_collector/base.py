@@ -136,6 +136,7 @@ class MinedData(BaseModel):
     data: Dict[str, Any]
     element_idx: List[str]
     origin_data: List[Dict[str, Any]] = list()
+    doi: Optional[str] = None
 
     def __getitem__(self, key: str) -> Any:
         return self.data[key]
@@ -226,6 +227,7 @@ class MinedData(BaseModel):
             "data": self.data,
             "element_idx": self.element_idx,
             "origin_data": self.origin_data,
+            "doi": self.doi,
         }
 
     def to_json(self, filepath) -> Dict[str, Any]:
@@ -239,6 +241,7 @@ class MinedData(BaseModel):
             data=data["data"],
             element_idx=data["element_idx"],
             origin_data=data["origin_data"],
+            doi=data["doi"],
         )
 
     @classmethod
@@ -247,6 +250,7 @@ class MinedData(BaseModel):
         data: Dict[str, Any],
         formula_source: str = None,
         element_idx: Optional[List[str]] = None,
+        doi: Optional[str] = None,
     ):
         if "meta" not in data:
             raise KeyError('data must include key "meta"')
@@ -261,6 +265,7 @@ class MinedData(BaseModel):
             data={key: value for key, value in data.items() if key != "meta"},
             element_idx=element_idx,
             origin_data=[data],
+            doi=doi,
         )
 
     @classmethod
