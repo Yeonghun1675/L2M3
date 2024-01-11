@@ -124,6 +124,16 @@ def flatten_list_of_dicts(data: List[Union[dict, list]]) -> List[dict]:
         if isinstance(item, dict):
             flattened_list.append(item)
         elif isinstance(item, list):
+            if not item:
+                continue
+            contain_ = True
+            while isinstance(item[0], list):
+                item = item[0]
+                if not item:
+                    contain_ = False
+                    break
+            if not contain_:
+                continue
             flattened_list.extend(item)
         elif isinstance(item, str):
             continue  # ['No properties found'] 예외 뜨는 아이템들.

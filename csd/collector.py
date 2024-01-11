@@ -101,6 +101,9 @@ class CsdData(BaseModel):
                     value = organized_lattice["a"]
                 if "(" in value:
                     value = value[: value.index("(")]
+                if "[" in value:
+                    value = value[: value.index("[")]
+
                 if "±" in value:
                     value = value[: value.index("±")]
 
@@ -109,12 +112,18 @@ class CsdData(BaseModel):
                 value = value.replace("°", "")
                 value = value.replace(",", ".")
                 value = value.replace("⊡", ".")
+                value = value.replace("\'", "")
                 value = value.replace("\u2009", "")
                 value = value.replace("\u202f", "")
                 value = value.replace("∼", "")
                 value = value.replace("/", "")
                 value = value.replace(">", "")
                 value = value.replace(")", "")
+                value = value.replace("]", "")
+                if "to" in value:
+                    value = str(np.mean(np.array(value.split("to")).astype("float")))
+                if "-" in value:
+                    value = str(np.mean(np.array(value.split("-")).astype("float")))
                 value = value.strip().replace(" ", ".")
                 parts = value.split(".")
                 value = parts[0]+"."+"".join(parts[1:])
