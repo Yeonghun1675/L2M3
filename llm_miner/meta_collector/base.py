@@ -1,7 +1,7 @@
 import pprint
 from pydantic import BaseModel
 from typing import List, Any, Dict, Optional, Union
-from collections.abc import Sequence
+from collections.abc import Sequence, Mapping
 import json
 from llm_miner.schema import Paragraph
 from llm_miner.meta_collector.utils import format_chemical_formula, format_chemical_name
@@ -131,7 +131,7 @@ class Material(BaseModel):
         return cls.from_dict(data)
 
 
-class MinedData(BaseModel):
+class MinedData(Mapping, BaseModel):
     material: Material
     data: Dict[str, Any]
     element_idx: List[str]
@@ -140,6 +140,12 @@ class MinedData(BaseModel):
 
     def __getitem__(self, key: str) -> Any:
         return self.data[key]
+
+    def __iter__(self) -> iter:
+        return self.data.__iter__()
+
+    def __len__(self) -> int:
+        return self.data.__len__()
 
     @property
     def name(
