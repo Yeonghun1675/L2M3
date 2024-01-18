@@ -43,19 +43,19 @@ class Metadata(BaseModel):
 
     def to_dict(self) -> Dict[str, Any]:
         return {
-            'doi': self.doi,
-            'title': self.title,
-            'journal': self.journal,
-            'date': self.date,
-            'author_list': self.author_list
+            "doi": self.doi,
+            "title": self.title,
+            "journal": self.journal,
+            "date": self.date,
+            "author_list": self.author_list,
         }
 
     @classmethod
     def from_dict(cls, data):
         return cls(
-            doi=data['doi'],
-            type=data['title'],
-            journal=data['journal'],
-            date=data['date'],
-            author_list=data['author_list']
+            doi=data["doi"],
+            title=data["title"],
+            journal=data["journal"],
+            date=data["date"],
+            author_list=data["author_list"],
         )
