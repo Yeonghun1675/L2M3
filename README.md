@@ -1,7 +1,5 @@
 <div align="center">
-<h1> L2M3 ⛏ </h1> 
-<h4>Large Language Models Material Miner
-</h4>
+<h1> Large Language Models Material Miner (L2M3) ⛏ </h1> 
 </div>
 
 ![](./figures/Figures_scheme.jpg)
