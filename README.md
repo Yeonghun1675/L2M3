@@ -5,8 +5,102 @@
 ![](./figures/Figures_scheme.jpg)
 
 ## Summary
-This project focuses on efficiently collecting experimental Metal-Organic Framework (MOF) data from scientific literature to overcome the challenges of accessing elusive data and to improve the quality of information available for machine learning applications in materials science. By leveraging a chain of advanced Large Language Models (LLMs), we developed a systematic approach to extract and organize MOF data into a structured and usable format. Our methodology successfully compiled information from over 40,000 research articles, resulting in a comprehensive, ready-to-use dataset. This dataset includes MOF synthesis conditions and properties, extracted from both tables and textual descriptions, which were subsequently analyzed. We employed a machine learning model to predict experimentally measured properties, demonstrating that using experimental data instead of simulated data for training significantly enhances prediction accuracy. Our findings underscore the richness of experimental data compared to in silico data and highlight the importance of utilizing experimental datasets to improve machine learning predictions in MOF research.
+This project focuses on efficiently collecting experimental Metal-Organic Framework (MOF) data from scientific literature to overcome the challenges of accessing elusive data and to improve the quality of information available for machine learning applications in materials science. By leveraging a chain of advanced Large Language Models (LLMs), we developed a systematic approach to extract and organize MOF data into a structured and usable format. Our methodology successfully compiled information from over 40,000 research articles, resulting in a comprehensive, ready-to-use dataset. This dataset includes MOF synthesis conditions and properties, extracted from both tables and textual descriptions, which were subsequently analyzed. 
+
+
+## Process
+
+![](./figures/Figures_process.jpg).
+
+Our L2M3 are comprised with 3 steps:
+- **Categorization**: pass
+- **Inclusion**: pass
+- **Extraction**: pass
+
+## Installation
+
+**NOTE**: This package is primarily tested on Linux system. We strongly recoomend using Lunux for installation.
+**NOTE2**: This package require python >= 3.9
+
+```bash
+$ git clone https://github.com/Yeonghun1675/L2M3.git
+$ cd L2M3
+$ pip install -e .
+```
+
+## How to use 
+
+### JournalReader
+`JouralReader` is python class that obtain clean text and meta data from xml/html file.
+
+```python
+from llm_miner import JournalReader
+
+file_path = 'path-to-your-xml/html-file'
+jr = JournalReader.from_file(file_path)
+```
+
+`journalreader` has several useful attributes.
+- dfdf
+
+```python
+jr.
+```
+
+### Mining Agent
+LLM miner is from file
+
+```python
+from llm_miner import LLMMiner
+
+api_key = 'openai-api-key'
+agent = LLMMiner.from_config(...)
+
+```
+
+You can run agent. Output of datamining is saved in `jr`.
+
+```python
+agent.run(
+    paragraph=paper,
+)
+```
+
+You can check results in papers
+```python
+jr.paper
+```
+
+
+### Token Checker
+We provide token checker that estimate tokens and price of your text-mining task.
+
+```python
+from llm_miner.pricing import TokenChecker
+
+tc = TokenChecker()
+...
+agent.run(
+    paragraph=output,
+    token_checker=tc
+)
+
+```
+
+## Fine-tuning
+You have to fine tuning to all i want to use.
+pass
 
 
 
+## Citiation
+If you want to cite PMTransformer or MOFTransformer, please refer to the following paper:
+- [Harnessing Large Language Model to collect and analyze Metal-organic framework property dataset, arxiv (2024)](https://arxiv.org/abs/2404.13053)
 
+## Contributing 🙌
+
+Contributions are welcome! If you have any suggestions or find any issues, please open an issue or a pull request.
+
+## License 📄
+
+This project is licensed under the MIT License. See the `LICENSE` file for more information.
