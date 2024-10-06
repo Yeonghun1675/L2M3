@@ -10,7 +10,7 @@ This project focuses on efficiently collecting experimental Metal-Organic Framew
 
 ## Process
 
-![](./figures/Figures_process.jpg).
+![](./figures/Figures_process.jpg)
 
 Our L2M3 empolys 3 specialized agent:
 - **Categorization**: the agent that classifies the table and texts based on whether they describe a property, a synthesis condition, or contain no relevant information.
@@ -30,6 +30,17 @@ $ pip install -e .
 
 ## How to use 
 
+You can run L2M3 using `LLMMiner` and `JournalReader`.
+```python
+from llm_miner import LLMMiner
+from llm_miner import JournalReader
+
+jr = JournalReader.from_file(file_path, publisher)
+agent = LLMMiner.from_config(config)
+
+agent = run(paragraph = jr)
+```
+
 ### JournalReader
 `JouralReader` is python class that obtain clean text and meta data from xml/html file.
 
@@ -42,7 +53,7 @@ publisher = 'your-publisher'  # list of  publisher: ['acs', 'rsc', 'elsevier', '
 jr = JournalReader.from_file(file_path, publisher=publisher)
 ```
 
-`journalreader` has several useful attributes.
+`JournalReader` has several useful attributes.
 - `doi` : doi of paper
 - `title` : title of paper
 - `url` : url of paper
@@ -50,7 +61,7 @@ jr = JournalReader.from_file(file_path, publisher=publisher)
 - `get_texts` : list of paragraphs
 - `get_figures`: list of figure captions
 
-Also, you can write and load `journalreader` as json type.
+Also, you can write and load `JournalReader` as json type.
 ```python
 # save journal reader
 jr.to_json('output_file_path.json')
