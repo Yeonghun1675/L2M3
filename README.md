@@ -5,17 +5,17 @@
 ![](./figures/Figures_scheme.jpg)
 
 ## Summary
-This project focuses on efficiently collecting experimental Metal-Organic Framework (MOF) data from scientific literature to overcome the challenges of accessing elusive data and to improve the quality of information available for machine learning applications in materials science. By leveraging a chain of advanced Large Language Models (LLMs), we developed a systematic approach to extract and organize MOF data into a structured and usable format. Our methodology successfully compiled information from over 40,000 research articles, resulting in a comprehensive, ready-to-use dataset. This dataset includes MOF synthesis conditions and properties, extracted from both tables and textual descriptions, which were subsequently analyzed. 
+This project focuses on efficiently collecting experimental Metal-Organic Framework (MOF) data from scientific literature to overcome the challenges of accessing elusive data and to improve the quality of information available for machine learning applications in materials science. By leveraging a chain of advanced Large Language Models (LLMs), we developed a systematic approach to extract and organize MOF data into a structured and usable format. Our methodology successfully compiled information from over 40,000 research articles, resulting in a comprehensive, ready-to-use dataset. This dataset includes MOF synthesis conditions and properties, extracted from both **tables and text data**, which were subsequently analyzed. 
 
 
 ## Process
 
 ![](./figures/Figures_process.jpg).
 
-Our L2M3 are comprised with 3 steps:
-- **Categorization**: pass
-- **Inclusion**: pass
-- **Extraction**: pass
+Our L2M3 empolys 3 specialized agent:
+- **Categorization**: the agent that classifies the table and texts based on whether they describe a property, a synthesis condition, or contain no relevant information.
+- **Inclusion**: the agent that determine the specific information present.
+- **Extraction**: the agent that extract information as JSON type.
 
 ## Installation
 
@@ -37,14 +37,26 @@ $ pip install -e .
 from llm_miner import JournalReader
 
 file_path = 'path-to-your-xml/html-file'
-jr = JournalReader.from_file(file_path)
+publisher = 'your-publisher'  # list of  publisher: ['acs', 'rsc', 'elsevier', 'springer']
+
+jr = JournalReader.from_file(file_path, publisher=publisher)
 ```
 
 `journalreader` has several useful attributes.
-- dfdf
+- `doi` : doi of paper
+- `title` : title of paper
+- `url` : url of paper
+- `get_tables` : list of tables
+- `get_texts` : list of paragraphs
+- `get_figures`: list of figure captions
 
+Also, you can write and load `journalreader` as json type.
 ```python
-jr.
+# save journal reader
+jr.to_json('output_file_path.json')
+
+# load journal reader
+jr_load = JournalReader.from_json('input_file_path.json')
 ```
 
 ### Mining Agent
@@ -84,7 +96,6 @@ agent.run(
     paragraph=output,
     token_checker=tc
 )
-
 ```
 
 ## Fine-tuning
