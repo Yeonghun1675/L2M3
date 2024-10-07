@@ -125,7 +125,7 @@ paragraph.print()  # check all content of paragraph
 - (function) get_intermediate_step : Check results of intermediate step
 
 
-### Token Checker
+### 4. Token Checker
 We provide token checker that estimate tokens and price of your text-mining task.
 
 ```python
@@ -140,14 +140,26 @@ agent.run(
 ```
 
 ## Fine-tuning
-You have to fine tuning to all i want to use.
-pass
+L2M3 offers fine-tune LLM model to reduce tokens and price.
+In `L2M3/finetune`, there are `jsonl` files which is dataset for fine-tune each model. The list of fine-tuned dataset are in below:
+- text_categorize
+- property_inclusion
+- synthesis_inclusion
+- table_categorize
+- table_crystal_inclusion
+- table_property_inclusion
+- table_xml2md
 
+You can fine-tune model in [OpenAI Finetune page](https://platform.openai.com/finetune).
 
+Or, you can finetune model using `finetune/finetune.py`
+```bash
+$ python finetune/finetune.py --model model_name --file jsonl_file --api-key your_api_key
+```
 
 ## Citiation
-If you want to cite PMTransformer or MOFTransformer, please refer to the following paper:
-- [Harnessing Large Language Model to collect and analyze Metal-organic framework property dataset, arxiv (2024)](https://arxiv.org/abs/2404.13053)
+If you want to cite L2M3, please refer to the following paper:
+1. [Harnessing Large Language Model to collect and analyze Metal-organic framework property dataset, arxiv (2024)](https://arxiv.org/abs/2404.13053)
 
 ## Contributing 🙌
 
