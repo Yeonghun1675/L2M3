@@ -35,13 +35,15 @@ You can run L2M3 using `LLMMiner` and `JournalReader`.
 from llm_miner import LLMMiner
 from llm_miner import JournalReader
 
-jr = JournalReader.from_file(file_path, publisher)
+# load agent and parse xml/html file
 agent = LLMMiner.from_config(config)
+jr = JournalReader.from_file(file_path, publisher)
 
-agent = run(paragraph = jr)
+# run
+agent.run(jr)
 ```
 
-### JournalReader
+###  1. JournalReader (Parsing XML/HTML)
 `JouralReader` is python class that obtain clean text and meta data from xml/html file.
 
 ```python
@@ -70,23 +72,35 @@ jr.to_json('output_file_path.json')
 jr_load = JournalReader.from_json('input_file_path.json')
 ```
 
-### Mining Agent
-LLM miner is from file
+### 2. LLMMiner (Agent)
+LLM miner is LLM Module that extract synthesis and characteristic properties from text and table.
 
 ```python
 from llm_miner import LLMMiner
 
 api_key = 'openai-api-key'
-agent = LLMMiner.from_config(...)
+agent = LLMMiner.create(openai_api_key=api_key)
+```
+Default llm module is 'gpt-4' for text and 'gpt-3.5-turbo-16k' for table.
 
+Also, you can change llm model using config file. If you want to use fine-tuned mode. Example for config file is in `L2M3/config/`
+
+```python
+import yaml
+
+config = yaml.load('config-file')
+agent = LLMMiner.from_config(config, openai_api_key=api_key)
 ```
 
+### 3. Run agent
 You can run agent. Output of datamining is saved in `jr`.
 
 ```python
-agent.run(
-    paragraph=paper,
-)
+jr : JournalReader
+agent: LLMMiner
+
+# Run agent
+agent.run(jr)
 ```
 
 You can check results in papers
