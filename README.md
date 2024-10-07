@@ -96,18 +96,40 @@ You can run agent. Output of text-mining is automatically saved in `JournalReade
 agent.run(jr)
 ```
 
-You can check results in `JournalReader`. Each results are list of `Paragraph` object.
+You can check results in `JournalReader`. The results show each text-mined synthesis/property consolidated by material.
+
+```python
+result = jr.result
+# See all results
+result.print()
+```
+
+You can save clean result using `to_dict` or `to_json` function
+
+```python
+# convert dictionary type
+output = result.to_dict()
+
+# save as json file
+result.to_json(json_file)
+```
+
+If you want to see the text mining results by paragraph/table, you can use the following functions. Each function consists of a list of `Paragraph` objects.
+
 ```python
 # All text-mined results
+all_paragraph = jr.cln_element
+
+# See each synthesis/property/table
 synthesis_condition = jr.get_synthesis_conditions()
 properties = jr.get_properties()
 tables = jr.get_tables()
 ```
 
-You can see results in `Paragraph` object.
+You can see text-mining results in `Paragraph` object.
 ```python
 # Check results of each paragraph
-paragraph = synthesis_condition[index]  # synthesis_condition or properties or table
+paragraph = synthesis_condition[idx]  # synthesis_condition or properties or table
 paragraph.print()  # check all content of paragraph
 ```
 
@@ -122,7 +144,7 @@ paragraph.print()  # check all content of paragraph
 - (function) get_intermediate_step : Check results of intermediate step
 
 
-### 4. Token Checker
+### 4. (optinal) Token Checker
 We provide token checker that estimate tokens and price of your text-mining task.
 
 ```python
@@ -140,6 +162,14 @@ tc.print()
 # See total price ($)
 print (tc.price)
 ```
+
+### 5. csd matcher (optional)
+If paper is related with CSD database, you can use csd matcher to matching text-mining data and CSD database
+
+```python
+여기 부분 작성 부탁드립니다 원석씨....
+```
+
 
 ## Fine-tuning
 L2M3 offers fine-tune LLM model to reduce tokens and price.
@@ -161,7 +191,7 @@ $ python finetune/finetune.py --model model_name --file jsonl_file --api-key you
 
 ## Citiation
 If you want to cite L2M3, please refer to the following paper:
-1. [Harnessing Large Language Model to collect and analyze Metal-organic framework property dataset, arxiv (2024)](https://arxiv.org/abs/2404.13053)
+> [Harnessing Large Language Model to collect and analyze Metal-organic framework property dataset, arxiv (2024)](https://arxiv.org/abs/2404.13053)
 
 ## Contributing 🙌
 
