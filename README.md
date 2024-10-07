@@ -93,20 +93,36 @@ agent = LLMMiner.from_config(config, openai_api_key=api_key)
 ```
 
 ### 3. Run agent
-You can run agent. Output of datamining is saved in `jr`.
+You can run agent. Output of text-mining is automatically saved in `JournalReader` object.
 
 ```python
-jr : JournalReader
-agent: LLMMiner
-
-# Run agent
 agent.run(jr)
 ```
 
-You can check results in papers
+You can check results in `JournalReader`. Each results are list of `Paragraph` object.
 ```python
-jr.paper
+# All text-mined results
+synthesis_condition = jr.get_synthesis_conditions()
+properties = jr.get_properties()
+tables = jr.get_tables()
 ```
+
+You can see results in `Paragraph` object.
+```python
+# Check results of each paragraph
+paragraph = synthesis_condition[index]  # synthesis_condition or properties or table
+paragraph.print()  # check all content of paragraph
+```
+
+`Paragraph` object has several useful attribute and functions.
+- idx : index of paragraph
+- type : type of paragraph (text or table)
+- classification : result of classification (synthesis condition or properties)
+- clean_text : clean version of paragraph (no html/xml tags)
+- include_properties : result of inclusion
+- data : extracted JSON type data
+- (function) to_dict : Convert Paragraph object to dictionary
+- (function) get_intermediate_step : Check results of intermediate step
 
 
 ### Token Checker
