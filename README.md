@@ -5,22 +5,24 @@
 ![](./figures/Figures_scheme.jpg)
 
 ## Summary
-This project focuses on efficiently collecting experimental Metal-Organic Framework (MOF) data from scientific literature to overcome the challenges of accessing elusive data and to improve the quality of information available for machine learning applications in materials science. By leveraging a chain of advanced Large Language Models (LLMs), we developed a systematic approach to extract and organize MOF data into a structured and usable format. Our methodology successfully compiled information from over 40,000 research articles, resulting in a comprehensive, ready-to-use dataset. This dataset includes MOF synthesis conditions and properties, extracted from both **tables and text data**, which were subsequently analyzed. 
+L2M3 is designed to efficiently gather experimental Metal-Organic Framework (MOF) data from scientific literature, addressing the challenge of accessing hard-to-find data and enhancing the quality of information available for machine learning in materials science. By utilizing a chain of advanced Large Language Models (LLMs), we developed a systematic method for extracting and organizing MOF data into a structured, usable format. Our approach has successfully compiled data from over 40,000 research articles, creating a comprehensive, ready-to-use dataset. This dataset includes MOF synthesis conditions and properties, extracted from both **tables and text**, which have been thoroughly analyzed.
 
 
 ## Process
 
 ![](./figures/Figures_process.jpg)
 
-Our L2M3 empolys 3 specialized agent:
-- **Categorization**: the agent that classifies the table and texts based on whether they describe a property, a synthesis condition, or contain no relevant information.
-- **Inclusion**: the agent that determine the specific information present.
-- **Extraction**: the agent that extract information as JSON type.
+L2M3 employs three specialized agents:
+
+- **Categorization Agent**: Classifies tables and text based on whether they describe properties, synthesis conditions, or contain irrelevant information.
+- **Inclusion Agent**: Identifies specific pieces of information present in the categorized data.
+- **Extraction Agent**: Extracts the relevant information in a structured JSON format.
 
 ## Installation
 
-**NOTE**: This package is primarily tested on Linux system. We strongly recoomend using Lunux for installation.
-**NOTE2**: This package require python >= 3.9
+**NOTE**: This package is primarily tested on Linux systems. We strongly recommend using Linux for installation.
+
+**Requirements**: Python >= 3.9
 
 ```bash
 $ git clone https://github.com/Yeonghun1675/L2M3.git
@@ -30,50 +32,51 @@ $ pip install -e .
 
 ## How to use 
 
-You can run L2M3 using `LLMMiner` and `JournalReader`.
+You can run L2M3 using the `LLMMiner` and `JournalReader` classes.
 ```python
 from llm_miner import LLMMiner
 from llm_miner import JournalReader
 
-# load agent and parse xml/html file
+# Load agent and parse XML/HTML file
 agent = LLMMiner.from_config(config)
 jr = JournalReader.from_file(file_path, publisher)
 
-# run
+# Run the agent on the parsed file
 agent.run(jr)
 ```
 
 ###  1. JournalReader (Parsing XML/HTML)
-`JouralReader` is python class that obtain clean text and meta data from xml/html file.
+`JournalReader` is a Python class that extracts clean text and metadata from XML or HTML files.
 
 ```python
 from llm_miner import JournalReader
 
 file_path = 'path-to-your-xml/html-file'
-publisher = 'your-publisher'  # list of  publisher: ['acs', 'rsc', 'elsevier', 'springer']
+publisher = 'your-publisher'  # Available options: ['acs', 'rsc', 'elsevier', 'springer']
 
 jr = JournalReader.from_file(file_path, publisher=publisher)
 ```
 
-`JournalReader` has several useful attributes.
-- `doi` : doi of paper
-- `title` : title of paper
-- `url` : url of paper
-- `get_tables` : list of tables
-- `get_texts` : list of paragraphs
-- `get_figures`: list of figure captions
+Attributes of `JournalReader`:
 
-Also, you can write and load `JournalReader` as json type.
+- `doi`: The DOI of the paper
+- `title`: The title of the paper
+- `url`: The URL of the paper
+- `get_tables`: A list of tables in the paper
+- `get_texts`: A list of paragraphs in the paper
+- `get_figures`: A list of figure captions in the paper
+
+You can also save and load `JournalReader` instances as JSON files:
 ```python
-# save journal reader
+# Save JournalReader to a JSON file
 jr.to_json('output_file_path.json')
 
-# load journal reader
+# Load JournalReader from a JSON file
 jr_load = JournalReader.from_json('input_file_path.json')
 ```
 
 ### 2. LLMMiner (Agent)
-LLM miner is LLM Module that extract synthesis and characteristic properties from text and table.
+`LLMMiner` is a module that extracts synthesis conditions and characteristic properties from text and tables.
 
 ```python
 from llm_miner import LLMMiner
@@ -81,72 +84,75 @@ from llm_miner import LLMMiner
 api_key = 'openai-api-key'
 agent = LLMMiner.create(openai_api_key=api_key)
 ```
-Default llm module is `gpt-4` for text and `gpt-3.5-turbo-16k` for table.
+By default, the LLM module uses `gpt-4` for text extraction and `gpt-3.5-turbo-16k` for table extraction.
 
-Also, you can change llm model using config file. If you want to use fine-tuned mode. Example for config file is in `L2M3/config/`
+You can customize the LLM model using a configuration file. If you want to use a fine-tuned model, an example configuration file is available in the [L2M3/config](config) directory.
 
 ```python
 agent = LLMMiner.from_yaml('yaml-file-path', openai_api_key=api_key)
 ```
 
 ### 3. Run agent
-You can run agent. Output of text-mining is automatically saved in `JournalReader` object.
+You can run the agent, and the output of the text-mining process will automatically be saved in the `JournalReader` object.
 
 ```python
 agent.run(jr)
 ```
 
-You can check results in `JournalReader`. The results show each text-mined synthesis/property consolidated by material.
+You can check the results in the `JournalReader` object. These results show the synthesized or property data, consolidated by material.
 
 ```python
 result = jr.result
 
-# See all results
+# View all results
 result.print()
 ```
 
-You can save clean result using `to_dict` or `to_json` function
+If `jr.result` exists, it is automatically saved during the process of saving the `JournalReader`. If you want to save just the result separately, you can save the cleaned results using the `to_dict` or `to_json` functions:
 
 ```python
 # convert dictionary type
 output = result.to_dict()
 
-# save as json file
+# Save as a JSON file
 result.to_json(json_file)
 ```
 
-If you want to see the text mining results by paragraph/table, you can use the following functions. Each function consists of a list of `Paragraph` objects.
+If you want to review the text-mining results by paragraph or table, you can use the following functions. Each function returns a list of `Paragraph` objects.
 
 ```python
 # All text-mined results
 all_paragraph = jr.cln_element
 
-# See each synthesis/property/table
+# View results by category
 synthesis_condition = jr.get_synthesis_conditions()
 properties = jr.get_properties()
 tables = jr.get_tables()
 ```
 
-You can see text-mining results in `Paragraph` object.
+You can inspect the text-mining results in each `Paragraph` object:
+
 ```python
-# Check results of each paragraph
-paragraph = synthesis_condition[idx]  # synthesis_condition or properties or table
-paragraph.print()  # check all content of paragraph
+# Check the results of each paragraph
+paragraph = synthesis_condition[idx]  # Can also use properties, or table
+paragraph.print()  # View full content of the paragraph
 ```
 
-`Paragraph` object has several useful attribute and functions.
-- idx : index of paragraph
-- type : type of paragraph (text or table)
-- classification : result of classification (synthesis condition or properties)
-- clean_text : clean version of paragraph (no html/xml tags)
-- include_properties : result of inclusion
-- data : extracted JSON type data
-- (function) to_dict : Convert Paragraph object to dictionary
-- (function) get_intermediate_step : Check results of intermediate step
+The `Paragraph` object offers several useful attributes and methods:
+
+- `idx`: Index of the paragraph
+- `type`: Type of the paragraph (text or table)
+- `classification`: Classification result (synthesis condition or properties)
+- `clean_text`: Cleaned version of the paragraph (no HTML/XML tags)
+- `include_properties`: Inclusion result
+- `data`: Extracted data in JSON format
+- `(method) get_intermediate_step`: Displays results of intermediate steps
+- `(method) to_dict`: Converts the Paragraph object to a dictionary
+
 
 
 ### 4. (optinal) Token Checker
-We provide token checker that estimate tokens and price of your text-mining task.
+L2M3 provides a token checker to estimate the number of tokens used and the price for your text-mining task.
 
 ```python
 from llm_miner.pricing import TokenChecker
@@ -158,14 +164,14 @@ agent.run(
     token_checker=tc
 )
 
-# See summary of tokens
+# View token summary
 tc.print()
-# See total price ($)
+# Display total price (in $)
 print (tc.price)
 ```
 
 ### 5. csd matcher (optional)
-If paper is related with CSD database, you can use csd matcher to matching text-mining data and CSD database
+If your paper is related to the CSD database, you can use the CSD matcher to match text-mining data with the CSD database.
 
 ```python
 여기 부분 작성 부탁드립니다 원석씨....
@@ -173,8 +179,7 @@ If paper is related with CSD database, you can use csd matcher to matching text-
 
 
 ## Fine-tuning
-L2M3 offers fine-tune LLM model to reduce tokens and price.
-In [L2M3/finetune](finetune), there are `jsonl` files which is dataset for fine-tune each model. The list of fine-tuned dataset are in below:
+L2M3 allows you to fine-tune the LLM model to reduce token usage and cost. In the L2M3/finetune directory, there are `jsonl` files that serve as datasets for fine-tuning various models [[link]](finetune). The available fine-tuned datasets include:
 - text_categorize
 - property_inclusion
 - synthesis_inclusion
@@ -183,9 +188,9 @@ In [L2M3/finetune](finetune), there are `jsonl` files which is dataset for fine-
 - table_property_inclusion
 - table_xml2md
 
-You can fine-tune model in [OpenAI Finetune page](https://platform.openai.com/finetune).
+You can fine-tune models on the [OpenAI Finetune page](https://platform.openai.com/finetune) (Recommanded).
 
-Or, you can finetune model using [finetune/finetune.py](finetune/finetune.py)
+Alternatively, you can fine-tune the model using the provided script:
 ```bash
 $ python finetune/finetune.py --model model_name --file jsonl_file --api-key your_api_key
 ```
