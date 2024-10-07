@@ -174,7 +174,7 @@ If paper is related with CSD database, you can use csd matcher to matching text-
 
 ## Fine-tuning
 L2M3 offers fine-tune LLM model to reduce tokens and price.
-In [L2M3/finetune](L2M3/finetune), there are `jsonl` files which is dataset for fine-tune each model. The list of fine-tuned dataset are in below:
+In [L2M3/finetune](finetune), there are `jsonl` files which is dataset for fine-tune each model. The list of fine-tuned dataset are in below:
 - text_categorize
 - property_inclusion
 - synthesis_inclusion
