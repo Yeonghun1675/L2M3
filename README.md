@@ -179,7 +179,7 @@ If your paper is related to the CSD database, you can use the CSD matcher to mat
 
 
 ## Fine-tuning
-L2M3 allows you to fine-tune the LLM model to reduce token usage and cost. In the L2M3/finetune directory, there are `jsonl` files that serve as datasets for fine-tuning various models [[link]](finetune). The available fine-tuned datasets include:
+L2M3 allows you to fine-tune the LLM model to reduce token usage and cost. In the [L2M3/finetune](finetune) directory, there are `jsonl` files that serve as datasets for fine-tuning various models. The available fine-tuned datasets include:
 - text_categorize
 - property_inclusion
 - synthesis_inclusion
