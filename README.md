@@ -100,6 +100,7 @@ You can check results in `JournalReader`. The results show each text-mined synth
 
 ```python
 result = jr.result
+
 # See all results
 result.print()
 ```
@@ -173,7 +174,7 @@ If paper is related with CSD database, you can use csd matcher to matching text-
 
 ## Fine-tuning
 L2M3 offers fine-tune LLM model to reduce tokens and price.
-In `L2M3/finetune`, there are `jsonl` files which is dataset for fine-tune each model. The list of fine-tuned dataset are in below:
+In [L2M3/finetune](L2M3/finetune), there are `jsonl` files which is dataset for fine-tune each model. The list of fine-tuned dataset are in below:
 - text_categorize
 - property_inclusion
 - synthesis_inclusion
@@ -184,7 +185,7 @@ In `L2M3/finetune`, there are `jsonl` files which is dataset for fine-tune each 
 
 You can fine-tune model in [OpenAI Finetune page](https://platform.openai.com/finetune).
 
-Or, you can finetune model using `finetune/finetune.py`
+Or, you can finetune model using [finetune/finetune.py](finetune/finetune.py)
 ```bash
 $ python finetune/finetune.py --model model_name --file jsonl_file --api-key your_api_key
 ```
