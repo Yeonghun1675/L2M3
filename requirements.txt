@@ -10,3 +10,4 @@ requests
 jinja2
 jsonlines
 ase
+omegaconf

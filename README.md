@@ -81,15 +81,12 @@ from llm_miner import LLMMiner
 api_key = 'openai-api-key'
 agent = LLMMiner.create(openai_api_key=api_key)
 ```
-Default llm module is 'gpt-4' for text and 'gpt-3.5-turbo-16k' for table.
+Default llm module is `gpt-4` for text and `gpt-3.5-turbo-16k` for table.
 
 Also, you can change llm model using config file. If you want to use fine-tuned mode. Example for config file is in `L2M3/config/`
 
 ```python
-import yaml
-
-config = yaml.load('config-file')
-agent = LLMMiner.from_config(config, openai_api_key=api_key)
+agent = LLMMiner.from_yaml('yaml-file-path', openai_api_key=api_key)
 ```
 
 ### 3. Run agent
@@ -137,6 +134,11 @@ agent.run(
     paragraph=output,
     token_checker=tc
 )
+
+# See summary of tokens
+tc.print()
+# See total price ($)
+print (tc.price)
 ```
 
 ## Fine-tuning
