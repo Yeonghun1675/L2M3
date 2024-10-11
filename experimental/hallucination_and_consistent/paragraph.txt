@@ -1,7 +1,0 @@
-Syntheses of Compounds 1 and 2 
-Hmta[(Hmta)Ag4I4] (1)
-AgI (0.025 mmol, 6.0 mg), NH4I (0.083 mmol, 12.0 mg), and Hmta (0.054 mmol, 6.0 mg) were placed in a Pyrex glass tube, and then 300 μL of methanol and 80 μL of N,N-dimethylformamide (DMF) as a mixed solvent were added. After the mixture was thoroughly stirred, the glass tube was sealed (reagents filled about 5% volume of the tube) under an air atmosphere, placed in a stainless steel autoclave, into which water as a media for heat transfer and press balance was added to 80% filling, and then heated at 85 °C for 4 days. The products were washed with ethanol several times, and colorless block crystals were obtained as a pure phase in 87.5% yield based on AgI. EDS analysis on several crystals gave an average 1:1 Ag/I ratio approach. Elem anal. Calcd for 1 (C12H24N8Ag4I4): C, 11.39; H, 1.90; N, 8.86. Found: C,11.45; H, 2.10; N, 8.65
-[(Hmta)2Ag8I6]I2 (2)
-The synthetic procedure of 2 was similar to that of 1, except that NH4I (0.069 mmol, 10.0 mg), Hmta (0.125 mmol, 14.0 mg), and 120 μL of methanol and 300 μL of acetonitrile as a mixed solvent were used and heated at 105 °C for 7 days. The products were washed with ethanol several times, and pale-yellow octahedral-shaped crystals were obtained in 16.2% yield based on AgI. EDS analysis on several crystals gave an average 1:1 Ag/I ratio approach. Elem anal. Calcd for 2 (C12H24N8Ag8I8): C, 6.25; H, 1.04; N, 4.86. Found: C, 6.40; H, 1.15; N, 4.68.
-
-(doi: 10.1021/acs.inorgchem.6b00973)
