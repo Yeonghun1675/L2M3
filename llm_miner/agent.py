@@ -1,4 +1,5 @@
 from typing import Any, Dict, List, Optional
+from omegaconf import OmegaConf
 
 from langchain.chat_models import ChatOpenAI
 from langchain.base_language import BaseLanguageModel
@@ -155,6 +156,15 @@ class LLMMiner(Chain):
             property_agent=property_agent,
             **kwargs,
         )
+
+    @classmethod
+    def from_yaml(
+        cls,
+        yaml: str,
+        openai_api_key: str = None,
+    ) -> Chain:
+        config = OmegaConf.load(yaml)
+        return cls.from_config(dict(config), openai_api_key=openai_api_key)
 
     @classmethod
     def from_config(

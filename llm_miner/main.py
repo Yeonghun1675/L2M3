@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 from langchain.chat_models import ChatOpenAI
 from llm_miner.agent import LLMMiner
-from llm_miner.reader.reader import JournalReader
+from llm_miner.reader import JournalReader
 from llm_miner.config import config
 
 
@@ -32,9 +32,3 @@ def main(file_path: str, journal=None):
         element.set_data(data)
 
     return jr
-
-
-
-
-    
-
