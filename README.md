@@ -151,7 +151,7 @@ The `Paragraph` object offers several useful attributes and methods:
 
 
 
-### 4. (optinal) Token Checker
+### 4. (optional) Token Checker
 L2M3 provides a token checker to estimate the number of tokens used and the price for your text-mining task.
 
 ```python
@@ -169,14 +169,6 @@ tc.print()
 # Display total price (in $)
 print (tc.price)
 ```
-
-### 5. csd matcher (optional)
-If your paper is related to the CSD database, you can use the CSD matcher to match text-mining data with the CSD database.
-
-```python
-여기 부분 작성 부탁드립니다 원석씨....
-```
-
 
 ## Fine-tuning
 L2M3 allows you to fine-tune the LLM model to reduce token usage and cost. In the [L2M3/finetune](finetune) directory, there are `jsonl` files that serve as datasets for fine-tuning various models. The available fine-tuned datasets include:
