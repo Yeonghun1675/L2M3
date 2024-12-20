@@ -1,0 +1,10 @@
+openai_api_key: your_api_key
+fine_tuned_model: your_ft_model
+
+# text input
+input_as_text: False
+output_as_text: False
+llm_model: gpt-4o
+
+# model option
+temperature: 0.0
