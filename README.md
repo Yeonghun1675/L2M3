@@ -189,7 +189,7 @@ $ python finetune/finetune.py --model model_name --file jsonl_file --api-key you
 
 ## Citiation
 If you want to cite L2M3, please refer to the following paper:
-> [Harnessing Large Language Model to collect and analyze Metal-organic framework property dataset, arxiv (2024)](https://arxiv.org/abs/2404.13053)
+> [Harnessing Large Language Model to collect and analyze Metal-organic framework property dataset, J. Am. Chem. Soc. 2025, 147, 5, 3943-3958](https://pubs.acs.org/doi/10.1021/jacs.4c11085)
 
 ## Contributing 🙌
 
