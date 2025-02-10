@@ -1,6 +1,7 @@
 # Synthesis Condition Recommender
 
 
+
 ## How to use
 ### 1. fine-tuned model
 In order to use the synthesis recommender, the openai chatgpt model must be fine-tuned. First, download one of the train jsonl files located in assets. Then, upload the jsonl file to the fine-tuning section of openai for fine-tuning [[link]](https://platform.openai.com/finetune).
