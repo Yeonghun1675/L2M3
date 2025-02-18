@@ -187,6 +187,13 @@ Alternatively, you can fine-tune the model using the provided script:
 $ python finetune/finetune.py --model model_name --file jsonl_file --api-key your_api_key
 ```
 
+## Addtional Information
+- [L2M3 Database](https://figshare.com/account/items/27187917/edit)
+-  [Paper Crawling](./crawling.md)
+-  [Synthesis Condition Recommender](./experimental/synthesis_recommender/README.md)
+-  [Detail of Machine Learing Models](https://github.com/Taeun8991/L2M3_ML)
+-  [Utilizing L2M3 Across Various Domains](https://github.com/Taeun8991/L2M3_application)
+
 ## Citiation
 If you want to cite L2M3, please refer to the following paper:
 > [Harnessing Large Language Model to collect and analyze Metal-organic framework property dataset, J. Am. Chem. Soc. 2025, 147, 5, 3943-3958](https://pubs.acs.org/doi/10.1021/jacs.4c11085)
