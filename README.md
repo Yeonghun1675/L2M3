@@ -188,7 +188,7 @@ $ python finetune/finetune.py --model model_name --file jsonl_file --api-key you
 ```
 
 ## Addtional Information
-- [L2M3 Database](https://figshare.com/account/items/27187917/edit)
+- [L2M3 Database](https://figshare.com/articles/dataset/L2M3_Database/27187917)
 -  [Paper Crawling](./crawling.md)
 -  [Synthesis Condition Recommender](./experimental/synthesis_recommender/README.md)
 -  [Detail of Machine Learing Models](https://github.com/Taeun8991/L2M3_ML)
